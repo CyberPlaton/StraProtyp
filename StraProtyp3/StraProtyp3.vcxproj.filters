@@ -16,36 +16,12 @@
     <Filter Include="Header Files\ImGui">
       <UniqueIdentifier>{c915881e-af0e-4c63-ae83-6b56c6c8bdcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Base">
+      <UniqueIdentifier>{cb8ea05b-c942-4338-9bf4-7d227bcaba3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ColorConsole.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ComponentSystem.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWorld.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWorldTime.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWorldTimer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="olcPGEX_TransformedView.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="olcPixelGameEngine.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldState.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="common\include\imgui-master\imconfig.h">
@@ -72,35 +48,50 @@
     <ClInclude Include="common\include\imgui-master\examples\imgui_impl_opengl3.h">
       <Filter>Header Files\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Components.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectCreator.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="common\include\imgui_impl_pge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="common\include\tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentSystem.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorConsole.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectCreator.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldTimer.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorldTime.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="olcPixelGameEngine.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="olcPGEX_TransformedView.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldState.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ComponentSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameWorldTime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -125,14 +116,26 @@
     <ClCompile Include="common\include\imgui-master\examples\imgui_impl_opengl3.cpp">
       <Filter>Header Files\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Components.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectCreator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="common\include\tinyxml2.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentSystem.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Components.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectCreator.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWorldTime.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWorld.cpp">
+      <Filter>Source Files\Base</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
