@@ -7,10 +7,6 @@
 static bool imgui_demo_window = false;
 static bool gameobjects_window = true;
 static bool imgui_has_focus = false;
-static const char* selectable_agent_stats[] = { "Stats", "Agent Beliefs", "Goals", "Available Actions", "Action Queue", "Agent Schedule"};
-static int show_agent_stats_at_index = -1;
-//static Agent* agent_showing_stats = nullptr;
-static bool show_agent_stats_window = false;
 static bool show_nav_mesh = false;
 static bool show_nav_path = false;
 static bool show_agent_action = false;
@@ -52,7 +48,7 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 	// Application rendering.
 	olc::vi2d topleft = tv.GetTopLeftTile().max({ 0, 0 });
-	olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_MAPSIZE_X, DEFAULT_MAPSIZE_Y });
+	olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
 	olc::vi2d tile;
 
 
@@ -66,42 +62,6 @@ bool App::OnUserUpdate(float fElapsedTime)
 		}
 	}
 
-
-	// Draw Buildings
-	for (auto& go : GameObjectStorage::get()->getStorage())
-	{
-		if (go->hasComponent("Renderable"))
-		{
-			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
-			if (render->render)
-			{
-				if (go->getTag().find("Building") != std::string::npos)
-				{
-					olc::Pixel color;
-					color = _getColorFromString(render->color);
-
-					TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
-
-					// Draw solid building ground
-					tv.FillRect(olc::vf2d(transform->xpos, transform->ypos), olc::vf2d(render->width, render->height), color);
-
-					
-					// Draw walkable building
-					if (go->hasComponent("WalkableBuilding"))
-					{
-						WalkableBuildingCmp* wb = go->getComponent<WalkableBuildingCmp>("WalkableBuilding");
-						std::pair<int, int> door = wb->getDoorToBuilding();
-
-						// Draw Doorway
-						tv.FillRect(olc::vf2d(door.first, door.second), olc::vf2d(1, 1), olc::DARK_GREY);
-
-						// Draw building inside
-						tv.FillRect(olc::vf2d(transform->xpos + 1, transform->ypos + 1), olc::vf2d(render->width - 2, render->height - 2), olc::VERY_DARK_GREY);
-					}
-				}
-			}
-		}
-	}
 
 
 	// Draw General
@@ -120,68 +80,6 @@ bool App::OnUserUpdate(float fElapsedTime)
 			}
 		}
 	}
-
-
-	// Draw NPCs
-	for (auto& go : GameObjectStorage::get()->getStorage())
-	{
-		if (go->hasComponent("Renderable"))
-		{
-			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
-			if (render->render)
-			{
-				if (go->getTag().find("Agent") != std::string::npos)
-				{
-					// Draw entity
-					olc::Pixel color;
-
-					TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
-
-					color = _getColorFromString(render->color);
-
-					tv.FillRect(olc::vf2d(transform->xpos, transform->ypos), olc::vf2d(render->width, render->height), color);
-
-
-					// Draw animation if needed
-					if (go->hasComponent("Animator"))
-					{
-						AnimatorCmp* anim = go->getComponent< AnimatorCmp >("Animator");
-
-						AnimatorCmp::Animations currAnim = anim->getAnimation();
-
-						switch (currAnim)
-						{
-						case AnimatorCmp::Animations::ANIM_SLEEP:
-							tv.DrawStringDecal(olc::vf2d(transform->xpos + render->width / 4, transform->ypos - render->height / 2), "Sleep");
-							break;
-
-						case AnimatorCmp::Animations::ANIM_WALK:
-							tv.DrawStringDecal(olc::vf2d(transform->xpos + render->width / 4, transform->ypos - render->height / 2), "Walk");
-							break;
-
-						case AnimatorCmp::Animations::ANIM_IDLE:
-							tv.DrawStringDecal(olc::vf2d(transform->xpos + render->width / 4, transform->ypos - render->height / 2), "Idle");
-							break;
-
-						case AnimatorCmp::Animations::ANIM_EAT:
-							tv.DrawStringDecal(olc::vf2d(transform->xpos + render->width / 4, transform->ypos - render->height / 2), "Eat");
-							break;
-
-						case AnimatorCmp::Animations::ANIM_DRINK:
-							tv.DrawStringDecal(olc::vf2d(transform->xpos + render->width / 4, transform->ypos - render->height / 2), "Drink");
-							break;
-
-
-						default:
-							break;
-						}
-					}
-
-				}
-			}
-		}
-	}
-
 
 
 	if (selected_gameobject)
@@ -328,7 +226,7 @@ bool App::OnUserCreate()
 
 
 
-	tv = olc::TileTransformedView({ ScreenWidth(), ScreenHeight() }, { DEFAULT_MAPSIZE_X, DEFAULT_MAPSIZE_Y });
+	tv = olc::TileTransformedView({ ScreenWidth(), ScreenHeight() }, { DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
 
 	
 	GameWorldTime::get()->setTimeSpeed(0.016);
@@ -492,6 +390,8 @@ void App::_onImGui()
 							ImGui::SameLine();
 
 							ImGui::Checkbox("Render", &rc->render);
+
+							ImGui::Text("Decal \"%s\"", rc->decalName.c_str());
 						}
 
 
@@ -501,6 +401,24 @@ void App::_onImGui()
 					ImGui::Separator();
 				}
 			}
+		}
+	}
+	ImGui::End();
+
+
+
+	if (ImGui::Begin("DecalDatabase"))
+	{
+		for (auto& decal : decalDatabase)
+		{
+			if (ImGui::ImageButton((ImTextureID)decal.second->id, ImVec2(64, 64), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1)))
+			{
+				GameObjectStorage::get()->getGOByName("Decal")->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
+			}
+
+			ImGui::SameLine();
+
+			ImGui::Text(decal.first.c_str());
 		}
 	}
 	ImGui::End();
@@ -533,13 +451,305 @@ void App::_handleInput()
 
 bool App::_loadDecalDatabase()
 {
-	using namespace std;
+	std::string default_path = "Data/Assets/Map/";
 
-	olc::Sprite* sprite = new olc::Sprite("Data/Assets/Map/forest_tundra_normal.png");
-	olc::Decal* decal = new olc::Decal(sprite);
-	if (!decal) return false;
+	olc::Sprite* sprite = nullptr;
+	olc::Decal* decal = nullptr;
 
+	// Loading Tundra
+	sprite = new olc::Sprite(default_path + "forest_tundra_normal.png");
+	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("forest_tundra_normal", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_tundra_scarce.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_tundra_scarce", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_tundra_deep.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_tundra_deep", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_tundra_dying.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_tundra_dying", decal);
+
+
+	// Loading Jungle
+	sprite = new olc::Sprite(default_path + "forest_jungle_deep.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_jungle_deep", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_jungle_normal.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_jungle_normal", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_jungle_scarce.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_jungle_scarce", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_jungle_dying.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_jungle_dying", decal);
+
+
+	// Loading Temperate
+	sprite = new olc::Sprite(default_path + "forest_temperate_dying.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_temperate_dying", decal);
+
+
+	sprite = new olc::Sprite(default_path + "forest_temperate_deep.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_temperate_deep", decal);
+
+
+	sprite = new olc::Sprite(default_path + "forest_temperate_normal.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_temperate_normal", decal);
+
+
+	sprite = new olc::Sprite(default_path + "forest_temperate_scarce.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_temperate_scarce", decal);
+
+
+	// Loading Savanah
+	sprite = new olc::Sprite(default_path + "forest_savannah_scarce.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_savannah_scarce", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_savannah_normal.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_savannah_normal", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_savannah_deep.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_savannah_deep", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_savannah_dying.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_savannah_dying", decal);
+
+
+	// Maptiles.
+	sprite = new olc::Sprite(default_path + "jungle.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("jungle", decal);
+
+	sprite = new olc::Sprite(default_path + "sand.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("sand", decal);
+
+	sprite = new olc::Sprite(default_path + "savannah.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("savannah", decal);
+
+	sprite = new olc::Sprite(default_path + "snow.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("snow", decal);
+
+	sprite = new olc::Sprite(default_path + "temperate.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("temperate", decal);
+
+	sprite = new olc::Sprite(default_path + "tundra.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("tundra", decal);
+
+	sprite = new olc::Sprite(default_path + "water_deep.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("water_deep", decal);
+
+	sprite = new olc::Sprite(default_path + "water_shallow.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("water_shallow", decal);
+
+
+	// Rivers.
+	sprite = new olc::Sprite(default_path + "river_down_left.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_down_left", decal);
+
+	sprite = new olc::Sprite(default_path + "river_down_right.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_down_right", decal);
+
+	sprite = new olc::Sprite(default_path + "river_left_right.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_left_right", decal);
+
+	sprite = new olc::Sprite(default_path + "river_left_right_down.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_left_right_down", decal);
+
+	sprite = new olc::Sprite(default_path + "river_left_up_down.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_left_up_down", decal);
+
+	sprite = new olc::Sprite(default_path + "river_up_down.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_up_down", decal);
+
+	sprite = new olc::Sprite(default_path + "river_up_left.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_up_left", decal);
+
+	sprite = new olc::Sprite(default_path + "river_up_right.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_up_right", decal);
+
+	sprite = new olc::Sprite(default_path + "river_up_right_down.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_up_right_down", decal);
+
+	sprite = new olc::Sprite(default_path + "river_up_right_left.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_up_right_left", decal);
+
+	sprite = new olc::Sprite(default_path + "river_up_right_left_down.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("river_up_right_left_down", decal);
+
+
+	// Hills/Mountains.
+	sprite = new olc::Sprite(default_path + "hills.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("hills", decal);
+
+	sprite = new olc::Sprite(default_path + "highmountain.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("highmountain", decal);
+
+
+	// Units.
+	default_path = "Data/Assets/Unit/";
+	sprite = new olc::Sprite(default_path + "aristocrat.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("aristocrat", decal);
+
+	sprite = new olc::Sprite(default_path + "assassin.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("assassin", decal);
+
+	sprite = new olc::Sprite(default_path + "assassin_2.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("assassin_2", decal);
+
+	sprite = new olc::Sprite(default_path + "battlemage.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("battlemage", decal);
+
+	sprite = new olc::Sprite(default_path + "battlemage_2.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("battlemage_2", decal);
+
+	sprite = new olc::Sprite(default_path + "civic_researcher.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("civic_researcher", decal);
+
+	sprite = new olc::Sprite(default_path + "crossbowman.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("crossbowman", decal);
+
+	sprite = new olc::Sprite(default_path + "fighter.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("fighter", decal);
+
+	sprite = new olc::Sprite(default_path + "heavy_maceman.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("heavy_maceman", decal);
+
+	sprite = new olc::Sprite(default_path + "heavy_spearman_iron.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("heavy_spearman_iron", decal);
+
+	sprite = new olc::Sprite(default_path + "heavy_swordman_bronze.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("heavy_swordman_bronze", decal);
+
+	sprite = new olc::Sprite(default_path + "heavy_swordman_iron.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("heavy_swordman_iron", decal);
+
+	sprite = new olc::Sprite(default_path + "high_senator.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("high_senator", decal);
+
+	sprite = new olc::Sprite(default_path + "knight_bronze.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("knight_bronze", decal);
+
+	sprite = new olc::Sprite(default_path + "light_archer.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("light_archer", decal);
+
+	sprite = new olc::Sprite(default_path + "light_cavalry.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("light_cavalry", decal);
+
+	sprite = new olc::Sprite(default_path + "local_merchant.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("local_merchant", decal);
+
+	sprite = new olc::Sprite(default_path + "local_merchant.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("local_merchant", decal);
+
+	sprite = new olc::Sprite(default_path + "longswordsman.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("longswordsman", decal);
+
+	sprite = new olc::Sprite(default_path + "mage.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("mage", decal);
+
+	sprite = new olc::Sprite(default_path + "magick_researcher.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("magick_researcher", decal);
+
+	sprite = new olc::Sprite(default_path + "merchant.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("merchant", decal);
+
+	sprite = new olc::Sprite(default_path + "merchant.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("merchant", decal);
+
+	sprite = new olc::Sprite(default_path + "merchant.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("merchant", decal);
+
+	sprite = new olc::Sprite(default_path + "mounted_knight.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("mounted_knight", decal);
+
+	sprite = new olc::Sprite(default_path + "mounted_scout.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("mounted_scout", decal);
+
+	sprite = new olc::Sprite(default_path + "paladin_adamantium.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("paladin_adamantium", decal);
+
+	sprite = new olc::Sprite(default_path + "paladin_malachite.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("paladin_malachite", decal);
+
+	sprite = new olc::Sprite(default_path + "senator.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("senator", decal);
+
+	sprite = new olc::Sprite(default_path + "sorcerer.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("sorcerer", decal);
+
+	sprite = new olc::Sprite(default_path + "spearman.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("spearman", decal);
+
+	sprite = new olc::Sprite(default_path + "spy.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("spy", decal);
 
 	return true;
 }

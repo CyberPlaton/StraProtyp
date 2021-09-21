@@ -106,26 +106,6 @@ bool NavMesh::bake()
 							graph->edges.push_back(b);
 						}
 
-						/*
-#define OFFSET 1
-						if (i - OFFSET == door.first && j == door.second)
-						{
-							graph->edges.push_back(edge{ i - OFFSET, j, door.first, door.second, 1 });
-						}
-						else if (i + OFFSET == door.first && j == door.second)
-						{
-							graph->edges.push_back(edge{ i + OFFSET, j, door.first, door.second, 1 });
-						}
-						else if (i == door.first && j - OFFSET == door.second)
-						{
-							graph->edges.push_back(edge{ i, j - OFFSET, door.first, door.second, 1 });
-						}
-						else if (i == door.first && j + OFFSET == door.second)
-						{
-							graph->edges.push_back(edge{ i, j + OFFSET, door.first, door.second, 1 });
-						}
-#undef OFFSET
-*/
 					}
 				}
 			}
