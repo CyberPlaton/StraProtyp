@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include "AVLTree.h"
+
 #include "ComponentSystem.h"
 
 #include "common/include/nlohmann/json.hpp"
@@ -72,7 +74,17 @@ private:
 
 	static GameObjectStorage* g_GameObjectStorage;
 
-	std::vector< GameObject* > m_GameObjects;
+
+
+
+	/*
+	* Storing Gameobjects in 2 places for max efficiency.
+	* Where "m_GameObjects" allows iterations and linear time search in names, substrings of tag etc.
+	* And "m_GameObjectsTagOptimized" allows O(log n) insertion and search of Gameobjects based on their Tag,
+	* or clearer the hash value of the Tag.
+	*/
+	std::vector< GameObject* > m_GameObjects;	
+	BST< GameObject* > m_GameObjectsTagOptimized;
 };
 
 

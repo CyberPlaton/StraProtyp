@@ -19,6 +19,7 @@ void GameObjectStorage::del()
 	if (g_GameObjectStorage)
 	{
 		g_GameObjectStorage->m_GameObjects.clear();
+		g_GameObjectStorage->m_GameObjectsTagOptimized.~BST();
 		delete g_GameObjectStorage;
 	}
 }
@@ -31,19 +32,15 @@ std::vector< GameObject* >& GameObjectStorage::getStorage()
 void GameObjectStorage::add(GameObject* go)
 {
 	m_GameObjects.push_back(go);
+	m_GameObjectsTagOptimized.insert(go->hash, go);
 }
 
 
 GameObject* GameObjectStorage::getGOByTag(const GOTag& tag)
 {
 	size_t tag_hash = hasher(tag);
-
-	for (auto& go : m_GameObjects)
-	{
-		if (tag_hash == go->hash) return go;
-	}
-
-	return nullptr;
+	GameObject* go = m_GameObjectsTagOptimized.search(tag_hash);
+	return go;
 }
 
 

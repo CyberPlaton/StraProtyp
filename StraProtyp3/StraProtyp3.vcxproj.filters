@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Base">
       <UniqueIdentifier>{cb8ea05b-c942-4338-9bf4-7d227bcaba3a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{03f1b826-ced1-4f4a-874d-8e384b785110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Base\Datastructs">
+      <UniqueIdentifier>{7690dca8-6910-42e9-bfc7-5aa925a9ff99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -89,6 +95,24 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="IUnit.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="IBuilding.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="IImprovement.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ITech.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="IPlayer.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="AVLTree.h">
+      <Filter>Source Files\Base\Datastructs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

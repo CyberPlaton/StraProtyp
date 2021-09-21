@@ -315,6 +315,10 @@ bool App::OnUserUpdate(float fElapsedTime)
 }
 
 
+
+
+
+
 bool App::OnUserCreate()
 {
 	using namespace std;
@@ -331,18 +335,15 @@ bool App::OnUserCreate()
 	GameWorldTime::get()->setTimeSpeed(0.016);
 
 
-	GameObjectCreator creator;
-	GameObject* fred = creator.create("GOAP/Gameobjects/NPC.xml", "Fred", 25, 25);
-	GameObject* tavern = creator.create("GOAP/Gameobjects/Tavern.xml", "Tavern", 10, 5);
-	GameObject* shop = creator.create("GOAP/Gameobjects/Shop.xml", "Shop", 20, 5);
-	GameObject* freds_house = creator.create("GOAP/Gameobjects/HouseSmall.xml", "Freds_House", 6, 24);
-
 
 	NavMesh::get()->bake();
 
 	
 	return true;
 }
+
+
+
 
 
 

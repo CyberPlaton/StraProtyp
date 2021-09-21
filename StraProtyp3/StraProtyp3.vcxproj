@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AVLTree.h" />
     <ClInclude Include="ColorConsole.h" />
     <ClInclude Include="common\include\imgui-master\examples\imgui_impl_glfw.h" />
     <ClInclude Include="common\include\imgui-master\examples\imgui_impl_opengl3.h" />
@@ -106,6 +107,11 @@
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="GameWorldTime.h" />
     <ClInclude Include="GameWorldTimer.h" />
+    <ClInclude Include="IBuilding.h" />
+    <ClInclude Include="IImprovement.h" />
+    <ClInclude Include="IPlayer.h" />
+    <ClInclude Include="ITech.h" />
+    <ClInclude Include="IUnit.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="olcPGEX_TransformedView.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
