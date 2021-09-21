@@ -39,6 +39,8 @@ public:
 	std::vector< GameObject* >& getStorage();
 
 	void add(GameObject* go);
+	void remove(GameObject* go);
+	void remove(const GOTag& tag);
 
 
 	/*
@@ -84,7 +86,7 @@ private:
 	* or clearer the hash value of the Tag.
 	*/
 	std::vector< GameObject* > m_GameObjects;	
-	BST< GameObject* > m_GameObjectsTagOptimized;
+	AVLTree< GameObject* > m_GameObjectsTagOptimized;
 };
 
 

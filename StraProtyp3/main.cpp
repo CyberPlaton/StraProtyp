@@ -335,6 +335,17 @@ bool App::OnUserCreate()
 	GameWorldTime::get()->setTimeSpeed(0.016);
 
 
+	GameObjectCreator creator;
+	for (int i = 0; i < 100; i++)
+	{
+		GameObject* go = new GameObject("Entity", "DUDE_" + std::to_string(i));
+	}
+
+
+	GameObject* go = GameObjectStorage::get()->getGOByTag("GO_76_Entity");
+	GameObjectStorage::get()->remove(go);
+	GameObjectStorage::get()->remove("GO_27_Entity");
+
 
 	NavMesh::get()->bake();
 

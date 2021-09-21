@@ -24,6 +24,24 @@ void GameObjectStorage::del()
 	}
 }
 
+
+void GameObjectStorage::remove(const GOTag& tag)
+{
+	size_t tag_hash = hasher(tag);
+	for (int i = 0; i < m_GameObjects.size(); i++)
+	{
+		if (m_GameObjects[i]->hash == tag_hash) m_GameObjects.erase(m_GameObjects.begin() + i);
+	}
+
+	m_GameObjectsTagOptimized.remove(tag_hash);
+}
+
+
+void GameObjectStorage::remove(GameObject* go)
+{
+	remove(go->getTag());
+}
+
 std::vector< GameObject* >& GameObjectStorage::getStorage()
 {
 	return g_GameObjectStorage->m_GameObjects;
