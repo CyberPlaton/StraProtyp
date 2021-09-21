@@ -10,6 +10,7 @@ static bool imgui_has_focus = false;
 static bool show_nav_mesh = false;
 static bool show_nav_path = false;
 static bool show_agent_action = false;
+static bool show_collisions = false;
 
 /*
 * Helper, maybe GUI related vars.
@@ -64,22 +65,14 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 
 
-	// Draw General
-	for (auto& go : GameObjectStorage::get()->getStorage())
-	{
-		if (go->hasComponent("Renderable"))
-		{
-			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
-			if (render->render)
-			{
-				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
-
-				olc::Decal* decal = decalDatabase[render->decalName];
-				
-				tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
-			}
-		}
-	}
+	// Draw General Layered
+	renderLayer("maptile");
+	renderLayer("mountain");
+	renderLayer("forest");
+	renderLayer("river");
+	renderLayer("city");
+	renderLayer("unit");
+	renderLayer("overlay");
 
 
 	if (selected_gameobject)
@@ -95,6 +88,7 @@ bool App::OnUserUpdate(float fElapsedTime)
 	}
 
 
+	/*
 	// Draw objects that are colliding
 	for (auto& first : GameObjectStorage::get()->getStorage())
 	{
@@ -116,26 +110,29 @@ bool App::OnUserUpdate(float fElapsedTime)
 		}
 
 	}
-
-	/*
-	for (auto& coll : ComponentStorage::get()->getAllOfType<CollisionBoxCmp>("CollisionBox")) // Update collision detection.
+	*/
+	
+	if (show_collisions)
 	{
-		for (auto& go : GameObjectStorage::get()->getStorage())
+		for (auto& coll : ComponentStorage::get()->getAllOfType<CollisionBoxCmp>("CollisionBox")) // Update collision detection.
 		{
-			// Do not draw collision with self
-			if (coll->this_agent->getTag().compare(go->getTag()) == 0) continue;
-
-			// Resolve collision with another object
-			if (coll->resolve(go))
+			for (auto& go : GameObjectStorage::get()->getStorage())
 			{
-				TransformCmp* tr = static_cast<TransformCmp*>(coll->this_agent->getComponent("Transform"));
-				CollisionBoxCmp* c = static_cast<CollisionBoxCmp*>(coll->this_agent->getComponent("CollisionBox"));
+				// Do not draw collision with self
+				if (coll->this_agent->getTag().compare(go->getTag()) == 0) continue;
 
-				tv.DrawRect(olc::vf2d(tr->xpos - 0.1f, tr->ypos - 0.1f), olc::vf2d(c->width + 0.1f, c->height + 0.1f), olc::DARK_RED);
+				// Resolve collision with another object
+				if (coll->resolve(go))
+				{
+					TransformCmp* tr = static_cast<TransformCmp*>(coll->this_agent->getComponent("Transform"));
+					CollisionBoxCmp* c = static_cast<CollisionBoxCmp*>(coll->this_agent->getComponent("CollisionBox"));
+
+					tv.DrawRect(olc::vf2d(tr->xpos - 0.1f, tr->ypos - 0.1f), olc::vf2d(c->width + 0.1f, c->height + 0.1f), olc::DARK_RED);
+				}
 			}
 		}
 	}
-	*/
+	
 
 	if (show_nav_mesh)
 	{
@@ -233,7 +230,11 @@ bool App::OnUserCreate()
 
 
 	GameObjectCreator creator;
-	GameObject* go = creator.create("Data/testing_gameobject.xml", "Decal", 10, 10);
+	GameObject* go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 0, 0);
+	go = creator.create("Data/Jungle_Scarce.xml", "Forest", 0, 0);
+	go = creator.create("Data/Mountain.xml", "Mountain", 0, 0);
+	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 0, 0);
+
 
 	NavMesh::get()->bake();
 
@@ -305,6 +306,17 @@ void App::_onImGui()
 				
 				ImGui::EndMenu();
 			}
+
+
+			if (ImGui::BeginMenu("Collider"))
+			{
+				if (ImGui::MenuItem("Collision Display"))
+				{
+					show_collisions = (show_collisions == true) ? false : true;
+				}
+				ImGui::EndMenu();
+			}
+
 
 			if (ImGui::BeginMenu("Navigator"))
 			{
@@ -392,6 +404,8 @@ void App::_onImGui()
 							ImGui::Checkbox("Render", &rc->render);
 
 							ImGui::Text("Decal \"%s\"", rc->decalName.c_str());
+
+							ImGui::Text("Layer \"%s\"", rc->renderingLayer.c_str());
 						}
 
 
@@ -752,4 +766,24 @@ bool App::_loadDecalDatabase()
 	decalDatabase.emplace("spy", decal);
 
 	return true;
+}
+
+
+void App::renderLayer(const std::string& layerName)
+{
+	for (auto& go : GameObjectStorage::get()->getStorage())
+	{
+		if (go->hasComponent("Renderable"))
+		{
+			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
+			if (render->render && render->renderingLayer.compare(layerName) == 0)
+			{
+				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
+
+				olc::Decal* decal = decalDatabase[render->decalName];
+
+				tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
+			}
+		}
+	}
 }

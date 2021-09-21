@@ -67,7 +67,7 @@ private:
 			if (cmp_name.compare("Renderable") == 0)
 			{
 				float w, h;
-				std::string color, decal;
+				std::string color, decal, layer;
 
 				data = cmp->FirstChildElement("Width");
 				w = stod(data->GetText());
@@ -81,8 +81,11 @@ private:
 				data = cmp->FirstChildElement("Decal");
 				decal = data->GetText();
 
+				data = cmp->FirstChildElement("Layer");
+				layer = data->GetText();
 
-				gameobject->AddComponent(new RendererableCmp("Renderable", w, h, color, decal));
+
+				gameobject->AddComponent(new RendererableCmp("Renderable", w, h, color, decal, layer));
 			}
 			else if (cmp_name.compare("Transform") == 0)
 			{

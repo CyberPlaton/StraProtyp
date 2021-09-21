@@ -151,8 +151,8 @@ public:
 class RendererableCmp : public Component
 {
 public:
-	RendererableCmp(const ComponentID& name, float width, float height, const std::string& color, const std::string& decalName):
-		width(width), height(height), color(color), decalName(decalName)
+	RendererableCmp(const ComponentID& name, float width, float height, const std::string& color, const std::string& decalName, const std::string& drawLayer):
+		width(width), height(height), color(color), decalName(decalName), renderingLayer(drawLayer)
 	{
 		this->name = name;
 		type = "Renderable";
@@ -177,6 +177,7 @@ public:
 
 	std::string color = "none";
 	std::string decalName = "none";
+	std::string renderingLayer = "none";
 
 	bool render = true;
 };

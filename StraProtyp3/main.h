@@ -87,4 +87,10 @@ private:
 
 
 	bool _loadDecalDatabase();
+
+
+	/*
+	* The names for rendering layers are defined for each renderable component in XML.
+	*/
+	void renderLayer(const std::string& layerName);
 };
