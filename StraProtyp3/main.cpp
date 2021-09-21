@@ -104,7 +104,7 @@ bool App::OnUserUpdate(float fElapsedTime)
 	}
 
 
-	// Draw Gameobjects, such as NPCs and Furniture
+	// Draw General
 	for (auto& go : GameObjectStorage::get()->getStorage())
 	{
 		if (go->hasComponent("Renderable"))
@@ -112,20 +112,15 @@ bool App::OnUserUpdate(float fElapsedTime)
 			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
 			if (render->render)
 			{
-				if (go->getTag().find("Furniture") != std::string::npos)
-				{
-					olc::Pixel color;
+				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
 
-					TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
-					
-					color = _getColorFromString(render->color);
-
-					// Draw entity
-					tv.FillRect(olc::vf2d(transform->xpos, transform->ypos), olc::vf2d(render->width, render->height), color);
-				}
+				olc::Decal* decal = decalDatabase[render->decalName];
+				
+				tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
 			}
 		}
 	}
+
 
 	// Draw NPCs
 	for (auto& go : GameObjectStorage::get()->getStorage())
@@ -308,6 +303,7 @@ bool App::OnUserUpdate(float fElapsedTime)
 		}
 	}
 
+
 	// For Rendering IMGUI.
 	_onImGui();
 	
@@ -323,6 +319,9 @@ bool App::OnUserCreate()
 {
 	using namespace std;
 
+	// Load Assets
+	if (!_loadDecalDatabase()) return false;
+
 	m_GameLayer = CreateLayer();
 	EnableLayer(m_GameLayer, true);
 	SetLayerCustomRenderFunction(0, std::bind(&App::DrawUI, this));
@@ -336,16 +335,7 @@ bool App::OnUserCreate()
 
 
 	GameObjectCreator creator;
-	for (int i = 0; i < 100; i++)
-	{
-		GameObject* go = new GameObject("Entity", "DUDE_" + std::to_string(i));
-	}
-
-
-	GameObject* go = GameObjectStorage::get()->getGOByTag("GO_76_Entity");
-	GameObjectStorage::get()->remove(go);
-	GameObjectStorage::get()->remove("GO_27_Entity");
-
+	GameObject* go = creator.create("Data/testing_gameobject.xml", "Decal", 10, 10);
 
 	NavMesh::get()->bake();
 
@@ -394,21 +384,6 @@ void App::_onImGui()
 		imgui_has_focus = false;
 	}
 
-	
-	// DISPLAY GAMEWORLD TIME
-	double day = GameWorldTime::get()->getDay();
-	double week = GameWorldTime::get()->getWeek();
-	double month = GameWorldTime::get()->getMonth();
-	double year = GameWorldTime::get()->getYear();
-
-	std::string worldtime = "TIME:" + GameWorldTime::get()->getDaytimeString();
-	worldtime += " D: " + std::to_string(day);
-	worldtime += " W: " + std::to_string(week);
-	worldtime += " M: " + std::to_string(month);
-	worldtime += " Y: " + std::to_string(year);
-
-	DrawStringDecal(olc::vf2d(ScreenWidth() / 2.0f - ScreenWidth() / 4.0f, 5.0f), worldtime, olc::RED, olc::vf2d(0.5f, 0.5f));
-	
 
 	// DEMO
 	if (imgui_demo_window)
@@ -447,11 +422,25 @@ void App::_onImGui()
 				ImGui::EndMenu();
 			}
 
+			if (ImGui::BeginMenu("Editor"))
+			{
+				if (ImGui::MenuItem("New"))
+				{
+					
+				}
+				ImGui::EndMenu();
+			}
+
+
+
+
 			ImGui::EndMenu();
 		}
 
 		ImGui::EndMainMenuBar();
 	}
+
+
 
 
 	// GAMEOBJECTS WINDOW
@@ -475,66 +464,6 @@ void App::_onImGui()
 			// Show the components of Selected GO.
 			if (ret)
 			{
-				/*
-				Agent* npc = static_cast<Agent*>(go);
-				
-
-				// If GO is an NPC, show ownership and inventory.
-				if(go->getTag().find("NPC") != std::string::npos)
-				{
-					// Allow opening NPC related popups.
-					if (ImGui::Button("Statistics"))
-					{
-						ImGui::OpenPopup("npc_stats_popup");
-					}
-					if (ImGui::BeginPopup("npc_stats_popup"))
-					{
-						ImGui::Text("Statistics Windows");
-						ImGui::Separator();
-
-						// Show possible stats and stuff windows for NPC.
-						for (int i = 0; i < IM_ARRAYSIZE(selectable_agent_stats); i++)
-						{
-							if (ImGui::Selectable(selectable_agent_stats[i]))
-							{
-								show_agent_stats_at_index = i;
-
-								// Save the agent for which to show stats.
-								agent_showing_stats = npc;
-
-								// Open the window.
-								show_agent_stats_window = true;
-
-								break;
-							}
-						}
-
-						ImGui::EndPopup();
-					}
-
-
-					if (ImGui::TreeNode("Ownership"))
-					{
-						for (auto& item : npc->agentOwnedObjects)
-						{
-							ImGui::BulletText(item->getName().c_str());
-						}
-
-						ImGui::TreePop();
-					}
-
-					if (ImGui::TreeNode("Inventory"))
-					{
-						for (auto& item : npc->agentInventory->getItems())
-						{
-							ImGui::BulletText(item->getName().c_str());
-						}
-
-						ImGui::TreePop();
-					}
-				}
-				*/
-
 				// Show CMPs
 				for (auto& cmp : go->components)
 				{
@@ -575,279 +504,7 @@ void App::_onImGui()
 		}
 	}
 	ImGui::End();
-
-
-	/*
-	* Currently the implementation allows only one of the stats windows to be active.
-	*/
-	/*
-	if (agent_showing_stats != nullptr)
-	{
-		if (show_agent_stats_window)
-		{
-			ImGui::SetNextWindowSize(ImVec2(400.0f, 250.0f), ImGuiCond_Appearing);
-			ImGui::SetNextWindowPos(ImVec2(350.0f, 15.0f), ImGuiCond_Appearing);
-			switch (show_agent_stats_at_index)
-			{
-			case 0:
-				_imguiAgentStatsWindow();
-				break;
-
-			case 1:
-				_imguiAgentBeliefsWindow();
-				break;
-
-			case 2:
-				_imguiAgentGoalsWindow();
-				break;
-
-			case 3:
-				_imguiAgentAvailableActionsWindow();
-				break;
-
-			case 4:
-				_imguiAgentActionQueueWindow();
-				break;
-
-			case 5:
-				_imguiAgentScheduleWindow();
-				break;
-
-			default:	// Show nothing.
-				break;
-			}
-		}
-	}
-	*/
 }
-
-
-void App::_imguiAgentScheduleWindow()
-{
-	if (ImGui::Begin(selectable_agent_stats[show_agent_stats_at_index], &show_agent_stats_window))
-	{
-		ImGui::Text("Role: ");
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("The role of an agent defines his daily schedule");
-
-		ImGui::SameLine();
-		//ImGui::Text(agent_showing_stats->agentRole.c_str());
-		ImGui::Separator();
-
-		/*
-		for (auto& schedule_entry : agent_showing_stats->daySchedule->schedule)
-		{
-			ImGui::Text("Activity: ");
-			if (ImGui::IsItemHovered())
-				ImGui::SetTooltip("The name of the activity");
-
-			ImGui::SameLine();
-			ImGui::Text(schedule_entry->name.c_str());
-
-
-			ImGui::Text("Target: ");
-			if (ImGui::IsItemHovered())
-				ImGui::SetTooltip("Tag of the Gameobject where the activity takes place");
-
-			ImGui::SameLine();
-			ImGui::Text("TODO");
-
-
-
-			ImGui::Text("Start: ");
-			if (ImGui::IsItemHovered())
-				ImGui::SetTooltip("When the activity will start");
-
-			ImGui::SameLine();
-			ImGui::Text(std::to_string(schedule_entry->start).c_str());
-
-
-
-			ImGui::Text("End: ");
-			if (ImGui::IsItemHovered())
-				ImGui::SetTooltip("When the activity will end");
-
-			ImGui::SameLine();
-			ImGui::Text(std::to_string(schedule_entry->end).c_str());
-
-			ImGui::Separator();
-		}
-		*/
-	}
-
-	ImGui::End();
-}
-
-void App::_imguiAgentStatsWindow()
-{
-	if (ImGui::Begin(selectable_agent_stats[show_agent_stats_at_index], &show_agent_stats_window))
-	{
-		ImGui::Text("Stats");
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Here we show the stats of an NPC like the race, agility or strength, health points etc");
-	
-	}
-
-	ImGui::End();
-}
-
-void App::_imguiAgentBeliefsWindow()
-{
-	if (ImGui::Begin(selectable_agent_stats[show_agent_stats_at_index], &show_agent_stats_window))
-	{
-		ImGui::Text("Beliefs");
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Here we show the agents local world state, so called beliefs, meaning how he perceives the world around self");
-	
-	}
-
-	ImGui::End();
-}
-
-
-void App::_imguiAgentGoalsWindow()
-{
-	if (ImGui::Begin(selectable_agent_stats[show_agent_stats_at_index], &show_agent_stats_window))
-	{
-		ImGui::Text("Goals");
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Here we show the goals of the agent in a comprehensive way");
-		ImGui::Separator();
-
-		/*
-		for (auto& g : agent_showing_stats->goals)
-		{
-
-			ImGui::Text("Goal Definition with ");
-			ImGui::SameLine();
-			ImGui::Text("Priority: ");
-			ImGui::SameLine();
-			ImGui::Text(std::to_string(g.first).c_str());
-
-			for (auto& sg : g.second->goals)
-			{
-				ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Subgoal: ");
-				ImGui::SameLine();
-				ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), sg.second.c_str());
-
-				ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Priority: ");
-				ImGui::SameLine();
-				ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), std::to_string(sg.first).c_str());
-			}
-
-		
-			ImGui::Separator();
-		}
-		*/
-	}
-
-	ImGui::End();
-}
-
-
-void App::_imguiAgentAvailableActionsWindow()
-{
-	if (ImGui::Begin(selectable_agent_stats[show_agent_stats_at_index], &show_agent_stats_window))
-	{
-		ImGui::Text("Available Actions");
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Here we show all actions available for execution for this agent");
-	
-		/*
-		for (auto& action : agent_showing_stats->availableActions)
-		{
-
-			ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Action: ");
-			ImGui::SameLine();
-			ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), action->action_name.c_str());
-
-			ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Cost: ");
-			ImGui::SameLine();
-			ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), std::to_string(action->cost).c_str());
-
-			ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Duration: ");
-			ImGui::SameLine();
-			ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), std::to_string(action->duration).c_str());
-
-			ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Target: ");
-			ImGui::SameLine();
-			ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), action->target_name.c_str());
-
-			ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Running: ");
-			ImGui::SameLine();
-			std::string running = action->running == true ? "true" : "false";
-			ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), running.c_str());
-
-			ImGui::Separator();
-
-
-			if (action->pre_conditions.size() == 0)
-			{
-				ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Condition: ");
-				ImGui::SameLine();
-				ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), "None");
-			}
-			else
-			{
-				for (auto& cond : action->pre_conditions)
-				{
-
-					ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Condition: ");
-					ImGui::SameLine();
-					ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), cond->key.c_str());
-
-					ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Value: ");
-					ImGui::SameLine();
-					ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), std::to_string(cond->value).c_str());
-
-				}
-			}
-
-			if (action->effects.size() == 0)
-			{
-				ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Effect: ");
-				ImGui::SameLine();
-				ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), "None");
-			}
-			else
-			{
-				for (auto& eff : action->effects)
-				{
-					ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Effect: ");
-					ImGui::SameLine();
-					ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), eff->key.c_str());
-
-					ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "Value: ");
-					ImGui::SameLine();
-					ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), std::to_string(eff->value).c_str());
-
-				}
-			}
-
-			ImGui::Separator();
-			ImGui::Separator();
-		}
-		*/
-	}
-
-	ImGui::End();
-}
-
-
-void App::_imguiAgentActionQueueWindow()
-{
-	if (ImGui::Begin(selectable_agent_stats[show_agent_stats_at_index], &show_agent_stats_window))
-	{
-		ImGui::Text("Action Queue");
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Here we show the current queue of actions for the agent");
-	}
-
-	ImGui::End();
-}
-
-
-
 
 
 
@@ -874,4 +531,15 @@ void App::_handleInput()
 }
 
 
+bool App::_loadDecalDatabase()
+{
+	using namespace std;
 
+	olc::Sprite* sprite = new olc::Sprite("Data/Assets/Map/forest_tundra_normal.png");
+	olc::Decal* decal = new olc::Decal(sprite);
+	if (!decal) return false;
+
+	decalDatabase.emplace("forest_tundra_normal", decal);
+
+	return true;
+}

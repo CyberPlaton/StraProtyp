@@ -19,7 +19,7 @@ void GameObjectStorage::del()
 	if (g_GameObjectStorage)
 	{
 		g_GameObjectStorage->m_GameObjects.clear();
-		g_GameObjectStorage->m_GameObjectsTagOptimized.~BST();
+		g_GameObjectStorage->m_GameObjectsTagOptimized.~AVLTree();
 		delete g_GameObjectStorage;
 	}
 }

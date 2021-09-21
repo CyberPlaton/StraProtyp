@@ -19,11 +19,11 @@ private:
     node* root;
 
 public:
-    BST() {
+    AVLTree() {
         root = nullptr;
     }
 
-    ~BST() {
+    ~AVLTree() {
         root = makeEmpty(root);
     }
 

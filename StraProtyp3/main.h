@@ -53,19 +53,12 @@ private:
 	int m_GameLayer;
 
 
+	std::map< std::string, olc::Decal* > decalDatabase;
+
 private:
 
 	void _onImGui();
 	void _handleInput();
-
-
-
-	void _imguiAgentStatsWindow();
-	void _imguiAgentBeliefsWindow();
-	void _imguiAgentGoalsWindow();
-	void _imguiAgentAvailableActionsWindow();
-	void _imguiAgentActionQueueWindow();
-	void _imguiAgentScheduleWindow();
 
 
 	olc::Pixel _getColorFromString(const std::string& c)
@@ -90,4 +83,8 @@ private:
 		
 		else return olc::WHITE;
 	}
+
+
+
+	bool _loadDecalDatabase();
 };
