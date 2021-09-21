@@ -2,13 +2,32 @@
 
 #include <vector>
 
+#include "ComponentSystem.h"
+
 #include "ITech.h"
 
 
-class IImprovement
+/*
+* Adding this component to a Gameobject makes it an Improvement.
+*/
+class IImprovementCmp : public Component
 {
 public:
+	IImprovementCmp(const ComponentID& name) {
+		this->name = name;
+		type = "Improvement";
 
-	virtual std::vector<TechID> getRequiredTech() const = 0;
+		init(type);
+	}
 
+	ComponentType getType() override { return this->type; }
+
+	void addTechRequirement(const TechID& id) { techRequirements.push_back(id); }
+
+	std::vector<TechID>& const getRequiredTech() { return techRequirements; }
+
+
+private:
+	std::string type;
+	std::vector<TechID> techRequirements;
 };

@@ -191,10 +191,6 @@ public:
 		return false;
 	}
 
-
-	virtual void update(double dt) { return; }
-
-
 	void setPosition(int x, int y)
 	{
 		Component* cmp = this->getComponent("Transform");

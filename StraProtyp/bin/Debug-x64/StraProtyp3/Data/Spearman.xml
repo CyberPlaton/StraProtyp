@@ -15,6 +15,23 @@
 		<Component name="Navigator"></Component>
 
 		<Component name ="Animator"></Component>
+		
+		<Component name="Unit">
+			<Requirements>
+				<Req type="tech">Bronze Working</Req>
+				<Req type="race">Human</Req>
+				<Req type="race">Orc</Req>
+				<Req type="race">High Elf</Req>
+				<Req type="race">Dark Elf</Req>
+				<Req type="race">Troll</Req>
+				<Req type="race">Gnome</Req>
+				<Req type="race">Dwarf</Req>
+				<Req type="race">Goblin</Req>
+				<Req type="ressource" amount="5">Bronze Weapons</Req>
+				<Req type="ressource" amount="10">Leather</Req>
+				<Req type="ressource" amount="10">Wood</Req>
+			</Requirements>
+		</Component>
 
 		<Component name="CollisionBox">
 			<Width>1.0</Width>

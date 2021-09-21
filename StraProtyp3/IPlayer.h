@@ -1,6 +1,9 @@
 #pragma once
 
 #include <map>
+#include <string>
+
+using RaceID = std::string;
 
 /*
 * PlayerTechnologies stores technology names which are researched by the player,

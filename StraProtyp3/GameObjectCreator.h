@@ -5,6 +5,12 @@
 #include "GameObject.h"
 #include "Components.h"
 
+/*
+* Include Components relevant to the Game.
+*/
+#include "IBuilding.h"
+#include "IUnit.h"
+#include "IImprovement.h"
 
 #include "tinyxml2.h"
 #include "nlohmann/json.hpp"
@@ -45,7 +51,6 @@ private:
 
 		// Create the gameobject
 		GameObject* gameobject = new GameObject(tag, name);
-
 
 		/*
 		* Get the components defining the agent.
@@ -121,6 +126,47 @@ private:
 				int doory = (int)stod(cmp->Attribute("doory"));
 
 				gameobject->AddComponent(new WalkableBuildingCmp("WalkableBuilding", gameobject , doorx, doory));
+			}
+			else if (cmp_name.compare("Building") == 0)
+			{
+				gameobject->AddComponent(new IBuildingCmp("Building"));
+			}
+			else if (cmp_name.compare("Unit") == 0)
+			{
+				IUnitCmp* unit = new IUnitCmp("Unit");
+				gameobject->AddComponent(unit);
+
+				// Check for requirements for the unit and add them.
+				XMLElement* reqs = cmp->FirstChildElement("Requirements");
+				XMLElement* req = reqs->FirstChildElement("Req");
+				std::string req_type;
+
+				while (req)
+				{
+					req_type = req->Attribute("type");
+
+					if (req_type.compare("tech") == 0)
+					{
+						unit->addTechRequirement(req->GetText());
+					}
+					else if (req_type.compare("race") == 0)
+					{
+						unit->addRaceRequirement(req->GetText());
+					}
+					else if (req_type.compare("ressource") == 0)
+					{
+						int amount = stod(req->Attribute("amount"));
+						unit->addRessourceRequirement({ req->GetText(), amount});
+					}
+
+
+					req = req->NextSiblingElement("Req");
+				}
+
+			}
+			else if (cmp_name.compare("Improvement") == 0)
+			{
+				gameobject->AddComponent(new IImprovementCmp("Improvement"));
 			}
 
 

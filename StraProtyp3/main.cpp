@@ -87,30 +87,6 @@ bool App::OnUserUpdate(float fElapsedTime)
 		}
 	}
 
-
-	/*
-	// Draw objects that are colliding
-	for (auto& first : GameObjectStorage::get()->getStorage())
-	{
-		for (auto& second : GameObjectStorage::get()->getStorage())
-		{
-			if (first->getTag().compare(second->getTag()) == 0) continue;
-
-			if (first->hasComponent("CollisionBox") && second->hasComponent("CollisionBox"))
-			{
-				if (first->getComponent<CollisionBoxCmp>("CollisionBox")->resolve(second) &&
-					second->getComponent<CollisionBoxCmp>("CollisionBox")->resolve(first))
-				{
-					TransformCmp* tr = first->getComponent<TransformCmp>("Transform");
-					CollisionBoxCmp* c = first->getComponent<CollisionBoxCmp>("CollisionBox");
-
-					tv.DrawRect(olc::vf2d(tr->xpos - 0.1f, tr->ypos - 0.1f), olc::vf2d(c->width + 0.1f, c->height + 0.1f), olc::DARK_RED);
-				}
-			}
-		}
-
-	}
-	*/
 	
 	if (show_collisions)
 	{
@@ -234,7 +210,6 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Jungle_Scarce.xml", "Forest", 0, 0);
 	go = creator.create("Data/Mountain.xml", "Mountain", 0, 0);
 	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 0, 0);
-
 
 	NavMesh::get()->bake();
 
@@ -409,6 +384,68 @@ void App::_onImGui()
 						}
 
 
+						if (cmp->getType().find("Unit") != std::string::npos)
+						{
+							IUnitCmp* uc = static_cast<IUnitCmp*>(cmp);
+
+							if (ImGui::TreeNode("Requirements"))
+							{
+								if (ImGui::TreeNode("Tech"))
+								{
+									// Get the requirements.
+									std::vector<TechID>& req = uc->getRequiredTech();
+
+									for (auto& r : req)
+									{
+										ImGui::Text("\"%s\"", r.c_str());
+									}
+
+									ImGui::TreePop();
+								}
+
+								if (ImGui::TreeNode("Ressources"))
+								{
+									std::vector<std::pair<std::string, int>>& req = uc->getRequiredRessources();
+
+									for (auto& r : req)
+									{
+										ImGui::Text("%d \"%s\"", r.second, r.first.c_str());
+									}
+
+									ImGui::TreePop();
+								}
+
+								if (ImGui::TreeNode("Race"))
+								{
+									std::vector<RaceID>& req = uc->getRequiredRace();
+
+									for (auto& r : req)
+									{
+										ImGui::Text("\"%s\"", r.c_str());
+									}
+
+									ImGui::TreePop();
+								}
+
+
+								ImGui::TreePop();
+							}
+
+
+						}
+
+						if (cmp->getType().find("Building") != std::string::npos)
+						{
+
+						}
+
+						if (cmp->getType().find("Improvement") != std::string::npos)
+						{
+
+						}
+
+
+
 						ImGui::TreePop();
 					}
 
@@ -427,7 +464,7 @@ void App::_onImGui()
 		{
 			if (ImGui::ImageButton((ImTextureID)decal.second->id, ImVec2(64, 64), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1)))
 			{
-				GameObjectStorage::get()->getGOByName("Decal")->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
+				GameObjectStorage::get()->getGOByName("Spearman_Unit")->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
 			}
 
 			ImGui::SameLine();
