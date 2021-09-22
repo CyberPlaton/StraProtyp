@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Any.h" />
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="ColorConsole.h" />
     <ClInclude Include="common\include\imgui-master\examples\imgui_impl_glfw.h" />
@@ -115,10 +116,12 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="olcPGEX_TransformedView.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
+    <ClInclude Include="TechInstance.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="WorldState.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Any.cpp" />
     <ClCompile Include="common\include\imgui-master\examples\imgui_impl_glfw.cpp" />
     <ClCompile Include="common\include\imgui-master\examples\imgui_impl_opengl3.cpp" />
     <ClCompile Include="common\include\imgui-master\imgui.cpp" />
@@ -133,7 +136,9 @@
     <ClCompile Include="GameObjectCreator.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="GameWorldTime.cpp" />
+    <ClCompile Include="ITech.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TechInstance.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,46 @@
+<Technology>
+	<Definition>
+		<!--The display name of the technology-->
+		<Name>Fighter Guilds</Name>
+
+		<!--The area of research to which this Tech belongs-->
+		<ResearchArea>military</ResearchArea>
+
+		<!--How many points must be invested to finish research of this Tech-->
+		<ResearchPoints>132</ResearchPoints>
+	</Definition>
+	<Requirements>
+		<!--Whether the player started off in the tundra-->
+		<Req area="player_start_biome_check" type="true">tundra</Req>
+		
+		<!--Whether players race is human-->
+		<Req area="player_race_check" type="true">human</Req>
+
+		<!--Whether player has at least 50 population in all cities-->
+		<Req area="player_race_check" type="greater">50</Req>
+
+		<!--Whether player has at least 1 fort-->
+		<Req area="player_fort_check" type="greater">1</Req>
+
+		<!--Whether player has at least 5 cities-->
+		<Req area="player_city_check" type="greater">5</Req>
+
+		<!--Whether player has following buildings in at least one city or fort-->
+		<Req area="player_building_check" type="true">Barracks</Req>
+		<Req area="player_building_check" type="true">Palace</Req>
+
+		<!--Whether player has at least one unit of that type at the time of research of this Tech-->
+		<Req area="player_unit_check" type="true">Knight</Req>
+
+		<!--Whether player has already researched following Tech-->
+		<Req area="player_tech_check" type="true">Heavy Armor</Req>
+		<Req area="player_tech_check" type="true">Iron Smelting</Req>
+	</Requirements>
+	
+	<!--Effects are basic description text-->
+	<!--Each unit and building define their own requirements, which are not stored in the Tech itself-->
+	<Effects>
+		<Text>Allows the recruitment of "Fighters Guild Apprentice"</Text>
+		<Text>Allows research of "Steel Making"</Text>
+	</Effects>
+</Technology>

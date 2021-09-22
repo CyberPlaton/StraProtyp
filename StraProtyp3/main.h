@@ -30,6 +30,7 @@
 #include "GameWorld.h"
 #include "GameWorldTime.h"
 
+#include "TechInstance.h"
 
 
 class App : public olc::PixelGameEngine

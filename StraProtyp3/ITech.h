@@ -17,8 +17,10 @@ public:
 		TA_MILITARY,
 		TA_CIVIC,
 		TA_MAGIC,
+		TA_TECHNICAL
 	};
 
+	// For "checkWhetherAvailableForPlayer" function
 	enum CheckArea
 	{
 		CA_BIOME,
@@ -31,21 +33,24 @@ public:
 		CA_TECH
 	};
 
-
+	// For "checkWhetherAvailableForPlayer" function
 	enum CheckType
 	{
+		// Integer
 		CT_EQUAL,
 		CT_GREATER,
 		CT_SMALLER,
+
+		// Boolean
 		CT_TRUE,
 		CT_FALSE
 	};
 
 public:
 
-	static CheckArea getCheckAreaFromText(tinyxml2::XMLElement* elem);
-	static CheckType getCheckTypeFromText(tinyxml2::XMLElement* elem);
-	static TechArea getTechAreaFromText(tinyxml2::XMLElement* elem);
+	static CheckArea getCheckAreaFromText(const std::string& text);
+	static CheckType getCheckTypeFromText(const std::string& text);
+	static TechArea getTechAreaFromText(const std::string& text);
 
 public:
 
@@ -62,6 +67,4 @@ public:
 
 	virtual TechArea getTechArea() = 0;
 	virtual int getResearchPoints() = 0;
-	virtual CheckArea getCheckArea() = 0;
-	virtual CheckType getCheckType() = 0;
 };

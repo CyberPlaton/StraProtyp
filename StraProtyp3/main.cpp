@@ -213,6 +213,9 @@ bool App::OnUserCreate()
 
 	NavMesh::get()->bake();
 
+
+	TechInstance tech("Data/Tech/ExampleTech.xml");
+
 	
 	return true;
 }
@@ -225,7 +228,7 @@ bool App::OnUserCreate()
 int main()
 {
 	App demo;
-	if (demo.Construct(350, 230, 4, 4))
+	if (demo.Construct(648, 512, 2, 2))
 		demo.Start();
 
 
@@ -801,6 +804,27 @@ bool App::_loadDecalDatabase()
 	sprite = new olc::Sprite(default_path + "spy.png");
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("spy", decal);
+
+
+
+	// Ressources.
+	default_path = "Data/Assets/Ressource/";
+	sprite = new olc::Sprite(default_path + "jungle_small_hunter.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("jungle_small_hunter", decal);
+
+	sprite = new olc::Sprite(default_path + "savannah_small_hunter.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("savannah_small_hunter", decal);
+
+	sprite = new olc::Sprite(default_path + "jungle_mushroom_eater.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("jungle_mushroom_eater", decal);
+
+	sprite = new olc::Sprite(default_path + "wheat.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("wheat", decal);
+
 
 	return true;
 }
