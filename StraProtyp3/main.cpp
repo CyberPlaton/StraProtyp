@@ -224,37 +224,37 @@ bool App::OnUserCreate()
 
 
 	TechInstance* tech = new TechInstance("Data/Tech/Hunting.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 	
 	tech = new TechInstance("Data/Tech/AdvancedArmorForging.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 	tech = new TechInstance("Data/Tech/AdvancedWeaponForging.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 	tech = new TechInstance("Data/Tech/ArmorForging.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 	tech = new TechInstance("Data/Tech/Bowmaking.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 	tech = new TechInstance("Data/Tech/ExpertBowmaking.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 	tech = new TechInstance("Data/Tech/Honor.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 	tech = new TechInstance("Data/Tech/Tactics.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 	tech = new TechInstance("Data/Tech/WarfareTheory.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 	tech = new TechInstance("Data/Tech/WarriorCode.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 	tech = new TechInstance("Data/Tech/WeaponForging.xml");
-	techTree.push_back(tech);
+	techTreeMilitary.push_back(tech);
 
 
 	return true;
@@ -537,7 +537,7 @@ void App::_onImGui()
 	{
 		if (ImGui::Begin("Military TechTree"))
 		{
-			for (auto& tech : techTree)
+			for (auto& tech : techTreeMilitary)
 			{
 				ImGui::Text("Tech \"%s\"", tech->getID().c_str());
 
@@ -568,28 +568,67 @@ void App::_onImGui()
 	{
 		if (!imnodes_tech_tree_initialized)
 		{
-			for (auto& node : techTree)
+			for (auto& node : techTreeMilitary)
 			{
-				techTreeNodes.emplace(imnodes_tech_node_id++, node->getID());
+				techTreeNodes.emplace(node->getID(), imnodes_tech_node_id++);
 			}
+
+
+			for (auto& node : techTreeMilitary)
+			{
+				// Get technology dependency
+				for (auto& req : node->checks)
+				{
+					if (req.second.type().compare("string") == 0)
+					{
+						std::string techReq = req.second.as<std::string>();
+
+						// Dont create a link if the requirement is a building etc.
+						if (ITech::getCheckAreaAsText(req.first.second).compare("player_tech_check") == 0)
+						{
+							// Create a link.
+							int startid = techTreeNodes[node->getID()] << 8;
+							int endid = techTreeNodes[techReq] << 24;
+							links.push_back(ImNodesLink(imnodes_tech_link_id++, startid, endid));
+						}
+					}
+				}
+			}
+
 
 			imnodes_tech_tree_initialized = true;
 		}
 
+
 		// Render Tree With Nodes.
-		ImGui::Begin("simple node editor", &show_military_tech_tree, ImGuiWindowFlags_None);
+		ImGui::Begin("Military Tech Tree", &show_military_tech_tree, ImGuiWindowFlags_None);
 
 		ImNodes::BeginNodeEditor();
 
 
 		for (auto& tech : techTreeNodes)
 		{
-			ImNodes::BeginNode(tech.first);
+			ImNodes::BeginNode(tech.second);
 			ImNodes::BeginNodeTitleBar();
-			ImGui::TextUnformatted(tech.second.c_str());
+			ImGui::TextUnformatted(tech.first.c_str());
 			ImNodes::EndNodeTitleBar();
 
+			ImNodes::BeginInputAttribute(tech.second << 8);
+			ImGui::TextUnformatted("Need");
+			ImNodes::EndInputAttribute();
+
+
+			ImNodes::BeginOutputAttribute(tech.second << 24);
+			ImGui::Indent(ImGui::CalcTextSize("Need").x + ImGui::CalcTextSize(tech.first.c_str()).x);
+			ImGui::TextUnformatted("Unlocks");
+			ImNodes::EndOutputAttribute();
+
 			ImNodes::EndNode();
+		}
+
+		for (auto& link : links)
+		{
+			ImNodes::Link(link.id, link.start, link.end);
 		}
 
 

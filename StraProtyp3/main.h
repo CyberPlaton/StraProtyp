@@ -22,7 +22,11 @@
 
 
 #include "imnodes.h"
-
+struct ImNodesLink
+{
+	ImNodesLink(int id, int start, int end) : id(id), start(start), end(end) {};
+	int id, start, end;
+};
 
 
 /*
@@ -64,9 +68,9 @@ private:
 
 	// A vector of all Technologies in game.
 	// Currently for debug/display usage.
-	std::vector< TechInstance* > techTree;
-	std::map< int, std::string > techTreeNodes;
-
+	std::vector< TechInstance* > techTreeMilitary;
+	std::map< std::string, int > techTreeNodes;
+	std::vector<ImNodesLink> links;
 private:
 
 	void _onImGui();
