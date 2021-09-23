@@ -29,6 +29,15 @@ struct ImNodesLink
 };
 
 
+struct ImNodesNode
+{
+	ImNodesNode(const std::string& name, int id) :name(name), id(id) {};
+
+	std::string name;
+	int id;
+	std::map< std::string, int > dependencies; // Which are not technologies.
+};
+
 /*
 */
 #include "ComponentSystem.h"
@@ -69,8 +78,8 @@ private:
 	// A vector of all Technologies in game.
 	// Currently for debug/display usage.
 	std::vector< TechInstance* > techTreeMilitary;
-	std::map< std::string, int > techTreeNodes;
-	std::vector<ImNodesLink> links;
+	std::vector< ImNodesNode > techTreeNodes;
+	std::vector< ImNodesLink > links;
 private:
 
 	void _onImGui();

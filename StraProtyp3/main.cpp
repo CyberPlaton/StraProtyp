@@ -19,7 +19,9 @@ static bool show_military_tech_tree = false;
 static GameObject* selected_gameobject = nullptr;
 static int imnodes_tech_node_id = 1;
 static int imnodes_tech_link_id = 1;
+static int imnodes_tech_dependency_id = 1;
 static bool imnodes_tech_tree_initialized = false;
+
 
 
 
@@ -570,7 +572,7 @@ void App::_onImGui()
 		{
 			for (auto& node : techTreeMilitary)
 			{
-				techTreeNodes.emplace(node->getID(), imnodes_tech_node_id++);
+				techTreeNodes.push_back(ImNodesNode(node->getID(), imnodes_tech_node_id++));
 			}
 
 
@@ -587,9 +589,32 @@ void App::_onImGui()
 						if (ITech::getCheckAreaAsText(req.first.second).compare("player_tech_check") == 0)
 						{
 							// Create a link.
-							int startid = techTreeNodes[node->getID()] << 8;
-							int endid = techTreeNodes[techReq] << 24;
+							//int startid = techTreeNodes[node->getID()] << 8;
+							//int endid = techTreeNodes[techReq] << 24;
+							int startid;
+							int endid;
+
+							for (auto& n : techTreeNodes)
+							{
+								if (n.name.compare(node->getID()) == 0) startid = n.id << 8;
+							}
+							for (auto& n : techTreeNodes)
+							{
+								if (n.name.compare(techReq) == 0) endid = n.id << 24;
+							}
+
+
 							links.push_back(ImNodesLink(imnodes_tech_link_id++, startid, endid));
+						}
+						else
+						{
+							for (auto& n : techTreeNodes)
+							{
+								if (n.name.compare(node->getID()) == 0)
+								{
+									n.dependencies.emplace(techReq, imnodes_tech_dependency_id++);
+								}
+							}
 						}
 					}
 				}
@@ -608,18 +633,26 @@ void App::_onImGui()
 
 		for (auto& tech : techTreeNodes)
 		{
-			ImNodes::BeginNode(tech.second);
+			ImNodes::BeginNode(tech.id);
 			ImNodes::BeginNodeTitleBar();
-			ImGui::TextUnformatted(tech.first.c_str());
+			ImGui::TextUnformatted(tech.name.c_str());
 			ImNodes::EndNodeTitleBar();
 
-			ImNodes::BeginInputAttribute(tech.second << 8);
+			ImNodes::BeginInputAttribute(tech.id << 8);
 			ImGui::TextUnformatted("Need");
 			ImNodes::EndInputAttribute();
 
 
-			ImNodes::BeginOutputAttribute(tech.second << 24);
-			ImGui::Indent(ImGui::CalcTextSize("Need").x + ImGui::CalcTextSize(tech.first.c_str()).x);
+			for (auto& dep : tech.dependencies)
+			{
+				ImNodes::BeginInputAttribute(dep.second);
+				ImGui::TextUnformatted(dep.first.c_str());
+				ImNodes::EndInputAttribute();
+			}
+
+
+			ImNodes::BeginOutputAttribute(tech.id << 24);
+			ImGui::Indent(ImGui::CalcTextSize("Need").x + ImGui::CalcTextSize(tech.name.c_str()).x);
 			ImGui::TextUnformatted("Unlocks");
 			ImNodes::EndOutputAttribute();
 
