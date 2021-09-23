@@ -1,0 +1,21 @@
+<Technology>
+	<Definition>
+		<!--The display name of the technology-->
+		<Name>Wood Working</Name>
+
+		<!--The area of research to which this Tech belongs-->
+		<ResearchArea>military</ResearchArea>
+
+		<!--How many points must be invested to finish research of this Tech-->
+		<ResearchPoints>45</ResearchPoints>
+	</Definition>
+	<Requirements>
+		<Req area="player_tech_check" type="true">Tool Making</Req>
+	</Requirements>
+	
+	<!--Effects are basic description text-->
+	<!--Each unit and building define their own requirements, which are not stored in the Tech itself-->
+	<Effects>
+		<Text>None</Text>
+	</Effects>
+</Technology>

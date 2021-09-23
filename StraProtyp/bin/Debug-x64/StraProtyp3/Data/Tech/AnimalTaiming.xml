@@ -1,0 +1,20 @@
+<Technology>
+	<Definition>
+		<!--The display name of the technology-->
+		<Name>Animal Taiming</Name>
+
+		<!--The area of research to which this Tech belongs-->
+		<ResearchArea>military</ResearchArea>
+
+		<!--How many points must be invested to finish research of this Tech-->
+		<ResearchPoints>25</ResearchPoints>
+	</Definition>
+	<Requirements>
+		<Req area="player_tech_check" type="true">Hunting</Req>
+	</Requirements>
+	
+	<!--Effects are basic description text-->
+	<!--Each unit and building define their own requirements, which are not stored in the Tech itself-->
+	<Effects>
+	</Effects>
+</Technology>

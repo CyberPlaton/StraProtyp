@@ -24,7 +24,7 @@ public:
 	* 
 	* The type is that one, the user has set on creation.
 	*/
-	std::string type() { return m_Type; }
+	std::string type() const { return m_Type; }
 
 
 	/*

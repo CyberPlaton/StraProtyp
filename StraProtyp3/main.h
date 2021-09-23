@@ -77,7 +77,7 @@ private:
 
 	// A vector of all Technologies in game.
 	// Currently for debug/display usage.
-	std::vector< TechInstance* > techTreeMilitary;
+	std::vector< TechInstance* > techTree;
 	std::vector< ImNodesNode > techTreeNodes;
 	std::vector< ImNodesLink > links;
 private:
@@ -112,7 +112,7 @@ private:
 
 
 	bool _loadDecalDatabase();
-
+	bool _loadTechTreeDefinitions();
 
 	/*
 	* The names for rendering layers are defined for each renderable component in XML.

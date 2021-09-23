@@ -43,5 +43,5 @@ public:
 
 
 	// Map of checks.
-	std::map< CheckDefinition, Any > checks;
+	std::map< Any*, CheckDefinition> checks;
 };

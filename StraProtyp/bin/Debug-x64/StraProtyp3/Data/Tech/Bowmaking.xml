@@ -12,7 +12,7 @@
 	<Requirements>
 		<!--Whether player has already researched following Tech-->
 		<Req area="player_tech_check" type="true">Hunting</Req>
-		<Req area="player_tech_check" type="true">Honor</Req>
+		<Req area="player_tech_check" type="true">Wood Working</Req>
 	</Requirements>
 	
 	<!--Effects are basic description text-->

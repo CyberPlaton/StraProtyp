@@ -46,20 +46,19 @@ C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\mai
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(142,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(143,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(144,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(331,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(392,62): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(525,7): warning C4312: 'type cast': conversion from 'int32_t' to 'ImTextureID' of greater size
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1042,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(298,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(359,62): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(492,7): warning C4312: 'type cast': conversion from 'int32_t' to 'ImTextureID' of greater size
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1120,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1042,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1120,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ComponentSystem.h(76): warning C4715: 'ComponentStorage::getAllOfType<CollisionBoxCmp>': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Any.h(54): warning C4715: 'Any::as<int>': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Any.h(54): warning C4715: 'Any::as<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >': not all control paths return a value
   StraProtyp3.vcxproj -> C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\StraProtyp3.exe

@@ -50,14 +50,16 @@ TechInstance::TechInstance(const std::string& path)
 		case CheckType::CT_SMALLER:
 			iV = req->IntText(INT_MAX);
 
-			checks.emplace(std::make_pair(checkDef, Any(iV, "int")));
+			checks.emplace(std::make_pair(new Any(iV, "int"), checkDef));
 			break;
 
 		case CheckType::CT_TRUE:
 		case CheckType::CT_FALSE:
 			what = req->GetText();
 
-			checks.emplace(std::make_pair(checkDef, Any(what, "string")));
+			// BUG:
+			// If we have same "checkDef" it Overrides it!!!
+			checks.emplace(std::make_pair(new Any(what, "string"), checkDef));
 			break;
 		}
 

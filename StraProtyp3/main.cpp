@@ -11,7 +11,7 @@ static bool show_nav_mesh = false;
 static bool show_nav_path = false;
 static bool show_agent_action = false;
 static bool show_collisions = false;
-static bool show_military_tech_tree = false;
+static bool show_tech_tree = false;
 
 /*
 * Helper, maybe GUI related vars.
@@ -199,11 +199,12 @@ bool App::OnUserCreate()
 
 	// Init ImNodes.
 	ImNodes::CreateContext();
-	ImNodes::SetNodeGridSpacePos(1, ImVec2(200.0f, 200.0f));
+	ImNodes::SetNodeGridSpacePos(1, ImVec2(50.0f, 50.0f));
 	ImNodes::LoadCurrentEditorStateFromIniFile("tech_tree_graph.ini");
 
 	// Load Assets
 	if (!_loadDecalDatabase()) return false;
+	if (!_loadTechTreeDefinitions()) return false;
 
 	m_GameLayer = CreateLayer();
 	EnableLayer(m_GameLayer, true);
@@ -223,40 +224,6 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 0, 0);
 
 	NavMesh::get()->bake();
-
-
-	TechInstance* tech = new TechInstance("Data/Tech/Hunting.xml");
-	techTreeMilitary.push_back(tech);
-	
-	tech = new TechInstance("Data/Tech/AdvancedArmorForging.xml");
-	techTreeMilitary.push_back(tech);
-
-	tech = new TechInstance("Data/Tech/AdvancedWeaponForging.xml");
-	techTreeMilitary.push_back(tech);
-
-	tech = new TechInstance("Data/Tech/ArmorForging.xml");
-	techTreeMilitary.push_back(tech);
-
-	tech = new TechInstance("Data/Tech/Bowmaking.xml");
-	techTreeMilitary.push_back(tech);
-
-	tech = new TechInstance("Data/Tech/ExpertBowmaking.xml");
-	techTreeMilitary.push_back(tech);
-
-	tech = new TechInstance("Data/Tech/Honor.xml");
-	techTreeMilitary.push_back(tech);
-
-	tech = new TechInstance("Data/Tech/Tactics.xml");
-	techTreeMilitary.push_back(tech);
-
-	tech = new TechInstance("Data/Tech/WarfareTheory.xml");
-	techTreeMilitary.push_back(tech);
-
-	tech = new TechInstance("Data/Tech/WarriorCode.xml");
-	techTreeMilitary.push_back(tech);
-
-	tech = new TechInstance("Data/Tech/WeaponForging.xml");
-	techTreeMilitary.push_back(tech);
 
 
 	return true;
@@ -371,9 +338,9 @@ void App::_onImGui()
 
 			if (ImGui::BeginMenu("Technology Tree"))
 			{
-				if (ImGui::MenuItem("Military"))
+				if (ImGui::MenuItem("Display"))
 				{
-					show_military_tech_tree = (show_military_tech_tree == true) ? false : true;
+					show_tech_tree = (show_tech_tree == true) ? false : true;
 				}
 				ImGui::EndMenu();
 			}
@@ -535,11 +502,12 @@ void App::_onImGui()
 	ImGui::End();
 
 
-	if (show_military_tech_tree)
+	if (show_tech_tree)
 	{
-		if (ImGui::Begin("Military TechTree"))
+		/*
+		if (ImGui::Begin("Technology Tree"))
 		{
-			for (auto& tech : techTreeMilitary)
+			for (auto& tech : techTree)
 			{
 				ImGui::Text("Tech \"%s\"", tech->getID().c_str());
 
@@ -563,44 +531,52 @@ void App::_onImGui()
 			}
 		}
 		ImGui::End();
+		*/
 	}
 
 
-	if (show_military_tech_tree)
+	if (show_tech_tree)
 	{
+		using namespace std;
+
 		if (!imnodes_tech_tree_initialized)
 		{
-			for (auto& node : techTreeMilitary)
+			for (auto& node : techTree)
 			{
 				techTreeNodes.push_back(ImNodesNode(node->getID(), imnodes_tech_node_id++));
 			}
 
 
-			for (auto& node : techTreeMilitary)
+			for (auto& node : techTree)
 			{
 				// Get technology dependency
 				for (auto& req : node->checks)
 				{
-					if (req.second.type().compare("string") == 0)
+
+					if (req.first->type().compare("string") == 0)
 					{
-						std::string techReq = req.second.as<std::string>();
+						std::string techReq = req.first->as<std::string>();
 
 						// Dont create a link if the requirement is a building etc.
-						if (ITech::getCheckAreaAsText(req.first.second).compare("player_tech_check") == 0)
+						if (ITech::getCheckAreaAsText(req.second.second).compare("player_tech_check") == 0)
 						{
 							// Create a link.
-							//int startid = techTreeNodes[node->getID()] << 8;
-							//int endid = techTreeNodes[techReq] << 24;
 							int startid;
 							int endid;
 
 							for (auto& n : techTreeNodes)
 							{
-								if (n.name.compare(node->getID()) == 0) startid = n.id << 8;
+								if (n.name.compare(node->getID()) == 0)
+								{
+									startid = n.id << 8;
+								}
 							}
 							for (auto& n : techTreeNodes)
 							{
-								if (n.name.compare(techReq) == 0) endid = n.id << 24;
+								if (n.name.compare(techReq) == 0)
+								{
+									endid = n.id << 24;
+								}
 							}
 
 
@@ -626,7 +602,9 @@ void App::_onImGui()
 
 
 		// Render Tree With Nodes.
-		ImGui::Begin("Military Tech Tree", &show_military_tech_tree, ImGuiWindowFlags_None);
+		ImGui::SetNextWindowPos(ImVec2(1.0f, 15.0f), ImGuiCond_Appearing);
+		ImGui::SetNextWindowSize(ImVec2(600.0f, 600.0f), ImGuiCond_Appearing);
+		ImGui::Begin("Technology Tree", &show_tech_tree, ImGuiWindowFlags_None);
 
 		ImNodes::BeginNodeEditor();
 
@@ -697,6 +675,96 @@ void App::_handleInput()
 		if (GetMouseWheel() < 0) tv.ZoomAtScreenPos(0.5f, GetMousePos());
 	}
 }
+
+
+
+bool App::_loadTechTreeDefinitions()
+{
+	std::string default_path = "Data/Tech/";
+
+	TechInstance* tech = new TechInstance(default_path + "Hunting.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "AdvancedArmorForging.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "AdvancedWeaponForging.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "ArmorForging.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "WeaponForging.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "Bowmaking.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "ExpertBowmaking.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "Honor.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "Tactics.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "WarfareTheory.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "WarriorCode.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "AdvancedClothing.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "Alchemy.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "AnimalHusbandry.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "AnimalTaiming.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "ClayWorking.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "CropRotation.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "Irrigation.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "LeatherWorking.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "MagicalPropertiesOfStones.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "MagicalStaffs.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "ManaStoneBounding.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "Masonry.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "MetalMining.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "IronWorking.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "BronzeWorking.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "Mysticism.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "PlantCultivation.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "PlantKnowledge.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "PotteryMaking.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "StoneWorking.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "ToolMaking.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "WoodWorking.xml");
+	techTree.push_back(tech);
+
+	return true;
+}
+
+
 
 
 bool App::_loadDecalDatabase()
