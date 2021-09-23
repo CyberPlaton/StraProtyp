@@ -36,7 +36,7 @@ public:
 		return researchPoints;
 	}
 
-private:
+public:
 	TechID id;
 	int researchPoints = -1;
 	TechArea techArea;

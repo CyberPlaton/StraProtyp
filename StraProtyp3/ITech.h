@@ -49,7 +49,9 @@ public:
 public:
 
 	static CheckArea getCheckAreaFromText(const std::string& text);
+	static std::string getCheckAreaAsText(CheckArea area);
 	static CheckType getCheckTypeFromText(const std::string& text);
+	static std::string getCheckTypeAsText(CheckType type);
 	static TechArea getTechAreaFromText(const std::string& text);
 
 public:

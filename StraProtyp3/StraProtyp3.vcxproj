@@ -57,7 +57,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\include;C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\include\imgui-master\examples;C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\include\imgui-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -74,7 +74,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\include;C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\include\imgui-master\examples;C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\include\imgui-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -96,6 +96,8 @@
     <ClInclude Include="common\include\imgui-master\imconfig.h" />
     <ClInclude Include="common\include\imgui-master\imgui.h" />
     <ClInclude Include="common\include\imgui-master\imgui_internal.h" />
+    <ClInclude Include="common\include\imgui-master\imnodes.h" />
+    <ClInclude Include="common\include\imgui-master\imnodes_internal.h" />
     <ClInclude Include="common\include\imgui-master\imstb_rectpack.h" />
     <ClInclude Include="common\include\imgui-master\imstb_textedit.h" />
     <ClInclude Include="common\include\imgui-master\imstb_truetype.h" />
@@ -129,6 +131,7 @@
     <ClCompile Include="common\include\imgui-master\imgui_draw.cpp" />
     <ClCompile Include="common\include\imgui-master\imgui_tables.cpp" />
     <ClCompile Include="common\include\imgui-master\imgui_widgets.cpp" />
+    <ClCompile Include="common\include\imgui-master\imnodes.cpp" />
     <ClCompile Include="common\include\tinyxml2.cpp" />
     <ClCompile Include="Components.cpp" />
     <ClCompile Include="ComponentSystem.cpp" />

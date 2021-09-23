@@ -17,7 +17,7 @@
 		<Req area="player_race_check" type="true">human</Req>
 
 		<!--Whether player has at least 50 population in all cities-->
-		<Req area="player_race_check" type="greater">50</Req>
+		<Req area="player_pop_check" type="greater">50</Req>
 
 		<!--Whether player has at least 1 fort-->
 		<Req area="player_fort_check" type="greater">1</Req>

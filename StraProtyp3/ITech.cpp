@@ -82,3 +82,50 @@ ITech::TechArea ITech::getTechAreaFromText(const std::string& text)
 		return TA_TECHNICAL;
 	}
 }
+
+
+std::string ITech::getCheckAreaAsText(ITech::CheckArea area)
+{
+	switch (area)
+	{
+	case CA_BIOME:
+		return "player_start_biome_check";
+	case CA_RACE:
+		return "player_race_check";
+	case CA_POP:
+		return "player_pop_check";
+	case CA_FORT:
+		return "player_fort_check";
+	case CA_CITY:
+		return "player_city_check";
+	case CA_BUILDING:
+		return "player_building_check";
+	case CA_UNIT:
+		return "player_unit_check";
+	case CA_TECH:
+		return "player_tech_check";
+	default:
+		return "undefined";
+	}
+}
+
+
+
+std::string ITech::getCheckTypeAsText(ITech::CheckType type)
+{
+	switch (type)
+	{
+	case CT_EQUAL:
+		return "equal";
+	case CT_GREATER:
+		return "greater";
+	case CT_SMALLER:
+		return "smaller";
+	case CT_TRUE:
+		return "true";
+	case CT_FALSE:
+		return "false";
+	default:
+		return "undefined";
+	}
+}

@@ -11,11 +11,16 @@ static bool show_nav_mesh = false;
 static bool show_nav_path = false;
 static bool show_agent_action = false;
 static bool show_collisions = false;
+static bool show_military_tech_tree = false;
 
 /*
 * Helper, maybe GUI related vars.
 */
 static GameObject* selected_gameobject = nullptr;
+static int imnodes_tech_node_id = 1;
+static int imnodes_tech_link_id = 1;
+static bool imnodes_tech_tree_initialized = false;
+
 
 
 void App::DrawUI(void)
@@ -190,13 +195,17 @@ bool App::OnUserCreate()
 {
 	using namespace std;
 
+	// Init ImNodes.
+	ImNodes::CreateContext();
+	ImNodes::SetNodeGridSpacePos(1, ImVec2(200.0f, 200.0f));
+	ImNodes::LoadCurrentEditorStateFromIniFile("tech_tree_graph.ini");
+
 	// Load Assets
 	if (!_loadDecalDatabase()) return false;
 
 	m_GameLayer = CreateLayer();
 	EnableLayer(m_GameLayer, true);
 	SetLayerCustomRenderFunction(0, std::bind(&App::DrawUI, this));
-
 
 
 	tv = olc::TileTransformedView({ ScreenWidth(), ScreenHeight() }, { DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
@@ -214,9 +223,40 @@ bool App::OnUserCreate()
 	NavMesh::get()->bake();
 
 
-	TechInstance tech("Data/Tech/ExampleTech.xml");
-
+	TechInstance* tech = new TechInstance("Data/Tech/Hunting.xml");
+	techTree.push_back(tech);
 	
+	tech = new TechInstance("Data/Tech/AdvancedArmorForging.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance("Data/Tech/AdvancedWeaponForging.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance("Data/Tech/ArmorForging.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance("Data/Tech/Bowmaking.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance("Data/Tech/ExpertBowmaking.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance("Data/Tech/Honor.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance("Data/Tech/Tactics.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance("Data/Tech/WarfareTheory.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance("Data/Tech/WarriorCode.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance("Data/Tech/WeaponForging.xml");
+	techTree.push_back(tech);
+
+
 	return true;
 }
 
@@ -234,6 +274,12 @@ int main()
 
 	NavMesh::del();
 	GameObjectStorage::del();
+
+
+	ImNodes::SaveCurrentEditorStateToIniFile("tech_tree_graph.ini");
+	ImGui::DestroyContext();
+	ImNodes::DestroyContext();
+
 
 	_CrtCheckMemory();
 	_CrtDumpMemoryLeaks();
@@ -274,6 +320,8 @@ void App::_onImGui()
 	{
 		if (ImGui::BeginMenu("Menu"))
 		{
+
+
 
 			if (ImGui::BeginMenu("Time Speed"))
 			{
@@ -319,7 +367,14 @@ void App::_onImGui()
 				ImGui::EndMenu();
 			}
 
-
+			if (ImGui::BeginMenu("Technology Tree"))
+			{
+				if (ImGui::MenuItem("Military"))
+				{
+					show_military_tech_tree = (show_military_tech_tree == true) ? false : true;
+				}
+				ImGui::EndMenu();
+			}
 
 
 			ImGui::EndMenu();
@@ -476,6 +531,75 @@ void App::_onImGui()
 		}
 	}
 	ImGui::End();
+
+
+	if (show_military_tech_tree)
+	{
+		if (ImGui::Begin("Military TechTree"))
+		{
+			for (auto& tech : techTree)
+			{
+				ImGui::Text("Tech \"%s\"", tech->getID().c_str());
+
+				if (tech->checks.size() > 0)
+				{
+					for (auto& req : tech->checks)
+					{
+						if (req.second.type().compare("string") == 0)
+						{
+							ImGui::Text("Requirement {%s, %s, %s}", ITech::getCheckTypeAsText(req.first.first).c_str(), ITech::getCheckAreaAsText(req.first.second).c_str(), req.second.as<std::string>().c_str());
+						}
+						else
+						{
+							ImGui::Text("Requirement {%s, %s, %d}", ITech::getCheckTypeAsText(req.first.first).c_str(), ITech::getCheckAreaAsText(req.first.second).c_str(), req.second.as<int>());
+						}
+					}
+
+
+				}
+
+			}
+		}
+		ImGui::End();
+	}
+
+
+	if (show_military_tech_tree)
+	{
+		if (!imnodes_tech_tree_initialized)
+		{
+			for (auto& node : techTree)
+			{
+				techTreeNodes.emplace(imnodes_tech_node_id++, node->getID());
+			}
+
+			imnodes_tech_tree_initialized = true;
+		}
+
+		// Render Tree With Nodes.
+		ImGui::Begin("simple node editor", &show_military_tech_tree, ImGuiWindowFlags_None);
+
+		ImNodes::BeginNodeEditor();
+
+
+		for (auto& tech : techTreeNodes)
+		{
+			ImNodes::BeginNode(tech.first);
+			ImNodes::BeginNodeTitleBar();
+			ImGui::TextUnformatted(tech.second.c_str());
+			ImNodes::EndNodeTitleBar();
+
+			ImNodes::EndNode();
+		}
+
+
+		ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_BottomRight);
+		ImNodes::EndNodeEditor();
+
+		ImGui::End();
+
+	}
+
 }
 
 
@@ -494,9 +618,9 @@ void App::_handleInput()
 		}
 
 
-		if (GetMouse(1).bPressed) tv.StartPan(GetMousePos());
-		if (GetMouse(1).bHeld) tv.UpdatePan(GetMousePos());
-		if (GetMouse(1).bReleased) tv.EndPan(GetMousePos());
+		if (GetMouse(2).bPressed) tv.StartPan(GetMousePos());
+		if (GetMouse(2).bHeld) tv.UpdatePan(GetMousePos());
+		if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
 		if (GetMouseWheel() > 0) tv.ZoomAtScreenPos(2.0f, GetMousePos());
 		if (GetMouseWheel() < 0) tv.ZoomAtScreenPos(0.5f, GetMousePos());
 	}

@@ -21,6 +21,10 @@
 #include "common/include/imgui_impl_pge.h"
 
 
+#include "imnodes.h"
+
+
+
 /*
 */
 #include "ComponentSystem.h"
@@ -31,6 +35,8 @@
 #include "GameWorldTime.h"
 
 #include "TechInstance.h"
+
+
 
 
 class App : public olc::PixelGameEngine
@@ -46,7 +52,6 @@ public:
 	bool OnUserUpdate(float fElapsedTime) override;
 	void DrawUI(void);
 
-
 private:
 
 	olc::TileTransformedView tv;
@@ -55,6 +60,12 @@ private:
 
 
 	std::map< std::string, olc::Decal* > decalDatabase;
+
+
+	// A vector of all Technologies in game.
+	// Currently for debug/display usage.
+	std::vector< TechInstance* > techTree;
+	std::map< int, std::string > techTreeNodes;
 
 private:
 

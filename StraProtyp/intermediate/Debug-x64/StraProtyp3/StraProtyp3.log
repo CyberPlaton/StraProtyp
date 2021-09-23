@@ -1,12 +1,65 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(498,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  ITech.cpp
+  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(103,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(107,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(110,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(377,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(377,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(442,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(443,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(590,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(666,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(667,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(668,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(669,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\IPlayer.h(20,57): warning C4227: anachronism used: qualifiers on reference are ignored
-  TechInstance.cpp
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\IPlayer.h(20,57): warning C4227: anachronism used: qualifiers on reference are ignored
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\TechInstance.cpp(23,8): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ITech.cpp(64): warning C4715: 'ITech::getCheckTypeFromText': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ITech.cpp(84): warning C4715: 'ITech::getTechAreaFromText': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ITech.cpp(40): warning C4715: 'ITech::getCheckAreaFromText': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\IBuilding.h(27,44): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\IUnit.h(31,44): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\IUnit.h(32,44): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\IUnit.h(33,71): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\IImprovement.h(27,44): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(78,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(81,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(108,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(111,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(158,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Timer.h(30,25): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Timer.h(45,25): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Timer.h(60,16): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(50,90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(139,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(140,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(141,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(142,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(329,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(390,62): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(523,7): warning C4312: 'type cast': conversion from 'int32_t' to 'ImTextureID' of greater size
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(970,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(970,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ComponentSystem.h(76): warning C4715: 'ComponentStorage::getAllOfType<CollisionBoxCmp>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Any.h(54): warning C4715: 'Any::as<int>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Any.h(54): warning C4715: 'Any::as<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >': not all control paths return a value
   StraProtyp3.vcxproj -> C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\StraProtyp3.exe

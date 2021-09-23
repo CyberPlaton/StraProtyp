@@ -120,6 +120,12 @@
     <ClInclude Include="Any.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
+    <ClInclude Include="common\include\imgui-master\imnodes.h">
+      <Filter>Header Files\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="common\include\imgui-master\imnodes_internal.h">
+      <Filter>Header Files\ImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -175,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="ITech.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="common\include\imgui-master\imnodes.cpp">
+      <Filter>Header Files\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
