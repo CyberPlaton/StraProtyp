@@ -226,6 +226,9 @@ bool App::OnUserCreate()
 	NavMesh::get()->bake();
 
 
+	PlayerInstance* player = new PlayerInstance("Data/Player/HumanPlayer.xml");
+	players.push_back(player);
+
 	return true;
 }
 
@@ -616,6 +619,18 @@ void App::_onImGui()
 			// Note to call "ImNodes::PopColorStyle();" after "ImNodes::EndNode();"
 			//ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(255, 109, 191, 255));
 
+			bool colorPushed = false;
+			for (auto& playerTech : players[0]->techs)
+			{
+				if (playerTech.first.compare(tech.name) == 0)
+				{
+					if (playerTech.second == 1)
+					{
+						ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(0, 0, 64, 255));
+						colorPushed = true;
+					}
+				}
+			}
 
 			ImNodes::BeginNode(tech.id);
 			ImNodes::BeginNodeTitleBar();
@@ -642,6 +657,11 @@ void App::_onImGui()
 
 			ImNodes::EndNode();
 
+			if (colorPushed)
+			{
+				ImNodes::PopColorStyle();
+				colorPushed = false;
+			}
 			//ImNodes::PopColorStyle();
 		}
 

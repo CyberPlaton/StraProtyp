@@ -118,6 +118,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="olcPGEX_TransformedView.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
+    <ClInclude Include="PlayerInstance.h" />
     <ClInclude Include="TechInstance.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="WorldState.h" />
@@ -141,6 +142,7 @@
     <ClCompile Include="GameWorldTime.cpp" />
     <ClCompile Include="ITech.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlayerInstance.cpp" />
     <ClCompile Include="TechInstance.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

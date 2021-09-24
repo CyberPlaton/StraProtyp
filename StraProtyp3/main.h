@@ -48,6 +48,7 @@ struct ImNodesNode
 #include "GameWorldTime.h"
 
 #include "TechInstance.h"
+#include "PlayerInstance.h"
 
 
 
@@ -80,6 +81,10 @@ private:
 	std::vector< TechInstance* > techTree;
 	std::vector< ImNodesNode > techTreeNodes;
 	std::vector< ImNodesLink > links;
+
+
+	std::vector< PlayerInstance* > players;
+
 private:
 
 	void _onImGui();

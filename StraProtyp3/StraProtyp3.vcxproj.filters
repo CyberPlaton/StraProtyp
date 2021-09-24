@@ -126,6 +126,9 @@
     <ClInclude Include="common\include\imgui-master\imnodes_internal.h">
       <Filter>Header Files\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerInstance.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -184,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="common\include\imgui-master\imnodes.cpp">
       <Filter>Header Files\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInstance.cpp">
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
