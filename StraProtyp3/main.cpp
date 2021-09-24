@@ -611,6 +611,12 @@ void App::_onImGui()
 
 		for (auto& tech : techTreeNodes)
 		{
+			// For Technologies which were already researched by current player,
+			// we can color them differently like this:
+			// Note to call "ImNodes::PopColorStyle();" after "ImNodes::EndNode();"
+			//ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(255, 109, 191, 255));
+
+
 			ImNodes::BeginNode(tech.id);
 			ImNodes::BeginNodeTitleBar();
 			ImGui::TextUnformatted(tech.name.c_str());
@@ -619,7 +625,7 @@ void App::_onImGui()
 			ImNodes::BeginInputAttribute(tech.id << 8);
 			ImGui::TextUnformatted("Need");
 			ImNodes::EndInputAttribute();
-
+			
 
 			for (auto& dep : tech.dependencies)
 			{
@@ -635,6 +641,8 @@ void App::_onImGui()
 			ImNodes::EndOutputAttribute();
 
 			ImNodes::EndNode();
+
+			//ImNodes::PopColorStyle();
 		}
 
 		for (auto& link : links)
@@ -740,8 +748,6 @@ bool App::_loadTechTreeDefinitions()
 	techTree.push_back(tech);
 	tech = new TechInstance(default_path + "Masonry.xml");
 	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "MetalMining.xml");
-	techTree.push_back(tech);
 	tech = new TechInstance(default_path + "IronWorking.xml");
 	techTree.push_back(tech);
 	tech = new TechInstance(default_path + "BronzeWorking.xml");
@@ -760,6 +766,22 @@ bool App::_loadTechTreeDefinitions()
 	techTree.push_back(tech);
 	tech = new TechInstance(default_path + "WoodWorking.xml");
 	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "AdamantiumSmelting.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "MalachiteSmelting.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "AlcoholMaking.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "SkumaDistillation.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "HorseRiding.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "SteelMaking.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "BrickBurning.xml");
+	techTree.push_back(tech);
+
 
 	return true;
 }
