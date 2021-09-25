@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+
 #include "tinyxml2.h"
 
 #include "IPlayer.h"
@@ -9,6 +11,16 @@
 * TechID is the unique name of a technology.
 */
 using TechID = std::string;
+
+/*
+* Each tech has a TechSubcategory, for example
+* the TechArea could be TA_CIVIC and TechSubcategory could be Economy 
+* to indicate that the Technology is in the area of Economics.
+*/
+using TechSubcategory = std::string;
+
+class TechInstance;
+
 class ITech
 {
 public:
@@ -69,4 +81,8 @@ public:
 
 	virtual TechArea getTechArea() = 0;
 	virtual int getResearchPoints() = 0;
+	virtual TechSubcategory getSubcategory() = 0;
+
+	virtual float getBaseweight() = 0;
+	virtual float getAccumulatedWeight(std::vector< TechInstance* >, IPlayer*) = 0;
 };

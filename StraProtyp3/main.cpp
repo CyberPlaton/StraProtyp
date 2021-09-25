@@ -655,6 +655,11 @@ void App::_onImGui()
 			ImGui::TextUnformatted("Unlocks");
 			ImNodes::EndOutputAttribute();
 
+
+			// Draw Icon
+			ImGui::ImageButton((ImTextureID)decalDatabase["assassin"]->id, ImVec2(32, 32), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1));
+
+
 			ImNodes::EndNode();
 
 			if (colorPushed)
@@ -678,6 +683,127 @@ void App::_onImGui()
 
 	}
 
+
+
+	static bool research_test = true;
+	// Draw Testing For Technology Tree.
+	if (ImGui::Begin("Testing Technology Research", &research_test))
+	{
+		static std::vector< TechInstance* > vec;
+
+		if (ImGui::Button("Get Next Techs"))
+		{
+
+			vec = getNextTechToChoose(players[0]);
+		}
+
+
+		for (auto& tech : vec)
+		{
+			if (ImGui::Button(tech->getID().c_str()))
+			{
+				// Let player instantly research...
+				players[0]->techs[tech->getID()] = 1;
+			}
+		}
+
+
+		ImGui::End();
+	}
+
+}
+
+
+
+std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
+{
+	using namespace std;
+
+	std::vector< TechInstance* > researchable;
+	std::map< TechInstance*, float > researchable_probability_distr;
+	std::vector< TechInstance* > return_vec;
+
+	// Get all Technologies which are available for the player to research.
+	for (auto& tech : techTree)
+	{
+		if (tech->checkWhetherAvailableForPlayer(player))
+		{
+			researchable.push_back(tech);
+		}
+	}
+
+	// Compute Probability of Sample Space, which is the 
+	// "base value" plus "path value" for all researchable techs.
+	float sample_space_value = 0.0f;
+	for (auto& tech : researchable)
+	{
+		sample_space_value += tech->getAccumulatedWeight(techTree, player);
+	}
+
+	cout << color(colors::RED);
+	cout << "Sample Space Probability Value: " << sample_space_value << white << endl;
+
+	// Compute the probability value for each technology according to the Sample Space.
+	for (auto& tech : researchable)
+	{
+		float weighted_prob = tech->getAccumulatedWeight(techTree, player) / sample_space_value;
+		researchable_probability_distr.emplace( tech,  weighted_prob);
+
+
+		cout << color(colors::YELLOW);
+		cout << "\""<< tech->getID() << "\" : {\""<< weighted_prob<< "\"}"<< white << endl;
+	}
+
+
+	// Choose with given probability values three Technologies.
+	
+	// Find Technology which is closest over the value.
+	while (return_vec.size() < 3)
+	{
+		// Get a random throw
+		float random = (rand() % 100) / 100.0f;
+		float cumulative_probability = 0.0f;
+
+
+		float currentMin = (float)INT_MAX;
+		TechInstance* tech_to_be_added = nullptr;
+		for (auto& tech : researchable_probability_distr)
+		{
+			if (tech.second + cumulative_probability > random)
+			{
+				if (tech.second < currentMin)
+				{
+					tech_to_be_added = tech.first;
+					currentMin = tech.second;
+					break;
+				}
+			}
+
+			cumulative_probability += tech.second;
+		}
+
+		// Check whether we already appended the technology.
+		bool tech_already_appended = false;
+		for (auto& tech : return_vec)
+		{
+			if (tech->getID().compare(tech_to_be_added->getID()) == 0)
+			{
+				tech_already_appended = true;
+				break;
+			}
+		}
+
+		if (!tech_already_appended)
+		{
+			return_vec.push_back(tech_to_be_added);
+		}
+	}
+	
+
+
+
+	// For now return only first three researchable techs.
+	return return_vec;
 }
 
 

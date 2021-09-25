@@ -17,6 +17,6 @@ class IPlayer
 public:
 
 
-	virtual PlayerTechnologies& const getPlayerTechnologies() = 0;
+	virtual PlayerTechnologies& getPlayerTechnologies() = 0;
 
 };

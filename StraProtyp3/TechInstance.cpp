@@ -25,6 +25,8 @@ TechInstance::TechInstance(const std::string& path)
 	id = name;
 	techArea = ITech::getTechAreaFromText(area);
 	researchPoints = p;
+	baseWeight = def->FirstChildElement("BaseWeight")->FloatText(0.001f);
+	subCategory = def->FirstChildElement("SubCategory")->GetText();
 
 	// Get requirements
 	XMLElement* reqs = root->FirstChildElement("Requirements");

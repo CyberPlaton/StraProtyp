@@ -13,7 +13,7 @@ public:
 	PlayerInstance(const std::string& path);
 
 
-	PlayerTechnologies& const getPlayerTechnologies() override final
+	PlayerTechnologies& getPlayerTechnologies() override final
 	{
 		return techs;
 	}

@@ -8,6 +8,14 @@
 
 		<!--How many points must be invested to finish research of this Tech-->
 		<ResearchPoints>20</ResearchPoints>
+
+		<!--The base weight for the probability to be picked to be researched-->
+		<BaseWeight>1.0</BaseWeight>
+
+		<!--A subcategory. Will be define as string and usage dependent on game-->
+		<SubCategory>Military Theory</SubCategory>
+
+		
 	</Definition>
 	<Requirements>
 		<Req area="player_tech_check" type="true">Plant Knowledge</Req>
