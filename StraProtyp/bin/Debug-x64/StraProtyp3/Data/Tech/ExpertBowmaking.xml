@@ -10,7 +10,7 @@
 		<ResearchPoints>86</ResearchPoints>
 
 		<!--The base weight for the probability to be picked to be researched-->
-		<BaseWeight>1.0</BaseWeight>
+		<BaseWeight>0.0125</BaseWeight>
 
 		<!--A subcategory. Will be define as string and usage dependent on game-->
 		<SubCategory>Military Theory</SubCategory>

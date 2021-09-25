@@ -670,10 +670,13 @@ void App::_onImGui()
 			//ImNodes::PopColorStyle();
 		}
 
+
+		ImNodes::PushColorStyle(ImNodesCol_LinkSelected, IM_COL32(230, 230, 255, 255));
 		for (auto& link : links)
 		{
 			ImNodes::Link(link.id, link.start, link.end);
 		}
+		ImNodes::PopColorStyle();
 
 
 		ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_BottomRight);
@@ -723,6 +726,15 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 	std::map< TechInstance*, float > researchable_probability_distr;
 	std::vector< TechInstance* > return_vec;
 
+
+	/*
+	* We could brake up the technology trees in Civics, Military etc.
+	* if we had stored those trees as seperate vectors in game.
+	* 
+	* Then we could let the player choose from that vector.
+	*/
+
+
 	// Get all Technologies which are available for the player to research.
 	for (auto& tech : techTree)
 	{
@@ -744,6 +756,8 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 	cout << "Sample Space Probability Value: " << sample_space_value << white << endl;
 
 	// Compute the probability value for each technology according to the Sample Space.
+	float percent = 0.0f;
+	float sum = 0.0f;
 	for (auto& tech : researchable)
 	{
 		float weighted_prob = tech->getAccumulatedWeight(techTree, player) / sample_space_value;
@@ -751,8 +765,12 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 
 
 		cout << color(colors::YELLOW);
-		cout << "\""<< tech->getID() << "\" : {\""<< weighted_prob<< "\"}"<< white << endl;
+		cout << "\""<< tech->getID() << "\" : {\""<< weighted_prob<< "\"} = "<< weighted_prob * 100.0f<< "%" << endl;
+
+		sum += weighted_prob;
+		percent += weighted_prob * 100.0f;
 	}
+	cout << "Sum: \""<< sum << "\" = "<< percent << "%" << white << endl;
 
 
 	// Choose with given probability values three Technologies.
