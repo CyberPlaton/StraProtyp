@@ -4,7 +4,7 @@
 		<Name>Skuma Distillation</Name>
 
 		<!--The area of research to which this Tech belongs-->
-		<ResearchArea>military</ResearchArea>
+		<ResearchArea>technical</ResearchArea>
 
 		<!--How many points must be invested to finish research of this Tech-->
 		<ResearchPoints>45</ResearchPoints>
@@ -13,7 +13,7 @@
 		<BaseWeight>0.0125</BaseWeight>
 
 		<!--A subcategory. Will be define as string and usage dependent on game-->
-		<SubCategory>Military Theory</SubCategory>
+		<SubCategory>Materials</SubCategory>
 
 		
 	</Definition>

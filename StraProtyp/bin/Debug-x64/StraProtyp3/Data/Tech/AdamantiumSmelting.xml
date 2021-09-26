@@ -4,7 +4,7 @@
 		<Name>Adamantium Smelting</Name>
 
 		<!--The area of research to which this Tech belongs-->
-		<ResearchArea>military</ResearchArea>
+		<ResearchArea>magick</ResearchArea>
 
 		<!--How many points must be invested to finish research of this Tech-->
 		<ResearchPoints>45</ResearchPoints>
@@ -13,7 +13,7 @@
 		<BaseWeight>0.07</BaseWeight>
 
 		<!--A subcategory. Will be define as string and usage dependent on game-->
-		<SubCategory>Military Theory</SubCategory>
+		<SubCategory>Technical Magick</SubCategory>
 		
 
 	</Definition>

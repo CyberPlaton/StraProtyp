@@ -27,7 +27,7 @@ public:
 	enum TechArea
 	{
 		TA_MILITARY,
-		TA_CIVIC,
+		TA_CIVICS,
 		TA_MAGIC,
 		TA_TECHNICAL
 	};
@@ -65,7 +65,7 @@ public:
 	static CheckType getCheckTypeFromText(const std::string& text);
 	static std::string getCheckTypeAsText(CheckType type);
 	static TechArea getTechAreaFromText(const std::string& text);
-
+	static std::string getTechAreaAsText(TechArea area);
 public:
 
 

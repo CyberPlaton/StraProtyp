@@ -47,5 +47,18 @@
 		<Tech researched="false">Warrior Code</Tech>
 		<Tech researched="false">Weapon Forging</Tech>
 		<Tech researched="false">Wood Working</Tech>
+		
+		<Tech researched="false">Barber</Tech>
+		<Tech researched="false">Economy Theory</Tech>
+		<Tech researched="false">Economy Theory II</Tech>
+		<Tech researched="false">Economy Theory III</Tech>
+		<Tech researched="false">Elder Circle</Tech>
+		<Tech researched="false">Philosophy</Tech>
+		<Tech researched="false">Political Theory</Tech>
+		<Tech researched="false">Political Theory II</Tech>
+		<Tech researched="false">Scissors</Tech>
+		<Tech researched="false">Trade</Tech>
+		<Tech researched="false">Writing</Tech>
+
 	</Technologies>
 </Player>

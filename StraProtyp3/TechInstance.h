@@ -5,6 +5,7 @@
 
 #include "Any.h"
 #include "ITech.h"
+#include "ColorConsole.h"
 
 using CheckDefinition = std::pair<ITech::CheckType, ITech::CheckArea>;
 
@@ -21,6 +22,8 @@ public:
 
 	bool checkWhetherAvailableForPlayer(IPlayer* player) override final
 	{
+		using namespace std;
+
 		PlayerTechnologies& playerTechs = player->getPlayerTechnologies();
 
 		bool requirementFulfilled = true;
@@ -55,6 +58,12 @@ public:
 							{
 								return false;
 							}
+						}
+						else
+						{
+							cout << color(colors::RED);
+							cout << "Required Technology \""<< reqTech << "\" not found!" << white << endl;
+							return false; 
 						}
 					}
 					else

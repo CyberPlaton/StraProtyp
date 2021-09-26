@@ -69,9 +69,9 @@ ITech::TechArea ITech::getTechAreaFromText(const std::string& text)
 	{
 		return TA_MILITARY;
 	}
-	else if (text.compare("civic") == 0)
+	else if (text.compare("civics") == 0)
 	{
-		return TA_CIVIC;
+		return TA_CIVICS;
 	}
 	else if (text.compare("magick") == 0)
 	{
@@ -125,6 +125,24 @@ std::string ITech::getCheckTypeAsText(ITech::CheckType type)
 		return "true";
 	case CT_FALSE:
 		return "false";
+	default:
+		return "undefined";
+	}
+}
+
+
+std::string ITech::getTechAreaAsText(TechArea area)
+{
+	switch (area)
+	{
+	case TA_CIVICS:
+		return "civics";
+	case TA_MAGIC:
+		return "magick";
+	case TA_MILITARY:
+		return "military";
+	case TA_TECHNICAL:
+		return "technical";
 	default:
 		return "undefined";
 	}

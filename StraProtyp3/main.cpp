@@ -20,6 +20,7 @@ static GameObject* selected_gameobject = nullptr;
 static int imnodes_tech_node_id = 1;
 static int imnodes_tech_link_id = 1;
 static int imnodes_tech_dependency_id = 1;
+static int imnodes_tech_dependency_display_id = 100000;
 static bool imnodes_tech_tree_initialized = false;
 
 
@@ -197,10 +198,15 @@ bool App::OnUserCreate()
 {
 	using namespace std;
 
+	// Init Random
+	Random::Init();
+
+
 	// Init ImNodes.
 	ImNodes::CreateContext();
 	ImNodes::SetNodeGridSpacePos(1, ImVec2(50.0f, 50.0f));
 	ImNodes::LoadCurrentEditorStateFromIniFile("tech_tree_graph.ini");
+
 
 	// Load Assets
 	if (!_loadDecalDatabase()) return false;
@@ -546,7 +552,7 @@ void App::_onImGui()
 		{
 			for (auto& node : techTree)
 			{
-				techTreeNodes.push_back(ImNodesNode(node->getID(), imnodes_tech_node_id++));
+				techTreeNodes.push_back(ImNodesNode(node->getID(), imnodes_tech_node_id++, ITech::getTechAreaAsText( node->getTechArea() ), node->getSubcategory()));
 			}
 
 
@@ -567,13 +573,20 @@ void App::_onImGui()
 							int startid;
 							int endid;
 
+							// To...
 							for (auto& n : techTreeNodes)
 							{
 								if (n.name.compare(node->getID()) == 0)
 								{
 									startid = n.id << 8;
+
+									// Store Dependency name for later display.
+									n.techDependencies.emplace(techReq, imnodes_tech_dependency_display_id++);
 								}
 							}
+
+
+							// From...
 							for (auto& n : techTreeNodes)
 							{
 								if (n.name.compare(techReq) == 0)
@@ -619,18 +632,49 @@ void App::_onImGui()
 			// Note to call "ImNodes::PopColorStyle();" after "ImNodes::EndNode();"
 			//ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(255, 109, 191, 255));
 
-			bool colorPushed = false;
+			// Colorize the techs after the researcharea and subcategory.
+			ImNodes::PushStyleVar(ImNodesStyleVar_NodeBorderThickness, 1.0f);
+			if (tech.area.compare("military") == 0)
+			{
+				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(200, 0, 0, 255)); // Lighter Red
+				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(150, 0, 0, 255)); // Dark Red
+				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
+			}
+			else if (tech.area.compare("civics") == 0)
+			{
+				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(30, 175, 0, 255)); // Lighter Green
+				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(20, 125, 0, 255)); // Dark Green
+				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
+			}
+			else if (tech.area.compare("technical") == 0)
+			{
+				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(170, 70, 0, 255)); // Lighter Brown
+				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(125, 60, 0, 255)); // Dark Brown
+				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
+
+			}
+			else if (tech.area.compare("magick") == 0)
+			{
+				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(170, 0, 230, 255)); // Lighter Purple
+				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(125, 0, 170, 255)); // Dark Purple
+				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
+			}
+
+
+			
 			for (auto& playerTech : players[0]->techs)
 			{
 				if (playerTech.first.compare(tech.name) == 0)
 				{
 					if (playerTech.second == 1)
 					{
-						ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(0, 0, 64, 255));
-						colorPushed = true;
+						ImNodes::PushStyleVar(ImNodesStyleVar_NodeBorderThickness, 5.0f);
+						ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(250, 255, 0, 255));
+						ImNodes::PushColorStyle(ImNodesCol_Pin, IM_COL32(255, 255, 255, 255));
 					}
 				}
 			}
+			
 
 			ImNodes::BeginNode(tech.id);
 			ImNodes::BeginNodeTitleBar();
@@ -642,12 +686,20 @@ void App::_onImGui()
 			ImNodes::EndInputAttribute();
 			
 
-			for (auto& dep : tech.dependencies)
+			for (auto& dep : tech.dependencies) // Buildings and other.
 			{
 				ImNodes::BeginInputAttribute(dep.second);
 				ImGui::TextUnformatted(dep.first.c_str());
 				ImNodes::EndInputAttribute();
 			}
+			for (auto& dep : tech.techDependencies) // Technologies for display.
+			{
+				ImNodes::BeginInputAttribute(dep.second);
+				ImGui::TextUnformatted(dep.first.c_str());
+				ImNodes::EndInputAttribute();
+			}
+
+
 
 
 			ImNodes::BeginOutputAttribute(tech.id << 24);
@@ -662,12 +714,11 @@ void App::_onImGui()
 
 			ImNodes::EndNode();
 
-			if (colorPushed)
-			{
-				ImNodes::PopColorStyle();
-				colorPushed = false;
-			}
-			//ImNodes::PopColorStyle();
+			
+			ImNodes::PopColorStyle();
+			ImNodes::PopColorStyle();
+			ImNodes::PopColorStyle();
+			ImNodes::PopStyleVar();
 		}
 
 
@@ -731,7 +782,24 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 	* We could brake up the technology trees in Civics, Military etc.
 	* if we had stored those trees as seperate vectors in game.
 	* 
-	* Then we could let the player choose from that vector.
+	* Then we could let the player choose from that vector:
+	* 
+	* for (auto& tech : military_tech_tree) // Also stored in app.
+	* {
+	*	 if (tech->checkWhetherAvailableForPlayer(player))
+	*	 {
+	*		 researchable.push_back(tech);
+	* 	 }
+	* }
+	*
+	* 
+	* After this, everything stays the same,
+	* but chooseable will only be those from the specified tree,
+	* but checks for researched techs are commenced for the whole tree, as
+	* they are certainly inter-connections between e.g. Technical and Military
+	* (e.g. "Iron Working" (Techn.) and "Two Hand Weapons" (Military) with "Iron Working"--->"Two Hand Weapons".
+	*
+	*
 	*/
 
 
@@ -779,7 +847,7 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 	while (return_vec.size() < 3)
 	{
 		// Get a random throw
-		float random = (rand() % 100) / 100.0f;
+		float random = Random::InRange(0.0f, 1.0f);
 		float cumulative_probability = 0.0f;
 
 
@@ -787,6 +855,19 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 		TechInstance* tech_to_be_added = nullptr;
 		for (auto& tech : researchable_probability_distr)
 		{
+			// Increase cumulative Probability.
+			cumulative_probability += tech.second;
+
+			if (cumulative_probability > random)
+			{
+				if (tech.second < currentMin)
+				{
+					tech_to_be_added = tech.first;
+					currentMin = tech.second;
+					break;
+				}
+			}
+			/*
 			if (tech.second + cumulative_probability > random)
 			{
 				if (tech.second < currentMin)
@@ -796,8 +877,7 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 					break;
 				}
 			}
-
-			cumulative_probability += tech.second;
+			*/
 		}
 
 		// Check whether we already appended the technology.
@@ -944,6 +1024,29 @@ bool App::_loadTechTreeDefinitions()
 	tech = new TechInstance(default_path + "SteelMaking.xml");
 	techTree.push_back(tech);
 	tech = new TechInstance(default_path + "BrickBurning.xml");
+	techTree.push_back(tech);
+
+	tech = new TechInstance(default_path + "Barber.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "EconomyTheory.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "EconomyTheoryII.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "EconomyTheoryIII.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "ElderCircle.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "Philosophy.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "PoliticalTheory.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "PoliticalTheoryII.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "Scissors.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "Writing.xml");
+	techTree.push_back(tech);
+	tech = new TechInstance(default_path + "Trade.xml");
 	techTree.push_back(tech);
 
 

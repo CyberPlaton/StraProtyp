@@ -4,7 +4,7 @@
 		<Name>Animal Husbandry</Name>
 
 		<!--The area of research to which this Tech belongs-->
-		<ResearchArea>military</ResearchArea>
+		<ResearchArea>technical</ResearchArea>
 
 		<!--How many points must be invested to finish research of this Tech-->
 		<ResearchPoints>25</ResearchPoints>
@@ -13,7 +13,7 @@
 		<BaseWeight>0.5</BaseWeight>
 
 		<!--A subcategory. Will be define as string and usage dependent on game-->
-		<SubCategory>Military Theory</SubCategory>
+		<SubCategory>Industry</SubCategory>
 
 		
 	</Definition>

@@ -31,11 +31,16 @@ struct ImNodesLink
 
 struct ImNodesNode
 {
-	ImNodesNode(const std::string& name, int id) :name(name), id(id) {};
+	ImNodesNode(const std::string& name, int id,
+		const std::string& area, const std::string& category) :name(name), id(id),
+	area(area), subCategory(category) {};
 
 	std::string name;
+	std::string area;
+	std::string subCategory;
 	int id;
 	std::map< std::string, int > dependencies; // Which are not technologies.
+	std::map< std::string, int > techDependencies; // Which are for display only.
 };
 
 /*
@@ -46,6 +51,8 @@ struct ImNodesNode
 #include "GameObjectCreator.h"
 #include "GameWorld.h"
 #include "GameWorldTime.h"
+#include "Random.h"
+
 
 #include "TechInstance.h"
 #include "PlayerInstance.h"
