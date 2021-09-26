@@ -745,10 +745,25 @@ void App::_onImGui()
 	{
 		static std::vector< TechInstance* > vec;
 
-		if (ImGui::Button("Get Next Techs"))
+		if (ImGui::Button("Get Next Military Techs"))
 		{
 
-			vec = getNextTechToChoose(players[0]);
+			vec = getNextTechToChoose(players[0], ITech::TA_MILITARY);
+		}
+		if (ImGui::Button("Get Next Magick Techs"))
+		{
+
+			vec = getNextTechToChoose(players[0], ITech::TA_MAGIC);
+		}
+		if (ImGui::Button("Get Next Civics Techs"))
+		{
+
+			vec = getNextTechToChoose(players[0], ITech::TA_CIVICS);
+		}
+		if (ImGui::Button("Get Next Technical Techs"))
+		{
+
+			vec = getNextTechToChoose(players[0], ITech::TA_TECHNICAL);
 		}
 
 
@@ -768,49 +783,43 @@ void App::_onImGui()
 }
 
 
-
-std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
+std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player, ITech::TechArea area)
 {
 	using namespace std;
 
 	std::vector< TechInstance* > researchable;
 	std::map< TechInstance*, float > researchable_probability_distr;
 	std::vector< TechInstance* > return_vec;
+	std::vector< TechInstance* > militaryTechs;
 
-
-	/*
-	* We could brake up the technology trees in Civics, Military etc.
-	* if we had stored those trees as seperate vectors in game.
-	* 
-	* Then we could let the player choose from that vector:
-	* 
-	* for (auto& tech : military_tech_tree) // Also stored in app.
-	* {
-	*	 if (tech->checkWhetherAvailableForPlayer(player))
-	*	 {
-	*		 researchable.push_back(tech);
-	* 	 }
-	* }
-	*
-	* 
-	* After this, everything stays the same,
-	* but chooseable will only be those from the specified tree,
-	* but checks for researched techs are commenced for the whole tree, as
-	* they are certainly inter-connections between e.g. Technical and Military
-	* (e.g. "Iron Working" (Techn.) and "Two Hand Weapons" (Military) with "Iron Working"--->"Two Hand Weapons".
-	*
-	*
-	*/
-
-
-	// Get all Technologies which are available for the player to research.
+	// First Get all defined area technologies available.
 	for (auto& tech : techTree)
+	{
+		if (tech->getTechArea() == area)
+		{
+			militaryTechs.push_back(tech);
+		}
+	}
+
+
+	// Get all Technologies which are available for the player to research from given area.
+	for (auto& tech : militaryTechs)
 	{
 		if (tech->checkWhetherAvailableForPlayer(player))
 		{
 			researchable.push_back(tech);
 		}
 	}
+
+
+	// Before executing the algorithm, check whether we have more than 3 Technologies to choose from,
+	// else return them directly.
+	if (researchable.size() <= 3)
+	{
+		return researchable;
+	}
+
+
 
 	// Compute Probability of Sample Space, which is the 
 	// "base value" plus "path value" for all researchable techs.
@@ -829,20 +838,20 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 	for (auto& tech : researchable)
 	{
 		float weighted_prob = tech->getAccumulatedWeight(techTree, player) / sample_space_value;
-		researchable_probability_distr.emplace( tech,  weighted_prob);
+		researchable_probability_distr.emplace(tech, weighted_prob);
 
 
 		cout << color(colors::YELLOW);
-		cout << "\""<< tech->getID() << "\" : {\""<< weighted_prob<< "\"} = "<< weighted_prob * 100.0f<< "%" << endl;
+		cout << "\"" << tech->getID() << "\" : {\"" << weighted_prob << "\"} = " << weighted_prob * 100.0f << "%" << endl;
 
 		sum += weighted_prob;
 		percent += weighted_prob * 100.0f;
 	}
-	cout << "Sum: \""<< sum << "\" = "<< percent << "%" << white << endl;
+	cout << "Sum: \"" << sum << "\" = " << percent << "%" << white << endl;
 
 
 	// Choose with given probability values three Technologies.
-	
+
 	// Find Technology which is closest over the value.
 	while (return_vec.size() < 3)
 	{
@@ -867,17 +876,6 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 					break;
 				}
 			}
-			/*
-			if (tech.second + cumulative_probability > random)
-			{
-				if (tech.second < currentMin)
-				{
-					tech_to_be_added = tech.first;
-					currentMin = tech.second;
-					break;
-				}
-			}
-			*/
 		}
 
 		// Check whether we already appended the technology.
@@ -896,7 +894,7 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player)
 			return_vec.push_back(tech_to_be_added);
 		}
 	}
-	
+
 
 
 
