@@ -47,146 +47,6 @@ bool App::OnUserUpdate(float fElapsedTime)
 	stateMachine.update(fElapsedTime);
 
 
-
-	// Update all agents.
-	for (auto& go : GameObjectStorage::get()->getStorage())
-	{
-		// Update Navigator, for each entity which can move, let it move.
-		if (go->hasComponent("Navigator"))
-		{
-			go->getComponent<NavigatorCmp>("Navigator")->update(GameWorldTime::get()->getTimeSpeed());
-		}
-	}
-
-
-	// Application rendering.
-	olc::vi2d topleft = tv.GetTopLeftTile().max({ 0, 0 });
-	olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
-	olc::vi2d tile;
-
-
-	// Draw Grid.
-	for (tile.y = topleft.y; tile.y < bottomright.y; tile.y++)
-	{
-		for (tile.x = topleft.x; tile.x < bottomright.x; tile.x++)
-		{
-			tv.DrawLine(tile, tile + olc::vf2d(0.0f, 1.0f), olc::VERY_DARK_GREY);
-			tv.DrawLine(tile, tile + olc::vf2d(1.0f, 0.0f), olc::VERY_DARK_GREY);
-		}
-	}
-
-
-
-	// Draw General Layered
-	renderLayer("maptile");
-	renderLayer("mountain");
-	renderLayer("forest");
-	renderLayer("river");
-	renderLayer("city");
-	renderLayer("unit");
-	renderLayer("overlay");
-
-
-	if (selected_gameobject)
-	{
-		TransformCmp* tr = static_cast<TransformCmp*> (selected_gameobject->getComponent("Transform"));
-		RendererableCmp* rc = static_cast<RendererableCmp*> (selected_gameobject->getComponent("Renderable"));
-
-		if (tr != nullptr && rc != nullptr)
-		{
-			olc::vf2d p = { tr->xpos + rc->width / 2.0f - 0.3f, tr->ypos + rc->height / 2.0f };
-			tv.DrawStringDecal(p, selected_gameobject->tag, olc::RED, olc::vf2d(0.5f, 0.5f));
-		}
-	}
-
-	
-	if (show_collisions)
-	{
-		for (auto& coll : ComponentStorage::get()->getAllOfType<CollisionBoxCmp>("CollisionBox")) // Update collision detection.
-		{
-			for (auto& go : GameObjectStorage::get()->getStorage())
-			{
-				// Do not draw collision with self
-				if (coll->this_agent->getTag().compare(go->getTag()) == 0) continue;
-
-				// Resolve collision with another object
-				if (coll->resolve(go))
-				{
-					TransformCmp* tr = static_cast<TransformCmp*>(coll->this_agent->getComponent("Transform"));
-					CollisionBoxCmp* c = static_cast<CollisionBoxCmp*>(coll->this_agent->getComponent("CollisionBox"));
-
-					tv.DrawRect(olc::vf2d(tr->xpos - 0.1f, tr->ypos - 0.1f), olc::vf2d(c->width + 0.1f, c->height + 0.1f), olc::DARK_RED);
-				}
-			}
-		}
-	}
-	
-
-	if (show_nav_mesh)
-	{
-		// Draw Nodes
-		std::vector<std::vector<int>> nodes = NavMesh::get()->getNavGraph();
-		Graph* graph = NavMesh::get()->getGraph();
-		for (int i = 0; i < nodes.size(); i++)
-		{
-			for (int j = 0; j < nodes[i].size(); j++)
-			{
-				if (nodes[i][j] == 1)
-				{
-					tv.DrawCircle(olc::vf2d(i + 0.5f, j + 0.5f), 0.1f, olc::WHITE);
-				}
-			}
-		}
-
-		// Draw Edges
-		for (auto& e : graph->edges)
-		{
-			float a, b, x, y;
-
-			a = edge_from_x(e);
-			b = edge_from_y(e);
-			x = edge_to_x(e);
-			y = edge_to_y(e);
-
-			tv.DrawLine(olc::vf2d(a + 0.5f, b + 0.5f), olc::vf2d(x + 0.5f, y + 0.5f), olc::YELLOW);
-		}
-	}
-
-
-	if (show_nav_path)
-	{
-		// Draw waypoints of selected entity,
-		// if it has one.
-		if (selected_gameobject)
-		{
-			if (selected_gameobject->hasComponent("Navigator"))
-			{
-				NavigatorCmp* nav = selected_gameobject->getComponent<NavigatorCmp>("Navigator");
-
-
-				for (int i = 0; i < nav->movementPoints.size(); i++)
-				{
-					if (i == 0)
-					{
-						// Draw source with special color.
-						tv.DrawCircle(olc::vf2d(node_x(nav->movementPoints[i]) + 0.5f, node_y(nav->movementPoints[i]) + 0.5f), 0.1f, olc::RED);
-						continue;
-					}
-
-					if (i + 1 == nav->movementPoints.size())
-					{
-						// Draw destination with special color.
-						tv.DrawCircle(olc::vf2d(node_x(nav->movementPoints[i]) + 0.5f, node_y(nav->movementPoints[i]) + 0.5f), 0.1f, olc::GREEN);
-						continue;
-					}
-
-					tv.DrawCircle(olc::vf2d(node_x(nav->movementPoints[i]) + 0.5f, node_y(nav->movementPoints[i]) + 0.5f), 0.1f, olc::MAGENTA);
-				}
-			}
-		}
-	}
-
-
 	// For Rendering IMGUI.
 	_onImGui();
 	
@@ -273,516 +133,6 @@ int main()
 
 void App::_onImGui()
 {
-	using namespace std;
-
-	SetDrawTarget((uint8_t)m_GameLayer);
-
-	selected_gameobject = nullptr;
-
-
-	// CHECK WHETHER IMGUI IS FOCUSED
-	if (ImGui::IsAnyItemFocused() || ImGui::IsAnyItemHovered() || ImGui::IsAnyItemActive() || ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow))
-	{
-		imgui_has_focus = true;
-	}
-	else
-	{
-		imgui_has_focus = false;
-	}
-
-
-	// DEMO
-	if (imgui_demo_window)
-	{
-		ImGui::ShowDemoWindow(&imgui_demo_window);
-	}
-
-
-	// MAIN MENU BAR
-	if (ImGui::BeginMainMenuBar())
-	{
-		if (ImGui::BeginMenu("Menu"))
-		{
-
-
-
-			if (ImGui::BeginMenu("Time Speed"))
-			{
-				
-				float speed = GameWorldTime::get()->getTimeSpeed();
-				ImGui::SliderFloat("Timespeed", &speed, 0.0f, 2.0f, "%.3f", ImGuiSliderFlags_Logarithmic);
-				GameWorldTime::get()->setTimeSpeed(speed);
-				
-				ImGui::EndMenu();
-			}
-
-
-			if (ImGui::BeginMenu("Collider"))
-			{
-				if (ImGui::MenuItem("Collision Display"))
-				{
-					show_collisions = (show_collisions == true) ? false : true;
-				}
-				ImGui::EndMenu();
-			}
-
-
-			if (ImGui::BeginMenu("Navigator"))
-			{
-
-				if (ImGui::MenuItem("NavMesh"))
-				{
-					show_nav_mesh = (show_nav_mesh == true) ? false : true;
-				}
-				if (ImGui::MenuItem("MovePoints"))
-				{
-					show_nav_path = (show_nav_path == true) ? false : true;
-				}
-				ImGui::EndMenu();
-			}
-
-			if (ImGui::BeginMenu("Editor"))
-			{
-				if (ImGui::MenuItem("New"))
-				{
-					
-				}
-				ImGui::EndMenu();
-			}
-
-			if (ImGui::BeginMenu("Technology Tree"))
-			{
-				if (ImGui::MenuItem("Display"))
-				{
-					show_tech_tree = (show_tech_tree == true) ? false : true;
-				}
-				ImGui::EndMenu();
-			}
-
-
-			ImGui::EndMenu();
-		}
-
-		ImGui::EndMainMenuBar();
-	}
-
-
-
-
-	// GAMEOBJECTS WINDOW
-	int go_count = GameObjectStorage::get()->getStorage().size();
-	ImGui::SetNextWindowPos(ImVec2(1.0f, 15.0f), ImGuiCond_Appearing);
-	ImGui::SetNextWindowSize(ImVec2(350.0f, 600.0f), ImGuiCond_Appearing);
-	if (ImGui::Begin("GameObjects", &gameobjects_window))
-	{
-		for (auto& go : GameObjectStorage::get()->getStorage())
-		{
-			// Show GO
-			std::string tag_name = go->getTag() + " \"" + go->getName() +"\"";
-			bool ret = ImGui::CollapsingHeader(tag_name.c_str());
-
-			// Check whether we are hovering over the current displayed GO.
-			if (ImGui::IsItemHovered())
-			{
-				selected_gameobject = go;
-			}
-
-			// Show the components of Selected GO.
-			if (ret)
-			{
-				// Show CMPs
-				for (auto& cmp : go->components)
-				{
-					if (ImGui::TreeNode(cmp->name.c_str()))
-					{
-						if (cmp->getType().find("Transform") != std::string::npos)
-						{
-							int v[2];
-							v[0] = static_cast<TransformCmp*>(cmp)->xpos;
-							v[1] = static_cast<TransformCmp*>(cmp)->ypos;
-
-							if (ImGui::SliderInt2("Position", v, -DEFAULT_MAPSIZE_X, DEFAULT_MAPSIZE_X))
-							{
-								static_cast<TransformCmp*>(cmp)->xpos = v[0];
-								static_cast<TransformCmp*>(cmp)->ypos = v[1];
-							}
-						}
-
-
-						if (cmp->getType().find("Renderable") != std::string::npos)
-						{
-							RendererableCmp* rc = static_cast<RendererableCmp*>(cmp);
-
-							ImGui::Text(rc->color.c_str());
-
-							ImGui::SameLine();
-
-							ImGui::Checkbox("Render", &rc->render);
-
-							ImGui::Text("Decal \"%s\"", rc->decalName.c_str());
-
-							ImGui::Text("Layer \"%s\"", rc->renderingLayer.c_str());
-						}
-
-
-						if (cmp->getType().find("Unit") != std::string::npos)
-						{
-							IUnitCmp* uc = static_cast<IUnitCmp*>(cmp);
-
-							if (ImGui::TreeNode("Requirements"))
-							{
-								if (ImGui::TreeNode("Tech"))
-								{
-									// Get the requirements.
-									std::vector<TechID>& req = uc->getRequiredTech();
-
-									for (auto& r : req)
-									{
-										ImGui::Text("\"%s\"", r.c_str());
-									}
-
-									ImGui::TreePop();
-								}
-
-								if (ImGui::TreeNode("Ressources"))
-								{
-									std::vector<std::pair<std::string, int>>& req = uc->getRequiredRessources();
-
-									for (auto& r : req)
-									{
-										ImGui::Text("%d \"%s\"", r.second, r.first.c_str());
-									}
-
-									ImGui::TreePop();
-								}
-
-								if (ImGui::TreeNode("Race"))
-								{
-									std::vector<RaceID>& req = uc->getRequiredRace();
-
-									for (auto& r : req)
-									{
-										ImGui::Text("\"%s\"", r.c_str());
-									}
-
-									ImGui::TreePop();
-								}
-
-
-								ImGui::TreePop();
-							}
-
-
-						}
-
-						if (cmp->getType().find("Building") != std::string::npos)
-						{
-
-						}
-
-						if (cmp->getType().find("Improvement") != std::string::npos)
-						{
-
-						}
-
-
-
-						ImGui::TreePop();
-					}
-
-					ImGui::Separator();
-				}
-			}
-		}
-	}
-	ImGui::End();
-
-
-
-	if (ImGui::Begin("DecalDatabase"))
-	{
-		for (auto& decal : decalDatabase)
-		{
-			if (ImGui::ImageButton((ImTextureID)decal.second->id, ImVec2(64, 64), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1)))
-			{
-				GameObjectStorage::get()->getGOByName("Spearman_Unit")->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
-			}
-
-			ImGui::SameLine();
-
-			ImGui::Text(decal.first.c_str());
-		}
-	}
-	ImGui::End();
-
-
-	if (show_tech_tree)
-	{
-		/*
-		if (ImGui::Begin("Technology Tree"))
-		{
-			for (auto& tech : techTree)
-			{
-				ImGui::Text("Tech \"%s\"", tech->getID().c_str());
-
-				if (tech->checks.size() > 0)
-				{
-					for (auto& req : tech->checks)
-					{
-						if (req.second.type().compare("string") == 0)
-						{
-							ImGui::Text("Requirement {%s, %s, %s}", ITech::getCheckTypeAsText(req.first.first).c_str(), ITech::getCheckAreaAsText(req.first.second).c_str(), req.second.as<std::string>().c_str());
-						}
-						else
-						{
-							ImGui::Text("Requirement {%s, %s, %d}", ITech::getCheckTypeAsText(req.first.first).c_str(), ITech::getCheckAreaAsText(req.first.second).c_str(), req.second.as<int>());
-						}
-					}
-
-
-				}
-
-			}
-		}
-		ImGui::End();
-		*/
-	}
-
-
-	if (show_tech_tree)
-	{
-		using namespace std;
-
-		if (!imnodes_tech_tree_initialized)
-		{
-			for (auto& node : techTree)
-			{
-				techTreeNodes.push_back(ImNodesNode(node->getID(), imnodes_tech_node_id++, ITech::getTechAreaAsText( node->getTechArea() ), node->getSubcategory()));
-			}
-
-
-			for (auto& node : techTree)
-			{
-				// Get technology dependency
-				for (auto& req : node->checks)
-				{
-
-					if (req.first->type().compare("string") == 0)
-					{
-						std::string techReq = req.first->as<std::string>();
-
-						// Dont create a link if the requirement is a building etc.
-						if (ITech::getCheckAreaAsText(req.second.second).compare("player_tech_check") == 0)
-						{
-							// Create a link.
-							int startid;
-							int endid;
-
-							// To...
-							for (auto& n : techTreeNodes)
-							{
-								if (n.name.compare(node->getID()) == 0)
-								{
-									startid = n.id << 8;
-
-									// Store Dependency name for later display.
-									n.techDependencies.emplace(techReq, imnodes_tech_dependency_display_id++);
-								}
-							}
-
-
-							// From...
-							for (auto& n : techTreeNodes)
-							{
-								if (n.name.compare(techReq) == 0)
-								{
-									endid = n.id << 24;
-								}
-							}
-
-
-							links.push_back(ImNodesLink(imnodes_tech_link_id++, startid, endid));
-						}
-						else
-						{
-							for (auto& n : techTreeNodes)
-							{
-								if (n.name.compare(node->getID()) == 0)
-								{
-									n.dependencies.emplace(techReq, imnodes_tech_dependency_id++);
-								}
-							}
-						}
-					}
-				}
-			}
-
-
-			imnodes_tech_tree_initialized = true;
-		}
-
-
-		// Render Tree With Nodes.
-		ImGui::SetNextWindowPos(ImVec2(1.0f, 15.0f), ImGuiCond_Appearing);
-		ImGui::SetNextWindowSize(ImVec2(600.0f, 600.0f), ImGuiCond_Appearing);
-		ImGui::Begin("Technology Tree", &show_tech_tree, ImGuiWindowFlags_None);
-
-		ImNodes::BeginNodeEditor();
-
-
-		for (auto& tech : techTreeNodes)
-		{
-			// For Technologies which were already researched by current player,
-			// we can color them differently like this:
-			// Note to call "ImNodes::PopColorStyle();" after "ImNodes::EndNode();"
-			//ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(255, 109, 191, 255));
-
-			// Colorize the techs after the researcharea and subcategory.
-			ImNodes::PushStyleVar(ImNodesStyleVar_NodeBorderThickness, 1.0f);
-			if (tech.area.compare("military") == 0)
-			{
-				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(200, 0, 0, 255)); // Lighter Red
-				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(150, 0, 0, 255)); // Dark Red
-				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
-			}
-			else if (tech.area.compare("civics") == 0)
-			{
-				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(30, 175, 0, 255)); // Lighter Green
-				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(20, 125, 0, 255)); // Dark Green
-				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
-			}
-			else if (tech.area.compare("technical") == 0)
-			{
-				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(170, 70, 0, 255)); // Lighter Brown
-				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(125, 60, 0, 255)); // Dark Brown
-				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
-
-			}
-			else if (tech.area.compare("magick") == 0)
-			{
-				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(170, 0, 230, 255)); // Lighter Purple
-				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(125, 0, 170, 255)); // Dark Purple
-				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
-			}
-
-
-			
-			for (auto& playerTech : players[0]->techs)
-			{
-				if (playerTech.first.compare(tech.name) == 0)
-				{
-					if (playerTech.second == 1)
-					{
-						ImNodes::PushStyleVar(ImNodesStyleVar_NodeBorderThickness, 5.0f);
-						ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(250, 255, 0, 255));
-						ImNodes::PushColorStyle(ImNodesCol_Pin, IM_COL32(255, 255, 255, 255));
-					}
-				}
-			}
-			
-
-			ImNodes::BeginNode(tech.id);
-			ImNodes::BeginNodeTitleBar();
-			ImGui::TextUnformatted(tech.name.c_str());
-			ImNodes::EndNodeTitleBar();
-
-			ImNodes::BeginInputAttribute(tech.id << 8);
-			ImGui::TextUnformatted("Need");
-			ImNodes::EndInputAttribute();
-			
-
-			for (auto& dep : tech.dependencies) // Buildings and other.
-			{
-				ImNodes::BeginInputAttribute(dep.second);
-				ImGui::TextUnformatted(dep.first.c_str());
-				ImNodes::EndInputAttribute();
-			}
-			for (auto& dep : tech.techDependencies) // Technologies for display.
-			{
-				ImNodes::BeginInputAttribute(dep.second);
-				ImGui::TextUnformatted(dep.first.c_str());
-				ImNodes::EndInputAttribute();
-			}
-
-
-
-
-			ImNodes::BeginOutputAttribute(tech.id << 24);
-			ImGui::Indent(ImGui::CalcTextSize("Need").x + ImGui::CalcTextSize(tech.name.c_str()).x);
-			ImGui::TextUnformatted("Unlocks");
-			ImNodes::EndOutputAttribute();
-
-
-			// Draw Icon
-			ImGui::ImageButton((ImTextureID)decalDatabase["assassin"]->id, ImVec2(32, 32), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1));
-
-
-			ImNodes::EndNode();
-
-			
-			ImNodes::PopColorStyle();
-			ImNodes::PopColorStyle();
-			ImNodes::PopColorStyle();
-			ImNodes::PopStyleVar();
-		}
-
-
-		ImNodes::PushColorStyle(ImNodesCol_LinkSelected, IM_COL32(230, 230, 255, 255));
-		for (auto& link : links)
-		{
-			ImNodes::Link(link.id, link.start, link.end);
-		}
-		ImNodes::PopColorStyle();
-
-
-		ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_BottomRight);
-		ImNodes::EndNodeEditor();
-
-		ImGui::End();
-
-	}
-
-
-
-	static bool research_test = true;
-	// Draw Testing For Technology Tree.
-	if (ImGui::Begin("Testing Technology Research", &research_test))
-	{
-		static std::vector< TechInstance* > vec;
-
-		if (ImGui::Button("Get Next Military Techs"))
-		{
-
-			vec = getNextTechToChoose(players[0], ITech::TA_MILITARY);
-		}
-		if (ImGui::Button("Get Next Magick Techs"))
-		{
-
-			vec = getNextTechToChoose(players[0], ITech::TA_MAGIC);
-		}
-		if (ImGui::Button("Get Next Civics Techs"))
-		{
-
-			vec = getNextTechToChoose(players[0], ITech::TA_CIVICS);
-		}
-		if (ImGui::Button("Get Next Technical Techs"))
-		{
-
-			vec = getNextTechToChoose(players[0], ITech::TA_TECHNICAL);
-		}
-
-
-		for (auto& tech : vec)
-		{
-			if (ImGui::Button(tech->getID().c_str()))
-			{
-				// Let player instantly research...
-				players[0]->techs[tech->getID()] = 1;
-			}
-		}
-	}
-	ImGui::End();
-
 }
 
 
@@ -1422,7 +772,700 @@ bool App::_loadAppStateDefinitions()
 	stateMachine.storeStateDefinition("mainMenu", new AppStateMainMenu(this));
 
 	// Set initial state.
-	stateMachine.setInitialState("mainMenu");
+	stateMachine.setInitialState("worldMap");
 
 	return true;
+}
+
+
+
+void AppStateMainMenu::update(float) 
+{
+	using namespace std;
+	cout << color(colors::MAGENTA);
+	cout << "[AppStateMainMenu] update" << white << endl;
+}
+
+void AppStateMainMenu::onEnter() 
+{
+	using namespace std;
+	cout << color(colors::MAGENTA);
+	cout << "[AppStateMainMenu] onEnter" << white << endl;
+}
+
+void AppStateMainMenu::onExit() 
+{
+	using namespace std;
+	cout << color(colors::MAGENTA);
+	cout << "[AppStateMainMenu] onExit" << white << endl;
+}
+
+void AppStateCityView::update(float)
+{
+	using namespace std;
+	cout << color(colors::MAGENTA);
+	cout << "[AppStateMainMenu] update" << white << endl;
+}
+
+void AppStateCityView::onEnter()
+{
+	using namespace std;
+	cout << color(colors::MAGENTA);
+	cout << "[AppStateMainMenu] onEnter" << white << endl;
+}
+
+void AppStateCityView::onExit()
+{
+	using namespace std;
+	cout << color(colors::MAGENTA);
+	cout << "[AppStateMainMenu] onExit" << white << endl;
+}
+
+void AppStateWorldMap::update(float)
+{
+	using namespace std;
+	cout << color(colors::MAGENTA);
+	cout << "[AppStateMainMenu] update" << white << endl;
+
+
+	// Do the standard update.
+	olc::TileTransformedView tv = app->getRenderer();
+
+
+		// Update all agents.
+	for (auto& go : GameObjectStorage::get()->getStorage())
+	{
+		// Update Navigator, for each entity which can move, let it move.
+		if (go->hasComponent("Navigator"))
+		{
+			go->getComponent<NavigatorCmp>("Navigator")->update(GameWorldTime::get()->getTimeSpeed());
+		}
+	}
+
+
+	// Application rendering.
+	olc::vi2d topleft = tv.GetTopLeftTile().max({ 0, 0 });
+	olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
+	olc::vi2d tile;
+
+
+	// Draw Grid.
+	for (tile.y = topleft.y; tile.y < bottomright.y; tile.y++)
+	{
+		for (tile.x = topleft.x; tile.x < bottomright.x; tile.x++)
+		{
+			tv.DrawLine(tile, tile + olc::vf2d(0.0f, 1.0f), olc::VERY_DARK_GREY);
+			tv.DrawLine(tile, tile + olc::vf2d(1.0f, 0.0f), olc::VERY_DARK_GREY);
+		}
+	}
+
+
+
+	// Draw General Layered
+	app->renderLayer("maptile");
+	app->renderLayer("mountain");
+	app->renderLayer("forest");
+	app->renderLayer("river");
+	app->renderLayer("city");
+	app->renderLayer("unit");
+	app->renderLayer("overlay");
+
+
+	if (selected_gameobject)
+	{
+		TransformCmp* tr = static_cast<TransformCmp*> (selected_gameobject->getComponent("Transform"));
+		RendererableCmp* rc = static_cast<RendererableCmp*> (selected_gameobject->getComponent("Renderable"));
+
+		if (tr != nullptr && rc != nullptr)
+		{
+			olc::vf2d p = { tr->xpos + rc->width / 2.0f - 0.3f, tr->ypos + rc->height / 2.0f };
+			tv.DrawStringDecal(p, selected_gameobject->tag, olc::RED, olc::vf2d(0.5f, 0.5f));
+		}
+	}
+
+
+	if (show_collisions)
+	{
+		for (auto& coll : ComponentStorage::get()->getAllOfType<CollisionBoxCmp>("CollisionBox")) // Update collision detection.
+		{
+			for (auto& go : GameObjectStorage::get()->getStorage())
+			{
+				// Do not draw collision with self
+				if (coll->this_agent->getTag().compare(go->getTag()) == 0) continue;
+
+				// Resolve collision with another object
+				if (coll->resolve(go))
+				{
+					TransformCmp* tr = static_cast<TransformCmp*>(coll->this_agent->getComponent("Transform"));
+					CollisionBoxCmp* c = static_cast<CollisionBoxCmp*>(coll->this_agent->getComponent("CollisionBox"));
+
+					tv.DrawRect(olc::vf2d(tr->xpos - 0.1f, tr->ypos - 0.1f), olc::vf2d(c->width + 0.1f, c->height + 0.1f), olc::DARK_RED);
+				}
+			}
+		}
+	}
+
+
+	if (show_nav_mesh)
+	{
+		// Draw Nodes
+		std::vector<std::vector<int>> nodes = NavMesh::get()->getNavGraph();
+		Graph* graph = NavMesh::get()->getGraph();
+		for (int i = 0; i < nodes.size(); i++)
+		{
+			for (int j = 0; j < nodes[i].size(); j++)
+			{
+				if (nodes[i][j] == 1)
+				{
+					tv.DrawCircle(olc::vf2d(i + 0.5f, j + 0.5f), 0.1f, olc::WHITE);
+				}
+			}
+		}
+
+		// Draw Edges
+		for (auto& e : graph->edges)
+		{
+			float a, b, x, y;
+
+			a = edge_from_x(e);
+			b = edge_from_y(e);
+			x = edge_to_x(e);
+			y = edge_to_y(e);
+
+			tv.DrawLine(olc::vf2d(a + 0.5f, b + 0.5f), olc::vf2d(x + 0.5f, y + 0.5f), olc::YELLOW);
+		}
+	}
+
+
+	if (show_nav_path)
+	{
+		// Draw waypoints of selected entity,
+		// if it has one.
+		if (selected_gameobject)
+		{
+			if (selected_gameobject->hasComponent("Navigator"))
+			{
+				NavigatorCmp* nav = selected_gameobject->getComponent<NavigatorCmp>("Navigator");
+
+
+				for (int i = 0; i < nav->movementPoints.size(); i++)
+				{
+					if (i == 0)
+					{
+						// Draw source with special color.
+						tv.DrawCircle(olc::vf2d(node_x(nav->movementPoints[i]) + 0.5f, node_y(nav->movementPoints[i]) + 0.5f), 0.1f, olc::RED);
+						continue;
+					}
+
+					if (i + 1 == nav->movementPoints.size())
+					{
+						// Draw destination with special color.
+						tv.DrawCircle(olc::vf2d(node_x(nav->movementPoints[i]) + 0.5f, node_y(nav->movementPoints[i]) + 0.5f), 0.1f, olc::GREEN);
+						continue;
+					}
+
+					tv.DrawCircle(olc::vf2d(node_x(nav->movementPoints[i]) + 0.5f, node_y(nav->movementPoints[i]) + 0.5f), 0.1f, olc::MAGENTA);
+				}
+			}
+		}
+	}
+
+
+
+	// Draw ImGui.
+	_drawUI();
+}
+
+void AppStateWorldMap::_drawUI()
+{
+	using namespace std;
+
+	app->SetDrawTarget((uint8_t)app->m_GameLayer);
+
+	selected_gameobject = nullptr;
+
+
+	// CHECK WHETHER IMGUI IS FOCUSED
+	if (ImGui::IsAnyItemFocused() || ImGui::IsAnyItemHovered() || ImGui::IsAnyItemActive() || ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow))
+	{
+		imgui_has_focus = true;
+	}
+	else
+	{
+		imgui_has_focus = false;
+	}
+
+
+	// DEMO
+	if (imgui_demo_window)
+	{
+		ImGui::ShowDemoWindow(&imgui_demo_window);
+	}
+
+
+	// MAIN MENU BAR
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("Menu"))
+		{
+
+
+
+			if (ImGui::BeginMenu("Time Speed"))
+			{
+
+				float speed = GameWorldTime::get()->getTimeSpeed();
+				ImGui::SliderFloat("Timespeed", &speed, 0.0f, 2.0f, "%.3f", ImGuiSliderFlags_Logarithmic);
+				GameWorldTime::get()->setTimeSpeed(speed);
+
+				ImGui::EndMenu();
+			}
+
+
+			if (ImGui::BeginMenu("Collider"))
+			{
+				if (ImGui::MenuItem("Collision Display"))
+				{
+					show_collisions = (show_collisions == true) ? false : true;
+				}
+				ImGui::EndMenu();
+			}
+
+
+			if (ImGui::BeginMenu("Navigator"))
+			{
+
+				if (ImGui::MenuItem("NavMesh"))
+				{
+					show_nav_mesh = (show_nav_mesh == true) ? false : true;
+				}
+				if (ImGui::MenuItem("MovePoints"))
+				{
+					show_nav_path = (show_nav_path == true) ? false : true;
+				}
+				ImGui::EndMenu();
+			}
+
+			if (ImGui::BeginMenu("Editor"))
+			{
+				if (ImGui::MenuItem("New"))
+				{
+
+				}
+				ImGui::EndMenu();
+			}
+
+			if (ImGui::BeginMenu("Technology Tree"))
+			{
+				if (ImGui::MenuItem("Display"))
+				{
+					show_tech_tree = (show_tech_tree == true) ? false : true;
+				}
+				ImGui::EndMenu();
+			}
+
+
+			ImGui::EndMenu();
+		}
+
+		ImGui::EndMainMenuBar();
+	}
+
+
+
+
+	// GAMEOBJECTS WINDOW
+	int go_count = GameObjectStorage::get()->getStorage().size();
+	ImGui::SetNextWindowPos(ImVec2(1.0f, 15.0f), ImGuiCond_Appearing);
+	ImGui::SetNextWindowSize(ImVec2(350.0f, 600.0f), ImGuiCond_Appearing);
+	if (ImGui::Begin("GameObjects", &gameobjects_window))
+	{
+		for (auto& go : GameObjectStorage::get()->getStorage())
+		{
+			// Show GO
+			std::string tag_name = go->getTag() + " \"" + go->getName() + "\"";
+			bool ret = ImGui::CollapsingHeader(tag_name.c_str());
+
+			// Check whether we are hovering over the current displayed GO.
+			if (ImGui::IsItemHovered())
+			{
+				selected_gameobject = go;
+			}
+
+			// Show the components of Selected GO.
+			if (ret)
+			{
+				// Show CMPs
+				for (auto& cmp : go->components)
+				{
+					if (ImGui::TreeNode(cmp->name.c_str()))
+					{
+						if (cmp->getType().find("Transform") != std::string::npos)
+						{
+							int v[2];
+							v[0] = static_cast<TransformCmp*>(cmp)->xpos;
+							v[1] = static_cast<TransformCmp*>(cmp)->ypos;
+
+							if (ImGui::SliderInt2("Position", v, -DEFAULT_MAPSIZE_X, DEFAULT_MAPSIZE_X))
+							{
+								static_cast<TransformCmp*>(cmp)->xpos = v[0];
+								static_cast<TransformCmp*>(cmp)->ypos = v[1];
+							}
+						}
+
+
+						if (cmp->getType().find("Renderable") != std::string::npos)
+						{
+							RendererableCmp* rc = static_cast<RendererableCmp*>(cmp);
+
+							ImGui::Text(rc->color.c_str());
+
+							ImGui::SameLine();
+
+							ImGui::Checkbox("Render", &rc->render);
+
+							ImGui::Text("Decal \"%s\"", rc->decalName.c_str());
+
+							ImGui::Text("Layer \"%s\"", rc->renderingLayer.c_str());
+						}
+
+
+						if (cmp->getType().find("Unit") != std::string::npos)
+						{
+							IUnitCmp* uc = static_cast<IUnitCmp*>(cmp);
+
+							if (ImGui::TreeNode("Requirements"))
+							{
+								if (ImGui::TreeNode("Tech"))
+								{
+									// Get the requirements.
+									std::vector<TechID>& req = uc->getRequiredTech();
+
+									for (auto& r : req)
+									{
+										ImGui::Text("\"%s\"", r.c_str());
+									}
+
+									ImGui::TreePop();
+								}
+
+								if (ImGui::TreeNode("Ressources"))
+								{
+									std::vector<std::pair<std::string, int>>& req = uc->getRequiredRessources();
+
+									for (auto& r : req)
+									{
+										ImGui::Text("%d \"%s\"", r.second, r.first.c_str());
+									}
+
+									ImGui::TreePop();
+								}
+
+								if (ImGui::TreeNode("Race"))
+								{
+									std::vector<RaceID>& req = uc->getRequiredRace();
+
+									for (auto& r : req)
+									{
+										ImGui::Text("\"%s\"", r.c_str());
+									}
+
+									ImGui::TreePop();
+								}
+
+
+								ImGui::TreePop();
+							}
+
+
+						}
+
+						if (cmp->getType().find("Building") != std::string::npos)
+						{
+
+						}
+
+						if (cmp->getType().find("Improvement") != std::string::npos)
+						{
+
+						}
+
+
+
+						ImGui::TreePop();
+					}
+
+					ImGui::Separator();
+				}
+			}
+		}
+	}
+	ImGui::End();
+
+
+
+	if (ImGui::Begin("DecalDatabase"))
+	{
+		for (auto& decal : app->decalDatabase)
+		{
+			if (ImGui::ImageButton((ImTextureID)decal.second->id, ImVec2(64, 64), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1)))
+			{
+				GameObjectStorage::get()->getGOByName("Spearman_Unit")->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
+			}
+
+			ImGui::SameLine();
+
+			ImGui::Text(decal.first.c_str());
+		}
+	}
+	ImGui::End();
+
+	if (show_tech_tree)
+	{
+		using namespace std;
+
+		if (!imnodes_tech_tree_initialized)
+		{
+			for (auto& node : app->techTree)
+			{
+				app->techTreeNodes.push_back(ImNodesNode(node->getID(), imnodes_tech_node_id++, ITech::getTechAreaAsText(node->getTechArea()), node->getSubcategory()));
+			}
+
+
+			for (auto& node : app->techTree)
+			{
+				// Get technology dependency
+				for (auto& req : node->checks)
+				{
+
+					if (req.first->type().compare("string") == 0)
+					{
+						std::string techReq = req.first->as<std::string>();
+
+						// Dont create a link if the requirement is a building etc.
+						if (ITech::getCheckAreaAsText(req.second.second).compare("player_tech_check") == 0)
+						{
+							// Create a link.
+							int startid;
+							int endid;
+
+							// To...
+							for (auto& n : app->techTreeNodes)
+							{
+								if (n.name.compare(node->getID()) == 0)
+								{
+									startid = n.id << 8;
+
+									// Store Dependency name for later display.
+									n.techDependencies.emplace(techReq, imnodes_tech_dependency_display_id++);
+								}
+							}
+
+
+							// From...
+							for (auto& n : app->techTreeNodes)
+							{
+								if (n.name.compare(techReq) == 0)
+								{
+									endid = n.id << 24;
+								}
+							}
+
+
+							app->links.push_back(ImNodesLink(imnodes_tech_link_id++, startid, endid));
+						}
+						else
+						{
+							for (auto& n : app->techTreeNodes)
+							{
+								if (n.name.compare(node->getID()) == 0)
+								{
+									n.dependencies.emplace(techReq, imnodes_tech_dependency_id++);
+								}
+							}
+						}
+					}
+				}
+			}
+
+
+			imnodes_tech_tree_initialized = true;
+		}
+
+
+		// Render Tree With Nodes.
+		ImGui::SetNextWindowPos(ImVec2(1.0f, 15.0f), ImGuiCond_Appearing);
+		ImGui::SetNextWindowSize(ImVec2(600.0f, 600.0f), ImGuiCond_Appearing);
+		ImGui::Begin("Technology Tree", &show_tech_tree, ImGuiWindowFlags_None);
+
+		ImNodes::BeginNodeEditor();
+
+
+		for (auto& tech : app->techTreeNodes)
+		{
+			// For Technologies which were already researched by current player,
+			// we can color them differently like this:
+			// Note to call "ImNodes::PopColorStyle();" after "ImNodes::EndNode();"
+			//ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(255, 109, 191, 255));
+
+			// Colorize the techs after the researcharea and subcategory.
+			ImNodes::PushStyleVar(ImNodesStyleVar_NodeBorderThickness, 1.0f);
+			if (tech.area.compare("military") == 0)
+			{
+				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(200, 0, 0, 255)); // Lighter Red
+				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(150, 0, 0, 255)); // Dark Red
+				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
+			}
+			else if (tech.area.compare("civics") == 0)
+			{
+				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(30, 175, 0, 255)); // Lighter Green
+				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(20, 125, 0, 255)); // Dark Green
+				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
+			}
+			else if (tech.area.compare("technical") == 0)
+			{
+				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(170, 70, 0, 255)); // Lighter Brown
+				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(125, 60, 0, 255)); // Dark Brown
+				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
+
+			}
+			else if (tech.area.compare("magick") == 0)
+			{
+				ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(170, 0, 230, 255)); // Lighter Purple
+				ImNodes::PushColorStyle(ImNodesCol_NodeBackground, IM_COL32(125, 0, 170, 255)); // Dark Purple
+				ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(0, 0, 64, 255));
+			}
+
+
+
+			for (auto& playerTech : app->players[0]->techs)
+			{
+				if (playerTech.first.compare(tech.name) == 0)
+				{
+					if (playerTech.second == 1)
+					{
+						ImNodes::PushStyleVar(ImNodesStyleVar_NodeBorderThickness, 5.0f);
+						ImNodes::PushColorStyle(ImNodesCol_NodeOutline, IM_COL32(250, 255, 0, 255));
+						ImNodes::PushColorStyle(ImNodesCol_Pin, IM_COL32(255, 255, 255, 255));
+					}
+				}
+			}
+
+
+			ImNodes::BeginNode(tech.id);
+			ImNodes::BeginNodeTitleBar();
+			ImGui::TextUnformatted(tech.name.c_str());
+			ImNodes::EndNodeTitleBar();
+
+			ImNodes::BeginInputAttribute(tech.id << 8);
+			ImGui::TextUnformatted("Need");
+			ImNodes::EndInputAttribute();
+
+
+			for (auto& dep : tech.dependencies) // Buildings and other.
+			{
+				ImNodes::BeginInputAttribute(dep.second);
+				ImGui::TextUnformatted(dep.first.c_str());
+				ImNodes::EndInputAttribute();
+			}
+			for (auto& dep : tech.techDependencies) // Technologies for display.
+			{
+				ImNodes::BeginInputAttribute(dep.second);
+				ImGui::TextUnformatted(dep.first.c_str());
+				ImNodes::EndInputAttribute();
+			}
+
+
+
+
+			ImNodes::BeginOutputAttribute(tech.id << 24);
+			ImGui::Indent(ImGui::CalcTextSize("Need").x + ImGui::CalcTextSize(tech.name.c_str()).x);
+			ImGui::TextUnformatted("Unlocks");
+			ImNodes::EndOutputAttribute();
+
+
+			// Draw Icon
+			ImGui::ImageButton((ImTextureID)app->decalDatabase["assassin"]->id, ImVec2(32, 32), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1));
+
+
+			ImNodes::EndNode();
+
+
+			ImNodes::PopColorStyle();
+			ImNodes::PopColorStyle();
+			ImNodes::PopColorStyle();
+			ImNodes::PopStyleVar();
+		}
+
+
+		ImNodes::PushColorStyle(ImNodesCol_LinkSelected, IM_COL32(230, 230, 255, 255));
+		for (auto& link : app->links)
+		{
+			ImNodes::Link(link.id, link.start, link.end);
+		}
+		ImNodes::PopColorStyle();
+
+
+		ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_BottomRight);
+		ImNodes::EndNodeEditor();
+
+		ImGui::End();
+
+	}
+
+
+
+	static bool research_test = true;
+	// Draw Testing For Technology Tree.
+	if (ImGui::Begin("Testing Technology Research", &research_test))
+	{
+		static std::vector< TechInstance* > vec;
+
+		if (ImGui::Button("Get Next Military Techs"))
+		{
+
+			vec = app->getNextTechToChoose(app->players[0], ITech::TA_MILITARY);
+		}
+		if (ImGui::Button("Get Next Magick Techs"))
+		{
+
+			vec = app->getNextTechToChoose(app->players[0], ITech::TA_MAGIC);
+		}
+		if (ImGui::Button("Get Next Civics Techs"))
+		{
+
+			vec = app->getNextTechToChoose(app->players[0], ITech::TA_CIVICS);
+		}
+		if (ImGui::Button("Get Next Technical Techs"))
+		{
+
+			vec = app->getNextTechToChoose(app->players[0], ITech::TA_TECHNICAL);
+		}
+
+
+		for (auto& tech : vec)
+		{
+			if (ImGui::Button(tech->getID().c_str()))
+			{
+				// Let player instantly research...
+				app->players[0]->techs[tech->getID()] = 1;
+			}
+		}
+	}
+	ImGui::End();
+
+}
+
+void AppStateWorldMap::onEnter()
+{
+	using namespace std;
+	cout << color(colors::MAGENTA);
+	cout << "[AppStateMainMenu] onEnter" << white << endl;
+}
+
+void AppStateWorldMap::onExit()
+{
+	using namespace std;
+	cout << color(colors::MAGENTA);
+	cout << "[AppStateMainMenu] onExit" << white << endl;
 }
