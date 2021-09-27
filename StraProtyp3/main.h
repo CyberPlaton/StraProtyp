@@ -54,11 +54,11 @@ struct ImNodesNode
 #include "Random.h"
 #include "IMaptile.h"
 #include "MaptileRegions.h"
+#include "FiniteStateMachine.h"
 
 
 #include "TechInstance.h"
 #include "PlayerInstance.h"
-
 
 
 
@@ -75,7 +75,7 @@ public:
 	bool OnUserUpdate(float fElapsedTime) override;
 	void DrawUI(void);
 	std::vector< TechInstance* > getNextTechToChoose(IPlayer* player, ITech::TechArea area);
-
+	StateMachine<App>& getStateMachine() { return stateMachine; }
 
 private:
 
@@ -95,6 +95,9 @@ private:
 
 
 	std::vector< PlayerInstance* > players;
+
+
+	StateMachine<App> stateMachine;
 
 private:
 
@@ -129,9 +132,123 @@ private:
 
 	bool _loadDecalDatabase();
 	bool _loadTechTreeDefinitions();
+	bool _loadAppStateDefinitions();
 
 	/*
 	* The names for rendering layers are defined for each renderable component in XML.
 	*/
 	void renderLayer(const std::string& layerName);
+};
+
+
+
+struct AppStateWorldMap : public State<App>
+{
+	AppStateWorldMap(App* app): app(app){}
+
+	void update(float) override final
+	{
+		using namespace std;
+		cout << color(colors::MAGENTA);
+		cout << "[AppStateWorldMap] update" << white << endl;
+	}
+
+	void onEnter() override final
+	{
+		using namespace std;
+		cout << color(colors::MAGENTA);
+		cout << "[AppStateWorldMap] onEnter" << white << endl;
+	}
+
+	void onExit() override final
+	{
+		using namespace std;
+		cout << color(colors::MAGENTA);
+		cout << "[AppStateWorldMap] onExit" << white << endl;
+	}
+
+	App* getOwner() override final
+	{
+		return app;
+	}
+
+
+private:
+	App* app = nullptr;
+};
+
+
+
+struct AppStateCityView : public State<App>
+{
+	AppStateCityView(App* app) : app(app) {}
+
+
+	void update(float) override final
+	{
+		using namespace std;
+		cout << color(colors::MAGENTA);
+		cout << "[AppStateCityView] update" << white << endl;
+	}
+
+	void onEnter() override final
+	{
+		using namespace std;
+		cout << color(colors::MAGENTA);
+		cout << "[AppStateCityView] onEnter" << white << endl;
+	}
+
+	void onExit() override final
+	{
+		using namespace std;
+		cout << color(colors::MAGENTA);
+		cout << "[AppStateCityView] onExit" << white << endl;
+	}
+
+	App* getOwner() override final
+	{
+		return app;
+	}
+
+
+private:
+	App* app = nullptr;
+};
+
+
+
+struct AppStateMainMenu : public State<App>
+{
+	AppStateMainMenu(App* app) : app(app) {}
+
+
+	void update(float) override final
+	{
+		using namespace std;
+		cout << color(colors::MAGENTA);
+		cout << "[AppStateMainMenu] update" << white << endl;
+	}
+
+	void onEnter() override final
+	{
+		using namespace std;
+		cout << color(colors::MAGENTA);
+		cout << "[AppStateMainMenu] onEnter" << white << endl;
+	}
+
+	void onExit() override final
+	{
+		using namespace std;
+		cout << color(colors::MAGENTA);
+		cout << "[AppStateMainMenu] onExit" << white << endl;
+	}
+
+	App* getOwner() override final
+	{
+		return app;
+	}
+
+
+private:
+	App* app = nullptr;
 };

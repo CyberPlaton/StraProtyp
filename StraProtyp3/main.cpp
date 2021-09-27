@@ -44,6 +44,10 @@ bool App::OnUserUpdate(float fElapsedTime)
 	GameWorldTime::get()->update(); // Update Game World Time.
 
 
+	stateMachine.update(fElapsedTime);
+
+
+
 	// Update all agents.
 	for (auto& go : GameObjectStorage::get()->getStorage())
 	{
@@ -211,6 +215,7 @@ bool App::OnUserCreate()
 	// Load Assets
 	if (!_loadDecalDatabase()) return false;
 	if (!_loadTechTreeDefinitions()) return false;
+	if (!_loadAppStateDefinitions()) return false;
 
 	m_GameLayer = CreateLayer();
 	EnableLayer(m_GameLayer, true);
@@ -775,10 +780,8 @@ void App::_onImGui()
 				players[0]->techs[tech->getID()] = 1;
 			}
 		}
-
-
-		ImGui::End();
 	}
+	ImGui::End();
 
 }
 
@@ -1381,6 +1384,13 @@ bool App::_loadDecalDatabase()
 	decalDatabase.emplace("wheat", decal);
 
 
+
+	// Buildings
+	default_path = "Data/Assets/Building/";
+	sprite = new olc::Sprite(default_path + "tavern.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("tavern", decal);
+
 	return true;
 }
 
@@ -1402,4 +1412,17 @@ void App::renderLayer(const std::string& layerName)
 			}
 		}
 	}
+}
+
+
+bool App::_loadAppStateDefinitions()
+{
+	stateMachine.storeStateDefinition("worldMap", new AppStateWorldMap(this));
+	stateMachine.storeStateDefinition("cityView", new AppStateCityView(this));
+	stateMachine.storeStateDefinition("mainMenu", new AppStateMainMenu(this));
+
+	// Set initial state.
+	stateMachine.setInitialState("mainMenu");
+
+	return true;
 }

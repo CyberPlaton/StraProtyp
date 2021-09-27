@@ -105,6 +105,7 @@
     <ClInclude Include="common\include\tinyxml2.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="ComponentSystem.h" />
+    <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectCreator.h" />
     <ClInclude Include="GameWorld.h" />

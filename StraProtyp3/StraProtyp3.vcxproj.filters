@@ -138,6 +138,9 @@
     <ClInclude Include="MaptileRegions.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="FiniteStateMachine.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
