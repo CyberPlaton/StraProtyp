@@ -132,6 +132,12 @@
     <ClInclude Include="Random.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
+    <ClInclude Include="IMaptile.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="MaptileRegions.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -196,6 +202,12 @@
     </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="IMaptile.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MaptileRegions.cpp">
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

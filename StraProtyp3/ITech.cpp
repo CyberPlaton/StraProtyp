@@ -81,6 +81,10 @@ ITech::TechArea ITech::getTechAreaFromText(const std::string& text)
 	{
 		return TA_TECHNICAL;
 	}
+	else if (text.compare("basic") == 0)
+	{
+		return TA_BASIC;
+	}
 }
 
 
@@ -143,6 +147,8 @@ std::string ITech::getTechAreaAsText(TechArea area)
 		return "military";
 	case TA_TECHNICAL:
 		return "technical";
+	case TA_BASIC:
+		return "basic";
 	default:
 		return "undefined";
 	}

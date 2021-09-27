@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "ComponentSystem.h"
-
 #include "ITech.h"
 
 using RaceID = std::string;

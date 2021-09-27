@@ -790,20 +790,24 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player, ITech::Te
 	std::vector< TechInstance* > researchable;
 	std::map< TechInstance*, float > researchable_probability_distr;
 	std::vector< TechInstance* > return_vec;
-	std::vector< TechInstance* > militaryTechs;
+	std::vector< TechInstance* > specAreaTechs;
 
-	// First Get all defined area technologies available.
+	// First Get all defined area technologies available..
 	for (auto& tech : techTree)
 	{
-		if (tech->getTechArea() == area)
+		// .. for specified area AND for the basis.
+		// As the basis is researched there will be no more of them and
+		// only specified area will be left.
+		if (tech->getTechArea() == area || 
+			tech->getTechArea() == ITech::TA_BASIC)
 		{
-			militaryTechs.push_back(tech);
+			specAreaTechs.push_back(tech);
 		}
 	}
 
 
 	// Get all Technologies which are available for the player to research from given area.
-	for (auto& tech : militaryTechs)
+	for (auto& tech : specAreaTechs)
 	{
 		if (tech->checkWhetherAvailableForPlayer(player))
 		{

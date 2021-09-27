@@ -52,6 +52,8 @@ struct ImNodesNode
 #include "GameWorld.h"
 #include "GameWorldTime.h"
 #include "Random.h"
+#include "IMaptile.h"
+#include "MaptileRegions.h"
 
 
 #include "TechInstance.h"

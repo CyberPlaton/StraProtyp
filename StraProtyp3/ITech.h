@@ -29,7 +29,8 @@ public:
 		TA_MILITARY,
 		TA_CIVICS,
 		TA_MAGIC,
-		TA_TECHNICAL
+		TA_TECHNICAL,
+		TA_BASIC
 	};
 
 	// For "checkWhetherAvailableForPlayer" function

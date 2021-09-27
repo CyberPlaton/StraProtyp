@@ -112,10 +112,12 @@
     <ClInclude Include="GameWorldTimer.h" />
     <ClInclude Include="IBuilding.h" />
     <ClInclude Include="IImprovement.h" />
+    <ClInclude Include="IMaptile.h" />
     <ClInclude Include="IPlayer.h" />
     <ClInclude Include="ITech.h" />
     <ClInclude Include="IUnit.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MaptileRegions.h" />
     <ClInclude Include="olcPGEX_TransformedView.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
     <ClInclude Include="PlayerInstance.h" />
@@ -141,8 +143,10 @@
     <ClCompile Include="GameObjectCreator.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="GameWorldTime.cpp" />
+    <ClCompile Include="IMaptile.cpp" />
     <ClCompile Include="ITech.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MaptileRegions.cpp" />
     <ClCompile Include="PlayerInstance.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="TechInstance.cpp" />
