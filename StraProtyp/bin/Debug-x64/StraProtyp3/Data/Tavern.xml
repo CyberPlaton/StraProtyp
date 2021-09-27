@@ -1,12 +1,12 @@
 <Gameobject>
-	<Tag>Spearman</Tag>
-	<Name>Spearman</Name>
+	<Tag>Tavern</Tag>
+	<Name>Tavern</Name>
 	<Components>
 		<Component name="Renderable">
 			<Width>1.0</Width>
 			<Height>1.0</Height>
-			<Color>dark_green</Color>
-			<Decal>spearman</Decal>
+			<Color>dark_yellow</Color>
+			<Decal>tavern</Decal>
 			<Layer>unit</Layer>
 		</Component>
 
@@ -16,10 +16,12 @@
 
 		<Component name ="Animator"></Component>
 		
-		<Component name="Unit">
+		<Component name="Building">
 			<Requirements>
-				<Req type="tech">Bronze Working</Req>
+				<Req type="tech">Alcohol Making</Req>
 				
+				<!--Required race defines which race is needed to build it-->
+				<!--Thus if some race is not here, then that race cannot build it-->
 				<Req type="race">Human</Req>
 				<Req type="race">Orc</Req>
 				<Req type="race">High Elf</Req>
@@ -29,9 +31,7 @@
 				<Req type="race">Dwarf</Req>
 				<Req type="race">Goblin</Req>
 				
-				<Req type="ressource" amount="5">Bronze Weapons</Req>
-				<Req type="ressource" amount="10">Leather</Req>
-				<Req type="ressource" amount="10">Wood</Req>
+				<Req type="ressource" amount="30">Planks</Req>
 			</Requirements>
 		</Component>
 

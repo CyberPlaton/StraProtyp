@@ -129,7 +129,35 @@ private:
 			}
 			else if (cmp_name.compare("Building") == 0)
 			{
-				gameobject->AddComponent(new IBuildingCmp("Building"));
+				IBuildingCmp* building = new IBuildingCmp("Building");
+				gameobject->AddComponent(building);
+
+				// Check for requirements for the unit and add them.
+				XMLElement* reqs = cmp->FirstChildElement("Requirements");
+				XMLElement* req = reqs->FirstChildElement("Req");
+				std::string req_type;
+
+				while (req)
+				{
+					req_type = req->Attribute("type");
+
+					if (req_type.compare("tech") == 0)
+					{
+						building->addTechRequirement(req->GetText());
+					}
+					else if (req_type.compare("race") == 0)
+					{
+						building->addRaceRequirement(req->GetText());
+					}
+					else if (req_type.compare("ressource") == 0)
+					{
+						int amount = stod(req->Attribute("amount"));
+						building->addRessourceRequirement({ req->GetText(), amount });
+					}
+
+
+					req = req->NextSiblingElement("Req");
+				}
 			}
 			else if (cmp_name.compare("Unit") == 0)
 			{

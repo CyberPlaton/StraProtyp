@@ -3,9 +3,9 @@
 #include <vector>
 
 #include "ComponentSystem.h"
-
 #include "ITech.h"
 
+using RaceID = std::string;
 
 /*
 * Adding this component to a Gameobject makes it a Building.
@@ -23,12 +23,17 @@ public:
 	ComponentType getType() override { return this->type; }
 
 	void addTechRequirement(const TechID& id) { techRequirements.push_back(id); }
+	void addRaceRequirement(const RaceID& id) { raceRequirements.push_back(id); }
+	void addRessourceRequirement(std::pair<std::string, int> req) { ressourceRequirements.push_back(req); }
 
-	std::vector<TechID>& const getRequiredTech() { return techRequirements; }
+	std::vector<TechID>& getRequiredTech() { return techRequirements; }
+	std::vector<RaceID>& getRequiredRace() { return raceRequirements; }
+	std::vector<std::pair<std::string, int>>& getRequiredRessources() { return ressourceRequirements; }
 
 
 private:
 	std::string type;
 	std::vector<TechID> techRequirements;
-
+	std::vector<std::pair<std::string, int>> ressourceRequirements;
+	std::vector<RaceID> raceRequirements;
 };
