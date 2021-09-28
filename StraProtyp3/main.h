@@ -73,6 +73,36 @@ public:
 	{
 		sAppName = "APP";
 	}
+
+	void shutDown()
+	{
+		// Free Players
+		while (players.size() > 0)
+		{
+			delete players[0];
+			players.erase(players.begin());
+		}
+
+		// Free Decals
+		while (decalDatabase.size() > 0)
+		{
+			std::string erase = decalDatabase.begin()->first;
+			delete decalDatabase[erase];
+			decalDatabase.erase(erase);
+		}
+		decalDatabase.clear();
+
+		// Free Techtree
+		while (techTree.size() > 0)
+		{
+			delete techTree[0];
+			techTree.erase(techTree.begin());
+		}
+
+		techTreeNodes.clear();
+		links.clear();
+	}
+
 public:
 
 	bool OnUserCreate() override;

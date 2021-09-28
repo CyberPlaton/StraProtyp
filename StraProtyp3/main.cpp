@@ -114,9 +114,11 @@ int main()
 	if (demo.Construct(648, 512, 2, 2))
 		demo.Start();
 
+	demo.shutDown();
 
 	NavMesh::del();
 	GameObjectStorage::del();
+	ComponentStorage::del();
 
 
 	ImNodes::SaveCurrentEditorStateToIniFile("tech_tree_graph.ini");

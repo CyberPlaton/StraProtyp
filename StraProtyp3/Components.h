@@ -24,6 +24,14 @@ public:
 		init(type);
 	}
 
+	~CollisionBoxCmp()
+	{
+		this_agent = nullptr;
+		type.clear();
+		width = 0.0f;
+		height = 0.0f;
+	}
+
 	ComponentType getType() override { return this->type; }
 
 	/*
@@ -77,6 +85,12 @@ struct Graph
 				nodes[i][j] = 0; // No nodes in graph.
 			}
 		}
+	}
+
+	~Graph()
+	{
+		nodes.clear();
+		edges.clear();
 	}
 
 
@@ -211,6 +225,10 @@ public:
 	{
 		if (g_NavMesh)
 		{
+			delete g_NavMesh->graph;
+			g_NavMesh->map.clear();
+			g_NavMesh->width = 0;
+			g_NavMesh->height = 0;
 			delete g_NavMesh;
 		}
 	}

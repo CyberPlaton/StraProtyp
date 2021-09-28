@@ -133,6 +133,13 @@ public:
 	}
 
 
+	~TransformCmp()
+	{
+		xpos = 0;
+		ypos = 0;
+		type.clear();
+	}
+
 	void setPosition(int x, int y)
 	{
 		this->xpos = x;
@@ -158,6 +165,15 @@ public:
 		type = "Renderable";
 
 		init(type);
+	}
+
+	~RendererableCmp()
+	{
+		width = 0.0f;
+		height = 0.0f;
+		color.clear();
+		decalName.clear();
+		renderingLayer.clear();
 	}
 
 

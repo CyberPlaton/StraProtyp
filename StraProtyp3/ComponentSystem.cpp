@@ -1,5 +1,6 @@
 #include "ComponentSystem.h"
 
+
 ComponentStorage* ComponentStorage::g_ComponentStorageStorage = nullptr;
 unsigned long long Component::g_ComponentID = 0;
 
@@ -17,6 +18,23 @@ void ComponentStorage::del()
 {
 	if (g_ComponentStorageStorage)
 	{
+		while (g_ComponentStorageStorage->componentMap.size() > 0)
+		{
+			std::string erase = g_ComponentStorageStorage->componentMap.begin()->first;
+
+			while (g_ComponentStorageStorage->componentMap[erase].size() > 0)
+			{
+				delete g_ComponentStorageStorage->componentMap[erase][0];
+				g_ComponentStorageStorage->componentMap.erase(erase);
+			}
+
+
+			if (g_ComponentStorageStorage->componentMap[erase].size() == 0)
+			{
+				g_ComponentStorageStorage->componentMap.erase(erase);
+			}
+		}
+
 		delete g_ComponentStorageStorage;
 	}
 }
