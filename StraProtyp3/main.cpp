@@ -100,6 +100,9 @@ bool App::OnUserCreate()
 	PlayerInstance* player = new PlayerInstance("Data/Player/HumanPlayer.xml");
 	players.push_back(player);
 
+
+	go = nullptr;
+	player = nullptr;
 	return true;
 }
 
@@ -119,6 +122,7 @@ int main()
 	NavMesh::del();
 	GameObjectStorage::del();
 	ComponentStorage::del();
+	GameWorldTime::del();
 
 
 	ImNodes::SaveCurrentEditorStateToIniFile("tech_tree_graph.ini");

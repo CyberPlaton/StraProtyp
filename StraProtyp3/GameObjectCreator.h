@@ -11,6 +11,8 @@
 #include "IBuilding.h"
 #include "IUnit.h"
 #include "IImprovement.h"
+#include "ICity.h"
+
 
 #include "tinyxml2.h"
 #include "nlohmann/json.hpp"

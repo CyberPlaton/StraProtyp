@@ -141,6 +141,9 @@
     <ClInclude Include="FiniteStateMachine.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
+    <ClInclude Include="ICity.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

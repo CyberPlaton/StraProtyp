@@ -6,6 +6,7 @@
 #include "ITech.h"
 
 using RaceID = std::string;
+using UnitProfession = std::string;
 
 /*
 * Adding this component to a Gameobject makes it a Unit.
@@ -31,10 +32,15 @@ public:
 	std::vector<RaceID>& getRequiredRace() { return raceRequirements; }
 	std::vector<std::pair<std::string, int>>& getRequiredRessources() { return ressourceRequirements; }
 
+	UnitProfession getProfession() { return profession; }
 
 private:
 	std::string type;
 	std::vector<TechID> techRequirements;
 	std::vector<std::pair<std::string, int>> ressourceRequirements;
 	std::vector<RaceID> raceRequirements;
+
+
+
+	UnitProfession profession;
 };
