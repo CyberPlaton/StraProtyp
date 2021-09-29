@@ -1,0 +1,88 @@
+<Gameobject>
+	<Tag>Weaponsmiths Workshop</Tag>
+	<Name>Weaponsmiths Workshop</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_yellow</Color>
+			<Decal>weaponsmiths_workshop</Decal>
+			<Layer>building</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name="Navigator"></Component>
+
+		<Component name ="Animator"></Component>
+		
+		<Component name="Building">
+			<Requirements>
+				<!--Required Technology to build this building-->
+				<Req type="tech">Bronze Working</Req>
+				
+				<!--Required Ressources to build this building-->
+				<Req type="ressource" amount="15">Planks</Req>
+
+
+				<!--Required race defines which race is needed to build it-->
+				<!--Thus if some race is not here, then that race cannot build it-->
+				<Req type="race">Human</Req>
+				<Req type="race">Orc</Req>
+				<Req type="race">High Elf</Req>
+				<Req type="race">Dark Elf</Req>
+				<Req type="race">Troll</Req>
+				<Req type="race">Gnome</Req>
+				<Req type="race">Dwarf</Req>
+				<Req type="race">Goblin</Req>
+
+
+				<!--Required Slot Type in the city for the Building-->
+				<Req type="slot">Normal</Req>
+				
+				
+				<!--Required Unit Profession to work this Building-->
+				<Req type="worker_prof">
+					<Prof>Weapon Smith</Prof>
+				</Req>
+				
+
+				<!--Required Ressources to produce one unit of the produceable ressource-->
+				<!--The Smith is Special, as it can produce several Ressource out of other-->
+				<Req type="production">
+					
+					<!--Defining mappings of produced ressource with amount and needed ressource with amount-->
+					<Def>
+						<!--Building produces 1 Bronze Weapons each 2 Turns...-->
+						<Prod amount="1" time="2">Bronze Weapons</Prod>
+
+						<!--...and consumes for it 2 Bronze Bars-->
+						<Need amount="2">Bronze Bars</Need>
+					</Def>
+					<Def>
+						<Prod amount="1" time="2">Iron Weapons</Prod>
+						<Need amount="2">Iron Bars</Need>
+					</Def>
+					<Def>
+						<Prod amount="1" time="4">Steel Weapons</Prod>
+						<Need amount="2">Steel Bars</Need>
+						<Need amount="4">Wood</Need>
+					</Def>
+					<Def>
+						<Prod amount="1" time="8">Adamantium Weapons</Prod>
+						<Need amount="2">Adamantium Bars</Need>
+					</Def>
+					<Def>
+						<Prod amount="1" time="6">Malachite Weapons</Prod>
+						<Need amount="2">Malachite Bars</Need>
+					</Def>						
+				</Req>
+			</Requirements>
+		</Component>
+
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

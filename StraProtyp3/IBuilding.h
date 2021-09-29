@@ -33,11 +33,26 @@ public:
 
 	void addTechRequirement(const TechID& id) { techRequirements.push_back(id); }
 	void addRaceRequirement(const RaceID& id) { raceRequirements.push_back(id); }
-	void addRessourceRequirement(std::pair<std::string, int> req) { ressourceRequirements.push_back(req); }
+	void addRessourceRequirement(const RessourceID& ressName, int amount) { ressourceRequirements.emplace(ressName, amount); }
+
+	void addProductionTuple(const RessourceID& prodRessource, int prodAmount, int prodTime, const RessourceID& needRessource, int needAmount)
+	{
+		// Store production.
+		productionRessources[prodRessource].emplace(needRessource, needAmount);
+
+		// Store how much is produced.
+		productionAmount[prodRessource] = prodAmount;
+
+		// Store how long it is being produced.
+		productionTime[prodRessource] = prodTime;
+	}
+
+	void setSlotType(const BuildingSlotType& type) { slotType = type; }
+	void addRequiredProfession(const UnitProfession& prof) { requiredProfessions.push_back(prof); }
 
 	std::vector<TechID>& getRequiredTech() { return techRequirements; }
 	std::vector<RaceID>& getRequiredRace() { return raceRequirements; }
-	std::vector<std::pair<std::string, int>>& getRequiredRessources() { return ressourceRequirements; }
+	std::map<RessourceID, int>& getRequiredRessources() { return ressourceRequirements; }
 
 
 	// City related functionality.
@@ -57,7 +72,7 @@ public:
 			{
 				ICityCmp* cmp = city->getComponent<ICityCmp>("City");
 
-				if (cmp->setBuildingInSlot(self, i, s))
+				if (cmp->assignBuildingToSlot(self, i, s))
 				{
 					return true;
 				}
@@ -76,22 +91,41 @@ public:
 	{
 		if (isBeingWorked && worker)
 		{
-			// Check for correct profession of unit and produced ressource.
+			// Check for correct profession of unit and produced ressource ( Building ).
+			UnitProfession uProf = worker->getComponent<IUnitCmp>("Unit")->getProfession();
+
+			auto it = std::find(requiredProfessions.begin(), requiredProfessions.end(), uProf);
+			if (it == requiredProfessions.end())
+			{
+				return false;
+			}
 
 
 
 			// Check for whether needed ressources for the production are available.
-
+			for (auto& req : productionRessources[currentProduction])
+			{
+				// Check availability of each ressource in city.
+				if (!city->getComponent<ICityCmp>("City")->hasRessourceAmount(req.first, req.second))
+				{
+					return false;
+				}
+			}
 
 
 			// Check whether city has enough storage.
+			// TODO
 
 
 
 			// Check whether enough production time has elapsed.
 			if (productionCommenced)
 			{
-
+				if (productionTurnsRemaining > 0)
+				{
+					productionTurnsRemaining--;
+					return false;
+				}
 			}
 			else
 			{
@@ -113,6 +147,8 @@ public:
 
 			// Reset for next production.
 			productionTurnsRemaining = INT_MAX;
+			productionCommenced = false;
+
 
 			return true;
 		}
@@ -149,21 +185,29 @@ public:
 
 private:
 	std::string type;
+
+	// Requirements to build this Building.
 	std::vector<TechID> techRequirements;
-	std::vector<std::pair<std::string, int>> ressourceRequirements;
+	std::map<RessourceID, int> ressourceRequirements;
 	std::vector<RaceID> raceRequirements;
+
 
 
 	// City to which this building belongs.
 	GameObject* city = nullptr;
 
 
+	// The required professions to work on this building.
+	std::vector< UnitProfession > requiredProfessions;
+
+
 	// Defines ressources which can be produced with a set of required ressources
 	// for it to be produced.
 	// E.g. { "Iron Weapons" : {"Iron Bars", 5} }
-	// Or   { "Iron Bars" : {"Iron Ore", 2
-	//						 "Wood", 1 }
+	// Or   { "Iron Bars" :	   {"Iron Ore", 2
+	//							"Wood", 1 }
 	std::map< RessourceID, std::map< RessourceID, int > > productionRessources;
+
 
 	// Defines how much of a ressource is being produced.
 	std::map< RessourceID, int > productionAmount;

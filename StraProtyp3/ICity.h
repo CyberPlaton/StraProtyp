@@ -58,7 +58,7 @@ public:
 	/*
 	* Set the building in a slot.
 	*/
-	bool setBuildingInSlot(GameObject* go, int slot, BuildingSlotType s)
+	bool assignBuildingToSlot(GameObject* go, int slot, BuildingSlotType s)
 	{
 		if (!buildingSlots[slot].isUsed && 
 			buildingSlots[slot].slotNumber == slot &&
@@ -75,13 +75,25 @@ public:
 
 
 
-	void increaseRessource(const RessourceID& name, int amount);
-	void decreaseRessource(const RessourceID& name, int amount);
+	void increaseRessource(const RessourceID& name, int amount)
+	{
+		cityRessources[name] += amount;
+		if (cityRessources[name] > 100) cityRessources[name] = 100;
+	}
 
+	void decreaseRessource(const RessourceID& name, int amount)
+	{
+		cityRessources[name] -= amount;
+		if (cityRessources[name] < 0) cityRessources[name] = 0;
+	}
+
+	bool hasRessourceAmount(const RessourceID& name, int amount)
+	{
+		return cityRessources[name] >= amount;
+	}
 
 private:
 	std::string type;
-
 
 
 	// Cities Building slots.

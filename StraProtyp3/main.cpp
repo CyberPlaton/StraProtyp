@@ -101,6 +101,11 @@ bool App::OnUserCreate()
 	players.push_back(player);
 
 
+	// Seems to load correctly.
+	go = creator.create("Data/Weaponsmith.xml", "WeaponSmith", -1, -1);
+	go = creator.create("Data/Tavern.xml", "tavern", -1, -1);
+
+
 	go = nullptr;
 	player = nullptr;
 	return true;
@@ -746,6 +751,11 @@ bool App::_loadDecalDatabase()
 	sprite = new olc::Sprite(default_path + "tavern.png");
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("tavern", decal);
+
+	sprite = new olc::Sprite(default_path + "weaponsmiths_workshop.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("weaponsmiths_workshop", decal);
+
 
 	return true;
 }

@@ -154,7 +154,57 @@ private:
 					else if (req_type.compare("ressource") == 0)
 					{
 						int amount = stod(req->Attribute("amount"));
-						building->addRessourceRequirement({ req->GetText(), amount });
+						building->addRessourceRequirement(req->GetText(), amount);
+					}
+					else if (req_type.compare("production") == 0)
+					{
+						// Get the production tuples.
+						XMLElement* def = req->FirstChildElement("Def");
+						while (def)
+						{
+							
+							// Production.
+							XMLElement* prod = def->FirstChildElement("Prod");
+							std::string prodRess = prod->GetText();
+							int prodAmount = prod->IntAttribute("amount", INT_MAX);
+							int prodTime = prod->IntAttribute("time", INT_MAX);
+
+
+							// Need. Note that we can have a variable number of needs.
+							XMLElement* need = def->FirstChildElement("Need");
+							while (need && need->IntAttribute("amount", 0) > 0)
+							{
+
+								std::string reqRess = need->GetText();
+								int reqAmount = need->IntAttribute("amount", INT_MAX);
+
+
+
+								// Calling this function n Times adds n requirements,
+								// where previous definitions are not override or duplicated.
+								building->addProductionTuple(prodRess, prodAmount, prodTime, reqRess, reqAmount);
+
+								need = need->NextSiblingElement("Need");
+							}
+
+
+							def = def->NextSiblingElement("Def");
+						}
+					}
+					else if (req_type.compare("slot") == 0)
+					{
+						building->setSlotType(req->GetText());
+					}
+					else if (req_type.compare("worker_prof") == 0)
+					{
+						// Add valid professions.
+						XMLElement* prof = req->FirstChildElement("Prof");
+						while (prof)
+						{
+							building->addRequiredProfession(prof->GetText());
+
+							prof = prof->NextSiblingElement("Prof");
+						}
 					}
 
 
@@ -165,6 +215,10 @@ private:
 			{
 				IUnitCmp* unit = new IUnitCmp("Unit");
 				gameobject->AddComponent(unit);
+
+
+				// Get the profession.
+				unit->setProfession(cmp->FirstChildElement("Profession")->GetText());
 
 				// Check for requirements for the unit and add them.
 				XMLElement* reqs = cmp->FirstChildElement("Requirements");

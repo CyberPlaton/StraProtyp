@@ -17,6 +17,7 @@
 		<Component name ="Animator"></Component>
 		
 		<Component name="Unit">
+			<Profession>Spearman</Profession>
 			<Requirements>
 				<Req type="tech">Bronze Working</Req>
 				

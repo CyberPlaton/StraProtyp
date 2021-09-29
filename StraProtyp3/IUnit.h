@@ -33,6 +33,7 @@ public:
 	std::vector<std::pair<std::string, int>>& getRequiredRessources() { return ressourceRequirements; }
 
 	UnitProfession getProfession() { return profession; }
+	void setProfession(const UnitProfession& p) { profession = p; }
 
 private:
 	std::string type;
