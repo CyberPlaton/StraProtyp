@@ -174,6 +174,7 @@ private:
 	bool _loadDecalDatabase();
 	bool _loadTechTreeDefinitions();
 	bool _loadAppStateDefinitions();
+	bool _loadGameobjectPathdefinitions();
 };
 
 

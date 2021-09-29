@@ -25,11 +25,45 @@ public:
 
 	GameObject* create(const std::string& filepath, const std::string& name, int xpos, int ypos)
 	{ 
-		return _createFromXML(filepath, name, xpos, ypos);
+		using namespace std;
+
+		if (filepath.find(".xml") != std::string::npos)
+		{
+			cout << color(colors::CYAN);
+			cout << "[GameObjectCreator::create] Loading \""<< name << "\" from Path \""<< filepath <<"\"" << white << endl;
+
+			return _createFromXML(filepath, name, xpos, ypos);
+		}
+		else
+		{
+			try
+			{
+				cout << color(colors::CYAN);
+				cout << "[GameObjectCreator::create] Loading \"" << name << "\" from Gameobject Pathdefinitions" << white << endl;
+
+				return _createFromXML(gameobjectPathDefinitions.at(filepath), name, xpos, ypos);
+			}
+			catch (...)
+			{
+				cout << color(colors::RED);
+				cout << "[GameObjectCreator::create] Error loading \"" << name << "\", no Pathdefinition could be found" << white << endl;
+				return nullptr;
+			}
+		}
 	}
 
 
+	static void createGameobjectPathDefinition(const std::string& name, const std::string& path)
+	{
+		gameobjectPathDefinitions.emplace(name, path);
+	}
+
 private:
+
+	// Here we define with the name of a Gameobject the
+	// according path to its XML file for easier creation.
+	static std::map< std::string, std::string > gameobjectPathDefinitions;
+
 
 	GameObject* _createFromXML(const std::string& xml_filepath, const std::string& name, int xpos, int ypos)
 	{
@@ -251,6 +285,124 @@ private:
 			else if (cmp_name.compare("Improvement") == 0)
 			{
 				gameobject->AddComponent(new IImprovementCmp("Improvement"));
+			}
+			else if (cmp_name.compare("City") == 0)
+			{
+				ICityCmp* city = new ICityCmp("City");
+				gameobject->AddComponent(city);
+
+				// Citytype
+				XMLElement* cType = cmp->FirstChildElement("CityType");
+				std::string cityType = std::string(cType->Attribute("type")) + std::string(cType->Attribute("location"));
+				city->setCityType(cityType);
+
+
+				// Storage
+				int maxStorage = cmp->FirstChildElement("MaxStorage")->IntText(-INT_MAX);
+				city->setMaxStorage(maxStorage);
+
+
+				// Data
+				XMLElement* data = cmp->FirstChildElement("Data");
+				XMLElement* entry = data->FirstChildElement("Entry");
+				while (entry)
+				{
+					
+					std::string name = entry->Attribute("name");
+					int amount = entry->IntAttribute("amount", -INT_MAX);
+
+
+					city->setData(name, amount);
+					
+
+					entry = entry->NextSiblingElement("Entry");
+				}
+
+
+				// Building Slots.
+				data = cmp->FirstChildElement("BuildingSlots");
+				entry = data->FirstChildElement("Slot");
+				while (entry)
+				{
+
+					int slotNum = entry->IntAttribute("number", -INT_MAX);
+					float xpos = entry->FloatAttribute("xpos", (float)-INT_MAX);
+					float ypos = entry->FloatAttribute("ypos", (float)-INT_MAX);
+					std::string type = entry->Attribute("type");
+
+
+					// Create a Slot.
+					ICityCmp::BuildingSlot slot(xpos, ypos, slotNum, type);
+
+
+					// Add Slot.
+					city->pushSlot(slot);
+
+
+					entry = entry->NextSiblingElement("Slot");
+				}
+
+
+				// Starting Stuff for the city.
+
+				// Starting Ressources.
+				data = cmp->FirstChildElement("Ressources");
+				entry = data->FirstChildElement("Entry");
+				while(entry)
+				{
+
+					city->increaseRessource(entry->Attribute("name"), entry->IntAttribute("amount", -INT_MAX));
+
+					entry = entry->NextSiblingElement("Entry");
+				}
+
+
+				// Starting Units.
+				data = cmp->FirstChildElement("Units");
+				entry = data->FirstChildElement("Entry");
+				while (entry)
+				{
+					int amount = entry->IntAttribute("amount", -INT_MAX);
+					std::string unitName = entry->Attribute("name");
+
+
+					for (int i = 0; i < amount; i++)
+					{
+						GameObject* object = create(unitName, unitName, 0, 0);
+						if (object)
+						{
+							city->addUnit(object);
+						}
+					}
+
+					
+					entry = entry->NextSiblingElement("Entry");
+				}
+
+
+				// Starting Buildings.
+				data = cmp->FirstChildElement("Buildings");
+				entry = data->FirstChildElement("Entry");
+				while (entry)
+				{
+					std::string name = entry->Attribute("name");
+					int slot = entry->IntAttribute("slot", -INT_MAX);
+					BuildingSlotType slotType = entry->Attribute("slotType");
+
+
+					GameObject* object = create(name, name, 0, 0);
+					if (object)
+					{
+						if (!city->assignBuildingToSlot(object, slot, slotType))
+						{
+							delete object;
+							object = nullptr;
+						}
+					}
+
+
+					entry = entry->NextSiblingElement("Entry");
+				}
 			}
 
 

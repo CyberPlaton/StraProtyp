@@ -72,10 +72,12 @@ bool App::OnUserCreate()
 	ImNodes::LoadCurrentEditorStateFromIniFile("tech_tree_graph.ini");
 
 
-	// Load Assets
+	// Load Assets and Definitions etc.
 	if (!_loadDecalDatabase()) return false;
 	if (!_loadTechTreeDefinitions()) return false;
 	if (!_loadAppStateDefinitions()) return false;
+	if (!_loadGameobjectPathdefinitions()) return false;
+
 
 	m_GameLayer = CreateLayer();
 	EnableLayer(m_GameLayer, true);
@@ -102,8 +104,13 @@ bool App::OnUserCreate()
 
 
 	// Seems to load correctly.
-	go = creator.create("Data/Weaponsmith.xml", "WeaponSmith", -1, -1);
-	go = creator.create("Data/Tavern.xml", "tavern", -1, -1);
+	go = creator.create("Data/Weaponsmith.xml", "Weapon Smith", -1, -1);
+	go = creator.create("Data/Tavern.xml", "Tavern", -1, -1);
+
+
+
+	go = creator.create("Data/City_Plain.xml", "Plain City", 2, 2);
+
 
 
 	go = nullptr;
@@ -757,8 +764,30 @@ bool App::_loadDecalDatabase()
 	decalDatabase.emplace("weaponsmiths_workshop", decal);
 
 
+	// Cities
+	default_path = "Data/Assets/City/";
+	sprite = new olc::Sprite(default_path + "city_plain.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("city_plain", decal);
+
+
 	return true;
 }
+
+
+
+
+bool App::_loadGameobjectPathdefinitions()
+{
+	GameObjectCreator::createGameobjectPathDefinition("Spearman", "Data/Spearman.xml");
+	GameObjectCreator::createGameobjectPathDefinition("Tavern", "Data/Tavern.xml");
+	GameObjectCreator::createGameobjectPathDefinition("Weapon Smiths Workshop", "Data/Weaponsmith.xml");
+
+
+	return true;
+}
+
+
 
 
 void App::renderLayer(const std::string& layerName)

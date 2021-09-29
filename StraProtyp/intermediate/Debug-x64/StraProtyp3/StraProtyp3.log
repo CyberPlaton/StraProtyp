@@ -1,25 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(498,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  GameObjectCreator.cpp
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(117,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(121,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(124,1): warning C4305: 'return': truncation from 'int' to 'float'
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(395,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(395,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(460,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(461,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(608,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(684,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(685,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(686,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(687,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\IImprovement.h(27,44): warning C4227: anachronism used: qualifiers on reference are ignored
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(80,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(83,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(110,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(113,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(156,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(246,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   main.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
@@ -36,12 +16,12 @@ C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Com
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(686,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Components.h(687,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\IImprovement.h(27,44): warning C4227: anachronism used: qualifiers on reference are ignored
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(80,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(83,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(110,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(113,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(156,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(246,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(114,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(117,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(144,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(147,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(190,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectCreator.h(276,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Timer.h(30,25): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
           with
           [
@@ -59,26 +39,25 @@ C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Tim
           ]
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(69,31): warning C4099: 'AppStateWorldMap': type name first seen using 'struct' now seen using 'class'
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(64): message : see declaration of 'AppStateWorldMap'
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(777,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(806,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(777,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(806,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(857,90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(946,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(947,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(948,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(949,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1033,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1094,62): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1227,7): warning C4312: 'type cast': conversion from 'int32_t' to 'ImTextureID' of greater size
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1404,70): warning C4312: 'type cast': conversion from 'int32_t' to 'ImTextureID' of greater size
-  Generating Code...
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(886,90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(975,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(976,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(977,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(978,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1062,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1123,62): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1256,7): warning C4312: 'type cast': conversion from 'int32_t' to 'ImTextureID' of greater size
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1433,70): warning C4312: 'type cast': conversion from 'int32_t' to 'ImTextureID' of greater size
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ComponentSystem.h(76): warning C4715: 'ComponentStorage::getAllOfType<CollisionBoxCmp>': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Any.h(54): warning C4715: 'Any::as<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >': not all control paths return a value
   StraProtyp3.vcxproj -> C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\StraProtyp3.exe
