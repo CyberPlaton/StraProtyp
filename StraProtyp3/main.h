@@ -117,6 +117,9 @@ public:
 	* The names for rendering layers are defined for each renderable component in XML.
 	*/
 	void renderLayer(const std::string& layerName);
+	void renderCityLayer(const std::string& layerName, std::vector<GameObject*>& gameobjects);
+	
+	GameObject* getCurrentViewedCity() { return currentViewedCity;}
 
 private:
 
@@ -135,7 +138,11 @@ private:
 	std::vector< ImNodesLink > links;
 
 
+	// Players in game.
 	std::vector< PlayerInstance* > players;
+
+
+	GameObject* currentViewedCity = nullptr;
 
 
 	StateMachine<App> stateMachine;

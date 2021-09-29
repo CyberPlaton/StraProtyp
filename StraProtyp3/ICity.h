@@ -70,6 +70,7 @@ public:
 
 	void setCityType(const std::string& type) { cityType = type; }
 
+	void setPlayer(IPlayer* p) { player = p; }
 
 
 	/*
@@ -83,6 +84,9 @@ public:
 		{
 			buildingSlots[slot - 1].building = go;
 			buildingSlots[slot - 1].isUsed = true;
+
+
+			buildings.push_back(go);
 
 			return true;
 		}
@@ -108,6 +112,10 @@ public:
 	{
 		return cityRessources[name] >= amount;
 	}
+
+	std::vector< GameObject* > getUnits() { return units; }
+	std::vector< GameObject* > getBuildings(){ return buildings; }
+
 
 private:
 	std::string type;

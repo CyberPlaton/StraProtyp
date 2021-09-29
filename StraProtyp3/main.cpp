@@ -110,6 +110,7 @@ bool App::OnUserCreate()
 
 
 	go = creator.create("Data/City_Plain.xml", "Plain City", 2, 2);
+	go = creator.create("Data/Fort_Plain.xml", "Plain Fort", 4, 2);
 
 
 
@@ -283,6 +284,20 @@ void App::_handleInput()
 {
 	using namespace std;
 
+	olc::vi2d point = tv.ScreenToWorld({ GetMouseX(), GetMouseY() });
+	int mousex = point.x;
+	int mousey = point.y;
+
+	olc::vi2d topLeft = tv.GetTileUnderScreenPos({ 0, 0 });
+	olc::vi2d bottomDown = tv.GetBottomRightTile();
+	olc::vi2d middle = { bottomDown.x / 2, bottomDown.y / 2 };
+
+	cout << color(colors::RED);
+	cout << "MousePos {" << mousex << "," << mousey << "}" << endl;
+	cout << "Tile TopLeft " << topLeft.x << "," << topLeft.y << "}" << endl;
+	cout << "Tile BottRight " << bottomDown.x << "," << bottomDown.y << "}" << endl;
+	cout << "Tile Middle " << middle.x << "," << middle.y << "}" << white << endl;
+
 	// Do not allow capturing input to imgui and app at same time.
 	if (!imgui_has_focus)
 	{
@@ -298,6 +313,42 @@ void App::_handleInput()
 		if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
 		if (GetMouseWheel() > 0) tv.ZoomAtScreenPos(2.0f, GetMousePos());
 		if (GetMouseWheel() < 0) tv.ZoomAtScreenPos(0.5f, GetMousePos());
+	
+
+		// Check for RMB Press on a city...
+		if (GetMouse(1).bPressed && stateMachine.getCurrentState().compare("worldMap") == 0)
+		{
+			for (auto& go : GameObjectStorage::get()->getStorage())
+			{
+				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
+				CollisionBoxCmp* box = go->getComponent<CollisionBoxCmp>("CollisionBox");
+
+
+				if (mousex >= transform->xpos && mousex <= transform->xpos + box->width &&
+					mousey >= transform->ypos && mousey <= transform->ypos + box->height)
+				{
+
+					// Is the Gameobject a city.
+					if (go->hasComponent("City"))
+					{
+						currentViewedCity = go;
+						stateMachine.setState("cityView");
+					}
+					else
+					{
+						currentViewedCity = nullptr;
+					}
+				}
+			}
+		}
+
+		// Check for escaping from cityview...
+		if (GetKey(olc::ESCAPE).bPressed && currentViewedCity && stateMachine.getCurrentState().compare("cityView") == 0)
+		{
+			stateMachine.setState("worldMap");
+			currentViewedCity = nullptr;
+		}
+
 	}
 }
 
@@ -770,6 +821,10 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("city_plain", decal);
 
+	sprite = new olc::Sprite(default_path + "fort_plain.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("fort_plain", decal);
+
 
 	return true;
 }
@@ -809,6 +864,25 @@ void App::renderLayer(const std::string& layerName)
 	}
 }
 
+
+void App::renderCityLayer(const std::string& layerName, std::vector<GameObject*>& gameobjects)
+{
+	for (auto& go : gameobjects)
+	{
+		if (go->hasComponent("Renderable"))
+		{
+			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
+			if (render->render && render->renderingLayer.compare(layerName) == 0)
+			{
+				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
+
+				olc::Decal* decal = decalDatabase[render->decalName];
+
+				tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
+			}
+		}
+	}
+}
 
 bool App::_loadAppStateDefinitions()
 {
@@ -850,6 +924,24 @@ void AppStateCityView::update(float)
 	using namespace std;
 	cout << color(colors::MAGENTA);
 	cout << "[AppStateMainMenu] update" << white << endl;
+
+	GameObject* city = app->getCurrentViewedCity();
+	if (city)
+	{
+		std::vector< GameObject* > objects = city->getComponent<ICityCmp>("City")->getUnits();
+
+
+		//app->renderCityLayer("background", );
+		//app->renderCityLayer("ground");
+		//app->renderCityLayer("cityBackground");
+		app->renderCityLayer("unit", objects);
+		//app->renderCityLayer("menu");
+		//app->renderCityLayer("overlay");
+
+		objects = city->getComponent<ICityCmp>("City")->getBuildings();
+		app->renderCityLayer("building", objects);
+
+	}
 }
 
 void AppStateCityView::onEnter()

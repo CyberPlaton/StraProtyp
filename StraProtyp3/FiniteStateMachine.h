@@ -26,6 +26,7 @@ struct StateMachine
 		nextState = initialState;
 	}
 
+	std::string getCurrentState() { return currentState; }
 
 	void update(float dt)
 	{
