@@ -194,6 +194,16 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 6, 6);
 
 
+	go = creator.create("Data/Water_Shallow_Maptile.xml", "Maptile", 8, 8);
+	go = creator.create("Data/Water_Shallow_Maptile.xml", "Maptile", 9, 8);
+	go = creator.create("Data/Water_Shallow_Maptile.xml", "Maptile", 8, 9);
+	go = creator.create("Data/Water_Deep_Maptile.xml", "Maptile", 9, 9);
+	go = creator.create("Data/Snow_Maptile.xml", "Maptile", 10, 9);
+	go = creator.create("Data/Snow_Maptile.xml", "Maptile", 9, 10);
+	go = creator.create("Data/Ice_Maptile.xml", "Maptile", 11, 9);
+	go = creator.create("Data/Ice_Maptile.xml", "Maptile", 9, 11);
+
+
 	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
 
 
@@ -660,6 +670,10 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("tundra", decal);
 
+	sprite = new olc::Sprite(default_path + "ice.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("ice", decal);
+
 	sprite = new olc::Sprite(default_path + "water_deep.png");
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("water_deep", decal);
@@ -999,6 +1013,25 @@ void AppStateCityView::_renderCityBase(ICityCmp* city)
 {
 	// Red Circle Filling Whole Screen Almost -> Available Space.
 	app->FillRect(olc::vi2d(5, 5), olc::vi2d(1000, 750), olc::DARK_RED);
+
+
+	// City Screen.
+	app->FillRect(olc::vi2d(5, 5), olc::vi2d(600, 750), olc::DARK_CYAN);
+
+	// City Worldmap Screen.
+	app->FillRect(olc::vi2d(605, 5), olc::vi2d(400, 750), olc::DARK_MAGENTA);
+
+	// City UI Screen
+	app->FillRect(olc::vi2d(5, 5), olc::vi2d(600, 100), olc::GREEN);
+
+	// Maptile Indication.
+	app->FillRect(olc::vi2d(5, 100), olc::vi2d(600, 200), olc::YELLOW);
+
+	// City Ground Indication.
+	app->FillRect(olc::vi2d(5, 300), olc::vi2d(600, 455), olc::GREY);
+
+	// Selected Unit/Building etc.
+	app->FillRect(olc::vi2d(5, 740), olc::vi2d(600, 15), olc::RED);
 }
 
 

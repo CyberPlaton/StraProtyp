@@ -152,6 +152,10 @@ private:
 
 	//void _onImGui();
 	void _handleInput();
+	bool _loadDecalDatabase();
+	bool _loadTechTreeDefinitions();
+	bool _loadAppStateDefinitions();
+	bool _loadGameobjectPathdefinitions();
 
 
 	olc::Pixel _getColorFromString(const std::string& c)
@@ -176,13 +180,6 @@ private:
 		
 		else return olc::WHITE;
 	}
-
-
-
-	bool _loadDecalDatabase();
-	bool _loadTechTreeDefinitions();
-	bool _loadAppStateDefinitions();
-	bool _loadGameobjectPathdefinitions();
 };
 
 
