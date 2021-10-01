@@ -26,6 +26,34 @@ static bool imnodes_tech_tree_initialized = false;
 
 
 
+int main()
+{
+	App demo;
+	if (demo.Construct(1024, 768, 1, 1))
+		demo.Start();
+
+	demo.shutDown();
+
+	NavMesh::del();
+	GameObjectStorage::del();
+	ComponentStorage::del();
+	GameWorldTime::del();
+
+
+	ImNodes::SaveCurrentEditorStateToIniFile("tech_tree_graph.ini");
+	ImGui::DestroyContext();
+	ImNodes::DestroyContext();
+
+
+	_CrtCheckMemory();
+	_CrtDumpMemoryLeaks();
+
+	return 0;
+}
+
+
+
+
 void App::DrawUI(void)
 {
 	//This finishes the Dear ImGui and renders it to the screen
@@ -187,39 +215,6 @@ bool App::OnUserCreate()
 
 
 
-
-
-int main()
-{
-	App demo;
-	if (demo.Construct(648, 512, 2, 2))
-		demo.Start();
-
-	demo.shutDown();
-
-	NavMesh::del();
-	GameObjectStorage::del();
-	ComponentStorage::del();
-	GameWorldTime::del();
-
-
-	ImNodes::SaveCurrentEditorStateToIniFile("tech_tree_graph.ini");
-	ImGui::DestroyContext();
-	ImNodes::DestroyContext();
-
-
-	_CrtCheckMemory();
-	_CrtDumpMemoryLeaks();
-
-	return 0;
-}
-
-/*
-void App::_onImGui()
-{
-}
-*/
-
 std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player, ITech::TechArea area)
 {
 	using namespace std;
@@ -347,42 +342,50 @@ void App::_handleInput()
 {
 	using namespace std;
 
+
 	olc::vi2d point = tv.ScreenToWorld({ GetMouseX(), GetMouseY() });
 	int mousex = point.x;
 	int mousey = point.y;
 
-	olc::vi2d topLeft = tv.GetTileUnderScreenPos({ 0, 0 });
-	olc::vi2d bottomDown = tv.GetBottomRightTile();
-	olc::vi2d middle = { bottomDown.x / 2, bottomDown.y / 2 };
 
-	cout << color(colors::RED);
-	cout << "MousePos {" << mousex << "," << mousey << "}" << endl;
-	cout << "Tile TopLeft " << topLeft.x << "," << topLeft.y << "}" << endl;
-	cout << "Tile BottRight " << bottomDown.x << "," << bottomDown.y << "}" << endl;
-	cout << "Tile Middle " << middle.x << "," << middle.y << "}" << white << endl;
-
-
-	// Do not allow capturing input to imgui and app at same time.
-	if (!imgui_has_focus)
+	// Handle Movement and Paning Input only for WorldMap,
+	// where we use the Tiling Transformation.
+	if (stateMachine.getCurrentState().compare("worldMap") == 0)
 	{
-		if (GetKey(olc::Key::TAB).bPressed)
+		olc::vi2d topLeft = tv.GetTileUnderScreenPos({ 0, 0 });
+		olc::vi2d bottomDown = tv.GetBottomRightTile();
+		olc::vi2d middle = { bottomDown.x / 2, bottomDown.y / 2 };
+
+		cout << color(colors::RED);
+		cout << "MousePos {" << mousex << "," << mousey << "}" << endl;
+		cout << "Tile TopLeft " << topLeft.x << "," << topLeft.y << "}" << endl;
+		cout << "Tile BottRight " << bottomDown.x << "," << bottomDown.y << "}" << endl;
+		cout << "Tile Middle " << middle.x << "," << middle.y << "}" << white << endl;
+
+
+		// Do not allow capturing input to imgui and app at same time.
+		if (!imgui_has_focus)
 		{
-			imgui_demo_window = (imgui_demo_window == false) ? true : false;
-			gameobjects_window = (gameobjects_window == false) ? true : false;
+			if (GetKey(olc::Key::TAB).bPressed)
+			{
+				imgui_demo_window = (imgui_demo_window == false) ? true : false;
+				gameobjects_window = (gameobjects_window == false) ? true : false;
+			}
+
+
+			if (GetMouse(2).bPressed) tv.StartPan(GetMousePos());
+			if (GetMouse(2).bHeld) tv.UpdatePan(GetMousePos());
+			if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
+			if (GetMouseWheel() > 0) tv.ZoomAtScreenPos(2.0f, GetMousePos());
+			if (GetMouseWheel() < 0) tv.ZoomAtScreenPos(0.5f, GetMousePos());
 		}
-
-
-		if (GetMouse(2).bPressed) tv.StartPan(GetMousePos());
-		if (GetMouse(2).bHeld) tv.UpdatePan(GetMousePos());
-		if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
-		if (GetMouseWheel() > 0) tv.ZoomAtScreenPos(2.0f, GetMousePos());
-		if (GetMouseWheel() < 0) tv.ZoomAtScreenPos(0.5f, GetMousePos());
 	}
 
 
 
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)
 	{
+
 		// Check for RMB Press on a city...
 		if (GetMouse(1).bPressed && stateMachine.getCurrentState().compare("worldMap") == 0)
 		{
@@ -401,6 +404,7 @@ void App::_handleInput()
 					{
 						currentViewedCity = go;
 						stateMachine.setState("cityView");
+						break;
 					}
 					else
 					{
@@ -934,30 +938,6 @@ void App::renderLayer(const std::string& layerName)
 }
 
 
-void App::renderCityLayer(const std::string& layerName, std::vector<GameObject*>& gameobjects)
-{
-	// Render objects relative to city position.
-	int cityx = currentViewedCity->getComponent<TransformCmp>("Transform")->xpos;
-	int cityy = currentViewedCity->getComponent<TransformCmp>("Transform")->ypos;
-
-
-	for (auto& go : gameobjects)
-	{
-		if (go->hasComponent("Renderable"))
-		{
-			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
-			if (render->render && render->renderingLayer.compare(layerName) == 0)
-			{
-				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
-
-				olc::Decal* decal = decalDatabase[render->decalName];
-
-				tv.DrawDecal(olc::vf2d(transform->xpos + cityx, transform->ypos + cityy), decal);
-			}
-		}
-	}
-}
-
 bool App::_loadAppStateDefinitions()
 {
 	stateMachine.storeStateDefinition("worldMap", new AppStateWorldMap(this));
@@ -997,66 +977,125 @@ void AppStateCityView::update(float)
 {
 	using namespace std;
 	cout << color(colors::MAGENTA);
-	cout << "[AppStateMainMenu] update" << white << endl;
+	cout << "[AppStateCityView] update" << white << endl;
 
 	app->SetDrawTarget((uint8_t)app->m_GameLayer);
 
-	olc::TileTransformedView tv = app->getRenderer();
-
-	// Draw Grid.
-	olc::vi2d topleft = tv.GetTopLeftTile().max({ 0, 0 });
-	olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
-	olc::vi2d tile;
-	
-	for (tile.y = topleft.y; tile.y < bottomright.y; tile.y++)
-	{
-		for (tile.x = topleft.x; tile.x < bottomright.x; tile.x++)
-		{
-			tv.DrawLine(tile, tile + olc::vf2d(0.0f, 1.0f), olc::VERY_DARK_GREY);
-			tv.DrawLine(tile, tile + olc::vf2d(1.0f, 0.0f), olc::VERY_DARK_GREY);
-		}
-	}
-
-
-
-	GameObject* city = app->getCurrentViewedCity();
+	ICityCmp* city = app->getCurrentViewedCity()->getComponent<ICityCmp>("City");
 	if (city)
 	{
-		std::vector< GameObject* > objects = city->getComponent<ICityCmp>("City")->getUnits();
-
-
-		//app->renderCityLayer("background", );
-		//app->renderCityLayer("ground");
-		//app->renderCityLayer("cityBackground");
-		app->renderCityLayer("unit", objects);
-		//app->renderCityLayer("menu");
-		//app->renderCityLayer("overlay");
-
-		objects = city->getComponent<ICityCmp>("City")->getBuildings();
-		app->renderCityLayer("building", objects);
-
+		_renderCityBase(city);
+		_renderCityBackground(city);
+		_renderCityGroundAndWalls(city);
+		_renderCityBuildings(city);
+		_renderCityUnits(city);
+		_renderCityOverlay(city);
 	}
 }
+
+
+// Render the basic layout for the city.
+void AppStateCityView::_renderCityBase(ICityCmp* city)
+{
+	// Red Circle Filling Whole Screen Almost -> Available Space.
+	app->FillRect(olc::vi2d(5, 5), olc::vi2d(1000, 750), olc::DARK_RED);
+}
+
+
+// Draw the Background like Maptile, Forest or Hill,
+// River etc.
+void AppStateCityView::_renderCityBackground(ICityCmp* city)
+{
+
+}
+
+
+
+
+// Render the Cityground for Buildings and Walls.
+void AppStateCityView::_renderCityGroundAndWalls(ICityCmp* city)
+{
+
+}
+
+
+
+
+// Render the Buildings currently Build in the city.
+void AppStateCityView::_renderCityBuildings(ICityCmp* city)
+{
+	for (auto& go : city->getBuildings())
+	{
+		if (go->hasComponent("Renderable"))
+		{
+			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
+			if (render->render && render->renderingLayer.compare("building") == 0)
+			{
+				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
+
+				olc::Decal* decal = app->decalDatabase[render->decalName];
+
+				app->DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal, olc::vf2d(0.25f, 0.25f));
+			}
+		}
+	}
+}
+
+
+
+
+// Render Units in the city, working ones, citizens and garrisoned.
+void AppStateCityView::_renderCityUnits(ICityCmp* city)
+{
+	for (auto& go : city->getUnits())
+	{
+		if (go->hasComponent("Renderable"))
+		{
+			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
+			if (render->render && render->renderingLayer.compare("unit") == 0)
+			{
+				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
+
+				olc::Decal* decal = app->decalDatabase[render->decalName];
+
+				app->DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal, olc::vf2d(0.25f, 0.25f));
+			}
+		}
+	}
+}
+
+
+
+
+// Render needed UI elements for the city etc.
+void AppStateCityView::_renderCityOverlay(ICityCmp* city)
+{
+
+}
+
+
+
+
 
 void AppStateCityView::onEnter()
 {
 	using namespace std;
 	cout << color(colors::MAGENTA);
-	cout << "[AppStateMainMenu] onEnter" << white << endl;
+	cout << "[AppStateCityView] onEnter" << white << endl;
 }
 
 void AppStateCityView::onExit()
 {
 	using namespace std;
 	cout << color(colors::MAGENTA);
-	cout << "[AppStateMainMenu] onExit" << white << endl;
+	cout << "[AppStateCityView] onExit" << white << endl;
 }
 
 void AppStateWorldMap::update(float)
 {
 	using namespace std;
 	cout << color(colors::MAGENTA);
-	cout << "[AppStateMainMenu] update" << white << endl;
+	cout << "[AppStateWorldMap] update" << white << endl;
 
 
 	// Do the standard update.

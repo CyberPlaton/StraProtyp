@@ -88,6 +88,12 @@ public:
 
 			buildings.push_back(go);
 
+			// Set the Position of the Gameobject 
+			// According to Slot.
+			TransformCmp* cmp = go->getComponent<TransformCmp>("Transform");
+			cmp->xpos = buildingSlots[slot - 1].xpos;
+			cmp->ypos = buildingSlots[slot - 1].ypos;
+
 			return true;
 		}
 

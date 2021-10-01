@@ -119,7 +119,6 @@ public:
 	* The names for rendering layers are defined for each renderable component in XML.
 	*/
 	void renderLayer(const std::string& layerName);
-	void renderCityLayer(const std::string& layerName, std::vector<GameObject*>& gameobjects);
 	
 	GameObject* getCurrentViewedCity() { return currentViewedCity;}
 
@@ -232,6 +231,33 @@ struct AppStateCityView : public State<App>
 
 private:
 	App* app = nullptr;
+
+
+
+	// Render the basic layout for the city.
+	void _renderCityBase(ICityCmp* city);
+
+
+	// Draw the Background like Maptile, Forest or Hill,
+	// River etc.
+	void _renderCityBackground(ICityCmp* city);
+
+
+	// Render the Cityground for Buildings and Walls.
+	void _renderCityGroundAndWalls(ICityCmp* city);
+
+
+	// Render the Buildings currently Build in the city.
+	void _renderCityBuildings(ICityCmp* city);
+
+
+	// Render Units in the city, working ones, citizens and garrisoned.
+	void _renderCityUnits(ICityCmp* city);
+
+
+	// Render needed UI elements for the city etc.
+	void _renderCityOverlay(ICityCmp* city);
+
 };
 
 

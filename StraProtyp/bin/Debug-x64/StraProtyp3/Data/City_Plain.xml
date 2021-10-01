@@ -29,16 +29,16 @@
 
 			<BuildingSlots>
 				<!--The BuildingSlot x and y positions define where it is drawn on the citymap-->
-				<Slot number="1" xpos="1" ypos="1" type="Normal"></Slot>
-				<Slot number="2" xpos="2" ypos="1" type="Normal"></Slot>
-				<Slot number="3" xpos="3" ypos="1" type="Normal"></Slot>
-				<Slot number="4" xpos="4" ypos="1" type="Normal"></Slot>
-				<Slot number="5" xpos="1" ypos="2" type="Normal"></Slot>
-				<Slot number="6" xpos="2" ypos="2" type="Normal"></Slot>
-				<Slot number="7" xpos="3" ypos="2" type="Normal"></Slot>
-				<Slot number="8" xpos="4" ypos="2" type="Normal"></Slot>
-				<Slot number="9" xpos="5" ypos="2" type="Special"></Slot>
-				<Slot number="10" xpos="6" ypos="2" type="Special"></Slot>
+				<Slot number="1" xpos="266" ypos="340" type="Normal"></Slot>
+				<Slot number="2" xpos="376" ypos="300" type="Normal"></Slot>
+				<Slot number="3" xpos="501" ypos="342" type="Normal"></Slot>
+				<Slot number="4" xpos="210" ypos="434" type="Normal"></Slot>
+				<Slot number="5" xpos="156" ypos="509" type="Normal"></Slot>
+				<Slot number="6" xpos="292" ypos="512" type="Normal"></Slot>
+				<Slot number="7" xpos="331" ypos="414" type="Normal"></Slot>
+				<Slot number="8" xpos="448" ypos="436" type="Normal"></Slot>
+				<Slot number="9" xpos="132" ypos="350" type="Special"></Slot>
+				<Slot number="10" xpos="75" ypos="415" type="Special"></Slot>
 			</BuildingSlots>
 
 			<!--The starting ressources of a city-->
