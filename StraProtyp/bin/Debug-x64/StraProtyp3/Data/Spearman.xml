@@ -12,8 +12,6 @@
 
 		<Component name="Transform"></Component>
 
-		<Component name="Navigator"></Component>
-
 		<Component name ="Animator"></Component>
 		
 		<Component name="Unit">

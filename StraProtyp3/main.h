@@ -62,11 +62,13 @@ struct ImNodesNode
 
 
 struct AppStateWorldMap;
-
+struct AppStateCityView;
 
 class App : public olc::PixelGameEngine
 {
 	friend class AppStateWorldMap;
+	friend class AppStateCityView;
+
 
 public:
 	App() : pge_imgui(false)
@@ -149,7 +151,7 @@ private:
 
 private:
 
-	void _onImGui();
+	//void _onImGui();
 	void _handleInput();
 
 

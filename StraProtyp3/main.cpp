@@ -41,15 +41,13 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 	_handleInput(); // Handle the users input.
 		
+
 	GameWorldTime::get()->update(); // Update Game World Time.
 
 
 	stateMachine.update(fElapsedTime);
 
 
-	// For Rendering IMGUI.
-	_onImGui();
-	
 	return true;
 }
 
@@ -91,10 +89,66 @@ bool App::OnUserCreate()
 
 
 	GameObjectCreator creator;
+
+	// Show off new Forestry with Jungle.
 	GameObject* go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 0, 0);
-	go = creator.create("Data/Jungle_Scarce.xml", "Forest", 0, 0);
-	go = creator.create("Data/Mountain.xml", "Mountain", 0, 0);
+	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 1, 0);
+	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 0, 1);
+	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 1, 1);
+
+
+	go = creator.create("Data/Jungle_Deep.xml", "Forest", 0, 0);
+	go = creator.create("Data/Jungle_Deep.xml", "Forest", 1, 0);
+	go = creator.create("Data/Jungle_Normal.xml", "Forest", 0, 1);
+	go = creator.create("Data/Jungle_Scarce.xml", "Forest", 1, 1);
+
 	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 0, 0);
+
+
+	// Show off old Forestry with Savannah
+	go = creator.create("Data/Savannah_Maptile.xml", "Maptile", 2, 2);
+	go = creator.create("Data/Savannah_Maptile.xml", "Maptile", 3, 2);
+	go = creator.create("Data/Savannah_Maptile.xml", "Maptile", 2, 3);
+	go = creator.create("Data/Savannah_Maptile.xml", "Maptile", 3, 3);
+
+	go = creator.create("Data/Savannah_Deep.xml", "Forest", 2, 2);
+	go = creator.create("Data/Savannah_Deep.xml", "Forest", 3, 2);
+	go = creator.create("Data/Savannah_Normal.xml", "Forest", 2, 3);
+	go = creator.create("Data/Savannah_Scarce.xml", "Forest", 3, 3);
+
+	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 2, 2);
+
+
+	// Show off old forestry with temperate
+	go = creator.create("Data/Temperate_Maptile.xml", "Maptile", 4, 4);
+	go = creator.create("Data/Temperate_Maptile.xml", "Maptile", 5, 4);
+	go = creator.create("Data/Temperate_Maptile.xml", "Maptile", 4, 5);
+	go = creator.create("Data/Temperate_Maptile.xml", "Maptile", 5, 5);
+
+	go = creator.create("Data/Temperate_Deep.xml", "Forest", 4, 4);
+	go = creator.create("Data/Temperate_Deep.xml", "Forest", 5, 4);
+	go = creator.create("Data/Temperate_Normal.xml", "Forest", 4, 5);
+	go = creator.create("Data/Temperate_Scarce.xml", "Forest", 5, 5);
+
+	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 4, 4);
+
+
+	// Show off old forestry with tundra
+	go = creator.create("Data/Tundra_Maptile.xml", "Maptile", 6, 6);
+	go = creator.create("Data/Tundra_Maptile.xml", "Maptile", 7, 6);
+	go = creator.create("Data/Tundra_Maptile.xml", "Maptile", 6, 7);
+	go = creator.create("Data/Tundra_Maptile.xml", "Maptile", 7, 7);
+
+	go = creator.create("Data/Tundra_Deep.xml", "Forest", 6, 6);
+	go = creator.create("Data/Tundra_Deep.xml", "Forest", 7, 6);
+	go = creator.create("Data/Tundra_Normal.xml", "Forest", 6, 7);
+	go = creator.create("Data/Tundra_Scarce.xml", "Forest", 7, 7);
+
+	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 6, 6);
+
+
+	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
+
 
 	NavMesh::get()->bake();
 
@@ -104,14 +158,6 @@ bool App::OnUserCreate()
 
 
 	// Seems to load correctly.
-	go = creator.create("Data/Weaponsmith.xml", "Weapon Smith", -1, -1);
-	go = creator.create("Data/Tavern.xml", "Tavern", -1, -1);
-
-
-
-	go = creator.create("Data/City_Plain.xml", "Plain City", 2, 2);
-	go = creator.create("Data/Fort_Plain.xml", "Plain Fort", 4, 2);
-
 
 
 	go = nullptr;
@@ -149,11 +195,11 @@ int main()
 	return 0;
 }
 
-
+/*
 void App::_onImGui()
 {
 }
-
+*/
 
 std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player, ITech::TechArea area)
 {
@@ -272,8 +318,6 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player, ITech::Te
 	}
 
 
-
-
 	// For now return only first three researchable techs.
 	return return_vec;
 }
@@ -298,6 +342,7 @@ void App::_handleInput()
 	cout << "Tile BottRight " << bottomDown.x << "," << bottomDown.y << "}" << endl;
 	cout << "Tile Middle " << middle.x << "," << middle.y << "}" << white << endl;
 
+
 	// Do not allow capturing input to imgui and app at same time.
 	if (!imgui_has_focus)
 	{
@@ -313,8 +358,12 @@ void App::_handleInput()
 		if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
 		if (GetMouseWheel() > 0) tv.ZoomAtScreenPos(2.0f, GetMousePos());
 		if (GetMouseWheel() < 0) tv.ZoomAtScreenPos(0.5f, GetMousePos());
-	
+	}
 
+
+
+	if (stateMachine.getCurrentState().compare("worldMap") == 0)
+	{
 		// Check for RMB Press on a city...
 		if (GetMouse(1).bPressed && stateMachine.getCurrentState().compare("worldMap") == 0)
 		{
@@ -341,14 +390,15 @@ void App::_handleInput()
 				}
 			}
 		}
-
+	}
+	else if (stateMachine.getCurrentState().compare("cityView") == 0)
+	{
 		// Check for escaping from cityview...
-		if (GetKey(olc::ESCAPE).bPressed && currentViewedCity && stateMachine.getCurrentState().compare("cityView") == 0)
+		if (GetKey(olc::ESCAPE).bPressed && currentViewedCity)
 		{
 			stateMachine.setState("worldMap");
 			currentViewedCity = nullptr;
 		}
-
 	}
 }
 
@@ -867,6 +917,11 @@ void App::renderLayer(const std::string& layerName)
 
 void App::renderCityLayer(const std::string& layerName, std::vector<GameObject*>& gameobjects)
 {
+	// Render objects relative to city position.
+	int cityx = currentViewedCity->getComponent<TransformCmp>("Transform")->xpos;
+	int cityy = currentViewedCity->getComponent<TransformCmp>("Transform")->ypos;
+
+
 	for (auto& go : gameobjects)
 	{
 		if (go->hasComponent("Renderable"))
@@ -878,7 +933,7 @@ void App::renderCityLayer(const std::string& layerName, std::vector<GameObject*>
 
 				olc::Decal* decal = decalDatabase[render->decalName];
 
-				tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
+				tv.DrawDecal(olc::vf2d(transform->xpos + cityx, transform->ypos + cityy), decal);
 			}
 		}
 	}
@@ -925,6 +980,26 @@ void AppStateCityView::update(float)
 	cout << color(colors::MAGENTA);
 	cout << "[AppStateMainMenu] update" << white << endl;
 
+	app->SetDrawTarget((uint8_t)app->m_GameLayer);
+
+	olc::TileTransformedView tv = app->getRenderer();
+
+	// Draw Grid.
+	olc::vi2d topleft = tv.GetTopLeftTile().max({ 0, 0 });
+	olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
+	olc::vi2d tile;
+	
+	for (tile.y = topleft.y; tile.y < bottomright.y; tile.y++)
+	{
+		for (tile.x = topleft.x; tile.x < bottomright.x; tile.x++)
+		{
+			tv.DrawLine(tile, tile + olc::vf2d(0.0f, 1.0f), olc::VERY_DARK_GREY);
+			tv.DrawLine(tile, tile + olc::vf2d(1.0f, 0.0f), olc::VERY_DARK_GREY);
+		}
+	}
+
+
+
 	GameObject* city = app->getCurrentViewedCity();
 	if (city)
 	{
@@ -969,7 +1044,7 @@ void AppStateWorldMap::update(float)
 	olc::TileTransformedView tv = app->getRenderer();
 
 
-		// Update all agents.
+	// Update all agents.
 	for (auto& go : GameObjectStorage::get()->getStorage())
 	{
 		// Update Navigator, for each entity which can move, let it move.
@@ -1590,7 +1665,6 @@ void AppStateWorldMap::_drawUI()
 		}
 	}
 	ImGui::End();
-
 }
 
 void AppStateWorldMap::onEnter()

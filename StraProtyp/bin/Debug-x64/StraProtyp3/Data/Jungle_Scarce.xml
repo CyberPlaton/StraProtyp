@@ -1,6 +1,6 @@
 <Gameobject>
-	<Tag>Forest_Jungle</Tag>
-	<Name>Forest_Jungle</Name>
+	<Tag>Forest_Jungle_Scarce</Tag>
+	<Name>Forest_Jungle_Scarce</Name>
 	<Components>
 		<Component name="Renderable">
 			<Width>1.0</Width>
@@ -11,8 +11,6 @@
 		</Component>
 
 		<Component name="Transform"></Component>
-
-		<Component name="Navigator"></Component>
 
 		<Component name ="Animator"></Component>
 
