@@ -95,12 +95,17 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 1, 0);
 	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 0, 1);
 	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 1, 1);
+	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 2, 0);
+	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 0, 2);
+
 
 
 	go = creator.create("Data/Jungle_Deep.xml", "Forest", 0, 0);
 	go = creator.create("Data/Jungle_Deep.xml", "Forest", 1, 0);
 	go = creator.create("Data/Jungle_Normal.xml", "Forest", 0, 1);
 	go = creator.create("Data/Jungle_Scarce.xml", "Forest", 1, 1);
+	go = creator.create("Data/Jungle_Dying.xml", "Forest", 2, 0);
+	go = creator.create("Data/Jungle_Dying.xml", "Forest", 0, 2);
 
 	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 0, 0);
 
@@ -110,11 +115,15 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Savannah_Maptile.xml", "Maptile", 3, 2);
 	go = creator.create("Data/Savannah_Maptile.xml", "Maptile", 2, 3);
 	go = creator.create("Data/Savannah_Maptile.xml", "Maptile", 3, 3);
+	go = creator.create("Data/Savannah_Maptile.xml", "Maptile", 4, 2);
+	go = creator.create("Data/Savannah_Maptile.xml", "Maptile", 2, 4);
 
 	go = creator.create("Data/Savannah_Deep.xml", "Forest", 2, 2);
 	go = creator.create("Data/Savannah_Deep.xml", "Forest", 3, 2);
 	go = creator.create("Data/Savannah_Normal.xml", "Forest", 2, 3);
 	go = creator.create("Data/Savannah_Scarce.xml", "Forest", 3, 3);
+	go = creator.create("Data/Savannah_Dying.xml", "Forest", 4, 2);
+	go = creator.create("Data/Savannah_Dying.xml", "Forest", 2, 4);
 
 	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 2, 2);
 
@@ -124,11 +133,16 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Temperate_Maptile.xml", "Maptile", 5, 4);
 	go = creator.create("Data/Temperate_Maptile.xml", "Maptile", 4, 5);
 	go = creator.create("Data/Temperate_Maptile.xml", "Maptile", 5, 5);
+	go = creator.create("Data/Temperate_Maptile.xml", "Maptile", 6, 4);
+	go = creator.create("Data/Temperate_Maptile.xml", "Maptile", 4, 6);
+
 
 	go = creator.create("Data/Temperate_Deep.xml", "Forest", 4, 4);
 	go = creator.create("Data/Temperate_Deep.xml", "Forest", 5, 4);
 	go = creator.create("Data/Temperate_Normal.xml", "Forest", 4, 5);
 	go = creator.create("Data/Temperate_Scarce.xml", "Forest", 5, 5);
+	go = creator.create("Data/Temperate_Dying.xml", "Forest", 6, 4);
+	go = creator.create("Data/Temperate_Dying.xml", "Forest", 4, 6);
 
 	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 4, 4);
 
@@ -138,11 +152,16 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Tundra_Maptile.xml", "Maptile", 7, 6);
 	go = creator.create("Data/Tundra_Maptile.xml", "Maptile", 6, 7);
 	go = creator.create("Data/Tundra_Maptile.xml", "Maptile", 7, 7);
+	go = creator.create("Data/Tundra_Maptile.xml", "Maptile", 8, 6);
+	go = creator.create("Data/Tundra_Maptile.xml", "Maptile", 6, 8);
+
 
 	go = creator.create("Data/Tundra_Deep.xml", "Forest", 6, 6);
 	go = creator.create("Data/Tundra_Deep.xml", "Forest", 7, 6);
 	go = creator.create("Data/Tundra_Normal.xml", "Forest", 6, 7);
 	go = creator.create("Data/Tundra_Scarce.xml", "Forest", 7, 7);
+	go = creator.create("Data/Tundra_Dying.xml", "Forest", 8, 6);
+	go = creator.create("Data/Tundra_Dying.xml", "Forest", 6, 8);
 
 	go = creator.create("Data/Spearman.xml", "Spearman_Unit", 6, 6);
 
