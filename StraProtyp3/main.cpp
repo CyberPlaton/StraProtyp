@@ -200,8 +200,15 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Water_Deep_Maptile.xml", "Maptile", 9, 9);
 	go = creator.create("Data/Snow_Maptile.xml", "Maptile", 10, 9);
 	go = creator.create("Data/Snow_Maptile.xml", "Maptile", 9, 10);
+	go = creator.create("Data/Snow_Maptile.xml", "Maptile", 10, 10);
+	go = creator.create("Data/Snow_Maptile.xml", "Maptile", 10, 8);
 	go = creator.create("Data/Ice_Maptile.xml", "Maptile", 11, 9);
 	go = creator.create("Data/Ice_Maptile.xml", "Maptile", 9, 11);
+
+	go = creator.create("Data/Snow_Scarce.xml", "Forest", 10, 9);
+	go = creator.create("Data/Snow_Normal.xml", "Forest", 9, 10);
+	go = creator.create("Data/Snow_Deep.xml", "Forest", 10, 10);
+	go = creator.create("Data/Snow_Dying.xml", "Forest", 10, 8);
 
 
 	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
@@ -643,6 +650,24 @@ bool App::_loadDecalDatabase()
 	sprite = new olc::Sprite(default_path + "forest_savannah_dying.png");
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("forest_savannah_dying", decal);
+
+
+	// Load Snow
+	sprite = new olc::Sprite(default_path + "forest_snow_scarce.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_snow_scarce", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_snow_normal.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_snow_normal", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_snow_deep.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_snow_deep", decal);
+
+	sprite = new olc::Sprite(default_path + "forest_snow_dying.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("forest_snow_dying", decal);
 
 
 	// Maptiles.
