@@ -4,6 +4,7 @@
 #include <string>
 
 #include "AVLTree.h"
+#include "ColorConsole.h"
 
 #include "ComponentSystem.h"
 
@@ -102,11 +103,13 @@ public:
 	*/
 	GameObject(const GOTag& tag, const GOName& name) : name(name)
 	{
-		this->tag = "GO_" + std::to_string(++g_GameObjectCount) + "_" + tag;
+		this->tag = "GO_" + std::to_string(g_GameObjectCount) + "_" + tag;
 
 		hash = hasher(this->tag);
 
 		GameObjectStorage::get()->add(this);
+
+		g_GameObjectCount++;
 	}
 
 	virtual ~GameObject()
@@ -211,7 +214,7 @@ public:
 	void setTag(const std::string& tag)
 	{
 		this->tag = tag;
-		this->hash = hasher(this->tag);
+		//this->hash = hasher(this->tag);
 	}
 
 	std::string getTag() { return tag; }

@@ -211,7 +211,7 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Snow_Dying.xml", "Forest", 10, 8);
 
 
-	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
+	//go = creator.create("Data/City_Plain.xml", "City", 7, 6);
 
 
 	go = creator.create("Data/Sand_Maptile.xml", "Maptile", 3, 4);
@@ -377,12 +377,13 @@ void App::_handleInput()
 		olc::vi2d bottomDown = tv.GetBottomRightTile();
 		olc::vi2d middle = { bottomDown.x / 2, bottomDown.y / 2 };
 
+		/*
 		cout << color(colors::RED);
 		cout << "MousePos {" << mousex << "," << mousey << "}" << endl;
 		cout << "Tile TopLeft " << topLeft.x << "," << topLeft.y << "}" << endl;
 		cout << "Tile BottRight " << bottomDown.x << "," << bottomDown.y << "}" << endl;
 		cout << "Tile Middle " << middle.x << "," << middle.y << "}" << white << endl;
-
+		*/
 
 		// Do not allow capturing input to imgui and app at same time.
 		if (!imgui_has_focus)
@@ -969,6 +970,14 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("wheat", decal);
 
+	sprite = new olc::Sprite(default_path + "mudcrab.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("mudcrab", decal);
+
+	sprite = new olc::Sprite(default_path + "iron_ore.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("iron_ore", decal);
+
 
 
 	// Buildings
@@ -1089,8 +1098,11 @@ void AppStateMainMenu::onExit()
 void AppStateCityView::update(float)
 {
 	using namespace std;
+	/*
 	cout << color(colors::MAGENTA);
 	cout << "[AppStateCityView] update" << white << endl;
+	*/
+
 
 	app->SetDrawTarget((uint8_t)app->m_GameLayer);
 
@@ -1124,10 +1136,10 @@ void AppStateCityView::_renderCityBase(ICityCmp* city)
 	app->FillRect(olc::vi2d(5, 5), olc::vi2d(600, 100), olc::GREEN);
 
 	// Maptile Indication.
-	app->FillRect(olc::vi2d(5, 100), olc::vi2d(600, 200), olc::YELLOW);
+	app->FillRect(olc::vi2d(5, 100), olc::vi2d(600, 100), olc::YELLOW);
 
 	// City Ground Indication.
-	app->FillRect(olc::vi2d(5, 300), olc::vi2d(600, 455), olc::GREY);
+	app->FillRect(olc::vi2d(5, 200), olc::vi2d(600, 555), olc::GREY);
 
 	// Selected Unit/Building etc.
 	app->FillRect(olc::vi2d(5, 740), olc::vi2d(600, 15), olc::RED);
@@ -1237,9 +1249,10 @@ void AppStateCityView::onExit()
 void AppStateWorldMap::update(float)
 {
 	using namespace std;
+	/*
 	cout << color(colors::MAGENTA);
 	cout << "[AppStateWorldMap] update" << white << endl;
-
+	*/
 
 	// Do the standard update.
 	olc::TileTransformedView tv = app->getRenderer();
@@ -1505,6 +1518,7 @@ void AppStateWorldMap::_drawUI()
 			{
 				selected_gameobject = go;
 				app->lastSelectedGameobjectTag = go->getTag();
+				cout << "Tag: " << app->lastSelectedGameobjectTag << endl;
 			}
 
 			// Show the components of Selected GO.
@@ -1549,6 +1563,8 @@ void AppStateWorldMap::_drawUI()
 						if (cmp->getType().find("Unit") != std::string::npos)
 						{
 							IUnitCmp* uc = static_cast<IUnitCmp*>(cmp);
+
+							ImGui::Text("Unit Profession \"%s\"",  uc->getProfession().c_str());
 
 							if (ImGui::TreeNode("Requirements"))
 							{
@@ -1619,7 +1635,9 @@ void AppStateWorldMap::_drawUI()
 	ImGui::End();
 
 
+	static bool gameobject_test = false;
 
+	using namespace std;
 	if (ImGui::Begin("DecalDatabase"))
 	{
 		for (auto& decal : app->decalDatabase)
@@ -1627,12 +1645,25 @@ void AppStateWorldMap::_drawUI()
 			if (ImGui::ImageButton((ImTextureID)decal.second->id, ImVec2(64, 64), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1)))
 			{
 
+				GameObject* object = nullptr;
+
 				if (app->lastSelectedGameobjectTag.compare("none") == 0)
 				{
 				}
 				else
 				{
-					GameObjectStorage::get()->getGOByTag(app->lastSelectedGameobjectTag)->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
+					object = GameObjectStorage::get()->getGOByTag(app->lastSelectedGameobjectTag);
+
+					if (object)
+					{
+						object->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
+						gameobject_test = true;
+					}
+					else
+					{
+						cout << color(colors::RED);
+						cout << "Gameobject \""<< app->lastSelectedGameobjectTag << "\" not found!" << white << endl;
+					}
 				}
 			}
 

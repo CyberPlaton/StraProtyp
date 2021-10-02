@@ -49,8 +49,13 @@ std::vector< GameObject* >& GameObjectStorage::getStorage()
 
 void GameObjectStorage::add(GameObject* go)
 {
+	using namespace std;
+
 	m_GameObjects.push_back(go);
 	m_GameObjectsTagOptimized.insert(go->hash, go);
+
+	cout << color(colors::GREEN);
+	cout << "[GameObjectStorage::add] New Gameobject Tag:\""<< go->getTag() << "\", Hash:\""<< go->hash << "\"" << white << endl;
 }
 
 
