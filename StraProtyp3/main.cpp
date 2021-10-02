@@ -213,6 +213,11 @@ bool App::OnUserCreate()
 
 	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
 
+
+	go = creator.create("Data/Sand_Maptile.xml", "Maptile", 3, 4);
+	go = creator.create("Data/Sand_Maptile.xml", "Maptile", 4, 3);
+
+
 	NavMesh::get()->bake();
 
 
@@ -1198,6 +1203,17 @@ void AppStateCityView::_renderCityUnits(ICityCmp* city)
 void AppStateCityView::_renderCityOverlay(ICityCmp* city)
 {
 
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("World Map"))
+		{
+			app->stateMachine.setState("worldMap");
+
+
+			ImGui::EndMenu();
+		}
+	}
+	ImGui::EndMainMenuBar();
 }
 
 
@@ -1490,9 +1506,6 @@ void AppStateWorldMap::_drawUI()
 				selected_gameobject = go;
 				app->lastSelectedGameobjectTag = go->getTag();
 			}
-
-			cout << color(colors::RED);
-			cout << "Selected GO Tag: " << app->lastSelectedGameobjectTag << white << endl;
 
 			// Show the components of Selected GO.
 			if (ret)
