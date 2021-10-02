@@ -125,6 +125,9 @@ public:
 private:
 
 	olc::TileTransformedView tv;
+	int cameraSpeed = 1;
+	int camerax = 0;
+	int cameray = 0;
 	olc::imgui::PGE_ImGUI pge_imgui;
 	int m_GameLayer;
 

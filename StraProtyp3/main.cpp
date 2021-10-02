@@ -394,6 +394,53 @@ void App::_handleInput()
 			if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
 			if (GetMouseWheel() > 0) tv.ZoomAtScreenPos(2.0f, GetMousePos());
 			if (GetMouseWheel() < 0) tv.ZoomAtScreenPos(0.5f, GetMousePos());
+		
+
+
+			// WASD Movement
+			if (GetKey(olc::SHIFT).bHeld)
+			{
+				cameraSpeed = 4;
+			}
+			else
+			{
+				cameraSpeed = 1;
+			}
+			if (GetKey(olc::W).bPressed || GetKey(olc::S).bPressed ||
+				GetKey(olc::A).bPressed || GetKey(olc::D).bPressed)
+			{
+				camerax = tv.GetTileUnderScreenPos({ 0, 0 }).x;
+				cameray = tv.GetTileUnderScreenPos({ 0, 0 }).y;
+				tv.StartPan({ camerax, cameray });
+			}
+			if (GetKey(olc::W).bHeld || GetKey(olc::S).bHeld ||
+				GetKey(olc::A).bHeld || GetKey(olc::D).bHeld)
+			{
+				if (GetKey(olc::W).bHeld)
+				{
+					cameray += 3 * cameraSpeed;
+					tv.UpdatePan({ camerax, cameray });
+				}
+				if (GetKey(olc::S).bHeld)
+				{
+					cameray -= 3 * cameraSpeed;
+					tv.UpdatePan({ camerax, cameray });
+				}
+				if (GetKey(olc::A).bHeld)
+				{
+					camerax += 3 * cameraSpeed;
+					tv.UpdatePan({ camerax, cameray });
+				}
+				if (GetKey(olc::D).bHeld)
+				{
+					camerax -= 3 * cameraSpeed;
+					tv.UpdatePan({ camerax, cameray });
+				}
+			}
+			else
+			{
+				tv.UpdatePan({ camerax, cameray });
+			}
 		}
 	}
 
