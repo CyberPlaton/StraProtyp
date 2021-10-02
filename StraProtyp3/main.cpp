@@ -213,7 +213,6 @@ bool App::OnUserCreate()
 
 	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
 
-
 	NavMesh::get()->bake();
 
 
@@ -854,13 +853,6 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("merchant", decal);
 
-	sprite = new olc::Sprite(default_path + "merchant.png");
-	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("merchant", decal);
-
-	sprite = new olc::Sprite(default_path + "merchant.png");
-	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("merchant", decal);
 
 	sprite = new olc::Sprite(default_path + "mounted_knight.png");
 	decal = new olc::Decal(sprite);
@@ -893,7 +885,6 @@ bool App::_loadDecalDatabase()
 	sprite = new olc::Sprite(default_path + "spy.png");
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("spy", decal);
-
 
 
 	// Ressources.
@@ -959,18 +950,37 @@ bool App::_loadGameobjectPathdefinitions()
 
 void App::renderLayer(const std::string& layerName)
 {
+	bool unit_layer = false;
+
+	if (layerName.compare("unit") == 0)
+	{
+		unit_layer = true;
+	}
+
+
 	for (auto& go : GameObjectStorage::get()->getStorage())
 	{
 		if (go->hasComponent("Renderable"))
 		{
 			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
+
 			if (render->render && render->renderingLayer.compare(layerName) == 0)
 			{
 				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
 
 				olc::Decal* decal = decalDatabase[render->decalName];
 
-				tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
+
+				if (unit_layer)
+				{
+					// Render units slightly above the maptile and over it,
+					// so we have a small illusion of 3d...
+					tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos - render->height / 3.5f), decal);
+				}
+				else
+				{
+					tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
+				}
 			}
 		}
 	}
