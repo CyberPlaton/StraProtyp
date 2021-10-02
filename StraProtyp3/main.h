@@ -125,15 +125,17 @@ public:
 private:
 
 	olc::TileTransformedView tv;
-	int cameraSpeed = 1;
-	int camerax = 0;
-	int cameray = 0;
 	olc::imgui::PGE_ImGUI pge_imgui;
 	int m_GameLayer;
 
+	// Camera Movement
+	bool isPanning = false;
+	int cameraSpeed = 1;
+	int camerax = 0;
+	int cameray = 0;
 
 	std::map< std::string, olc::Decal* > decalDatabase;
-
+	std::string lastSelectedGameobjectTag = "none";
 
 	// A vector of all Technologies in game.
 	// Currently for debug/display usage.

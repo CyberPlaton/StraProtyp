@@ -389,57 +389,69 @@ void App::_handleInput()
 			}
 
 
-			if (GetMouse(2).bPressed) tv.StartPan(GetMousePos());
+			if (GetMouse(2).bPressed)
+			{
+				isPanning = true;
+				tv.StartPan(GetMousePos());
+			}
 			if (GetMouse(2).bHeld) tv.UpdatePan(GetMousePos());
-			if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
+			if (GetMouse(2).bReleased)
+			{
+				isPanning = false;
+				tv.EndPan(GetMousePos());
+			}
 			if (GetMouseWheel() > 0) tv.ZoomAtScreenPos(2.0f, GetMousePos());
 			if (GetMouseWheel() < 0) tv.ZoomAtScreenPos(0.5f, GetMousePos());
 		
 
 
-			// WASD Movement
-			if (GetKey(olc::SHIFT).bHeld)
+			if (!isPanning)
 			{
-				cameraSpeed = 4;
-			}
-			else
-			{
-				cameraSpeed = 1;
-			}
-			if (GetKey(olc::W).bPressed || GetKey(olc::S).bPressed ||
-				GetKey(olc::A).bPressed || GetKey(olc::D).bPressed)
-			{
-				camerax = tv.GetTileUnderScreenPos({ 0, 0 }).x;
-				cameray = tv.GetTileUnderScreenPos({ 0, 0 }).y;
-				tv.StartPan({ camerax, cameray });
-			}
-			if (GetKey(olc::W).bHeld || GetKey(olc::S).bHeld ||
-				GetKey(olc::A).bHeld || GetKey(olc::D).bHeld)
-			{
-				if (GetKey(olc::W).bHeld)
+				// WASD Movement,
+				// for when we do not use the Mouse for panning.
+				if (GetKey(olc::SHIFT).bHeld)
 				{
-					cameray += 3 * cameraSpeed;
+					cameraSpeed = 4;
+				}
+				else
+				{
+					cameraSpeed = 1;
+				}
+				if (GetKey(olc::W).bPressed || GetKey(olc::S).bPressed ||
+					GetKey(olc::A).bPressed || GetKey(olc::D).bPressed)
+				{
+					camerax = tv.GetTileUnderScreenPos({ 0, 0 }).x;
+					cameray = tv.GetTileUnderScreenPos({ 0, 0 }).y;
+					tv.StartPan({ camerax, cameray });
+				}
+				if (GetKey(olc::W).bHeld || GetKey(olc::S).bHeld ||
+					GetKey(olc::A).bHeld || GetKey(olc::D).bHeld)
+				{
+					if (GetKey(olc::W).bHeld)
+					{
+						cameray += 3 * cameraSpeed;
+						tv.UpdatePan({ camerax, cameray });
+					}
+					if (GetKey(olc::S).bHeld)
+					{
+						cameray -= 3 * cameraSpeed;
+						tv.UpdatePan({ camerax, cameray });
+					}
+					if (GetKey(olc::A).bHeld)
+					{
+						camerax += 3 * cameraSpeed;
+						tv.UpdatePan({ camerax, cameray });
+					}
+					if (GetKey(olc::D).bHeld)
+					{
+						camerax -= 3 * cameraSpeed;
+						tv.UpdatePan({ camerax, cameray });
+					}
+				}
+				else
+				{
 					tv.UpdatePan({ camerax, cameray });
 				}
-				if (GetKey(olc::S).bHeld)
-				{
-					cameray -= 3 * cameraSpeed;
-					tv.UpdatePan({ camerax, cameray });
-				}
-				if (GetKey(olc::A).bHeld)
-				{
-					camerax += 3 * cameraSpeed;
-					tv.UpdatePan({ camerax, cameray });
-				}
-				if (GetKey(olc::D).bHeld)
-				{
-					camerax -= 3 * cameraSpeed;
-					tv.UpdatePan({ camerax, cameray });
-				}
-			}
-			else
-			{
-				tv.UpdatePan({ camerax, cameray });
 			}
 		}
 	}
@@ -1367,6 +1379,7 @@ void AppStateWorldMap::_drawUI()
 
 	app->SetDrawTarget((uint8_t)app->m_GameLayer);
 
+
 	selected_gameobject = nullptr;
 
 
@@ -1475,7 +1488,11 @@ void AppStateWorldMap::_drawUI()
 			if (ImGui::IsItemHovered())
 			{
 				selected_gameobject = go;
+				app->lastSelectedGameobjectTag = go->getTag();
 			}
+
+			cout << color(colors::RED);
+			cout << "Selected GO Tag: " << app->lastSelectedGameobjectTag << white << endl;
 
 			// Show the components of Selected GO.
 			if (ret)
@@ -1510,6 +1527,7 @@ void AppStateWorldMap::_drawUI()
 							ImGui::Checkbox("Render", &rc->render);
 
 							ImGui::Text("Decal \"%s\"", rc->decalName.c_str());
+
 
 							ImGui::Text("Layer \"%s\"", rc->renderingLayer.c_str());
 						}
@@ -1595,7 +1613,14 @@ void AppStateWorldMap::_drawUI()
 		{
 			if (ImGui::ImageButton((ImTextureID)decal.second->id, ImVec2(64, 64), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1)))
 			{
-				GameObjectStorage::get()->getGOByName("Spearman_Unit")->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
+
+				if (app->lastSelectedGameobjectTag.compare("none") == 0)
+				{
+				}
+				else
+				{
+					GameObjectStorage::get()->getGOByTag(app->lastSelectedGameobjectTag)->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
+				}
 			}
 
 			ImGui::SameLine();
@@ -1604,6 +1629,8 @@ void AppStateWorldMap::_drawUI()
 		}
 	}
 	ImGui::End();
+
+
 
 	if (show_tech_tree)
 	{
