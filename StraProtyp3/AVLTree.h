@@ -4,6 +4,8 @@
 #include <iostream>
 #include <algorithm>
 
+#include "ColorConsole.h"
+
 /*
 * Original Author: https://github.com/Bibeknam/algorithmtutorprograms/blob/master/data-structures/avl-trees/AVLTree.cpp
 * 
@@ -20,7 +22,7 @@ private:
 
 	// data structure that represents a node in the tree
 	struct Node {
-		int data; // holds the key
+		size_t data; // holds the key
 		Node* parent; // pointer to the parent
 		Node* left; // pointer to left child
 		Node* right; // pointer to right child
@@ -37,7 +39,7 @@ private:
 
 	// initializes the nodes with appropirate values
 	// all the pointers are set to point to the null pointer
-	void initializeNode(NodePtr node, int key) {
+	void initializeNode(NodePtr node, size_t key) {
 		node->data = key;
 		node->parent = nullptr;
 		node->left = nullptr;
@@ -79,7 +81,7 @@ private:
 	}
 
 
-	NodePtr searchTreeHelper(NodePtr node, int key)
+	NodePtr searchTreeHelper(NodePtr node, size_t key)
 	{
 		if (node == nullptr || key == node->data) {
 			return node;
@@ -92,7 +94,7 @@ private:
 	}
 
 
-	NodePtr deleteNodeHelper(NodePtr node, int key)
+	NodePtr deleteNodeHelper(NodePtr node, size_t key)
 	{
 		// search the key
 		if (node == nullptr) return node;
@@ -211,8 +213,8 @@ public:
 		root = nullptr;
 	}
 
-	int min(int a, int b) { return(a < b) ? a : b; }
-	int max(int a, int b) { return(a > b) ? a : b; }
+	int min(size_t a, size_t b) { return(a < b) ? a : b; }
+	int max(size_t a, size_t b) { return(a > b) ? a : b; }
 
 
 	// Pre-Order traversal
@@ -235,7 +237,7 @@ public:
 
 	// search the tree for the key k
 	// and return the corresponding node
-	NodePtr searchTree(int k) {
+	NodePtr searchTree(size_t k) {
 		return searchTreeHelper(this->root, k);
 	}
 
@@ -344,13 +346,13 @@ public:
 
 	// search for the object stored with given key and
 	// return in specified template datatype of AVLTree2
-	T findStoredData(int key)
+	T findStoredData(size_t key)
 	{
 		return searchTree(key)->storedData;
 	}
 
 	// insert the key to the tree in its appropriate position
-	void insert(int key, T object) {
+	void insert(size_t key, T object) {
 		// PART 1: Ordinary BST insert
 		NodePtr node = new Node;
 		node->parent = nullptr;
@@ -394,7 +396,8 @@ public:
 	}
 
 	// delete the node from the tree
-	NodePtr deleteNode(int data) {
+	NodePtr deleteNode(size_t data)
+	{
 		NodePtr deletedNode = deleteNodeHelper(this->root, data);
 		return deletedNode;
 	}

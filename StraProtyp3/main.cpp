@@ -32,7 +32,9 @@ int main()
 	if (demo.Construct(1024, 768, 1, 1))
 		demo.Start();
 
+
 	demo.shutDown();
+
 
 	NavMesh::del();
 	GameObjectStorage::del();
@@ -211,7 +213,7 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Snow_Dying.xml", "Forest", 10, 8);
 
 
-	//go = creator.create("Data/City_Plain.xml", "City", 7, 6);
+	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
 
 
 	go = creator.create("Data/Sand_Maptile.xml", "Maptile", 3, 4);
@@ -630,6 +632,20 @@ bool App::_loadTechTreeDefinitions()
 
 
 
+void App::_storeDecal(const std::string& name, olc::Decal* decal)
+{
+	int hash = hasher(name);
+	decalDatabase.insert(hash, decal);
+	decalNamesInDatabase.push_back(name);
+}
+
+
+olc::Decal* App::_getDecal(const std::string& name)
+{
+	int hash = hasher(name);
+	return decalDatabase.findStoredData(hash);
+}
+
 
 bool App::_loadDecalDatabase()
 {
@@ -641,520 +657,517 @@ bool App::_loadDecalDatabase()
 	// Loading Tundra
 	sprite = new olc::Sprite(default_path + "forest_tundra_normal.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_tundra_normal", decal);
+	_storeDecal("forest_tundra_normal", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_tundra_scarce.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_tundra_scarce", decal);
+	_storeDecal("forest_tundra_scarce", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_tundra_deep.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_tundra_deep", decal);
+	_storeDecal("forest_tundra_deep", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_tundra_dying.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_tundra_dying", decal);
+	_storeDecal("forest_tundra_dying", decal);
 
 
 	// Loading Jungle
 	sprite = new olc::Sprite(default_path + "forest_jungle_deep.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_jungle_deep", decal);
+	_storeDecal("forest_jungle_deep", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_jungle_normal.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_jungle_normal", decal);
+	_storeDecal("forest_jungle_normal", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_jungle_scarce.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_jungle_scarce", decal);
+	_storeDecal("forest_jungle_scarce", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_jungle_dying.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_jungle_dying", decal);
+	_storeDecal("forest_jungle_dying", decal);
 
 
 	// Loading Temperate
 	sprite = new olc::Sprite(default_path + "forest_temperate_dying.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_temperate_dying", decal);
+	_storeDecal("forest_temperate_dying", decal);
 
 
 	sprite = new olc::Sprite(default_path + "forest_temperate_deep.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_temperate_deep", decal);
+	_storeDecal("forest_temperate_deep", decal);
 
 
 	sprite = new olc::Sprite(default_path + "forest_temperate_normal.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_temperate_normal", decal);
+	_storeDecal("forest_temperate_normal", decal);
 
 
 	sprite = new olc::Sprite(default_path + "forest_temperate_scarce.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_temperate_scarce", decal);
+	_storeDecal("forest_temperate_scarce", decal);
 
 
 	// Loading Savanah
 	sprite = new olc::Sprite(default_path + "forest_savannah_scarce.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_savannah_scarce", decal);
+	_storeDecal("forest_savannah_scarce", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_savannah_normal.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_savannah_normal", decal);
+	_storeDecal("forest_savannah_normal", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_savannah_deep.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_savannah_deep", decal);
+	_storeDecal("forest_savannah_deep", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_savannah_dying.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_savannah_dying", decal);
+	_storeDecal("forest_savannah_dying", decal);
 
 
 	// Load Snow
 	sprite = new olc::Sprite(default_path + "forest_snow_scarce.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_snow_scarce", decal);
+	_storeDecal("forest_snow_scarce", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_snow_normal.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_snow_normal", decal);
+	_storeDecal("forest_snow_normal", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_snow_deep.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_snow_deep", decal);
+	_storeDecal("forest_snow_deep", decal);
 
 	sprite = new olc::Sprite(default_path + "forest_snow_dying.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("forest_snow_dying", decal);
+	_storeDecal("forest_snow_dying", decal);
 
 
 	// Maptiles.
 	sprite = new olc::Sprite(default_path + "jungle.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("jungle", decal);
+	_storeDecal("jungle", decal);
 
 	sprite = new olc::Sprite(default_path + "sand.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("sand", decal);
+	_storeDecal("sand", decal);
 
 	sprite = new olc::Sprite(default_path + "savannah.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("savannah", decal);
+	_storeDecal("savannah", decal);
 
 	sprite = new olc::Sprite(default_path + "snow.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("snow", decal);
+	_storeDecal("snow", decal);
 
 	sprite = new olc::Sprite(default_path + "temperate.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("temperate", decal);
+	_storeDecal("temperate", decal);
 
 	sprite = new olc::Sprite(default_path + "tundra.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("tundra", decal);
+	_storeDecal("tundra", decal);
 
 	sprite = new olc::Sprite(default_path + "ice.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("ice", decal);
+	_storeDecal("ice", decal);
 
 	sprite = new olc::Sprite(default_path + "water_deep.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("water_deep", decal);
+	_storeDecal("water_deep", decal);
 
 	sprite = new olc::Sprite(default_path + "water_shallow.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("water_shallow", decal);
+	_storeDecal("water_shallow", decal);
 
 
 	// Rivers.
 	sprite = new olc::Sprite(default_path + "river_down_left.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_down_left", decal);
+	_storeDecal("river_down_left", decal);
 
 	sprite = new olc::Sprite(default_path + "river_down_right.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_down_right", decal);
+	_storeDecal("river_down_right", decal);
 
 	sprite = new olc::Sprite(default_path + "river_left_right.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_left_right", decal);
+	_storeDecal("river_left_right", decal);
 
 	sprite = new olc::Sprite(default_path + "river_left_right_down.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_left_right_down", decal);
+	_storeDecal("river_left_right_down", decal);
 
 	sprite = new olc::Sprite(default_path + "river_left_up_down.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_left_up_down", decal);
+	_storeDecal("river_left_up_down", decal);
 
 	sprite = new olc::Sprite(default_path + "river_up_down.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_up_down", decal);
+	_storeDecal("river_up_down", decal);
 
 	sprite = new olc::Sprite(default_path + "river_up_left.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_up_left", decal);
+	_storeDecal("river_up_left", decal);
 
 	sprite = new olc::Sprite(default_path + "river_up_right.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_up_right", decal);
+	_storeDecal("river_up_right", decal);
 
 	sprite = new olc::Sprite(default_path + "river_up_right_down.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_up_right_down", decal);
+	_storeDecal("river_up_right_down", decal);
 
 	sprite = new olc::Sprite(default_path + "river_up_right_left.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_up_right_left", decal);
+	_storeDecal("river_up_right_left", decal);
 
 	sprite = new olc::Sprite(default_path + "river_up_right_left_down.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("river_up_right_left_down", decal);
+	_storeDecal("river_up_right_left_down", decal);
 
 
 	// Hills/Mountains.
 	sprite = new olc::Sprite(default_path + "hills.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("hills", decal);
+	_storeDecal("hills", decal);
 
 	sprite = new olc::Sprite(default_path + "highmountain.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("highmountain", decal);
+	_storeDecal("highmountain", decal);
 
 
 	// Units.
 	default_path = "Data/Assets/Unit/";
 	sprite = new olc::Sprite(default_path + "aristocrat.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("aristocrat", decal);
+	_storeDecal("aristocrat", decal);
 
 	sprite = new olc::Sprite(default_path + "assassin.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("assassin", decal);
+	_storeDecal("assassin", decal);
 
 	sprite = new olc::Sprite(default_path + "assassin_2.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("assassin_2", decal);
+	_storeDecal("assassin_2", decal);
 
 	sprite = new olc::Sprite(default_path + "battlemage.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("battlemage", decal);
+	_storeDecal("battlemage", decal);
 
 	sprite = new olc::Sprite(default_path + "battlemage_2.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("battlemage_2", decal);
+	_storeDecal("battlemage_2", decal);
 
 	sprite = new olc::Sprite(default_path + "civic_researcher.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("civic_researcher", decal);
+	_storeDecal("civic_researcher", decal);
 
 	sprite = new olc::Sprite(default_path + "crossbowman.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("crossbowman", decal);
+	_storeDecal("crossbowman", decal);
 
 	sprite = new olc::Sprite(default_path + "fighter.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("fighter", decal);
+	_storeDecal("fighter", decal);
 
 	sprite = new olc::Sprite(default_path + "heavy_maceman.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("heavy_maceman", decal);
+	_storeDecal("heavy_maceman", decal);
 
 	sprite = new olc::Sprite(default_path + "heavy_spearman_iron.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("heavy_spearman_iron", decal);
+	_storeDecal("heavy_spearman_iron", decal);
 
 	sprite = new olc::Sprite(default_path + "heavy_swordman_bronze.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("heavy_swordman_bronze", decal);
+	_storeDecal("heavy_swordman_bronze", decal);
 
 	sprite = new olc::Sprite(default_path + "heavy_swordman_iron.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("heavy_swordman_iron", decal);
+	_storeDecal("heavy_swordman_iron", decal);
 
 	sprite = new olc::Sprite(default_path + "high_senator.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("high_senator", decal);
+	_storeDecal("high_senator", decal);
 
 	sprite = new olc::Sprite(default_path + "knight_bronze.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("knight_bronze", decal);
+	_storeDecal("knight_bronze", decal);
 
 	sprite = new olc::Sprite(default_path + "light_archer.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("light_archer", decal);
+	_storeDecal("light_archer", decal);
 
 	sprite = new olc::Sprite(default_path + "light_cavalry.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("light_cavalry", decal);
+	_storeDecal("light_cavalry", decal);
 
 	sprite = new olc::Sprite(default_path + "local_merchant.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("local_merchant", decal);
+	_storeDecal("local_merchant", decal);
 
-	sprite = new olc::Sprite(default_path + "local_merchant.png");
-	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("local_merchant", decal);
 
 	sprite = new olc::Sprite(default_path + "longswordsman.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("longswordsman", decal);
+	_storeDecal("longswordsman", decal);
 
 	sprite = new olc::Sprite(default_path + "mage.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("mage", decal);
+	_storeDecal("mage", decal);
 
 	sprite = new olc::Sprite(default_path + "magick_researcher.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("magick_researcher", decal);
+	_storeDecal("magick_researcher", decal);
 
 	sprite = new olc::Sprite(default_path + "merchant.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("merchant", decal);
+	_storeDecal("merchant", decal);
 
 
 	sprite = new olc::Sprite(default_path + "mounted_knight.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("mounted_knight", decal);
+	_storeDecal("mounted_knight", decal);
 
 	sprite = new olc::Sprite(default_path + "mounted_scout.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("mounted_scout", decal);
+	_storeDecal("mounted_scout", decal);
 
 	sprite = new olc::Sprite(default_path + "paladin_adamantium.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("paladin_adamantium", decal);
+	_storeDecal("paladin_adamantium", decal);
 
 	sprite = new olc::Sprite(default_path + "paladin_malachite.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("paladin_malachite", decal);
+	_storeDecal("paladin_malachite", decal);
 
 	sprite = new olc::Sprite(default_path + "senator.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("senator", decal);
+	_storeDecal("senator", decal);
 
 	sprite = new olc::Sprite(default_path + "sorcerer.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("sorcerer", decal);
+	_storeDecal("sorcerer", decal);
 
 	sprite = new olc::Sprite(default_path + "spearman.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("spearman", decal);
+	_storeDecal("spearman", decal);
 
 	sprite = new olc::Sprite(default_path + "spy.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("spy", decal);
+	_storeDecal("spy", decal);
 
 
 	// Ressources.
 	default_path = "Data/Assets/Ressource/";
 	sprite = new olc::Sprite(default_path + "jungle_small_hunter.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("jungle_small_hunter", decal);
+	_storeDecal("jungle_small_hunter", decal);
 
 	sprite = new olc::Sprite(default_path + "savannah_small_hunter.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("savannah_small_hunter", decal);
+	_storeDecal("savannah_small_hunter", decal);
 
 	sprite = new olc::Sprite(default_path + "jungle_mushroom_eater.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("jungle_mushroom_eater", decal);
+	_storeDecal("jungle_mushroom_eater", decal);
 
 	sprite = new olc::Sprite(default_path + "wheat.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("wheat", decal);
+	_storeDecal("wheat", decal);
 
 	sprite = new olc::Sprite(default_path + "mudcrab.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("mudcrab", decal);
+	_storeDecal("mudcrab", decal);
 
 	sprite = new olc::Sprite(default_path + "iron_ore.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("iron_ore", decal);
+	_storeDecal("iron_ore", decal);
 
 	sprite = new olc::Sprite(default_path + "bronze_ore.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("bronze_ore", decal);
+	_storeDecal("bronze_ore", decal);
 
 	sprite = new olc::Sprite(default_path + "gold_ore.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("gold_ore", decal);
+	_storeDecal("gold_ore", decal);
 
 	sprite = new olc::Sprite(default_path + "silver_ore.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("silver_ore", decal);
+	_storeDecal("silver_ore", decal);
 
 	sprite = new olc::Sprite(default_path + "adamantium_ore.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("adamantium_ore", decal);
+	_storeDecal("adamantium_ore", decal);
 
 	sprite = new olc::Sprite(default_path + "malachite_ore.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("malachite_ore", decal);
+	_storeDecal("malachite_ore", decal);
 
 	sprite = new olc::Sprite(default_path + "iron_bars.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("iron_bars", decal);
+	_storeDecal("iron_bars", decal);
 
 	sprite = new olc::Sprite(default_path + "bronze_bars.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("bronze_bars", decal);
+	_storeDecal("bronze_bars", decal);
 
 	sprite = new olc::Sprite(default_path + "steel_bars.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("steel_bars", decal);
+	_storeDecal("steel_bars", decal);
 
 	sprite = new olc::Sprite(default_path + "gold_bars.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("gold_bars", decal);
+	_storeDecal("gold_bars", decal);
 
 	sprite = new olc::Sprite(default_path + "silver_bars.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("silver_bars", decal);
+	_storeDecal("silver_bars", decal);
 
 	sprite = new olc::Sprite(default_path + "adamantium_bars.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("adamantium_bars", decal);
+	_storeDecal("adamantium_bars", decal);
 
 	sprite = new olc::Sprite(default_path + "malachite_bars.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("malachite_bars", decal);
+	_storeDecal("malachite_bars", decal);
 
 	sprite = new olc::Sprite(default_path + "stone.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("stone", decal);
+	_storeDecal("stone", decal);
 
 	sprite = new olc::Sprite(default_path + "stone_blocks.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("stone_blocks", decal);
+	_storeDecal("stone_blocks", decal);
 
 	sprite = new olc::Sprite(default_path + "wood.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("wood", decal);
+	_storeDecal("wood", decal);
 
 	sprite = new olc::Sprite(default_path + "wood_planks.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("wood_planks", decal);
+	_storeDecal("wood_planks", decal);
 
 	sprite = new olc::Sprite(default_path + "hops.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("hops", decal);
+	_storeDecal("hops", decal);
 
 	sprite = new olc::Sprite(default_path + "grapes.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("grapes", decal);
+	_storeDecal("grapes", decal);
 
 	sprite = new olc::Sprite(default_path + "skuma_plant.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("skuma_plant", decal);
+	_storeDecal("skuma_plant", decal);
 
 	sprite = new olc::Sprite(default_path + "beer.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("beer", decal);
+	_storeDecal("beer", decal);
 
 	sprite = new olc::Sprite(default_path + "wine.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("wine", decal);
+	_storeDecal("wine", decal);
 
 	sprite = new olc::Sprite(default_path + "skuma.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("skuma", decal);
+	_storeDecal("skuma", decal);
 
 	sprite = new olc::Sprite(default_path + "salt.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("salt", decal);
+	_storeDecal("salt", decal);
 
 	sprite = new olc::Sprite(default_path + "raw_manastones.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("raw_manastones", decal);
+	_storeDecal("raw_manastones", decal);
 
 	sprite = new olc::Sprite(default_path + "manastones.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("manastones", decal);
+	_storeDecal("manastones", decal);
 
 	sprite = new olc::Sprite(default_path + "wheat.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("wheat", decal);
+	_storeDecal("wheat", decal);
 
 	sprite = new olc::Sprite(default_path + "flax.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("flax", decal);
+	_storeDecal("flax", decal);
 
 	sprite = new olc::Sprite(default_path + "fish.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("fish", decal);
+	_storeDecal("fish", decal);
 
 	sprite = new olc::Sprite(default_path + "clothing.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("clothing", decal);
+	_storeDecal("clothing", decal);
 
 	sprite = new olc::Sprite(default_path + "cotton.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("cotton", decal);
+	_storeDecal("cotton", decal);
 
 	sprite = new olc::Sprite(default_path + "clay.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("clay", decal);
+	_storeDecal("clay", decal);
 
 	sprite = new olc::Sprite(default_path + "honey_bees.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("honey_bees", decal);
+	_storeDecal("honey_bees", decal);
 
 	sprite = new olc::Sprite(default_path + "food.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("food", decal);
+	_storeDecal("food", decal);
 
 	sprite = new olc::Sprite(default_path + "bronze_tools.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("bronze_tools", decal);
+	_storeDecal("bronze_tools", decal);
 
 	sprite = new olc::Sprite(default_path + "iron_tools.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("iron_tools", decal);
+	_storeDecal("iron_tools", decal);
 
 	sprite = new olc::Sprite(default_path + "steel_tools.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("steel_tools", decal);
+	_storeDecal("steel_tools", decal);
 
 	sprite = new olc::Sprite(default_path + "leather_armor.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("leather_armor", decal);
+	_storeDecal("leather_armor", decal);
 
 	sprite = new olc::Sprite(default_path + "bronze_armor.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("bronze_armor", decal);
+	_storeDecal("bronze_armor", decal);
 
 	sprite = new olc::Sprite(default_path + "iron_armor.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("iron_armor", decal);
+	_storeDecal("iron_armor", decal);
 
 	sprite = new olc::Sprite(default_path + "leather.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("leather", decal);
+	_storeDecal("leather", decal);
 
 	// Buildings
 	default_path = "Data/Assets/Building/";
 	sprite = new olc::Sprite(default_path + "tavern.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("tavern", decal);
+	_storeDecal("tavern", decal);
 
 	sprite = new olc::Sprite(default_path + "weaponsmiths_workshop.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("weaponsmiths_workshop", decal);
+	_storeDecal("weaponsmiths_workshop", decal);
 
 
 	// Cities
 	default_path = "Data/Assets/City/";
 	sprite = new olc::Sprite(default_path + "city_plain.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("city_plain", decal);
+	_storeDecal("city_plain", decal);
 
 	sprite = new olc::Sprite(default_path + "fort_plain.png");
 	decal = new olc::Decal(sprite);
-	decalDatabase.emplace("fort_plain", decal);
+	_storeDecal("fort_plain", decal);
 
 
 	return true;
@@ -1196,7 +1209,7 @@ void App::renderLayer(const std::string& layerName)
 			{
 				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
 
-				olc::Decal* decal = decalDatabase[render->decalName];
+				olc::Decal* decal = _getDecal(render->decalName);
 
 
 				if (unit_layer)
@@ -1332,7 +1345,7 @@ void AppStateCityView::_renderCityBuildings(ICityCmp* city)
 			{
 				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
 
-				olc::Decal* decal = app->decalDatabase[render->decalName];
+				olc::Decal* decal = app->_getDecal(render->decalName);
 
 				app->DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal, olc::vf2d(0.25f, 0.25f));
 			}
@@ -1355,7 +1368,7 @@ void AppStateCityView::_renderCityUnits(ICityCmp* city)
 			{
 				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
 
-				olc::Decal* decal = app->decalDatabase[render->decalName];
+				olc::Decal* decal = app->_getDecal(render->decalName);
 
 				app->DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal, olc::vf2d(0.25f, 0.25f));
 			}
@@ -1795,9 +1808,10 @@ void AppStateWorldMap::_drawUI()
 	using namespace std;
 	if (ImGui::Begin("DecalDatabase"))
 	{
-		for (auto& decal : app->decalDatabase)
+		for (auto& decal : app->decalNamesInDatabase)
 		{
-			if (ImGui::ImageButton((ImTextureID)decal.second->id, ImVec2(64, 64), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1)))
+			olc::Decal* pDecalInst = app->_getDecal(decal);
+			if (ImGui::ImageButton((ImTextureID)pDecalInst->id, ImVec2(64, 64), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1)))
 			{
 
 				GameObject* object = nullptr;
@@ -1811,7 +1825,7 @@ void AppStateWorldMap::_drawUI()
 
 					if (object)
 					{
-						object->getComponent<RendererableCmp>("Renderable")->decalName = decal.first;
+						object->getComponent<RendererableCmp>("Renderable")->decalName = decal;
 						gameobject_test = true;
 					}
 					else
@@ -1824,7 +1838,7 @@ void AppStateWorldMap::_drawUI()
 
 			ImGui::SameLine();
 
-			ImGui::Text(decal.first.c_str());
+			ImGui::Text(decal.c_str());
 		}
 	}
 	ImGui::End();
@@ -1996,7 +2010,7 @@ void AppStateWorldMap::_drawUI()
 
 
 			// Draw Icon
-			ImGui::ImageButton((ImTextureID)app->decalDatabase["assassin"]->id, ImVec2(32, 32), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1));
+			ImGui::ImageButton((ImTextureID)app->_getDecal("assassin")->id, ImVec2(32, 32), ImVec2(0, 0), ImVec2(1, 1), -1, ImVec4(0, 0, 0, 1));
 
 
 			ImNodes::EndNode();
@@ -2070,12 +2084,12 @@ void AppStateWorldMap::onEnter()
 {
 	using namespace std;
 	cout << color(colors::MAGENTA);
-	cout << "[AppStateMainMenu] onEnter" << white << endl;
+	cout << "[AppStateWorldMap] onEnter" << white << endl;
 }
 
 void AppStateWorldMap::onExit()
 {
 	using namespace std;
 	cout << color(colors::MAGENTA);
-	cout << "[AppStateMainMenu] onExit" << white << endl;
+	cout << "[AppStateWorldMap] onExit" << white << endl;
 }

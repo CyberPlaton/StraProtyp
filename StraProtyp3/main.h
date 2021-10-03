@@ -86,13 +86,11 @@ public:
 		}
 
 		// Free Decals
-		while (decalDatabase.size() > 0)
+		for (auto& decal : decalNamesInDatabase)
 		{
-			std::string erase = decalDatabase.begin()->first;
-			delete decalDatabase[erase];
-			decalDatabase.erase(erase);
+			decalDatabase.deleteNode(hasher(decal));
 		}
-		decalDatabase.clear();
+		decalNamesInDatabase.clear();
 
 		// Free Techtree
 		while (techTree.size() > 0)
@@ -134,7 +132,10 @@ private:
 	int camerax = 0;
 	int cameray = 0;
 
-	std::map< std::string, olc::Decal* > decalDatabase;
+	//std::map< std::string, olc::Decal* > decalDatabase;
+	std::vector< std::string > decalNamesInDatabase;
+	AVLTree2< olc::Decal* > decalDatabase;
+
 	std::string lastSelectedGameobjectTag = "none";
 
 	// A vector of all Technologies in game.
@@ -154,6 +155,10 @@ private:
 	StateMachine<App> stateMachine;
 
 private:
+
+	// Helpers
+	void _storeDecal(const std::string& name, olc::Decal* decal);
+	olc::Decal* _getDecal(const std::string& name);
 
 	//void _onImGui();
 	void _handleInput();
