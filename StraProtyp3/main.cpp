@@ -88,9 +88,9 @@ bool App::OnUserCreate()
 {
 	using namespace std;
 
+
 	// Init Random
 	Random::Init();
-
 
 	// Init ImNodes.
 	ImNodes::CreateContext();
@@ -223,9 +223,6 @@ bool App::OnUserCreate()
 
 	PlayerInstance* player = new PlayerInstance("Data/Player/HumanPlayer.xml");
 	players.push_back(player);
-
-
-	// Seems to load correctly.
 
 
 	go = nullptr;

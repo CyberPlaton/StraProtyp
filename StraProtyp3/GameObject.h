@@ -79,6 +79,7 @@ private:
 
 
 
+	std::map< GOTag, size_t > goTagHashMap;
 
 	/*
 	* Storing Gameobjects in 2 places for max efficiency.
@@ -87,7 +88,7 @@ private:
 	* or clearer the hash value of the Tag.
 	*/
 	std::vector< GameObject* > m_GameObjects;	
-	AVLTree< GameObject* > m_GameObjectsTagOptimized;
+	AVLTree2< GameObject* > m_GameObjectsTagOptimized;
 };
 
 
@@ -103,7 +104,7 @@ public:
 	*/
 	GameObject(const GOTag& tag, const GOName& name) : name(name)
 	{
-		this->tag = "GO_" + std::to_string(g_GameObjectCount) + "_" + tag;
+		this->tag = "GO_" + std::to_string(g_GameObjectCount) +"_" + tag;
 
 		hash = hasher(this->tag);
 
@@ -214,7 +215,7 @@ public:
 	void setTag(const std::string& tag)
 	{
 		this->tag = tag;
-		//this->hash = hasher(this->tag);
+		this->hash = hasher(this->tag);
 	}
 
 	std::string getTag() { return tag; }

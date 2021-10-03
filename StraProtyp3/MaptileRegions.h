@@ -101,13 +101,13 @@ public:
 
 	void removeMaptileRegion(MaptileRegionID id)
 	{
-		maptileRegions.remove(id);
+		maptileRegions.deleteNode(id);
 	}
 
 
 	MaptileRegion* getMaptileRegion(MaptileRegionID id)
 	{
-		return maptileRegions.search(id);
+		return maptileRegions.findStoredData(id);
 	}
 
 private:
@@ -117,12 +117,12 @@ private:
 
 	~MaptileRegionStorage()
 	{
-		maptileRegions.~AVLTree();
+		maptileRegions.~AVLTree2();
 	}
 
 
 	static MaptileRegionStorage* g_MaptileRegionStorage;
 
-	AVLTree< MaptileRegion* > maptileRegions;
+	AVLTree2< MaptileRegion* > maptileRegions;
 
 };

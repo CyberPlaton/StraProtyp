@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 GameObjectStorage* GameObjectStorage::g_GameObjectStorage = nullptr;
-unsigned long long GameObject::g_GameObjectCount = 0;
+unsigned long long GameObject::g_GameObjectCount = 1;
 
 
 GameObjectStorage* GameObjectStorage::get()
@@ -19,7 +19,7 @@ void GameObjectStorage::del()
 	if (g_GameObjectStorage)
 	{
 		g_GameObjectStorage->m_GameObjects.clear();
-		g_GameObjectStorage->m_GameObjectsTagOptimized.~AVLTree();
+		g_GameObjectStorage->m_GameObjectsTagOptimized.~AVLTree2();
 		delete g_GameObjectStorage;
 	}
 }
@@ -33,7 +33,7 @@ void GameObjectStorage::remove(const GOTag& tag)
 		if (m_GameObjects[i]->hash == tag_hash) m_GameObjects.erase(m_GameObjects.begin() + i);
 	}
 
-	m_GameObjectsTagOptimized.remove(tag_hash);
+	m_GameObjectsTagOptimized.deleteNode(tag_hash);
 }
 
 
@@ -54,6 +54,8 @@ void GameObjectStorage::add(GameObject* go)
 	m_GameObjects.push_back(go);
 	m_GameObjectsTagOptimized.insert(go->hash, go);
 
+	goTagHashMap.emplace(go->getTag(), go->hash);
+
 	cout << color(colors::GREEN);
 	cout << "[GameObjectStorage::add] New Gameobject Tag:\""<< go->getTag() << "\", Hash:\""<< go->hash << "\"" << white << endl;
 }
@@ -61,8 +63,23 @@ void GameObjectStorage::add(GameObject* go)
 
 GameObject* GameObjectStorage::getGOByTag(const GOTag& tag)
 {
-	size_t tag_hash = hasher(tag);
-	GameObject* go = m_GameObjectsTagOptimized.search(tag_hash);
+	using namespace std;
+
+	size_t hash = hasher(tag);
+
+
+	cout << color(colors::CYAN);
+	cout << "Searching For \"" << tag << "\", with Hash \"" << hash << "\"" << white << endl;
+
+
+	GameObject* go = m_GameObjectsTagOptimized.findStoredData(hash);
+
+	if (!go)
+	{
+		cout << color(colors::RED);
+		cout << "Searching For \"" << tag << "\", with Hash \"" << hash << "\" was Unsuccessful!" << white << endl;
+	}
+
 	return go;
 }
 
