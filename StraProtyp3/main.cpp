@@ -978,7 +978,165 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	decalDatabase.emplace("iron_ore", decal);
 
+	sprite = new olc::Sprite(default_path + "bronze_ore.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("bronze_ore", decal);
 
+	sprite = new olc::Sprite(default_path + "gold_ore.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("gold_ore", decal);
+
+	sprite = new olc::Sprite(default_path + "silver_ore.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("silver_ore", decal);
+
+	sprite = new olc::Sprite(default_path + "adamantium_ore.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("adamantium_ore", decal);
+
+	sprite = new olc::Sprite(default_path + "malachite_ore.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("malachite_ore", decal);
+
+	sprite = new olc::Sprite(default_path + "iron_bars.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("iron_bars", decal);
+
+	sprite = new olc::Sprite(default_path + "bronze_bars.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("bronze_bars", decal);
+
+	sprite = new olc::Sprite(default_path + "steel_bars.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("steel_bars", decal);
+
+	sprite = new olc::Sprite(default_path + "gold_bars.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("gold_bars", decal);
+
+	sprite = new olc::Sprite(default_path + "silver_bars.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("silver_bars", decal);
+
+	sprite = new olc::Sprite(default_path + "adamantium_bars.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("adamantium_bars", decal);
+
+	sprite = new olc::Sprite(default_path + "malachite_bars.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("malachite_bars", decal);
+
+	sprite = new olc::Sprite(default_path + "stone.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("stone", decal);
+
+	sprite = new olc::Sprite(default_path + "stone_blocks.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("stone_blocks", decal);
+
+	sprite = new olc::Sprite(default_path + "wood.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("wood", decal);
+
+	sprite = new olc::Sprite(default_path + "wood_planks.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("wood_planks", decal);
+
+	sprite = new olc::Sprite(default_path + "hops.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("hops", decal);
+
+	sprite = new olc::Sprite(default_path + "grapes.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("grapes", decal);
+
+	sprite = new olc::Sprite(default_path + "skuma_plant.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("skuma_plant", decal);
+
+	sprite = new olc::Sprite(default_path + "beer.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("beer", decal);
+
+	sprite = new olc::Sprite(default_path + "wine.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("wine", decal);
+
+	sprite = new olc::Sprite(default_path + "skuma.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("skuma", decal);
+
+	sprite = new olc::Sprite(default_path + "salt.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("salt", decal);
+
+	sprite = new olc::Sprite(default_path + "raw_manastones.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("raw_manastones", decal);
+
+	sprite = new olc::Sprite(default_path + "manastones.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("manastones", decal);
+
+	sprite = new olc::Sprite(default_path + "wheat.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("wheat", decal);
+
+	sprite = new olc::Sprite(default_path + "flax.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("flax", decal);
+
+	sprite = new olc::Sprite(default_path + "fish.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("fish", decal);
+
+	sprite = new olc::Sprite(default_path + "clothing.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("clothing", decal);
+
+	sprite = new olc::Sprite(default_path + "cotton.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("cotton", decal);
+
+	sprite = new olc::Sprite(default_path + "clay.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("clay", decal);
+
+	sprite = new olc::Sprite(default_path + "honey_bees.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("honey_bees", decal);
+
+	sprite = new olc::Sprite(default_path + "food.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("food", decal);
+
+	sprite = new olc::Sprite(default_path + "bronze_tools.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("bronze_tools", decal);
+
+	sprite = new olc::Sprite(default_path + "iron_tools.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("iron_tools", decal);
+
+	sprite = new olc::Sprite(default_path + "steel_tools.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("steel_tools", decal);
+
+	sprite = new olc::Sprite(default_path + "leather_armor.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("leather_armor", decal);
+
+	sprite = new olc::Sprite(default_path + "bronze_armor.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("bronze_armor", decal);
+
+	sprite = new olc::Sprite(default_path + "iron_armor.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("iron_armor", decal);
+
+	sprite = new olc::Sprite(default_path + "leather.png");
+	decal = new olc::Decal(sprite);
+	decalDatabase.emplace("leather", decal);
 
 	// Buildings
 	default_path = "Data/Assets/Building/";
