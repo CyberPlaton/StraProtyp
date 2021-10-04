@@ -1307,25 +1307,25 @@ void AppStateCityView::update(float)
 void AppStateCityView::_renderCityBase(ICityCmp* city)
 {
 	// Red Circle Filling Whole Screen Almost -> Available Space.
-	app->FillRect(olc::vi2d(5, 5), olc::vi2d(1360, 750), olc::DARK_RED);
+	app->FillRectDecal(olc::vi2d(5, 5), olc::vi2d(1360, 750), olc::DARK_RED);
 
 	// City Screen.
-	app->FillRect(olc::vi2d(5, 5), olc::vi2d(700, 750), olc::DARK_CYAN);
+	app->FillRectDecal(olc::vi2d(5, 5), olc::vi2d(700, 750), olc::DARK_CYAN);
 
 	// City Worldmap Screen, showing the city and surrounding maptiles around city.
-	app->FillRect(olc::vi2d(705, 5), olc::vi2d(650, 750), olc::DARK_MAGENTA);
+	app->FillRectDecal(olc::vi2d(705, 5), olc::vi2d(650, 750), olc::DARK_MAGENTA);
 
 	// City UI Screen
-	app->FillRect(olc::vi2d(5, 5), olc::vi2d(700, 100), olc::GREEN);
+	app->FillRectDecal(olc::vi2d(5, 5), olc::vi2d(700, 100), olc::GREEN);
 
 	// Maptile Indication.
-	app->FillRect(olc::vi2d(5, 100), olc::vi2d(700, 100), olc::YELLOW);
+	app->FillRectDecal(olc::vi2d(5, 100), olc::vi2d(700, 100), olc::YELLOW);
 
 	// City Ground Indication.
-	app->FillRect(olc::vi2d(5, 200), olc::vi2d(700, 555), olc::GREY);
+	app->FillRectDecal(olc::vi2d(5, 200), olc::vi2d(700, 555), olc::GREY);
 
 	// Selected Unit/Building etc.
-	app->FillRect(olc::vi2d(5, 740), olc::vi2d(700, 15), olc::RED);
+	app->FillRectDecal(olc::vi2d(5, 740), olc::vi2d(700, 15), olc::RED);
 }
 
 
