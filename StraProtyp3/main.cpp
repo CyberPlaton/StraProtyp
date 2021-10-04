@@ -22,14 +22,14 @@ static int imnodes_tech_link_id = 1;
 static int imnodes_tech_dependency_id = 1;
 static int imnodes_tech_dependency_display_id = 100000;
 static bool imnodes_tech_tree_initialized = false;
-
+static bool render_2d_grid = true;
 
 
 
 int main()
 {
 	App demo;
-	if (demo.Construct(1024, 768, 1, 1))
+	if (demo.Construct(1360, 768, 1, 1))
 		demo.Start();
 
 
@@ -77,6 +77,9 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 	stateMachine.update(fElapsedTime);
 
+
+	SetDrawTarget((uint8_t)m_GameLayer);
+	DrawStringDecal(olc::vf2d(1300, 50), "FPS: " + std::to_string(GetFPS()));
 
 	return true;
 }
@@ -976,9 +979,9 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	_storeDecal("jungle_mushroom_eater", decal);
 
-	sprite = new olc::Sprite(default_path + "wheat.png");
+	sprite = new olc::Sprite(default_path + "wheat_plant.png");
 	decal = new olc::Decal(sprite);
-	_storeDecal("wheat", decal);
+	_storeDecal("wheat_plant", decal);
 
 	sprite = new olc::Sprite(default_path + "mudcrab.png");
 	decal = new olc::Decal(sprite);
@@ -1088,9 +1091,6 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	_storeDecal("manastones", decal);
 
-	sprite = new olc::Sprite(default_path + "wheat.png");
-	decal = new olc::Decal(sprite);
-	_storeDecal("wheat", decal);
 
 	sprite = new olc::Sprite(default_path + "flax.png");
 	decal = new olc::Decal(sprite);
@@ -1147,6 +1147,22 @@ bool App::_loadDecalDatabase()
 	sprite = new olc::Sprite(default_path + "leather.png");
 	decal = new olc::Decal(sprite);
 	_storeDecal("leather", decal);
+
+	sprite = new olc::Sprite(default_path + "corn.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("corn", decal);
+
+	sprite = new olc::Sprite(default_path + "narcotic_plant.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("narcotic_plant", decal);
+
+	sprite = new olc::Sprite(default_path + "cow.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("cow", decal);
+
+	sprite = new olc::Sprite(default_path + "chicken.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("chicken", decal);
 
 	// Buildings
 	default_path = "Data/Assets/Building/";
@@ -1437,22 +1453,27 @@ void AppStateWorldMap::update(float)
 	}
 
 
-	// Application rendering.
-	olc::vi2d topleft = tv.GetTopLeftTile().max({ 0, 0 });
-	olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
-	olc::vi2d tile;
-
-
-	// Draw Grid.
-	for (tile.y = topleft.y; tile.y < bottomright.y; tile.y++)
+	if (render_2d_grid)
 	{
-		for (tile.x = topleft.x; tile.x < bottomright.x; tile.x++)
-		{
-			tv.DrawLine(tile, tile + olc::vf2d(0.0f, 1.0f), olc::VERY_DARK_GREY);
-			tv.DrawLine(tile, tile + olc::vf2d(1.0f, 0.0f), olc::VERY_DARK_GREY);
-		}
-	}
 
+		// Application rendering.
+		olc::vi2d topleft = tv.GetTopLeftTile().max({ 0, 0 });
+		olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
+		olc::vi2d tile;
+
+
+		// Draw Grid.
+		for (tile.y = topleft.y; tile.y < bottomright.y; tile.y++)
+		{
+			for (tile.x = topleft.x; tile.x < bottomright.x; tile.x++)
+			{
+				tv.DrawLine(tile, tile + olc::vf2d(0.0f, 1.0f), olc::VERY_DARK_GREY);
+				tv.DrawLine(tile, tile + olc::vf2d(1.0f, 0.0f), olc::VERY_DARK_GREY);
+			}
+		}
+
+
+	}
 
 
 	// Draw General Layered
@@ -1603,6 +1624,14 @@ void AppStateWorldMap::_drawUI()
 	{
 		if (ImGui::BeginMenu("Menu"))
 		{
+			if (ImGui::BeginMenu("Grid"))
+			{
+				if (ImGui::MenuItem("Display"))
+				{
+					render_2d_grid = (render_2d_grid == true) ? false : true;
+				}
+				ImGui::EndMenu();
+			}
 
 
 
