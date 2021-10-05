@@ -26,6 +26,10 @@ public:
 		MT_JUNGLE
 	};
 
+
+	static std::string getMaptileTypeAsString(IMaptileCmp::MType type);
+
+
 public:
 	IMaptileCmp(const ComponentID& name) {
 		this->name = name;
@@ -86,7 +90,7 @@ public:
 	bool hasCity() { return false; }
 	bool hasFort() { return false; }
 	bool hasUnit() { return false; }
-
+	bool hasWaterAccess() { return false; }
 
 
 

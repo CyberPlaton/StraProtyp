@@ -3,19 +3,56 @@
 #include <vector>
 #include <map>
 
+#include "ColorConsole.h"
+
 #include "ComponentSystem.h"
 #include "IPlayer.h"
 
 
 using RessourceID = std::string;
+
+/*
+* Definition of the city type, which kind it is "City" or "Fort",
+* on which maptile it is, whether it is on a Forest or Hill and
+* whether it has access to water. Available are
+* 
+* "city_plain_temperate" - city on basic temperate plains,
+* "city_forest_temperate" - city on forest and temperate maptile,
+* "city_hill_temperate" - city on hill and temperate maptile,
+* "city_plain_port_temperate" - city on basic temperate plain with water access,
+* "city_forest_port_temperate" - city on forest and temperate maptile with water access,
+* "city_hill_port_temperate" - city on hill and temperate maptile with water access,
+* "city_plain_river_temperate" - city on basic temperate plain on river,
+* "city_forest_river_temperate" - city on forest and temperate maptile and on river,
+* "city_hill_river_temperate" - city on a hill and temperate maptile and on river
+* ...
+* Analog for the other maptile types tundra, snow, savannah and jungle.
+* 
+*/
 using CityType = std::string;
+
 
 /*
 * Definition of which Type a Building Slot is.
 * In the city there is a certain number of each slot type.
+* 
+* We define "BuildingSlotType" as 
+* "Normal" - for default buildings in the city,
+* "Special" - for special buildings around city, which depend on race, technology etc.
+* "Castle" - for buildings in the cities castle area, which are available depending on race and technology,
+* "Port" - for buildings which are for Port-Cities and have access to water, which are available depending on technology.
 */
 using BuildingSlotType = std::string;
 
+/*
+* Definition of the type of the cities Walls if there are any.
+* These can be 
+* "Earth Wall" - for basic earthen wall around city, which provides minimal defensive bonus to defenders,
+* "Wooden Wall" - for more elaborate protection, with more defense bonus and size of the available Garrison,
+* "Stone Wall" - for even more Garrison capacity and increased defense bonus,
+* "Brick Wall" - for greatest Garrison capacity and defense bonus.
+*/
+using CityFortificationLevel = std::string;
 
 /*
 * Adding this to a Gameobject makes it a city.
@@ -68,7 +105,61 @@ public:
 
 	void setMaxStorage(int n) { maxStorage = n; }
 
-	void setCityType(const std::string& type) { cityType = type; }
+	void setCityType(const std::string& type, const std::string& maptile, bool forest = false, bool hill = false, bool river = false, bool port = false)
+	{
+		using namespace std;
+
+		std::string cityType = type;
+
+		// Set city as forest or hill city.
+		// They are mutualy exclusive.
+		if (forest)
+		{
+			cityType += "_forest";
+		}
+		else if (hill)
+		{
+			cityType += "_hill";
+		}
+
+		if (river)
+		{
+			cityType += "_river";
+		}
+
+		if (maptile.compare("temperate") == 0)
+		{
+			cityType += "temperate";
+		}
+		else if (maptile.compare("snow") == 0)
+		{
+			cityType += "snow";
+
+		}
+		else if (maptile.compare("tundra") == 0)
+		{
+			cityType += "tundra";
+
+		}
+		else if (maptile.compare("savannah") == 0)
+		{
+			cityType += "savannah";
+
+		}
+		else if (maptile.compare("jungle") == 0)
+		{
+			cityType += "jungle";
+
+		}
+		else
+		{
+			cout << color(colors::RED);
+			cout << "Undefined Maptile \""<< maptile << "\", defining as default temperate..." << white << endl;
+			cityType += "temperate";
+		}
+	}
+
+	void setCityFortificationLevel(const CityFortificationLevel& level) { fortificationLevel = level; }
 
 	void setPlayer(IPlayer* p) { player = p; }
 
@@ -119,6 +210,8 @@ public:
 		return cityRessources[name] >= amount;
 	}
 
+	CityFortificationLevel getFortificationLevel() { return fortificationLevel; }
+
 	std::vector< GameObject* > getUnits() { return units; }
 	std::vector< GameObject* > getBuildings(){ return buildings; }
 
@@ -134,6 +227,7 @@ private:
 	// whether on a Plain, Forest, Hill etc.
 	CityType cityType;
 
+	CityFortificationLevel fortificationLevel;
 
 	// Cities Building slots.
 	std::vector< BuildingSlot > buildingSlots;

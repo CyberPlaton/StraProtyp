@@ -12,7 +12,7 @@
 #include "IUnit.h"
 #include "IImprovement.h"
 #include "ICity.h"
-
+#include "IMaptile.h"
 
 #include "tinyxml2.h"
 #include "nlohmann/json.hpp"
@@ -292,9 +292,23 @@ private:
 				gameobject->AddComponent(city);
 
 				// Citytype
-				XMLElement* cType = cmp->FirstChildElement("CityType");
-				std::string cityType = std::string(cType->Attribute("type")) + std::string(cType->Attribute("location"));
-				city->setCityType(cityType);
+				std::string cType = cmp->FirstChildElement("CityType")->GetText();
+				GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
+
+				IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
+				std::string maptileType = IMaptileCmp::getMaptileTypeAsString(maptile->getMaptileType());
+				
+				bool forest = false, river = false, hill = false, port = false;
+				if (maptile->hasForest()) forest = true;
+				if (maptile->hasHill()) hill = true;
+				if (maptile->hasRiver()) river = true;
+				if (maptile->hasWaterAccess()) port = true;
+
+				city->setCityType(maptileType, cType, forest, hill, river, port);				
+
+				// Walls
+				std::string fortLevel = cmp->FirstChildElement("FortificationLevel")->GetText();
+				city->setCityFortificationLevel(fortLevel);
 
 
 				// Storage
@@ -430,6 +444,26 @@ private:
 	GameObject* _createFromJson(const std::string& json_filepath, const std::string& name, int xpos, int ypos)
 	{
 		// Not implemented
+		return nullptr;
+	}
+
+
+	GameObject* _getMaptileAtPosition(int x, int y)
+	{
+		for (auto& go : GameObjectStorage::get()->getStorage())
+		{
+			if (go->hasComponent("Maptile"))
+			{
+
+				TransformCmp* cmp = go->getComponent<TransformCmp>("Transform");
+				if (cmp->xpos == x && cmp->ypos == y)
+				{
+					return go;
+				}
+
+			}
+		}
+
 		return nullptr;
 	}
 

@@ -1164,6 +1164,18 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	_storeDecal("chicken", decal);
 
+	sprite = new olc::Sprite(default_path + "steel_armor.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("steel_armor", decal);
+
+	sprite = new olc::Sprite(default_path + "malachite_armor.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("malachite_armor", decal);
+
+	sprite = new olc::Sprite(default_path + "adamantium_armor.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("adamantium_armor", decal);
+
 	// Buildings
 	default_path = "Data/Assets/Building/";
 	sprite = new olc::Sprite(default_path + "tavern.png");
@@ -1185,6 +1197,40 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	_storeDecal("fort_plain", decal);
 
+
+	// Cities/Forts Background and UI etc.
+	sprite = new olc::Sprite(default_path + "temperate_forest_bg.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("temperate_forest_bg", decal);
+
+	sprite = new olc::Sprite(default_path + "jungle_forest_bg.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("jungle_forest_bg", decal);
+
+	sprite = new olc::Sprite(default_path + "city_bg_temperate_plain.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("city_bg_temperate_plain", decal);
+
+	sprite = new olc::Sprite(default_path + "city_bg_savannah_plain.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("city_bg_savannah_plain", decal);
+
+	sprite = new olc::Sprite(default_path + "city_bg_jungle_plain.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("city_bg_jungle_plain", decal);
+
+
+	sprite = new olc::Sprite(default_path + "bg_maptile_jungle.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("bg_maptile_jungle", decal);
+
+	sprite = new olc::Sprite(default_path + "bg_maptile_temperate.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("bg_maptile_temperate", decal);
+
+	sprite = new olc::Sprite(default_path + "bg_maptile_savannah.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("bg_maptile_savannah", decal);
 
 	return true;
 }
@@ -1312,17 +1358,23 @@ void AppStateCityView::_renderCityBase(ICityCmp* city)
 	// City Screen.
 	app->FillRectDecal(olc::vi2d(5, 5), olc::vi2d(700, 750), olc::DARK_CYAN);
 
+
 	// City Worldmap Screen, showing the city and surrounding maptiles around city.
 	app->FillRectDecal(olc::vi2d(705, 5), olc::vi2d(650, 750), olc::DARK_MAGENTA);
 
 	// City UI Screen
-	app->FillRectDecal(olc::vi2d(5, 5), olc::vi2d(700, 100), olc::GREEN);
+	app->FillRectDecal(olc::vi2d(5, 5), olc::vi2d(700, 200), olc::GREEN);
 
-	// Maptile Indication.
-	app->FillRectDecal(olc::vi2d(5, 100), olc::vi2d(700, 100), olc::YELLOW);
+	// Maptile Indication, with the maptile and forest, hills or river if any.
+	app->FillRectDecal(olc::vi2d(5, 200), olc::vi2d(700, 200), olc::YELLOW);
+	app->DrawDecal(olc::vf2d(5, 200), app->_getDecal("bg_maptile_temperate"), olc::vf2d(1, 1));
+	app->DrawDecal(olc::vf2d(5, 200), app->_getDecal("temperate_forest_bg"), olc::vf2d(1, 1));
+
 
 	// City Ground Indication.
-	app->FillRectDecal(olc::vi2d(5, 200), olc::vi2d(700, 555), olc::GREY);
+	//app->FillRectDecal(olc::vi2d(5, 200), olc::vi2d(700, 555), olc::GREY);
+	app->DrawDecal(olc::vf2d(5, 200), app->_getDecal("city_bg_temperate_plain"), olc::vf2d(1, 1));
+
 
 	// Selected Unit/Building etc.
 	app->FillRectDecal(olc::vi2d(5, 740), olc::vi2d(700, 15), olc::RED);

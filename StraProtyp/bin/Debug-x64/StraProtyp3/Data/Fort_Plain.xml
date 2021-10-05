@@ -18,7 +18,9 @@
 
 			<!--Whether this is a city or fort and on which terrain type it is-->
 			<CityType type="fort" location="plain"></CityType>
-			
+
+			<Fortification>Earth Wall</Fortification>
+
 			<MaxStorage>100</MaxStorage>
 			
 			<Data>

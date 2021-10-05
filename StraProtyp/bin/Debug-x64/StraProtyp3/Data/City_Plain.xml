@@ -17,7 +17,9 @@
 		<Component name ="City">
 
 			<!--Whether this is a city or fort and on which terrain type it is-->
-			<CityType type="city" location="plain"></CityType>
+			<CityType>city</CityType>
+
+			<Fortification>Earth Wall</Fortification>
 			
 			<MaxStorage>100</MaxStorage>
 			
