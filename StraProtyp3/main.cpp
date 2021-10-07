@@ -215,12 +215,13 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Snow_Deep.xml", "Forest", 10, 10);
 	go = creator.create("Data/Snow_Dying.xml", "Forest", 10, 8);
 
-
-	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
-
-
 	go = creator.create("Data/Sand_Maptile.xml", "Maptile", 3, 4);
 	go = creator.create("Data/Sand_Maptile.xml", "Maptile", 4, 3);
+
+
+	// City should be created after all maptiles are done.
+	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
+
 
 
 	NavMesh::get()->bake();
@@ -1752,14 +1753,14 @@ void AppStateWorldMap::_drawUI()
 	// GAMEOBJECTS WINDOW
 	int go_count = GameObjectStorage::get()->getStorage().size();
 	ImGui::SetNextWindowPos(ImVec2(1.0f, 15.0f), ImGuiCond_Appearing);
-	ImGui::SetNextWindowSize(ImVec2(350.0f, 600.0f), ImGuiCond_Appearing);
+	ImGui::SetNextWindowSize(ImVec2(400.0f, 700.0f), ImGuiCond_Appearing);
 	if (ImGui::Begin("GameObjects", &gameobjects_window))
 	{
 		for (auto& go : GameObjectStorage::get()->getStorage())
 		{
 			// Show GO
 			std::string tag_name = go->getTag() + " \"" + go->getName() + "\"";
-			bool ret = ImGui::CollapsingHeader(tag_name.c_str());
+			bool ret = ImGui::CollapsingHeader(tag_name.c_str(), ImGuiWindowFlags_NoResize);
 
 			// Check whether we are hovering over the current displayed GO.
 			if (ImGui::IsItemHovered())
@@ -1812,7 +1813,7 @@ void AppStateWorldMap::_drawUI()
 						{
 							IUnitCmp* uc = static_cast<IUnitCmp*>(cmp);
 
-							ImGui::Text("Unit Profession \"%s\"",  uc->getProfession().c_str());
+							ImGui::Text("Profession \"%s\"",  uc->getProfession().c_str());
 
 							if (ImGui::TreeNode("Requirements"))
 							{
@@ -1869,6 +1870,107 @@ void AppStateWorldMap::_drawUI()
 						{
 
 						}
+
+						if (cmp->getType().find("City") != std::string::npos)
+						{
+							ICityCmp* city = static_cast<ICityCmp*>(cmp);
+
+							ImGui::Text("CityType \"%s\"", city->getCityType().c_str());
+							ImGui::Text("Fortfication \"%s\"", city->getFortificationLevel().c_str());
+
+
+							if (ImGui::TreeNode("Storage"))
+							{
+								std::map< RessourceID, int > ress = city->getCityRessources();
+
+								for (auto& r : ress)
+								{
+									ImGui::Text("\"%s\" : %d", r.first.c_str(), r.second);
+								}
+
+								ImGui::TreePop();
+							}
+
+
+							if (ImGui::TreeNode("Data"))
+							{
+								std::map< std::string, int > data = city->getCityData();
+
+								for (auto& d : data)
+								{
+									ImGui::Text("\"%s\" : %d", d.first.c_str(), d.second);
+								}
+
+								ImGui::TreePop();
+							}
+
+
+							if (ImGui::TreeNode("Building Slots"))
+							{
+								std::vector < ICityCmp::BuildingSlot > slots = city->getCityBuildingSlots();
+
+								for (auto& slot : slots)
+								{
+									std::string slotName = "{"+ std::to_string(slot.slotNumber) + "}-\"" + slot.slotType + "\"";
+
+									if (ImGui::TreeNode(slotName.c_str()))
+									{
+										if (slot.isUsed)
+										{
+											ImGui::Text("Used");
+										}
+										else
+										{
+											ImGui::Text("Unused");
+										}
+
+										ImGui::TreePop();
+									}
+								}
+
+								ImGui::TreePop();
+							}
+
+
+							if (ImGui::TreeNode("Buildings"))
+							{
+								std::vector< GameObject* > buildings = city->getBuildings();
+
+								for (auto& go : buildings)
+								{
+
+									IBuildingCmp* building = go->getComponent<IBuildingCmp>("Building");
+
+									if (ImGui::TreeNode(building->getBuildingName().c_str()))
+									{									
+										ImGui::TreePop();
+									}
+								}
+
+								ImGui::TreePop();
+							}
+
+
+							if (ImGui::TreeNode("Units"))
+							{
+								std::vector< GameObject* > units = city->getUnits();
+
+								for (auto& go : units)
+								{
+
+									IUnitCmp* unit = go->getComponent<IUnitCmp>("Unit");
+
+									if (ImGui::TreeNode(unit->getUnitName().c_str()))
+									{
+										ImGui::TreePop();
+									}
+								}
+
+								ImGui::TreePop();
+							}
+
+						}
+
 
 
 

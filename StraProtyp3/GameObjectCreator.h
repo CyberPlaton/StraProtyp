@@ -14,6 +14,12 @@
 #include "ICity.h"
 #include "IMaptile.h"
 
+/*
+* Include Random Name Generator to create random names for units and buildings on the fly.
+*/
+#include "RandomNameGenerator.h"
+
+
 #include "tinyxml2.h"
 #include "nlohmann/json.hpp"
 
@@ -82,11 +88,11 @@ private:
 		if (root == nullptr) return nullptr;
 
 
-		// Get tag
-		std::string tag = root->FirstChildElement("Tag")->GetText();
+		// Get tag and name.
+		std::string gameobjectName = root->FirstChildElement("Name")->GetText();
 
 		// Create the gameobject
-		GameObject* gameobject = new GameObject(tag, name);
+		GameObject* gameobject = new GameObject(name, gameobjectName);
 
 		/*
 		* Get the components defining the agent.
@@ -163,10 +169,31 @@ private:
 
 				gameobject->AddComponent(new WalkableBuildingCmp("WalkableBuilding", gameobject , doorx, doory));
 			}
+			else if (cmp_name.compare("Maptile") == 0)
+			{
+				IMaptileCmp* tile = new IMaptileCmp("Maptile");
+				IMaptileCmp::MType type = IMaptileCmp::getMaptileTypeFromString(cmp->Attribute("type"));
+				tile->setMaptileType(type);
+
+				gameobject->AddComponent(tile);
+			}
 			else if (cmp_name.compare("Building") == 0)
 			{
-				IBuildingCmp* building = new IBuildingCmp("Building");
+				// Get Building Tag and Name.
+				std::string buildName = gameobjectName;
+				std::string buildTag = "Building_" + buildName;
+
+				IBuildingCmp* building = new IBuildingCmp(buildTag);
+
+				// Setting the Building name as some specific ingame name based on race and randomness.
+				std::string randName = RandomNamesGenerator::get()->getBuildingName();
+				std::string finalName = " The \""+ randName + "\" " + buildName;
+				building->setBuildingName(finalName);
+				
+
 				gameobject->AddComponent(building);
+
+
 
 				// Check for requirements for the unit and add them.
 				XMLElement* reqs = cmp->FirstChildElement("Requirements");
@@ -247,12 +274,24 @@ private:
 			}
 			else if (cmp_name.compare("Unit") == 0)
 			{
-				IUnitCmp* unit = new IUnitCmp("Unit");
+				// Get Unit Name and Tag
+				std::string unitName = gameobjectName;
+				std::string unitTag = "Unit_" + unitName;
+
+				IUnitCmp* unit = new IUnitCmp(unitTag);
+
+				// Get a random name for the Unit.
+				std::string randName = RandomNamesGenerator::get()->getUnitName();
+				std::string finalName = randName + " the \"" + unitName +"\"";
+				unit->setUnitName(finalName); // The Unit name is the displaying Name of the in game Citizen.
+
+
 				gameobject->AddComponent(unit);
 
 
 				// Get the profession.
 				unit->setProfession(cmp->FirstChildElement("Profession")->GetText());
+
 
 				// Check for requirements for the unit and add them.
 				XMLElement* reqs = cmp->FirstChildElement("Requirements");
@@ -307,7 +346,7 @@ private:
 				city->setCityType(maptileType, cType, forest, hill, river, port);				
 
 				// Walls
-				std::string fortLevel = cmp->FirstChildElement("FortificationLevel")->GetText();
+				std::string fortLevel = cmp->FirstChildElement("Fortification")->GetText();
 				city->setCityFortificationLevel(fortLevel);
 
 
@@ -378,7 +417,6 @@ private:
 				{
 					int amount = entry->IntAttribute("amount", -INT_MAX);
 					std::string unitName = entry->Attribute("name");
-
 
 					for (int i = 0; i < amount; i++)
 					{

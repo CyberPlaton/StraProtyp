@@ -1,0 +1,32 @@
+<EntityNames>
+	<Units>
+		<Names race="human" count="11">
+			<Name>Nimet Bradley</Name>
+			<Name>Wiclef Stafford</Name>
+			<Name>Marquis Burton</Name>
+			<Name>Jessie Barton</Name>
+			<Name>Isidorius Holton</Name>
+			<Name>Quennel Thorp</Name>
+			<Name>Chane Smither</Name>
+			<Name>Courtenay Bradford</Name>
+			<Name>Jabari Swet</Name>
+			<Name>Guy Torp</Name>
+			<Name>Antonio Deighton</Name>
+		</Names>
+	</Units>
+
+	<Buildings>
+		<Names race="human" count="10">
+			<Name>Main Way</Name>
+			<Name>Second Street</Name>
+			<Name>Old Village Road</Name>
+			<Name>New Village Road</Name>
+			<Name>Second Way</Name>
+			<Name>To the Gate Way</Name>
+			<Name>To The Castle</Name>
+			<Name>To The Fort</Name>
+			<Name>To The Tower</Name>
+			<Name>Last Resort</Name>
+		</Names>
+	</Buildings>
+</EntityNames>

@@ -24,7 +24,11 @@ using RessourceID = std::string;
 * "city_hill_port_temperate" - city on hill and temperate maptile with water access,
 * "city_plain_river_temperate" - city on basic temperate plain on river,
 * "city_forest_river_temperate" - city on forest and temperate maptile and on river,
-* "city_hill_river_temperate" - city on a hill and temperate maptile and on river
+* "city_hill_river_temperate" - city on a hill and temperate maptile and on river,
+* "city_plain_river_port_temperate" - city on basic temperate plains and river with water access,
+* "city_forest_river_port_temperate" - city on forest and temperate maptile with river and water access,
+* "city_hill_river_port_temperate" - city on hill and temperate maptile with river and water access,
+* 
 * ...
 * Analog for the other maptile types tundra, snow, savannah and jungle.
 * 
@@ -105,59 +109,72 @@ public:
 
 	void setMaxStorage(int n) { maxStorage = n; }
 
-	void setCityType(const std::string& type, const std::string& maptile, bool forest = false, bool hill = false, bool river = false, bool port = false)
+	void setCityType(const std::string& type, const std::string& cityType, bool forest = false, bool hill = false, bool river = false, bool port = false)
 	{
 		using namespace std;
 
-		std::string cityType = type;
+		std::string cType = cityType;
 
 		// Set city as forest or hill city.
 		// They are mutualy exclusive.
 		if (forest)
 		{
-			cityType += "_forest";
+			cType += "_forest";
 		}
 		else if (hill)
 		{
-			cityType += "_hill";
+			cType += "_hill";
 		}
 
+		// Check whether city is on river
 		if (river)
 		{
-			cityType += "_river";
+			cType += "_river";
 		}
 
-		if (maptile.compare("temperate") == 0)
+		// Check whether city has water access
+		if (port)
 		{
-			cityType += "temperate";
+			cType += "_port";
 		}
-		else if (maptile.compare("snow") == 0)
+
+
+		// Set correct underlying maptile type
+		if (type.compare("temperate") == 0)
 		{
-			cityType += "snow";
+			cType += "_temperate";
+		}
+		else if (type.compare("snow") == 0)
+		{
+			cType += "_snow";
 
 		}
-		else if (maptile.compare("tundra") == 0)
+		else if (type.compare("tundra") == 0)
 		{
-			cityType += "tundra";
+			cType += "_tundra";
 
 		}
-		else if (maptile.compare("savannah") == 0)
+		else if (type.compare("savannah") == 0)
 		{
-			cityType += "savannah";
+			cType += "_savannah";
 
 		}
-		else if (maptile.compare("jungle") == 0)
+		else if (type.compare("jungle") == 0)
 		{
-			cityType += "jungle";
+			cType += "_jungle";
 
 		}
 		else
 		{
 			cout << color(colors::RED);
-			cout << "Undefined Maptile \""<< maptile << "\", defining as default temperate..." << white << endl;
-			cityType += "temperate";
+			cout << "Undefined Maptile \""<< type << "\", defining as default temperate..." << white << endl;
+			cType += "temperate";
 		}
+
+		this->cityType = cType;
 	}
+
+
 
 	void setCityFortificationLevel(const CityFortificationLevel& level) { fortificationLevel = level; }
 
@@ -211,10 +228,13 @@ public:
 	}
 
 	CityFortificationLevel getFortificationLevel() { return fortificationLevel; }
+	CityType getCityType() { return cityType; }
 
 	std::vector< GameObject* > getUnits() { return units; }
 	std::vector< GameObject* > getBuildings(){ return buildings; }
-
+	std::map< RessourceID, int > getCityRessources() { return cityRessources; }
+	std::map< std::string, int > getCityData() { return data; }
+	std::vector< BuildingSlot > getCityBuildingSlots() { return buildingSlots; }
 
 private:
 	std::string type;

@@ -1,5 +1,4 @@
 <Gameobject>
-	<Tag>Tavern</Tag>
 	<Name>Tavern</Name>
 	<Components>
 		<Component name="Renderable">
@@ -16,7 +15,7 @@
 
 		<Component name ="Animator"></Component>
 		
-		<Component name="Building">
+		<Component name="Building">			
 			<Requirements>
 				<!--Required Technology to build this building-->
 				<Req type="tech">Alcohol Making</Req>

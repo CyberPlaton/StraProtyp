@@ -1,5 +1,4 @@
 <Gameobject>
-	<Tag>Weapon Smiths Workshop</Tag>
 	<Name>Weapon Smiths Workshop</Name>
 	<Components>
 		<Component name="Renderable">

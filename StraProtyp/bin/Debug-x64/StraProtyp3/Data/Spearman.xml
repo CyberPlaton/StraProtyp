@@ -1,5 +1,4 @@
 <Gameobject>
-	<Tag>Spearman</Tag>
 	<Name>Spearman</Name>
 	<Components>
 		<Component name="Renderable">

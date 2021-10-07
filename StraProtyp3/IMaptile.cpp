@@ -26,3 +26,44 @@ std::string IMaptileCmp::getMaptileTypeAsString(IMaptileCmp::MType type)
 		return "undefined";
 	}
 }
+
+IMaptileCmp::MType IMaptileCmp::getMaptileTypeFromString(const std::string& type)
+{
+	if (type.compare("jungle") == 0)
+	{
+		return MType::MT_JUNGLE;
+	}
+	else if(type.compare("temperate") == 0)
+	{
+		return MType::MT_TEMPERATE;
+	}
+	else if (type.compare("tundra") == 0)
+	{
+		return MType::MT_TUNDRA;
+	}
+	else if (type.compare("sand") == 0)
+	{
+		return MType::MT_SAND;
+	}
+	else if (type.compare("savannah") == 0)
+	{
+		return MType::MT_SAVANNAH;
+	}
+	else if (type.compare("ice") == 0)
+	{
+		return MType::MT_ICE;
+	}
+	else if (type.compare("snow") == 0)
+	{
+		return MType::MT_SNOW;
+	}
+	else if (type.compare("water_deep") == 0)
+	{
+		return MType::MT_WATER_DEEP;
+	}
+	else if (type.compare("water_shallow") == 0)
+	{
+		return MType::MT_WATER_SHALLOW;
+	}
+}
+

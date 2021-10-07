@@ -52,14 +52,19 @@
 
 			<!--The starting units of a city-->
 			<Units>
-				<Entry name="Spearman" amount="5"></Entry>
+				<Entry name="Spearman" amount="50"></Entry>
 			</Units>
 
 			<!--The starting buildings of a city-->
 			<Buildings>
 				<Entry name="Weapon Smiths Workshop" slot="1" slotType="Normal"></Entry>
 				<Entry name="Tavern" slot="2" slotType="Normal"></Entry>
-				<Entry name="Shack" slot="3" slotType="Normal"></Entry>
+				<Entry name="Weapon Smiths Workshop" slot="3" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="4" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="5" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="6" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="7" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="8" slotType="Normal"></Entry>
 			</Buildings>
 			
 		</Component>

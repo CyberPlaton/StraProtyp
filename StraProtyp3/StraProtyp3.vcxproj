@@ -124,6 +124,7 @@
     <ClInclude Include="olcPixelGameEngine.h" />
     <ClInclude Include="PlayerInstance.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="RandomNameGenerator.h" />
     <ClInclude Include="TechInstance.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="WorldState.h" />
@@ -151,6 +152,7 @@
     <ClCompile Include="MaptileRegions.cpp" />
     <ClCompile Include="PlayerInstance.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="RandomNameGenerator.cpp" />
     <ClCompile Include="TechInstance.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

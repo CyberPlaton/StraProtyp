@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Base\Datastructs">
       <UniqueIdentifier>{7690dca8-6910-42e9-bfc7-5aa925a9ff99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Helper">
+      <UniqueIdentifier>{baf0991f-6f31-4565-8464-6ced25b1bc93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -144,6 +147,9 @@
     <ClInclude Include="ICity.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="RandomNameGenerator.h">
+      <Filter>Source Files\Game\Helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -214,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="MaptileRegions.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomNameGenerator.cpp">
+      <Filter>Source Files\Game\Helper</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

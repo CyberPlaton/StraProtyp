@@ -32,8 +32,13 @@ public:
 	ComponentType getType() override { return this->type; }
 
 	void addTechRequirement(const TechID& id) { techRequirements.push_back(id); }
+	
 	void addRaceRequirement(const RaceID& id) { raceRequirements.push_back(id); }
+	
 	void addRessourceRequirement(const RessourceID& ressName, int amount) { ressourceRequirements.emplace(ressName, amount); }
+
+	void setBuildingName(const std::string& name) { buildingName = name; }
+	std::string getBuildingName() { return buildingName; }
 
 	void addProductionTuple(const RessourceID& prodRessource, int prodAmount, int prodTime, const RessourceID& needRessource, int needAmount)
 	{
@@ -185,6 +190,8 @@ public:
 
 private:
 	std::string type;
+
+	std::string buildingName;
 
 	// Requirements to build this Building.
 	std::vector<TechID> techRequirements;

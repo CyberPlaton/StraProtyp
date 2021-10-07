@@ -28,7 +28,7 @@ public:
 
 
 	static std::string getMaptileTypeAsString(IMaptileCmp::MType type);
-
+	static MType getMaptileTypeFromString(const std::string& type);
 
 public:
 	IMaptileCmp(const ComponentID& name) {
@@ -49,6 +49,10 @@ public:
 	*/
 	MType getMaptileType() { return maptileType; }
 
+	void setMaptileType(MType type)
+	{
+		maptileType = type;
+	}
 
 	/*
 	* Get the Gameobject Tags on this Maptile.
