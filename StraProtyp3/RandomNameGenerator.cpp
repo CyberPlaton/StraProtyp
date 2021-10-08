@@ -18,7 +18,7 @@ std::string RandomNamesGenerator::getUnitName()
 
 
 	XMLElement* units = root->FirstChildElement("Units");
-	XMLElement* race = units->FirstChildElement("Human");
+	XMLElement* race = units->FirstChildElement("Troll");
 	XMLElement* suffixes = race->FirstChildElement("Suffixes");
 	XMLElement* prefixes = race->FirstChildElement("Prefixes");
 

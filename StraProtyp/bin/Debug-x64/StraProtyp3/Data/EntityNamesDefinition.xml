@@ -45,7 +45,7 @@
 
 		<DarkElf>
 			<!--Names are made of "prefix"+"suffix" as recombinations-->
-			<Prefixes>
+			<Prefixes count="19">
 				<Prefix>Azar</Prefix>
 				<Prefix>Ereb</Prefix>
 				<Prefix>Nis</Prefix>
@@ -66,7 +66,7 @@
 				<Prefix>Sarth</Prefix>
 				<Prefix>Amb</Prefix>
 			</Prefixes>
-			<Suffixes>
+			<Suffixes count="16">
 				<Suffix>rys</Suffix>
 				<Suffix>is</Suffix>
 				<Suffix>al</Suffix>
@@ -89,7 +89,7 @@
 
 		<HighElf>
 			<!--Names are made of "prefix"+"suffix" as recombinations-->
-			<Prefixes>
+			<Prefixes count="19">
 				<Prefix>Nath</Prefix>
 				<Prefix>Yv</Prefix>
 				<Prefix>Arn</Prefix>
@@ -110,7 +110,7 @@
 				<Prefix>Lin</Prefix>
 				<Prefix>Ondole</Prefix>
 			</Prefixes>
-			<Suffixes>
+			<Suffixes count="16">
 				<Suffix>dalf</Suffix>
 				<Suffix>las</Suffix>
 				<Suffix>lian</Suffix>
@@ -133,7 +133,7 @@
 
 		<Orc>
 			<!--Names are made of "prefix"+"suffix" as recombinations-->
-			<Prefixes>
+			<Prefixes count="19">
 				<Prefix>Ba</Prefix>
 				<Prefix>Aggan</Prefix>
 				<Prefix>Az</Prefix>
@@ -154,7 +154,7 @@
 				<Prefix>Snegh</Prefix>
 				<Prefix>Zul</Prefix>
 			</Prefixes>
-			<Suffixes>
+			<Suffixes count="16">
 				<Suffix>groth</Suffix>
 				<Suffix>hoth</Suffix>
 				<Suffix>log</Suffix>
@@ -177,7 +177,7 @@
 
 		<Goblin>
 			<!--Names are made of "prefix"+"suffix" as recombinations-->
-			<Prefixes>
+			<Prefixes count="19">
 				<Prefix>Rig</Prefix>
 				<Prefix>Wiz</Prefix>
 				<Prefix>Azz</Prefix>
@@ -198,7 +198,7 @@
 				<Prefix>Gall</Prefix>
 				<Prefix>Gear</Prefix>
 			</Prefixes>
-			<Suffixes>
+			<Suffixes count="16">
 				<Suffix>bert</Suffix>
 				<Suffix>nid</Suffix>
 				<Suffix>log</Suffix>
@@ -222,7 +222,7 @@
 
 		<Gnome>
 			<!--Names are made of "prefix"+"suffix" as recombinations-->
-			<Prefixes>
+			<Prefixes count="19">
 				<Prefix>Kna</Prefix>
 				<Prefix>Isa</Prefix>
 				<Prefix>Max</Prefix>
@@ -243,7 +243,7 @@
 				<Prefix>Niv</Prefix>
 				<Prefix>Clin</Prefix>
 			</Prefixes>
-			<Suffixes>
+			<Suffixes count="16">
 				<Suffix>vet</Suffix>
 				<Suffix>an</Suffix>
 				<Suffix>el</Suffix>
@@ -266,7 +266,7 @@
 
 		<Troll>
 			<!--Names are made of "prefix"+"suffix" as recombinations-->
-			<Prefixes>
+			<Prefixes count="19">
 				<Prefix>Xen´</Prefix>
 				<Prefix>Uthel´</Prefix>
 				<Prefix>Hula´</Prefix>
@@ -287,7 +287,7 @@
 				<Prefix>Mor´</Prefix>
 				<Prefix>Tai´</Prefix>
 			</Prefixes>
-			<Suffixes>
+			<Suffixes count="16">
 				<Suffix>zan</Suffix>
 				<Suffix>vek</Suffix>
 				<Suffix>rin</Suffix>
@@ -310,7 +310,7 @@
 
 		<Dwarf>
 			<!--Names are made of "prefix"+"suffix" as recombinations-->
-			<Prefixes>
+			<Prefixes count="19">
 				<Prefix>Aff</Prefix>
 				<Prefix>Abs</Prefix>
 				<Prefix>Aggr</Prefix>
@@ -331,7 +331,7 @@
 				<Prefix>El</Prefix>
 				<Prefix>Bai</Prefix>
 			</Prefixes>
-			<Suffixes>
+			<Suffixes count="16">
 				<Suffix>dun</Suffix>
 				<Suffix>og</Suffix>
 				<Suffix>on</Suffix>
