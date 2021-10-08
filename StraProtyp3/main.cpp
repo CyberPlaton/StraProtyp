@@ -392,13 +392,13 @@ void App::_handleInput()
 		olc::vi2d bottomDown = tv.GetBottomRightTile();
 		olc::vi2d middle = { bottomDown.x / 2, bottomDown.y / 2 };
 
-		/*
+		
 		cout << color(colors::RED);
 		cout << "MousePos {" << mousex << "," << mousey << "}" << endl;
-		cout << "Tile TopLeft " << topLeft.x << "," << topLeft.y << "}" << endl;
-		cout << "Tile BottRight " << bottomDown.x << "," << bottomDown.y << "}" << endl;
-		cout << "Tile Middle " << middle.x << "," << middle.y << "}" << white << endl;
-		*/
+		cout << "TopLeft Maptile {" << topLeft.x << "," << topLeft.y << "}" << endl;
+		cout << "BottomRight Maptile {" << bottomDown.x << "," << bottomDown.y << "}" << endl;
+		cout << "Middle Maptile {" << middle.x << "," << middle.y << "}" << white << endl;
+		
 
 		// Do not allow capturing input to imgui and app at same time.
 		if (!imgui_has_focus)
@@ -1263,46 +1263,6 @@ bool App::_loadGameobjectPathdefinitions()
 
 
 
-
-void App::renderLayer(const std::string& layerName)
-{
-	bool unit_layer = false;
-
-	if (layerName.compare("unit") == 0)
-	{
-		unit_layer = true;
-	}
-
-
-	for (auto& go : GameObjectStorage::get()->getStorage())
-	{
-		if (go->hasComponent("Renderable"))
-		{
-			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
-
-			if (render->render && render->renderingLayer.compare(layerName) == 0)
-			{
-				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
-
-				olc::Decal* decal = _getDecal(render->decalName);
-
-
-				if (unit_layer)
-				{
-					// Render units slightly above the maptile and over it,
-					// so we have a small illusion of 3d...
-					tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos - render->height / 3.5f), decal);
-				}
-				else
-				{
-					tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
-				}
-			}
-		}
-	}
-}
-
-
 bool App::_loadAppStateDefinitions()
 {
 	stateMachine.storeStateDefinition("worldMap", new AppStateWorldMap(this));
@@ -1494,6 +1454,132 @@ void AppStateCityView::onExit()
 	cout << "[AppStateCityView] onExit" << white << endl;
 }
 
+
+
+void AppStateWorldMap::_renderGameworld()
+{
+	for (auto& go : GameObjectStorage::get()->getStorage())
+	{
+		// Get only maptiles.
+		if (go->hasComponent("Maptile"))
+		{
+
+			// Get only visible maptiles.
+			if (_isMaptileVisible(go))
+			{
+
+				// Render Maptile with contents in correct order ( without units ).
+				_renderMaptile(go);
+			}
+
+		}
+	}
+}
+
+
+void AppStateWorldMap::_renderMaptile(GameObject* tile)
+{
+	// Rendering Order:
+	// 1 - maptile itself.
+	// 2 - hill, mountain or forest
+	// 3 - river
+	// 4 - ressource
+	// 5 - improvement
+	// 6 - road
+	// 7 - city or fort
+	// 8 - unit
+	std::map< int, GameObject* > drawOrder;
+	for (int i = 1; i < 9; i++) drawOrder.emplace(i, nullptr);
+
+	IMaptileCmp* maptile = tile->getComponent<IMaptileCmp>("Maptile");
+
+	// Render Maptile itself as first.
+	drawOrder[1] = tile;
+
+
+	for (auto& tag : maptile->getGameobjects())
+	{
+		// Get the gameobject on maptile.
+		GameObject* go = GameObjectStorage::get()->getGOByTag(tag);
+
+		// Store gameobject in correct slot for ordered rendering.
+		if (go->hasComponent("Renderable"))
+		{
+			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
+
+			if (render->render)
+			{
+				if (render->renderingLayer.compare("forest") == 0) // And Mountain, Hill
+				{
+					drawOrder[2] = go;
+				}
+				else if (render->renderingLayer.compare("river") == 0)
+				{
+					drawOrder[3] = go;
+				}
+				else if (render->renderingLayer.compare("ressource") == 0)
+				{
+					drawOrder[4] = go;
+				}
+				else if (render->renderingLayer.compare("improvement") == 0)
+				{
+					drawOrder[5] = go;
+				}
+				else if (render->renderingLayer.compare("road") == 0)
+				{
+					drawOrder[6] = go;
+				}
+				else if (render->renderingLayer.compare("city") == 0)
+				{
+					drawOrder[7] = go;
+				}
+				else if (render->renderingLayer.compare("unit") == 0)
+				{
+					drawOrder[8] = go;
+				}
+			}
+		}
+	}
+
+
+	for (int i = 1; i < 9; i++)
+	{
+		// Render the Gameobjects in correct order.
+		GameObject* go = drawOrder[i];
+		if (go)
+		{
+			TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
+			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
+
+			olc::Decal* decal = app->_getDecal(render->decalName);
+
+			app->tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
+		}
+	}
+}
+
+
+bool AppStateWorldMap::_isMaptileVisible(GameObject* go)
+{
+	TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
+
+	olc::vi2d upperLeftPoint, downRightPoint; // Define the visibility Rectangle.
+	_computeVisibilityRect(upperLeftPoint, downRightPoint);
+
+
+	// Check whether Transform Point is in the Rectangle.
+	return (transform->xpos >= upperLeftPoint.x && transform->xpos <= upperLeftPoint.x + downRightPoint.x &&
+			transform->ypos >= upperLeftPoint.y && transform->ypos <= upperLeftPoint.y + downRightPoint.y);
+}
+
+
+void AppStateWorldMap::_computeVisibilityRect(olc::vi2d& upLeft, olc::vi2d& downRight)
+{
+	upLeft = app->tv.GetTileUnderScreenPos({ 0, 0 });
+	downRight = app->tv.GetBottomRightTile();
+}
+
+
 void AppStateWorldMap::update(float)
 {
 	using namespace std;
@@ -1541,6 +1627,7 @@ void AppStateWorldMap::update(float)
 
 
 	// Draw General Layered
+	/*
 	app->renderLayer("maptile");
 	app->renderLayer("mountain");
 	app->renderLayer("forest");
@@ -1548,6 +1635,8 @@ void AppStateWorldMap::update(float)
 	app->renderLayer("city");
 	app->renderLayer("unit");
 	app->renderLayer("overlay");
+	*/
+	_renderGameworld();
 
 
 	if (selected_ui_gameobject)

@@ -115,12 +115,6 @@ public:
 	std::vector< TechInstance* > getNextTechToChoose(IPlayer* player, ITech::TechArea area);
 	StateMachine<App>& getStateMachine() { return stateMachine; }
 	olc::TileTransformedView& getRenderer() { return tv; }
-
-
-	/*
-	* The names for rendering layers are defined for each renderable component in XML.
-	*/
-	void renderLayer(const std::string& layerName);
 	
 	GameObject* getCurrentViewedCity() { return currentViewedCity;}
 
@@ -223,6 +217,10 @@ private:
 	App* app = nullptr;
 
 
+	void _renderMaptile(GameObject* tile);
+	void _computeVisibilityRect(olc::vi2d& upLeft, olc::vi2d& downRight);
+	bool _isMaptileVisible(GameObject* go);
+	void _renderGameworld();
 	void _drawUI();
 };
 

@@ -7,7 +7,7 @@
 			<Height>1.0</Height>
 			<Color>dark_green</Color>
 			<Decal>highmountain</Decal>
-			<Layer>mountain</Layer>
+			<Layer>forest</Layer>
 		</Component>
 
 		<Component name="Transform"></Component>

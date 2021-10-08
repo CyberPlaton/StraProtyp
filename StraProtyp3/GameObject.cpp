@@ -67,11 +67,6 @@ GameObject* GameObjectStorage::getGOByTag(const GOTag& tag)
 
 	size_t hash = hasher(tag);
 
-
-	cout << color(colors::CYAN);
-	cout << "Searching For \"" << tag << "\", with Hash \"" << hash << "\"" << white << endl;
-
-
 	GameObject* go = m_GameObjectsTagOptimized.findStoredData(hash);
 
 	if (!go)

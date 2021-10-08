@@ -156,6 +156,9 @@
     <ClInclude Include="olcPGEX_Font.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
+    <ClInclude Include="IForest.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

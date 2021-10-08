@@ -13,6 +13,7 @@
 #include "IImprovement.h"
 #include "ICity.h"
 #include "IMaptile.h"
+#include "IForest.h"
 
 /*
 * Include Random Name Generator to create random names for units and buildings on the fly.
@@ -169,6 +170,16 @@ private:
 
 				gameobject->AddComponent(new WalkableBuildingCmp("WalkableBuilding", gameobject , doorx, doory));
 			}
+			else if (cmp_name.compare("Forest") == 0)
+			{
+				gameobject->AddComponent(new IForestCmp("Forest"));
+
+				// Add forest to Maptile
+				GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
+				IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
+				maptile->addGameobject(gameobject->getTag());
+
+			}
 			else if (cmp_name.compare("Maptile") == 0)
 			{
 				IMaptileCmp* tile = new IMaptileCmp("Maptile");
@@ -285,8 +296,13 @@ private:
 				std::string finalName = randName + " the \"" + unitName +"\"";
 				unit->setUnitName(finalName); // The Unit name is the displaying Name of the in game Citizen.
 
-
 				gameobject->AddComponent(unit);
+
+
+				// Add unit to Maptile
+				GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
+				IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
+				maptile->addGameobject(gameobject->getTag());
 
 
 				// Get the profession.
@@ -324,6 +340,12 @@ private:
 			else if (cmp_name.compare("Improvement") == 0)
 			{
 				gameobject->AddComponent(new IImprovementCmp("Improvement"));
+
+				// Add Improvement to Maptile.
+				GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
+				IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
+				maptile->addGameobject(gameobject->getTag());
+
 			}
 			else if (cmp_name.compare("City") == 0)
 			{
@@ -336,6 +358,10 @@ private:
 
 				IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
 				std::string maptileType = IMaptileCmp::getMaptileTypeAsString(maptile->getMaptileType());
+
+				// Add Improvement to Maptile.
+				maptile->addGameobject(gameobject->getTag());
+
 				
 				bool forest = false, river = false, hill = false, port = false;
 				if (maptile->hasForest()) forest = true;

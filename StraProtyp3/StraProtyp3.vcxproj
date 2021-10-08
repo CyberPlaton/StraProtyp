@@ -113,6 +113,7 @@
     <ClInclude Include="GameWorldTimer.h" />
     <ClInclude Include="IBuilding.h" />
     <ClInclude Include="ICity.h" />
+    <ClInclude Include="IForest.h" />
     <ClInclude Include="IImprovement.h" />
     <ClInclude Include="IMaptile.h" />
     <ClInclude Include="IPlayer.h" />
