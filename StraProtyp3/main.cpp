@@ -79,7 +79,8 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 
 	SetDrawTarget((uint8_t)m_GameLayer);
-	DrawStringDecal(olc::vf2d(1300, 50), "FPS: " + std::to_string(GetFPS()));
+	DrawStringDecal(olc::vf2d(1200, 50), "FPS: " + std::to_string(GetFPS()));
+	font->DrawStringDecal(olc::vf2d(1200, 50), "FPS: " + std::to_string(GetFPS()), olc::WHITE, {0.5f, 0.5f});
 
 	return true;
 }
@@ -93,6 +94,8 @@ bool App::OnUserCreate()
 {
 	using namespace std;
 
+	// Create Font
+	font = new olc::Font("Data/Assets/Font/data-latin.png");
 
 	// Init Random
 	Random::Init();
@@ -1547,6 +1550,9 @@ void AppStateWorldMap::update(float)
 		{
 			olc::vf2d p = { tr->xpos + rc->width / 2.0f - 0.3f, tr->ypos + rc->height / 2.0f };
 			tv.DrawStringDecal(p, selected_gameobject->tag, olc::RED, olc::vf2d(0.5f, 0.5f));
+
+			olc::vf2d screenPoint = tv.WorldToScreen(p);
+			app->font->DrawStringDecal(screenPoint, selected_gameobject->tag, olc::RED, {0.75f, 0.75f});
 		}
 	}
 

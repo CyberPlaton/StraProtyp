@@ -150,6 +150,12 @@
     <ClInclude Include="RandomNameGenerator.h">
       <Filter>Source Files\Game\Helper</Filter>
     </ClInclude>
+    <ClInclude Include="olcPGEX_CustomFont.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="olcPGEX_Font.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

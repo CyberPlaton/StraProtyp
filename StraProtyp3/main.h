@@ -19,6 +19,10 @@
 #include "olcPGEX_TransformedView.h"
 #define OLC_PGEX_DEAR_IMGUI_IMPLEMENTATION
 #include "common/include/imgui_impl_pge.h"
+#define OLC_PGEX_FONT
+#include "olcPGEX_Font.h"
+#define OLC_PGEX_CUSTOMFONT
+#include "olcPGEX_CustomFont.h"
 
 
 #include "imnodes.h"
@@ -153,6 +157,11 @@ private:
 
 
 	StateMachine<App> stateMachine;
+
+
+
+	// Font for rendering Text in game.
+	olc::Font* font = nullptr;
 
 private:
 
