@@ -14,6 +14,10 @@
 #include "ICity.h"
 #include "IMaptile.h"
 #include "IForest.h"
+#include "IRessource.h"
+#include "IMountain.h"
+#include "IRiver.h"
+#include "IHill.h"
 
 /*
 * Include Random Name Generator to create random names for units and buildings on the fly.
@@ -345,6 +349,46 @@ private:
 				GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
 				IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
 				maptile->addGameobject(gameobject->getTag());
+
+			}
+			else if (cmp_name.compare("Ressource") == 0)
+			{
+			gameobject->AddComponent(new IRessourceCmp("Ressource"));
+
+			// Add Ressource to Maptile.
+			GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
+			IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
+			maptile->addGameobject(gameobject->getTag());
+
+			}
+			else if (cmp_name.compare("River") == 0)
+			{
+			gameobject->AddComponent(new IRiverCmp("River"));
+
+			// Add Ressource to Maptile.
+			GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
+			IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
+			maptile->addGameobject(gameobject->getTag());
+
+			}
+			else if (cmp_name.compare("Mountain") == 0)
+			{
+			gameobject->AddComponent(new IMountainCmp("Mountain"));
+
+			// Add Ressource to Maptile.
+			GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
+			IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
+			maptile->addGameobject(gameobject->getTag());
+
+			}
+			else if (cmp_name.compare("Hill") == 0)
+			{
+			gameobject->AddComponent(new IHillCmp("Hill"));
+
+			// Add Ressource to Maptile.
+			GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
+			IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
+			maptile->addGameobject(gameobject->getTag());
 
 			}
 			else if (cmp_name.compare("City") == 0)
