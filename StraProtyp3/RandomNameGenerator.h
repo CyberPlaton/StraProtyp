@@ -44,7 +44,7 @@ private:
 	static RandomNamesGenerator* g_RandomNamesGenerator;
 
 
-	std::string defaultEntityNamesPath = "Data/EntityNames.xml";
+	std::string defaultEntityNamesPath = "Data/EntityNamesDefinition.xml";
 
 
 	RandomNamesGenerator() = default;

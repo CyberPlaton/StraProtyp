@@ -18,30 +18,66 @@ std::string RandomNamesGenerator::getUnitName()
 
 
 	XMLElement* units = root->FirstChildElement("Units");
-	XMLElement* names = units->FirstChildElement("Names");
-	XMLElement* name = names->FirstChildElement("Name");
-	int namesCount = names->IntAttribute("count");
+	XMLElement* race = units->FirstChildElement("Human");
+	XMLElement* suffixes = race->FirstChildElement("Suffixes");
+	XMLElement* prefixes = race->FirstChildElement("Prefixes");
+
+	int suffCount, prefCount;
+	suffCount = suffixes->IntAttribute("count");
+	prefCount = prefixes->IntAttribute("count");
+
 
 	// Generate random index.
-	int rand = Random::InRange(1, namesCount);
+	int randPrefix = Random::InRange(1, prefCount);
+	int randSuffix = Random::InRange(1, suffCount);
+	
+
+	XMLElement* prefix = prefixes->FirstChildElement("Prefix");
+
 	int i = 1;
 
-	while (name)
+	std::string returnName = "none";
+
+	// Get prefix.
+	while (prefix)
 	{
 
 		// Return Name at Index.
-		if (i >= rand)
+		if (i >= randPrefix)
 		{
-
-			return name->GetText();
+			returnName = prefix->GetText();
+			break;
 		}
 
-		name = name->NextSiblingElement("Name");
+		prefix = prefix->NextSiblingElement("Prefix");
 		i++;
 	}
 
 
-	return "none";
+
+	
+	// Get suffix.
+	XMLElement* suffix = suffixes->FirstChildElement("Suffix");
+
+	i = 1;
+	while (suffix)
+	{
+
+		// Return Name at Index.
+		if (i >= randSuffix)
+		{
+
+			returnName += suffix->GetText();
+			break;
+		}
+
+		suffix = suffix->NextSiblingElement("Suffix");
+		i++;
+	}
+
+
+
+	return returnName;
 }
 
 

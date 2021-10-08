@@ -1,0 +1,369 @@
+<EntityNamesDefinition>
+	<Units>
+		<Human>
+			<!--Names are made of "prefix"+"suffix" as recombinations-->
+			<Prefixes count="19">
+				<Prefix>Cam</Prefix>
+				<Prefix>Cassyn</Prefix>
+				<Prefix>Vorag</Prefix>
+				<Prefix>Amiel</Prefix>
+				<Prefix>Ant</Prefix>
+				<Prefix>Adona</Prefix>
+				<Prefix>Aleth</Prefix>
+				<Prefix>Molvri</Prefix>
+				<Prefix>Tasell</Prefix>
+				<Prefix>Septim</Prefix>
+				<Prefix>Arriar</Prefix>
+				<Prefix>Mar</Prefix>
+				<Prefix>Fluv</Prefix>
+				<Prefix>Ruf</Prefix>
+				<Prefix>Adonat</Prefix>
+				<Prefix>Carol</Prefix>
+				<Prefix>Sir</Prefix>
+				<Prefix>Pinar</Prefix>
+				<Prefix>Hieron</Prefix>
+			</Prefixes>
+			<Suffixes count="16">
+				<Suffix>io</Suffix>
+				<Suffix>antus</Suffix>
+				<Suffix>ante</Suffix>
+				<Suffix>anio</Suffix>
+				<Suffix>ius</Suffix>
+				<Suffix>es</Suffix>
+				<Suffix>ilus</Suffix>
+				<Suffix>us</Suffix>
+				<Suffix>ator</Suffix>
+				<Suffix>ino</Suffix>
+				<Suffix>aero</Suffix>
+				<Suffix>ior</Suffix>
+				<Suffix>cles</Suffix>
+				<Suffix>ius</Suffix>
+				<Suffix>av</Suffix>
+				<Suffix>lus</Suffix>
+			</Suffixes>
+		</Human>
+
+		<DarkElf>
+			<!--Names are made of "prefix"+"suffix" as recombinations-->
+			<Prefixes>
+				<Prefix>Azar</Prefix>
+				<Prefix>Ereb</Prefix>
+				<Prefix>Nis</Prefix>
+				<Prefix>Shal</Prefix>
+				<Prefix>Shur</Prefix>
+				<Prefix>Tur</Prefix>
+				<Prefix>Ul</Prefix>
+				<Prefix>Vanik</Prefix>
+				<Prefix>Zan</Prefix>
+				<Prefix>Zir</Prefix>
+				<Prefix>Eleth</Prefix>
+				<Prefix>Far</Prefix>
+				<Prefix>Van</Prefix>
+				<Prefix>Tal</Prefix>
+				<Prefix>Fal</Prefix>
+				<Prefix>Tel</Prefix>
+				<Prefix>Tyth</Prefix>
+				<Prefix>Sarth</Prefix>
+				<Prefix>Amb</Prefix>
+			</Prefixes>
+			<Suffixes>
+				<Suffix>rys</Suffix>
+				<Suffix>is</Suffix>
+				<Suffix>al</Suffix>
+				<Suffix>yn</Suffix>
+				<Suffix>mir</Suffix>
+				<Suffix>orpa</Suffix>
+				<Suffix>er</Suffix>
+				<Suffix>en</Suffix>
+				<Suffix>ev</Suffix>
+				<Suffix>far</Suffix>
+				<Suffix>ath</Suffix>
+				<Suffix>ain</Suffix>
+				<Suffix>mal</Suffix>
+				<Suffix>on</Suffix>
+				<Suffix>il</Suffix>
+				<Suffix>ar</Suffix>
+			</Suffixes>
+		</DarkElf>
+
+
+		<HighElf>
+			<!--Names are made of "prefix"+"suffix" as recombinations-->
+			<Prefixes>
+				<Prefix>Nath</Prefix>
+				<Prefix>Yv</Prefix>
+				<Prefix>Arn</Prefix>
+				<Prefix>Em</Prefix>
+				<Prefix>Core</Prefix>
+				<Prefix>Cyre</Prefix>
+				<Prefix>Cyna</Prefix>
+				<Prefix>Kala</Prefix>
+				<Prefix>Saru</Prefix>
+				<Prefix>Sau</Prefix>
+				<Prefix>Soli</Prefix>
+				<Prefix>Gan</Prefix>
+				<Prefix>Lovi</Prefix>
+				<Prefix>Kelkem</Prefix>
+				<Prefix>Lill</Prefix>
+				<Prefix>Tumin</Prefix>
+				<Prefix>Aican</Prefix>
+				<Prefix>Lin</Prefix>
+				<Prefix>Ondole</Prefix>
+			</Prefixes>
+			<Suffixes>
+				<Suffix>dalf</Suffix>
+				<Suffix>las</Suffix>
+				<Suffix>lian</Suffix>
+				<Suffix>llon</Suffix>
+				<Suffix>nar</Suffix>
+				<Suffix>ra</Suffix>
+				<Suffix>riil</Suffix>
+				<Suffix>ril</Suffix>
+				<Suffix>ron</Suffix>
+				<Suffix>tar</Suffix>
+				<Suffix>ry</Suffix>
+				<Suffix>ro</Suffix>
+				<Suffix>an</Suffix>
+				<Suffix>le</Suffix>
+				<Suffix>bo</Suffix>
+				<Suffix>on</Suffix>
+			</Suffixes>
+		</HighElf>
+
+
+		<Orc>
+			<!--Names are made of "prefix"+"suffix" as recombinations-->
+			<Prefixes>
+				<Prefix>Ba</Prefix>
+				<Prefix>Aggan</Prefix>
+				<Prefix>Az</Prefix>
+				<Prefix>Bro</Prefix>
+				<Prefix>Bor</Prefix>
+				<Prefix>Bar</Prefix>
+				<Prefix>Gru</Prefix>
+				<Prefix>Gro</Prefix>
+				<Prefix>Gra</Prefix>
+				<Prefix>Kir</Prefix>
+				<Prefix>Narka</Prefix>
+				<Prefix>Muz</Prefix>
+				<Prefix>Mur</Prefix>
+				<Prefix>Muz</Prefix>
+				<Prefix>Makh</Prefix>
+				<Prefix>Nakh</Prefix>
+				<Prefix>Ror</Prefix>
+				<Prefix>Snegh</Prefix>
+				<Prefix>Zul</Prefix>
+			</Prefixes>
+			<Suffixes>
+				<Suffix>groth</Suffix>
+				<Suffix>hoth</Suffix>
+				<Suffix>log</Suffix>
+				<Suffix>rol</Suffix>
+				<Suffix>ulg</Suffix>
+				<Suffix>olg</Suffix>
+				<Suffix>og</Suffix>
+				<Suffix>ag</Suffix>
+				<Suffix>ikh</Suffix>
+				<Suffix>ak</Suffix>
+				<Suffix>agh</Suffix>
+				<Suffix>ogh</Suffix>
+				<Suffix>obal</Suffix>
+				<Suffix>um</Suffix>
+				<Suffix>tuk</Suffix>
+				<Suffix>tok</Suffix>
+			</Suffixes>
+		</Orc>
+
+
+		<Goblin>
+			<!--Names are made of "prefix"+"suffix" as recombinations-->
+			<Prefixes>
+				<Prefix>Rig</Prefix>
+				<Prefix>Wiz</Prefix>
+				<Prefix>Azz</Prefix>
+				<Prefix>Ax</Prefix>
+				<Prefix>Bi</Prefix>
+				<Prefix>Bilge</Prefix>
+				<Prefix>Blast</Prefix>
+				<Prefix>Blixx</Prefix>
+				<Prefix>Ect</Prefix>
+				<Prefix>Brass</Prefix>
+				<Prefix>Narka</Prefix>
+				<Prefix>Brim</Prefix>
+				<Prefix>Bro´</Prefix>
+				<Prefix>Buck</Prefix>
+				<Prefix>Cra</Prefix>
+				<Prefix>Czez</Prefix>
+				<Prefix>Fro</Prefix>
+				<Prefix>Gall</Prefix>
+				<Prefix>Gear</Prefix>
+			</Prefixes>
+			<Suffixes>
+				<Suffix>bert</Suffix>
+				<Suffix>nid</Suffix>
+				<Suffix>log</Suffix>
+				<Suffix>lock</Suffix>
+				<Suffix>spinner</Suffix>
+				<Suffix>legear</Suffix>
+				<Suffix>elton</Suffix>
+				<Suffix>mick</Suffix>
+				<Suffix>bub</Suffix>
+				<Suffix>bolt</Suffix>
+				<Suffix>sprocket</Suffix>
+				<Suffix>zzock</Suffix>
+				<Suffix>es</Suffix>
+				<Suffix>ix</Suffix>
+				<Suffix>in</Suffix>
+				<Suffix>owe</Suffix>
+			</Suffixes>
+		</Goblin>
+
+
+
+		<Gnome>
+			<!--Names are made of "prefix"+"suffix" as recombinations-->
+			<Prefixes>
+				<Prefix>Kna</Prefix>
+				<Prefix>Isa</Prefix>
+				<Prefix>Max</Prefix>
+				<Prefix>Bing</Prefix>
+				<Prefix>Gin</Prefix>
+				<Prefix>Bol</Prefix>
+				<Prefix>Adolph</Prefix>
+				<Prefix>Bee</Prefix>
+				<Prefix>Stra</Prefix>
+				<Prefix>Bul</Prefix>
+				<Prefix>Tin</Prefix>
+				<Prefix>Brivel</Prefix>
+				<Prefix>Bro´</Prefix>
+				<Prefix>Brimm</Prefix>
+				<Prefix>Muff</Prefix>
+				<Prefix>Elg</Prefix>
+				<Prefix>Inz</Prefix>
+				<Prefix>Niv</Prefix>
+				<Prefix>Clin</Prefix>
+			</Prefixes>
+			<Suffixes>
+				<Suffix>vet</Suffix>
+				<Suffix>an</Suffix>
+				<Suffix>el</Suffix>
+				<Suffix>ie</Suffix>
+				<Suffix>dy</Suffix>
+				<Suffix>thorn</Suffix>
+				<Suffix>ize</Suffix>
+				<Suffix>fest</Suffix>
+				<Suffix>ni</Suffix>
+				<Suffix>al</Suffix>
+				<Suffix>bolt</Suffix>
+				<Suffix>zzock</Suffix>
+				<Suffix>ien</Suffix>
+				<Suffix>wark</Suffix>
+				<Suffix>ote</Suffix>
+				<Suffix>owe</Suffix>
+			</Suffixes>
+		</Gnome>
+
+
+		<Troll>
+			<!--Names are made of "prefix"+"suffix" as recombinations-->
+			<Prefixes>
+				<Prefix>Xen´</Prefix>
+				<Prefix>Uthel´</Prefix>
+				<Prefix>Hula´</Prefix>
+				<Prefix>Han</Prefix>
+				<Prefix>Jan</Prefix>
+				<Prefix>Xar´</Prefix>
+				<Prefix>Kil´</Prefix>
+				<Prefix>Nim</Prefix>
+				<Prefix>Lau´</Prefix>
+				<Prefix>Zilzi</Prefix>
+				<Prefix>Tel</Prefix>
+				<Prefix>Brivel</Prefix>
+				<Prefix>Zan´</Prefix>
+				<Prefix>Veh</Prefix>
+				<Prefix>Mail´</Prefix>
+				<Prefix>Kor´</Prefix>
+				<Prefix>Kuray´</Prefix>
+				<Prefix>Mor´</Prefix>
+				<Prefix>Tai´</Prefix>
+			</Prefixes>
+			<Suffixes>
+				<Suffix>zan</Suffix>
+				<Suffix>vek</Suffix>
+				<Suffix>rin</Suffix>
+				<Suffix>ka</Suffix>
+				<Suffix>ko</Suffix>
+				<Suffix>kir</Suffix>
+				<Suffix>jin</Suffix>
+				<Suffix>aj</Suffix>
+				<Suffix>zup</Suffix>
+				<Suffix>elek</Suffix>
+				<Suffix>ux</Suffix>
+				<Suffix>ox</Suffix>
+				<Suffix>kai</Suffix>
+				<Suffix>wano</Suffix>
+				<Suffix>remik</Suffix>
+				<Suffix>my</Suffix>
+			</Suffixes>
+		</Troll>
+
+
+		<Dwarf>
+			<!--Names are made of "prefix"+"suffix" as recombinations-->
+			<Prefixes>
+				<Prefix>Aff</Prefix>
+				<Prefix>Abs</Prefix>
+				<Prefix>Aggr</Prefix>
+				<Prefix>Drog</Prefix>
+				<Prefix>Cel</Prefix>
+				<Prefix>Ru</Prefix>
+				<Prefix>An</Prefix>
+				<Prefix>Ver</Prefix>
+				<Prefix>Yar</Prefix>
+				<Prefix>Thar</Prefix>
+				<Prefix>Max</Prefix>
+				<Prefix>Brod</Prefix>
+				<Prefix>Bart</Prefix>
+				<Prefix>Nev</Prefix>
+				<Prefix>Kath</Prefix>
+				<Prefix>Bael´</Prefix>
+				<Prefix>Baen</Prefix>
+				<Prefix>El</Prefix>
+				<Prefix>Bai</Prefix>
+			</Prefixes>
+			<Suffixes>
+				<Suffix>dun</Suffix>
+				<Suffix>og</Suffix>
+				<Suffix>on</Suffix>
+				<Suffix>eb</Suffix>
+				<Suffix>an</Suffix>
+				<Suffix>brew</Suffix>
+				<Suffix>dy</Suffix>
+				<Suffix>eve</Suffix>
+				<Suffix>uc</Suffix>
+				<Suffix>iza</Suffix>
+				<Suffix>ar</Suffix>
+				<Suffix>eth</Suffix>
+				<Suffix>on</Suffix>
+				<Suffix>ot</Suffix>
+				<Suffix>us</Suffix>
+				<Suffix>uk</Suffix>
+			</Suffixes>
+		</Dwarf>
+	</Units>
+
+	<Buildings>
+		<Names race="human" count="10">
+			<Name>Main Way</Name>
+			<Name>Second Street</Name>
+			<Name>Old Village Road</Name>
+			<Name>New Village Road</Name>
+			<Name>Second Way</Name>
+			<Name>To the Gate Way</Name>
+			<Name>To The Castle</Name>
+			<Name>To The Fort</Name>
+			<Name>To The Tower</Name>
+			<Name>Last Resort</Name>
+		</Names>
+	</Buildings>
+</EntityNamesDefinition>
