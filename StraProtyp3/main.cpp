@@ -16,6 +16,7 @@ static bool show_tech_tree = false;
 /*
 * Helper, maybe GUI related vars.
 */
+static GameObject* selected_ui_gameobject = nullptr;
 static GameObject* selected_gameobject = nullptr;
 static int imnodes_tech_node_id = 1;
 static int imnodes_tech_link_id = 1;
@@ -1541,18 +1542,18 @@ void AppStateWorldMap::update(float)
 	app->renderLayer("overlay");
 
 
-	if (selected_gameobject)
+	if (selected_ui_gameobject)
 	{
-		TransformCmp* tr = static_cast<TransformCmp*> (selected_gameobject->getComponent("Transform"));
-		RendererableCmp* rc = static_cast<RendererableCmp*> (selected_gameobject->getComponent("Renderable"));
+		TransformCmp* tr = static_cast<TransformCmp*> (selected_ui_gameobject->getComponent("Transform"));
+		RendererableCmp* rc = static_cast<RendererableCmp*> (selected_ui_gameobject->getComponent("Renderable"));
 
 		if (tr != nullptr && rc != nullptr)
 		{
 			olc::vf2d p = { tr->xpos + rc->width / 2.0f - 0.3f, tr->ypos + rc->height / 2.0f };
-			tv.DrawStringDecal(p, selected_gameobject->tag, olc::RED, olc::vf2d(0.5f, 0.5f));
+			tv.DrawStringDecal(p, selected_ui_gameobject->tag, olc::RED, olc::vf2d(0.5f, 0.5f));
 
 			olc::vf2d screenPoint = tv.WorldToScreen(p);
-			app->font->DrawStringDecal(screenPoint, selected_gameobject->tag, olc::RED, {0.75f, 0.75f});
+			app->font->DrawStringDecal(screenPoint, selected_ui_gameobject->tag, olc::RED, {0.75f, 0.75f});
 		}
 	}
 
@@ -1614,11 +1615,11 @@ void AppStateWorldMap::update(float)
 	{
 		// Draw waypoints of selected entity,
 		// if it has one.
-		if (selected_gameobject)
+		if (selected_ui_gameobject)
 		{
-			if (selected_gameobject->hasComponent("Navigator"))
+			if (selected_ui_gameobject->hasComponent("Navigator"))
 			{
-				NavigatorCmp* nav = selected_gameobject->getComponent<NavigatorCmp>("Navigator");
+				NavigatorCmp* nav = selected_ui_gameobject->getComponent<NavigatorCmp>("Navigator");
 
 
 				for (int i = 0; i < nav->movementPoints.size(); i++)
@@ -1647,6 +1648,59 @@ void AppStateWorldMap::update(float)
 
 	// Draw ImGui.
 	_drawUI();
+
+
+	// Have we selected some entity on the Screen.
+	static bool isSelected = false;
+	if (app->stateMachine.getCurrentState().compare("worldMap") == 0 && app->GetMouse(0).bPressed)
+	{
+		isSelected = false;
+
+		olc::vf2d p = tv.ScreenToWorld(app->GetMousePos());
+
+		for (auto& go : GameObjectStorage::get()->getStorage())
+		{
+			if (go->hasComponent("Transform") && go->hasComponent("Renderable"))
+			{
+				TransformCmp* goTr = nullptr;
+				RendererableCmp* goRen = nullptr;
+
+				if (selected_gameobject)
+				{
+					if (selected_gameobject->getTag().compare(go->getTag()) == 0) continue;
+				}
+
+
+				goTr = go->getComponent<TransformCmp>("Transform");
+				goRen = go->getComponent<RendererableCmp>("Renderable");
+
+				if (p.x >= goTr->xpos && p.x <= goTr->xpos + goRen->width &&
+					p.y >= goTr->ypos && p.y <= goTr->ypos + goRen->height)
+				{
+					// Collision.
+					selected_gameobject = go;
+					isSelected = true;
+					break;
+				}
+			}
+		}
+	}
+
+	if (!isSelected) selected_gameobject = nullptr;
+
+	if (selected_gameobject)
+	{
+		TransformCmp* tr = static_cast<TransformCmp*> (selected_gameobject->getComponent("Transform"));
+		RendererableCmp* rc = static_cast<RendererableCmp*> (selected_gameobject->getComponent("Renderable"));
+
+		if (tr != nullptr && rc != nullptr)
+		{
+			olc::vf2d p = { tr->xpos + rc->width / 2.0f - 0.3f, tr->ypos + rc->height / 2.0f };
+			
+			olc::vf2d screenPoint = tv.WorldToScreen(p);
+			app->font->DrawStringDecal(screenPoint, selected_gameobject->name, olc::RED, { 0.75f, 0.75f });
+		}
+	}
 }
 
 void AppStateWorldMap::_drawUI()
@@ -1656,7 +1710,7 @@ void AppStateWorldMap::_drawUI()
 	app->SetDrawTarget((uint8_t)app->m_GameLayer);
 
 
-	selected_gameobject = nullptr;
+	selected_ui_gameobject = nullptr;
 
 
 	// CHECK WHETHER IMGUI IS FOCUSED
@@ -1771,7 +1825,7 @@ void AppStateWorldMap::_drawUI()
 			// Check whether we are hovering over the current displayed GO.
 			if (ImGui::IsItemHovered())
 			{
-				selected_gameobject = go;
+				selected_ui_gameobject = go;
 				app->lastSelectedGameobjectTag = go->getTag();
 				cout << "Tag: " << app->lastSelectedGameobjectTag << endl;
 			}
@@ -1876,6 +1930,25 @@ void AppStateWorldMap::_drawUI()
 						{
 
 						}
+
+						if (cmp->getType().find("Maptile") != std::string::npos)
+						{
+							IMaptileCmp* tile = static_cast<IMaptileCmp*>(cmp);
+
+
+							if (ImGui::TreeNode("Entities"))
+							{
+								std::vector< GOTag > objects = tile->getGameobjects();
+
+								for (auto& tag : objects)
+								{
+									ImGui::Text("\"%s\"", tag.c_str());
+								}
+
+								ImGui::TreePop();
+							}
+						}
+
 
 						if (cmp->getType().find("City") != std::string::npos)
 						{
