@@ -159,6 +159,18 @@
     <ClInclude Include="IForest.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="IRessource.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="IRiver.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="IHill.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="IMountain.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

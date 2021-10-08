@@ -1576,7 +1576,11 @@ bool AppStateWorldMap::_isMaptileVisible(GameObject* go)
 void AppStateWorldMap::_computeVisibilityRect(olc::vi2d& upLeft, olc::vi2d& downRight)
 {
 	upLeft = app->tv.GetTileUnderScreenPos({ 0, 0 });
+	if (upLeft.x < 0) upLeft.x = 0;
+	if (upLeft.y < 0) upLeft.y = 0;
 	downRight = app->tv.GetBottomRightTile();
+	if (downRight.x > DEFAULT_MAPSIZE_X) downRight.x = DEFAULT_MAPSIZE_X;
+	if (downRight.y > DEFAULT_MAPSIZE_Y) downRight.y = DEFAULT_MAPSIZE_Y;
 }
 
 

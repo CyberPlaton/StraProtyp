@@ -114,9 +114,13 @@
     <ClInclude Include="IBuilding.h" />
     <ClInclude Include="ICity.h" />
     <ClInclude Include="IForest.h" />
+    <ClInclude Include="IHill.h" />
     <ClInclude Include="IImprovement.h" />
     <ClInclude Include="IMaptile.h" />
+    <ClInclude Include="IMountain.h" />
     <ClInclude Include="IPlayer.h" />
+    <ClInclude Include="IRessource.h" />
+    <ClInclude Include="IRiver.h" />
     <ClInclude Include="ITech.h" />
     <ClInclude Include="IUnit.h" />
     <ClInclude Include="main.h" />
