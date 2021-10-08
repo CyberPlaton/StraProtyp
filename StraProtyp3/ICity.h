@@ -100,7 +100,18 @@ public:
 
 	void pushSlot(const BuildingSlot& slot) { buildingSlots.push_back(slot); }
 
-	void addUnit(GameObject* unit) { units.push_back(unit); }
+
+	/*
+	* TODO
+	* Define the position of the Unit in the city by altering its Transform
+	* according to profession etc.
+	*/
+	void addUnit(GameObject* unit)
+	{ 
+		units.push_back(unit); 
+		unit->getComponent<IUnitCmp>("Unit")->setInCity(true);
+	}
+
 
 	void setData(const std::string& entry, int amount)
 	{

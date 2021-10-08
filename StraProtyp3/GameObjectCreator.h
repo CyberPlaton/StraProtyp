@@ -449,13 +449,13 @@ private:
 				{
 
 					int slotNum = entry->IntAttribute("number", -INT_MAX);
-					float xpos = entry->FloatAttribute("xpos", (float)-INT_MAX);
-					float ypos = entry->FloatAttribute("ypos", (float)-INT_MAX);
+					float slotXpos = entry->FloatAttribute("xpos", (float)-INT_MAX);
+					float slotYpos = entry->FloatAttribute("ypos", (float)-INT_MAX);
 					std::string type = entry->Attribute("type");
 
 
 					// Create a Slot.
-					ICityCmp::BuildingSlot slot(xpos, ypos, slotNum, type);
+					ICityCmp::BuildingSlot slot(slotXpos, slotYpos, slotNum, type);
 
 
 					// Add Slot.
@@ -490,6 +490,8 @@ private:
 
 					for (int i = 0; i < amount; i++)
 					{
+						// Set the initial position of the Gameobject as invalid.
+						// As its correct position will be defined by the City.
 						GameObject* object = create(unitName, unitName, 0, 0);
 						if (object)
 						{
@@ -512,6 +514,7 @@ private:
 					BuildingSlotType slotType = entry->Attribute("slotType");
 
 
+					// Create a Building Gameobject with invalid initial Positions.
 					GameObject* object = create(name, name, 0, 0);
 					if (object)
 					{

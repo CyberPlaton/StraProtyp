@@ -234,6 +234,12 @@ bool App::OnUserCreate()
 
 	go = creator.create("Data/City_Plain.xml", "Durotan", 4, 4);
 
+	go = creator.create("Data/City_Plain.xml", "Flamenburg", 2, 2);
+
+	go = creator.create("Data/City_Plain.xml", "Grobushheim", 3, 2);
+
+	go = creator.create("Data/City_Plain.xml", "Enderil", 4, 2);
+
 
 
 	NavMesh::get()->bake();
@@ -1502,10 +1508,17 @@ void AppStateWorldMap::_renderMaptile(GameObject* tile)
 		// Get the gameobject on maptile.
 		GameObject* go = GameObjectStorage::get()->getGOByTag(tag);
 
+
 		// Store gameobject in correct slot for ordered rendering.
 		if (go->hasComponent("Renderable"))
 		{
+
+			// Do not render units in city as outside.
+			if (go->hasComponent("Unit") && go->getComponent<IUnitCmp>("Unit")->isInCity() == true) continue;
+
+
 			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
+
 
 			if (render->render)
 			{
@@ -1975,6 +1988,8 @@ void AppStateWorldMap::_drawUI()
 							IUnitCmp* uc = static_cast<IUnitCmp*>(cmp);
 
 							ImGui::Text("Profession \"%s\"",  uc->getProfession().c_str());
+
+							ImGui::Text("InCity \"%s\"", uc->isInCity() == true ? "true" : "false");
 
 							if (ImGui::TreeNode("Requirements"))
 							{

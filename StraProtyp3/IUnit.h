@@ -36,6 +36,9 @@ public:
 	UnitProfession getProfession() { return profession; }
 	void setProfession(const UnitProfession& p) { profession = p; }
 
+	void setInCity(bool value) { inCity = value; }
+	bool isInCity() { return inCity; }
+
 private:
 	std::string type;
 	std::vector<TechID> techRequirements;
@@ -45,4 +48,6 @@ private:
 	std::string unitName;
 
 	UnitProfession profession;
+
+	bool inCity = false;
 };
