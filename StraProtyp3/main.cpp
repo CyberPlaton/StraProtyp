@@ -224,7 +224,15 @@ bool App::OnUserCreate()
 
 
 	// City should be created after all maptiles are done.
-	go = creator.create("Data/City_Plain.xml", "City", 7, 6);
+	go = creator.create("Data/City_Plain.xml", "Endoral", 7, 6);
+
+	go = creator.create("Data/City_Plain.xml", "Durotar", 1, 1);
+
+	go = creator.create("Data/City_Plain.xml", "Waldenwood", 2, 0);
+
+	go = creator.create("Data/City_Plain.xml", "Villean", 0, 2);
+
+	go = creator.create("Data/City_Plain.xml", "Durotan", 4, 4);
 
 
 
@@ -1499,14 +1507,14 @@ void AppStateWorldMap::update(float)
 
 
 	// Update all agents.
-	for (auto& go : GameObjectStorage::get()->getStorage())
-	{
-		// Update Navigator, for each entity which can move, let it move.
-		if (go->hasComponent("Navigator"))
-		{
-			go->getComponent<NavigatorCmp>("Navigator")->update(GameWorldTime::get()->getTimeSpeed());
-		}
-	}
+	//for (auto& go : GameObjectStorage::get()->getStorage())
+	//{
+	//	// Update Navigator, for each entity which can move, let it move.
+	//	if (go->hasComponent("Navigator"))
+	//	{
+	//		go->getComponent<NavigatorCmp>("Navigator")->update(GameWorldTime::get()->getTimeSpeed());
+	//	}
+	//}
 
 
 	if (render_2d_grid)
