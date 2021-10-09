@@ -105,7 +105,7 @@ public:
 
 		this->tag = "GO_" + std::to_string(g_GameObjectCount) +"_" + tag;
 
-		hash = hasher(this->tag);
+		hash = g_GameObjectCount;
 
 		GameObjectStorage::get()->add(this);
 	}

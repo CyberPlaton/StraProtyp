@@ -150,15 +150,25 @@ bool App::OnUserCreate()
 
 
 
-			if (i > 3 && i < DEFAULT_MAPSIZE_X - 3)
+			if (i > 1 && i < DEFAULT_MAPSIZE_X - 1)
 			{
-				if (j % 2 == 0)
+				if ((i + j) % 2 == 0)
 				{
 					go = creator.create("Data/Temperate_Scarce.xml", "Forest", i, j);
 				}
 				else
 				{
-					go = creator.create("Data/Temperate_Normal.xml", "Forest", i, j);
+					if (i % 2 == 0)
+					{
+						go = creator.create("Data/Temperate_Normal.xml", "Forest", i, j);
+					}
+					else if (j % 2 == 0)
+					{
+						go = creator.create("Data/Temperate_Deep.xml", "Forest", i, j);
+					}
+					else
+					{
+					}
 				}
 			}
 		}
@@ -436,13 +446,13 @@ void App::_handleInput()
 		olc::vi2d bottomDown = tv.GetBottomRightTile();
 		olc::vi2d middle = { bottomDown.x / 2, bottomDown.y / 2 };
 
-		
+		/*
 		cout << color(colors::RED);
 		cout << "MousePos {" << mousex << "," << mousey << "}" << endl;
 		cout << "TopLeft Maptile {" << topLeft.x << "," << topLeft.y << "}" << endl;
 		cout << "BottomRight Maptile {" << bottomDown.x << "," << bottomDown.y << "}" << endl;
 		cout << "Middle Maptile {" << middle.x << "," << middle.y << "}" << white << endl;
-		
+		*/
 
 		// Do not allow capturing input to imgui and app at same time.
 		if (!imgui_has_focus)

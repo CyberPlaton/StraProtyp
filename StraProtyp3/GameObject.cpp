@@ -55,13 +55,6 @@ void GameObjectStorage::add(GameObject* go)
 	m_GameObjectsTagOptimized.insert(go->hash, go);
 
 	goTagHashMap.emplace(go->getTag(), go->hash);
-
-	cout << color(colors::GREEN);
-	cout << "[GameObjectStorage::add] New Gameobject Tag:\""<< go->getTag() << "\", Hash:\""<< go->hash << "\"" << white << endl;
-
-	cout << color(colors::DARKGREEN);
-	cout << "[GameObjectStorage::add] m_GameObjects.size = " << m_GameObjects.size() << endl;
-	cout << "[GameObjectStorage::add] goTagHashMap.size = " << goTagHashMap.size() << white <<endl;
 }
 
 
@@ -69,9 +62,12 @@ GameObject* GameObjectStorage::getGOByTag(const GOTag& tag)
 {
 	using namespace std;
 
-	size_t hash = hasher(tag);
+	size_t hash = goTagHashMap[tag];
+	if (hash == 0) return nullptr;
+
 
 	GameObject* go = m_GameObjectsTagOptimized.findStoredData(hash);
+
 
 	if (!go)
 	{
