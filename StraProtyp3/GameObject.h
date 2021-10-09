@@ -194,7 +194,7 @@ public:
 
 	AVLTree2< Component* > components;
 
-	static unsigned long long g_GameObjectCount;
+	static size_t g_GameObjectCount;
 };
 
 

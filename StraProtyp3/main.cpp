@@ -147,6 +147,20 @@ bool App::OnUserCreate()
 			go = creator.create("Data/Temperate_Maptile.xml", "Maptile", i, j);
 
 			gameWorldMatrix[i][j] = go;
+
+
+
+			if (i > 3 && i < DEFAULT_MAPSIZE_X - 3)
+			{
+				if (j % 2 == 0)
+				{
+					go = creator.create("Data/Temperate_Scarce.xml", "Forest", i, j);
+				}
+				else
+				{
+					go = creator.create("Data/Temperate_Normal.xml", "Forest", i, j);
+				}
+			}
 		}
 	}
 
