@@ -11,6 +11,7 @@
 #define DEFAULT_MAPSIZE_X 32
 #define DEFAULT_MAPSIZE_Y 32
 
+static std::hash<std::string> hasher;
 
 class Component;
 using ComponentMap = std::map<std::string, std::vector<Component*>>;
@@ -100,21 +101,40 @@ public:
 
 	bool init(const ComponentType& type)
 	{
-		// Assign a numerical id to self.
-		id = ++g_ComponentID;
+		// Create a Numerical Hash Value to self.
+		std::string typeName = type + "_" + std::to_string(g_ComponentID);
+		globalHash = hasher(typeName);
+
+		// Store the ID of self.
+		id = g_ComponentID;
+
+		// Create Object Local Hashvalue.
+		localHash = hasher(type);
 
 
 		// Store self in storage.
 		ComponentStorage::get()->add(this, type);
+
+
+		g_ComponentID++;
 
 		return true;
 	}
 
 
 	virtual ComponentType getType() = 0;
+	size_t getComponentGlobalHashValue() { return globalHash; }
+	size_t getComponentLocalHashValue() { return localHash; }
+
 
 	unsigned long long id;
 	ComponentID name;
+
+	// The Global hashvalue is app wide unique for the component.
+	size_t globalHash;
+	
+	// The Local hashvalue is unique for the gameobject it is attached to.
+	size_t localHash;
 };
 
 

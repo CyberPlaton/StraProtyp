@@ -24,10 +24,7 @@ using GOTag = std::string;
 */
 using GOName = std::string;
 
-
-static std::hash<std::string> hasher;
 class GameObject;
-
 
 class GameObjectStorage
 {
@@ -118,39 +115,43 @@ public:
 		name.clear();
 		tag.clear();
 		hash = 0;
-		while (components.size() > 0) delete components[0];
-		components.clear();
 		g_GameObjectCount = 0;
 	}
 
 
 	void AddComponent(Component* c)
 	{
-		components.push_back(c);
+		components.insert(c->getComponentLocalHashValue(), c);
+		//components.push_back(c);
 	}
 
 
 	void RemoveComponent(Component* c)
 	{
-		auto it = std::find(components.begin(), components.end(), c);
+		components.deleteNode(c->getComponentLocalHashValue());
 
-		if (it != components.end())
-		{
-			components.erase(it);
-		}
+		//auto it = std::find(components.begin(), components.end(), c);
+
+		//if (it != components.end())
+		//{
+		//	components.erase(it);
+		//}
 	}
 
 	Component* getComponent(const ComponentType& name)
 	{
-		for (auto& cmp : components)
-		{
+		size_t localHash = hasher(name);
+		return components.findStoredData(localHash);
+
+		//for (auto& cmp : components)
+		//{
 			// All components are unique for a GameObject,
 			// so there cannot be e.g. 2 Transforms.. Thus we can search with ComponentType.
 
-			if (cmp->getType().compare(name) == 0)
-			{
-				return cmp;
-			}
+		//	if (cmp->getType().compare(name) == 0)
+		//	{
+		//		return cmp;
+		//	}
 
 			/*
 			// Search for component adjusted to own name.
@@ -159,9 +160,9 @@ public:
 				return cmp;
 			}
 			*/
-		}
+		//}
 
-		return nullptr;
+	//return nullptr;
 	}
 
 
@@ -175,13 +176,13 @@ public:
 
 	bool hasComponent(const ComponentType& name)
 	{
-		for (auto& cmp : components)
-		{
+		//for (auto& cmp : components)
+		//{
 
-			if (cmp->getType().compare(name) == 0)
-			{
-				return true;
-			}
+		//	if (cmp->getType().compare(name) == 0)
+		//	{
+		//		return true;
+		//	}
 
 			/*
 			// Search for component adjusted to own name.
@@ -190,9 +191,17 @@ public:
 				return true;
 			}
 			*/
-		}
+			//}
 
-		return false;
+		size_t localHash = hasher(name);
+		if (components.searchTree(localHash) != nullptr)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	void setPosition(int x, int y)
@@ -227,7 +236,8 @@ public:
 	size_t hash;
 
 
-	std::vector<Component*> components;
+	//std::vector<Component*> components;
+	AVLTree2< Component* > components;
 
 	static unsigned long long g_GameObjectCount;
 };

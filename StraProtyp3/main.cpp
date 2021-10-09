@@ -1944,9 +1944,13 @@ void AppStateWorldMap::_drawUI()
 				cout << "Tag: " << app->lastSelectedGameobjectTag << endl;
 			}
 
+
+
 			// Show the components of Selected GO.
 			if (ret)
 			{
+
+				/*
 				// Show CMPs
 				for (auto& cmp : go->components)
 				{
@@ -2174,6 +2178,7 @@ void AppStateWorldMap::_drawUI()
 
 					ImGui::Separator();
 				}
+				*/
 			}
 		}
 	}
