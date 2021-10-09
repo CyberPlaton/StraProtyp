@@ -385,9 +385,9 @@ void App::_handleInput()
 	using namespace std;
 
 
-	olc::vi2d point = tv.ScreenToWorld({ GetMouseX(), GetMouseY() });
-	int mousex = point.x;
-	int mousey = point.y;
+	olc::vf2d point = tv.ScreenToWorld({ GetMouseX(), GetMouseY() });
+	float mousex = point.x;
+	float mousey = point.y;
 
 
 	// Handle Movement and Paning Input only for WorldMap,
@@ -497,8 +497,8 @@ void App::_handleInput()
 				CollisionBoxCmp* box = go->getComponent<CollisionBoxCmp>("CollisionBox");
 
 
-				if (mousex >= transform->xpos && mousex <= transform->xpos + box->width &&
-					mousey >= transform->ypos && mousey <= transform->ypos + box->height)
+				if (mousex > transform->xpos && mousex < transform->xpos + box->width &&
+					mousey > transform->ypos && mousey < transform->ypos + box->height)
 				{
 
 					// Is the Gameobject a city.
@@ -1949,6 +1949,107 @@ void AppStateWorldMap::_drawUI()
 			// Show the components of Selected GO.
 			if (ret)
 			{
+				if (go->hasComponent("Transform"))
+				{
+					TransformCmp* trn = go->getComponent<TransformCmp>("Transform");
+
+					if (ImGui::TreeNode("Transform"))
+					{
+						ImGui::TreePop();
+					}
+
+
+				}
+				if (go->hasComponent("Renderable"))
+				{
+					RendererableCmp* rnd = go->getComponent<RendererableCmp>("Renderable");
+
+					if (ImGui::TreeNode("Renderable"))
+					{
+						ImGui::TreePop();
+					}
+				}
+				if (go->hasComponent("Unit"))
+				{
+					IUnitCmp* unit = go->getComponent<IUnitCmp>("Unit");
+
+					if (ImGui::TreeNode("Unit"))
+					{
+						ImGui::TreePop();
+					}
+				}
+				if (go->hasComponent("Building"))
+				{
+					IBuildingCmp* building = go->getComponent<IBuildingCmp>("Building");
+
+					if (ImGui::TreeNode("Building"))
+					{
+						ImGui::TreePop();
+					}
+				}
+				if (go->hasComponent("Maptile"))
+				{
+					IMaptileCmp* tile = go->getComponent<IMaptileCmp>("Maptile");
+
+					if (ImGui::TreeNode("Maptile"))
+					{
+						ImGui::TreePop();
+					}
+				}
+				if (go->hasComponent("Ressource"))
+				{
+					IRessourceCmp* rss = go->getComponent<IRessourceCmp>("Ressource");
+
+					if (ImGui::TreeNode("Ressource"))
+					{
+						ImGui::TreePop();
+					}
+				}
+				if (go->hasComponent("City"))
+				{
+					ICityCmp* city = go->getComponent<ICityCmp>("City");
+
+					if (ImGui::TreeNode("City"))
+					{
+						ImGui::TreePop();
+					}
+				}
+				if (go->hasComponent("Improvement"))
+				{
+					IImprovementCmp* imprv = go->getComponent<IImprovementCmp>("Improvement");
+
+					if (ImGui::TreeNode("Improvement"))
+					{
+						ImGui::TreePop();
+					}
+				}
+				if (go->hasComponent("CollisionBox"))
+				{
+					CollisionBoxCmp* coll = go->getComponent<CollisionBoxCmp>("CollisionBox");
+
+					if (ImGui::TreeNode("CollisionBox"))
+					{
+						ImGui::TreePop();
+					}
+				}
+				if (go->hasComponent("Navigator"))
+				{
+					NavigatorCmp* coll = go->getComponent<NavigatorCmp>("Navigator");
+
+					if (ImGui::TreeNode("Navigator"))
+					{
+						ImGui::TreePop();
+					}
+				}
+				if (go->hasComponent("Animator"))
+				{
+					AnimatorCmp* coll = go->getComponent<AnimatorCmp>("Animator");
+
+					if (ImGui::TreeNode("Animator"))
+					{
+						ImGui::TreePop();
+					}
+				}
 
 				/*
 				// Show CMPs

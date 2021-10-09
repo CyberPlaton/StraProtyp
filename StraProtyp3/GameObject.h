@@ -122,47 +122,18 @@ public:
 	void AddComponent(Component* c)
 	{
 		components.insert(c->getComponentLocalHashValue(), c);
-		//components.push_back(c);
 	}
 
 
 	void RemoveComponent(Component* c)
 	{
 		components.deleteNode(c->getComponentLocalHashValue());
-
-		//auto it = std::find(components.begin(), components.end(), c);
-
-		//if (it != components.end())
-		//{
-		//	components.erase(it);
-		//}
 	}
 
 	Component* getComponent(const ComponentType& name)
 	{
 		size_t localHash = hasher(name);
 		return components.findStoredData(localHash);
-
-		//for (auto& cmp : components)
-		//{
-			// All components are unique for a GameObject,
-			// so there cannot be e.g. 2 Transforms.. Thus we can search with ComponentType.
-
-		//	if (cmp->getType().compare(name) == 0)
-		//	{
-		//		return cmp;
-		//	}
-
-			/*
-			// Search for component adjusted to own name.
-			if (cmp->name.compare(name) == 0)
-			{
-				return cmp;
-			}
-			*/
-		//}
-
-	//return nullptr;
 	}
 
 
@@ -176,23 +147,6 @@ public:
 
 	bool hasComponent(const ComponentType& name)
 	{
-		//for (auto& cmp : components)
-		//{
-
-		//	if (cmp->getType().compare(name) == 0)
-		//	{
-		//		return true;
-		//	}
-
-			/*
-			// Search for component adjusted to own name.
-			if (cmp->name.compare(name) == 0)
-			{
-				return true;
-			}
-			*/
-			//}
-
 		size_t localHash = hasher(name);
 		if (components.searchTree(localHash) != nullptr)
 		{
@@ -203,6 +157,7 @@ public:
 			return false;
 		}
 	}
+
 
 	void setPosition(int x, int y)
 	{
@@ -227,6 +182,7 @@ public:
 		this->hash = hasher(this->tag);
 	}
 
+
 	std::string getTag() { return tag; }
 	std::string getName() { return name; }
 
@@ -236,7 +192,6 @@ public:
 	size_t hash;
 
 
-	//std::vector<Component*> components;
 	AVLTree2< Component* > components;
 
 	static unsigned long long g_GameObjectCount;

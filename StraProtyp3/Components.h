@@ -35,9 +35,15 @@ public:
 	ComponentType getType() override { return this->type; }
 
 	/*
-	* 
+	* Resolve collision of owner Gameobjet and given one.
+	* Collision is taking place if their dimensions are intersecting.
 	*/
 	bool resolve(GameObject* other);
+
+	/*
+	* Resolve collision between owner Gameobject and defined rectangle.
+	* Collision is taking place if their dimensions are intersecting.
+	*/
 	bool resolve(float x, float y, float w, float h);
 
 
