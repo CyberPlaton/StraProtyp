@@ -83,9 +83,21 @@ private:
 
 	NodePtr searchTreeHelper(NodePtr node, size_t key)
 	{
+		using namespace std;
+
 		if (node == nullptr || key == node->data) {
 			return node;
 		}
+
+
+		// Test for same key.
+		if (key == node->data)
+		{
+			cout << color(colors::RED);
+			cout << "[AVLTree2::searchTreeHelper] Fatal Error! Same Keys found: " << key << white << endl;
+			throw std::runtime_error("Fatal Error!");
+		}
+
 
 		if (key < node->data) {
 			return searchTreeHelper(node->left, key);

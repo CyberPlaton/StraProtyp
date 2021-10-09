@@ -101,13 +101,13 @@ public:
 	*/
 	GameObject(const GOTag& tag, const GOName& name) : name(name)
 	{
+		g_GameObjectCount++;
+
 		this->tag = "GO_" + std::to_string(g_GameObjectCount) +"_" + tag;
 
 		hash = hasher(this->tag);
 
 		GameObjectStorage::get()->add(this);
-
-		g_GameObjectCount++;
 	}
 
 	virtual ~GameObject()

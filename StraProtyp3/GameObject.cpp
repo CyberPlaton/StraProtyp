@@ -58,6 +58,10 @@ void GameObjectStorage::add(GameObject* go)
 
 	cout << color(colors::GREEN);
 	cout << "[GameObjectStorage::add] New Gameobject Tag:\""<< go->getTag() << "\", Hash:\""<< go->hash << "\"" << white << endl;
+
+	cout << color(colors::DARKGREEN);
+	cout << "[GameObjectStorage::add] m_GameObjects.size = " << m_GameObjects.size() << endl;
+	cout << "[GameObjectStorage::add] goTagHashMap.size = " << goTagHashMap.size() << white <<endl;
 }
 
 
