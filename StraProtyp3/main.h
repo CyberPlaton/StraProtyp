@@ -169,6 +169,8 @@ private:
 	// the gameworld. Accessing a maptile at coordinates {x=10, y=32}
 	// is done with gameWorldMatrix[10][32].
 	GameworldMatrix gameWorldMatrix;
+	olc::vi2d visiblePointLeftUp;
+	olc::vi2d visiblePointDownRight;
 
 
 	// Font for rendering Text in game.
@@ -182,11 +184,13 @@ private:
 
 	//void _onImGui();
 	void _handleInput();
+	void _updateVisibleRect();
 	bool _loadDecalDatabase();
 	bool _loadTechTreeDefinitions();
 	bool _loadAppStateDefinitions();
 	bool _loadGameobjectPathdefinitions();
 	bool _initGameworldMatrix();
+
 
 
 	olc::Pixel _getColorFromString(const std::string& c)
@@ -236,8 +240,6 @@ private:
 
 
 	void _renderMaptile(GameObject* tile);
-	void _computeVisibilityRect(olc::vi2d& upLeft, olc::vi2d& downRight);
-	bool _isMaptileVisible(GameObject* go);
 	void _renderGameworld();
 	void _drawUI();
 };

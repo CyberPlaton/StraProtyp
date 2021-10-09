@@ -40,8 +40,8 @@ public:
 
 		if (filepath.find(".xml") != std::string::npos)
 		{
-			cout << color(colors::CYAN);
-			cout << "[GameObjectCreator::create] Loading \""<< name << "\" from Path \""<< filepath <<"\"" << white << endl;
+			//cout << color(colors::CYAN);
+			//cout << "[GameObjectCreator::create] Loading \""<< name << "\" from Path \""<< filepath <<"\"" << white << endl;
 
 			return _createFromXML(filepath, name, xpos, ypos);
 		}
@@ -49,8 +49,8 @@ public:
 		{
 			try
 			{
-				cout << color(colors::CYAN);
-				cout << "[GameObjectCreator::create] Loading \"" << name << "\" from Gameobject Pathdefinitions" << white << endl;
+				//cout << color(colors::CYAN);
+				//cout << "[GameObjectCreator::create] Loading \"" << name << "\" from Gameobject Pathdefinitions" << white << endl;
 
 				return _createFromXML(gameobjectPathDefinitions.at(filepath), name, xpos, ypos);
 			}

@@ -70,6 +70,11 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 	Clear(olc::BLACK);
 
+	if (stateMachine.getCurrentState().compare("worldMap") == 0)
+	{
+		_updateVisibleRect(); // Update the Rect of the Worlmap which is visible for App owner.
+	}
+
 	_handleInput(); // Handle the users input.
 		
 
@@ -1515,20 +1520,15 @@ void AppStateCityView::onExit()
 
 void AppStateWorldMap::_renderGameworld()
 {
-	for (auto& go : GameObjectStorage::get()->getStorage())
+	// Iterate through visible maptiles and render them.
+	olc::vi2d upLeft = app->visiblePointLeftUp;
+	olc::vi2d downRight = app->visiblePointDownRight;
+
+	for (int x = upLeft.x; x < downRight.x; x++)
 	{
-		// Get only maptiles.
-		if (go->hasComponent("Maptile"))
+		for (int y = upLeft.y; y < downRight.y; y++)
 		{
-
-			// Get only visible maptiles.
-			if (_isMaptileVisible(go))
-			{
-
-				// Render Maptile with contents in correct order ( without units ).
-				_renderMaptile(go);
-			}
-
+			_renderMaptile(app->gameWorldMatrix[x][y]);
 		}
 	}
 }
@@ -1623,28 +1623,14 @@ void AppStateWorldMap::_renderMaptile(GameObject* tile)
 }
 
 
-bool AppStateWorldMap::_isMaptileVisible(GameObject* go)
+void App::_updateVisibleRect()
 {
-	TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
-
-	olc::vi2d upperLeftPoint, downRightPoint; // Define the visibility Rectangle.
-	_computeVisibilityRect(upperLeftPoint, downRightPoint);
-
-
-	// Check whether Transform Point is in the Rectangle.
-	return (transform->xpos >= upperLeftPoint.x && transform->xpos <= upperLeftPoint.x + downRightPoint.x &&
-			transform->ypos >= upperLeftPoint.y && transform->ypos <= upperLeftPoint.y + downRightPoint.y);
-}
-
-
-void AppStateWorldMap::_computeVisibilityRect(olc::vi2d& upLeft, olc::vi2d& downRight)
-{
-	upLeft = app->tv.GetTileUnderScreenPos({ 0, 0 });
-	if (upLeft.x < 0) upLeft.x = 0;
-	if (upLeft.y < 0) upLeft.y = 0;
-	downRight = app->tv.GetBottomRightTile();
-	if (downRight.x > DEFAULT_MAPSIZE_X) downRight.x = DEFAULT_MAPSIZE_X;
-	if (downRight.y > DEFAULT_MAPSIZE_Y) downRight.y = DEFAULT_MAPSIZE_Y;
+	visiblePointLeftUp = tv.GetTileUnderScreenPos({ 0, 0 });
+	if (visiblePointLeftUp.x < 0) visiblePointLeftUp.x = 0;
+	if (visiblePointLeftUp.y < 0) visiblePointLeftUp.y = 0;
+	visiblePointDownRight = tv.GetBottomRightTile();
+	if (visiblePointDownRight.x > DEFAULT_MAPSIZE_X) visiblePointDownRight.x = DEFAULT_MAPSIZE_X;
+	if (visiblePointDownRight.y > DEFAULT_MAPSIZE_Y) visiblePointDownRight.y = DEFAULT_MAPSIZE_Y;
 }
 
 
