@@ -119,6 +119,7 @@ bool App::OnUserCreate()
 	SetLayerCustomRenderFunction(0, std::bind(&App::DrawUI, this));
 
 
+	// Create Transformed View renderer with given Screen Dimension and given Tile Size (256, 256).
 	tv = olc::TileTransformedView({ ScreenWidth(), ScreenHeight() }, { DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
 
 	
@@ -127,6 +128,7 @@ bool App::OnUserCreate()
 
 	GameObjectCreator creator;
 
+	
 	// Show off new Forestry with Jungle.
 	GameObject* go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 0, 0);
 	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 1, 0);
@@ -239,7 +241,7 @@ bool App::OnUserCreate()
 	go = creator.create("Data/City_Plain.xml", "Grobushheim", 3, 2);
 
 	go = creator.create("Data/City_Plain.xml", "Enderil", 4, 2);
-
+	
 
 
 	NavMesh::get()->bake();
@@ -488,7 +490,9 @@ void App::_handleInput()
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)
 	{
 
+		// TODO Rework
 		// Check for RMB Press on a city...
+		
 		if (GetMouse(1).bPressed && stateMachine.getCurrentState().compare("worldMap") == 0)
 		{
 			for (auto& go : GameObjectStorage::get()->getStorage())
@@ -515,6 +519,7 @@ void App::_handleInput()
 				}
 			}
 		}
+		
 	}
 	else if (stateMachine.getCurrentState().compare("cityView") == 0)
 	{
@@ -1625,7 +1630,7 @@ void AppStateWorldMap::update(float)
 
 		// Application rendering.
 		olc::vi2d topleft = tv.GetTopLeftTile().max({ 0, 0 });
-		olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
+		olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_MAPSIZE_X, DEFAULT_MAPSIZE_Y });
 		olc::vi2d tile;
 
 
