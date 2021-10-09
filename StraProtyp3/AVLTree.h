@@ -22,11 +22,11 @@ private:
 
 	// data structure that represents a node in the tree
 	struct Node {
-		size_t data; // holds the key
-		Node* parent; // pointer to the parent
-		Node* left; // pointer to left child
-		Node* right; // pointer to right child
-		int bf; // balance factor of the node
+		size_t data = 0; // holds the key
+		Node* parent = nullptr; // pointer to the parent
+		Node* left = nullptr; // pointer to left child
+		Node* right = nullptr; // pointer to right child
+		int bf = 0; // balance factor of the node
 		T storedData; // holds the templated type of data, e.g. a pointer to Gameobject
 	};
 
@@ -163,7 +163,8 @@ private:
 	}
 
 	// rebalance the tree
-	void rebalance(NodePtr node) {
+	void rebalance(NodePtr node)
+	{
 		if (node->bf > 0) {
 			if (node->right->bf < 0) {
 				rightRotate(node->right);
@@ -182,6 +183,7 @@ private:
 				rightRotate(node);
 			}
 		}
+		
 	}
 
 	void printHelper(NodePtr root, std::string indent, bool last)

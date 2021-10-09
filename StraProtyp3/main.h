@@ -25,6 +25,9 @@
 #include "olcPGEX_CustomFont.h"
 
 
+/*
+* ImGui includes for Technology Tree.
+*/
 #include "imnodes.h"
 struct ImNodesLink
 {
@@ -47,7 +50,11 @@ struct ImNodesNode
 	std::map< std::string, int > techDependencies; // Which are for display only.
 };
 
+
+
+
 /*
+* Common includes.
 */
 #include "ComponentSystem.h"
 #include "Components.h"
@@ -65,8 +72,13 @@ struct ImNodesNode
 #include "PlayerInstance.h"
 
 
+
 struct AppStateWorldMap;
 struct AppStateCityView;
+
+
+using GameworldMatrix = std::vector< std::vector< GameObject* >>;
+
 
 class App : public olc::PixelGameEngine
 {
@@ -146,12 +158,17 @@ private:
 	// Players in game.
 	std::vector< PlayerInstance* > players;
 
-
+	// The city the player associated with this App is currenlty viewing.
 	GameObject* currentViewedCity = nullptr;
 
-
+	// The State machine associated with this App.
 	StateMachine<App> stateMachine;
 
+	// The Gameworld represented as a matrix.
+	// In here are stored maptile Gameobject according to their position in 
+	// the gameworld. Accessing a maptile at coordinates {x=10, y=32}
+	// is done with gameWorldMatrix[10][32].
+	GameworldMatrix gameWorldMatrix;
 
 
 	// Font for rendering Text in game.
@@ -169,6 +186,7 @@ private:
 	bool _loadTechTreeDefinitions();
 	bool _loadAppStateDefinitions();
 	bool _loadGameobjectPathdefinitions();
+	bool _initGameworldMatrix();
 
 
 	olc::Pixel _getColorFromString(const std::string& c)

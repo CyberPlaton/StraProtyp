@@ -79,7 +79,7 @@ struct Graph
 	{
 		nodes.resize(width);
 
-		for (int i = 0; i < height; i++)
+		for (int i = 0; i < width; i++)
 		{
 			nodes[i].resize(height);
 		}
@@ -256,7 +256,7 @@ private:
 	{
 		map.resize(width);
 
-		for (int i = 0; i < height; i++)
+		for (int i = 0; i < width; i++)
 		{
 			map[i].resize(height);
 		}

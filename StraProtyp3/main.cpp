@@ -88,7 +88,17 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 
 
+bool App::_initGameworldMatrix()
+{
+	// Set the dimensions as given.
+	gameWorldMatrix.resize(DEFAULT_MAPSIZE_X);
+	for (int i = 0; i < DEFAULT_MAPSIZE_X; i++)
+	{
+		gameWorldMatrix[i].resize(DEFAULT_MAPSIZE_Y);
+	}
 
+	return true;
+}
 
 
 bool App::OnUserCreate()
@@ -112,6 +122,7 @@ bool App::OnUserCreate()
 	if (!_loadTechTreeDefinitions()) return false;
 	if (!_loadAppStateDefinitions()) return false;
 	if (!_loadGameobjectPathdefinitions()) return false;
+	if (!_initGameworldMatrix()) return false;
 
 
 	m_GameLayer = CreateLayer();
@@ -128,7 +139,18 @@ bool App::OnUserCreate()
 
 	GameObjectCreator creator;
 
-	
+	GameObject* go = nullptr;
+	for (int i = 0; i < DEFAULT_MAPSIZE_X; i++)
+	{
+		for (int j = 0; j < DEFAULT_MAPSIZE_Y; j++)
+		{
+			go = creator.create("Data/Temperate_Maptile.xml", "Maptile", i, j);
+
+			gameWorldMatrix[i][j] = go;
+		}
+	}
+
+	/*
 	// Show off new Forestry with Jungle.
 	GameObject* go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 0, 0);
 	go = creator.create("Data/Jungle_Maptile.xml", "Maptile", 1, 0);
@@ -241,7 +263,7 @@ bool App::OnUserCreate()
 	go = creator.create("Data/City_Plain.xml", "Grobushheim", 3, 2);
 
 	go = creator.create("Data/City_Plain.xml", "Enderil", 4, 2);
-	
+	*/
 
 
 	NavMesh::get()->bake();
