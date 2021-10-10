@@ -16,6 +16,16 @@
 
 		<Component name ="Forest"></Component>
 
+		
+		<Component name="Ressource" ressourceName="Normal Forest">
+			<Def>
+				<Prod amount="2" time="1" prof="Hunter">Leather</Prod>
+				<Prod amount="2" time="1" prof="Hunter">Food</Prod>
+				<Prod amount="4" time="1" prof="Woodcutter">Wood</Prod>
+			</Def>
+		</Component>
+
+		
 		<Component name="CollisionBox">
 			<Width>1.0</Width>
 			<Height>1.0</Height>

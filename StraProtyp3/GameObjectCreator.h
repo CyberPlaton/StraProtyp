@@ -18,6 +18,7 @@
 #include "IMountain.h"
 #include "IRiver.h"
 #include "IHill.h"
+#include "IRessource.h"
 
 /*
 * Include Random Name Generator to create random names for units and buildings on the fly.
@@ -191,6 +192,41 @@ private:
 				tile->setMaptileType(type);
 
 				gameobject->AddComponent(tile);
+			}
+			else if (cmp_name.compare("Ressource") == 0)
+			{
+				IRessourceCmp* ress = new IRessourceCmp("Ressource");
+				gameobject->AddComponent(ress);
+
+
+				// Add The ressource object to the Maptile.
+				GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
+				IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
+				maptile->addGameobject(gameobject->getTag());
+
+
+
+				std::string ressObjName = cmp->Attribute("ressourceName");
+				ress->setRessourceName(ressObjName);
+
+
+				// Get the production tuples.
+				XMLElement* def = cmp->FirstChildElement("Def");
+				XMLElement* prod = def->FirstChildElement("Prod");
+				while (prod)
+				{
+					int amount = prod->IntAttribute("amount", -INT_MAX);
+					int time = prod->IntAttribute("time", -INT_MAX);
+					std::string prof = prod->Attribute("prof");
+					std::string ressName = prod->GetText();
+
+
+					ress->addProductionTuple(ressName, amount, time);
+					ress->addRequiredProfession(prof);
+
+
+					prod = prod->NextSiblingElement("Prod");
+				}
 			}
 			else if (cmp_name.compare("Building") == 0)
 			{

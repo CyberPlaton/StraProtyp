@@ -160,6 +160,7 @@ bool App::OnUserCreate()
 				if ((i + j) % 2 == 0)
 				{
 					go = creator.create("Data/Temperate_Scarce.xml", "Forest", i, j);
+					go = creator.create("Data/Ressource_Bronze_Ore.xml", "Ore", i, j);
 				}
 				else
 				{
@@ -170,9 +171,6 @@ bool App::OnUserCreate()
 					else if (j % 2 == 0)
 					{
 						go = creator.create("Data/Temperate_Deep.xml", "Forest", i, j);
-					}
-					else
-					{
 					}
 				}
 			}
@@ -1681,15 +1679,6 @@ void AppStateWorldMap::update(float)
 
 
 	// Draw General Layered
-	/*
-	app->renderLayer("maptile");
-	app->renderLayer("mountain");
-	app->renderLayer("forest");
-	app->renderLayer("river");
-	app->renderLayer("city");
-	app->renderLayer("unit");
-	app->renderLayer("overlay");
-	*/
 	_renderGameworld();
 
 
@@ -2039,6 +2028,7 @@ void AppStateWorldMap::_drawUI()
 
 					if (ImGui::TreeNode("Ressource"))
 					{
+
 						ImGui::TreePop();
 					}
 				}
