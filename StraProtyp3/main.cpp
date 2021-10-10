@@ -2019,6 +2019,19 @@ void AppStateWorldMap::_drawUI()
 
 					if (ImGui::TreeNode("Maptile"))
 					{
+						ImGui::Text("HasRiver: \"%s\"", tile->hasRiver() == true ? "true" : "false");
+						ImGui::Text("HasHill: \"%s\"", tile->hasHill() == true ? "true" : "false");
+						ImGui::Text("HasMountain: \"%s\"", tile->hasMountain() == true ? "true" : "false");
+						ImGui::Text("HasRoad: \"%s\"", tile->hasRoad() == true ? "true" : "false");
+						ImGui::Text("HasImprovement: \"%s\"", tile->hasImprovement() == true ? "true" : "false");
+						ImGui::Text("HasForest: \"%s\"", tile->hasForest() == true ? "true" : "false");
+						ImGui::Text("HasCity: \"%s\"", tile->hasCity() == true ? "true" : "false");
+						ImGui::Text("HasFort: \"%s\"", tile->hasFort() == true ? "true" : "false");
+						ImGui::Text("HasUnit: \"%s\"", tile->hasUnit() == true ? "true" : "false");
+						ImGui::Text("HasWaterAccess: \"%s\"", tile->hasWaterAccess() == true ? "true" : "false");
+						ImGui::Text("HasRessource: \"%s\"", tile->hasRessource() == true ? "true" : "false");
+
+
 						ImGui::TreePop();
 					}
 				}

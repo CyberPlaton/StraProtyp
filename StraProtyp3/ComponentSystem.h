@@ -8,8 +8,8 @@
 
 #define DEFAULT_DECAL_SIZE_X 256
 #define DEFAULT_DECAL_SIZE_Y 256
-#define DEFAULT_MAPSIZE_X 14
-#define DEFAULT_MAPSIZE_Y 8
+#define DEFAULT_MAPSIZE_X 17
+#define DEFAULT_MAPSIZE_Y 13
 
 static std::hash<std::string> hasher;
 

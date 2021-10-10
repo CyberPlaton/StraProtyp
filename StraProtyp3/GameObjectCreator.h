@@ -395,6 +395,7 @@ private:
 			GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
 			IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
 			maptile->addGameobject(gameobject->getTag());
+			maptile->setHasRessource(true);
 
 			}
 			else if (cmp_name.compare("River") == 0)
@@ -405,6 +406,7 @@ private:
 			GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
 			IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
 			maptile->addGameobject(gameobject->getTag());
+			maptile->setHasRiver(true);
 
 			}
 			else if (cmp_name.compare("Mountain") == 0)
@@ -415,6 +417,7 @@ private:
 			GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
 			IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
 			maptile->addGameobject(gameobject->getTag());
+			maptile->setHasMountain(true);
 
 			}
 			else if (cmp_name.compare("Hill") == 0)
@@ -425,6 +428,7 @@ private:
 			GameObject* maptileGO = _getMaptileAtPosition(xpos, ypos);
 			IMaptileCmp* maptile = maptileGO->getComponent<IMaptileCmp>("Maptile");
 			maptile->addGameobject(gameobject->getTag());
+			maptile->setHasHill(true);
 
 			}
 			else if (cmp_name.compare("City") == 0)
