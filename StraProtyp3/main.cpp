@@ -2028,6 +2028,35 @@ void AppStateWorldMap::_drawUI()
 
 					if (ImGui::TreeNode("Ressource"))
 					{
+						std::map< RessourceID, UnitProfession >  reqProf = rss->getRequiredProfessions();
+						std::map< UnitProfession, std::map< RessourceID, int > > professions;
+
+						for (auto& p : reqProf)
+						{
+							std::map< RessourceID, int > production = rss->getPossibleProductionForProfession(p.second);
+
+							auto it = professions.find(p.first);
+							if (it == professions.end())
+							{
+								professions.emplace(p.second, production);
+							}
+							else
+							{
+								for (auto& prod : production)
+								{
+									professions[p.second].emplace(prod.first, prod.second);
+								}
+							}
+						}
+
+
+						for (auto& prof : professions) // For each Profession.
+						{
+							for (auto& prod : prof.second) // For each production of the Profession.
+							{
+								ImGui::Text("\"%s\" : %d {\"%s\"}", prod.first.c_str(), prod.second, prof.first.c_str());
+							}
+						}
 
 						ImGui::TreePop();
 					}

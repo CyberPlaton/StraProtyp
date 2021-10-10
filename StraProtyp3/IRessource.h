@@ -21,23 +21,31 @@ public:
 
 	ComponentType getType() override { return this->type; }
 
+	// Get all the required professions that can work this ressource
+	// with which we can retrieve possible production.
+	std::map< RessourceID, UnitProfession > getRequiredProfessions() { return requiredProfessions; }
+
+
 	// Get the production with amount which is possible to be produced by given profession.
 	std::map< RessourceID, int > getPossibleProductionForProfession(const UnitProfession& prof)
 	{
-		std::map< RessourceID, int > prod;
+		std::map< RessourceID, int > production;
 
-		int i = 0;
-		for (auto& it : productionRessources)
+		for (auto& prod: productionRessources)
 		{
-			if (requiredProfessions[i].compare(prof) == 0)
+			for (auto& profession : requiredProfessions)
 			{
-				prod.emplace(it.first, it.second);
+				if (prod.first.compare(profession.first) == 0)
+				{
+					if (profession.second.compare(prof) == 0)
+					{
+						production.emplace(prod.first, prod.second);
+					}
+				}
 			}
-
-			i++;
 		}
 
-		return prod;
+		return production;
 	}
 
 
@@ -59,7 +67,10 @@ public:
 
 
 	// Add a profession as a required one to work this RessourceObject. 
-	void addRequiredProfession(const UnitProfession& prof) { requiredProfessions.push_back(prof); }
+	void addRequiredProfession(const RessourceID& prodRessource, const UnitProfession& prof)
+	{
+		requiredProfessions.emplace(prodRessource, prof);
+	}
 
 
 	// Set the city to which this RessourceObject belongs to,
@@ -98,8 +109,18 @@ public:
 			// Check for correct profession of unit and produced ressource ( Building ).
 			UnitProfession uProf = worker->getComponent<IUnitCmp>("Unit")->getProfession();
 
-			auto it = std::find(requiredProfessions.begin(), requiredProfessions.end(), uProf);
-			if (it == requiredProfessions.end())
+			bool reqProfFound = false;
+			for (auto& prof : requiredProfessions)
+			{
+				if (prof.second.compare(uProf) == 0)
+				{
+					reqProfFound = true;
+					break;
+				}
+			}
+
+
+			if (!reqProfFound)
 			{
 				return false;
 			}
@@ -156,7 +177,7 @@ private:
 
 	// The required professions to work on this ressource,
 	// where the index matches the "productionRessources" index.
-	std::vector< UnitProfession > requiredProfessions;
+	std::map< RessourceID, UnitProfession > requiredProfessions;
 
 
 	// Defines ressources which can be produced with amount.

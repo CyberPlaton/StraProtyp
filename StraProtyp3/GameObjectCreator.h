@@ -222,7 +222,7 @@ private:
 
 
 					ress->addProductionTuple(ressName, amount, time);
-					ress->addRequiredProfession(prof);
+					ress->addRequiredProfession(ressName, prof);
 
 
 					prod = prod->NextSiblingElement("Prod");
