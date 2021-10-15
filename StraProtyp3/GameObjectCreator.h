@@ -433,8 +433,9 @@ private:
 			}
 			else if (cmp_name.compare("City") == 0)
 			{
-				ICityCmp* city = new ICityCmp("City");
+				ICityCmp* city = new ICityCmp("City", gameobject);
 				gameobject->AddComponent(city);
+				city->setCityName(name);
 
 				// Citytype
 				std::string cType = cmp->FirstChildElement("CityType")->GetText();

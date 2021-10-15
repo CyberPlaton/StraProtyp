@@ -158,6 +158,7 @@ private:
 	// Players in game.
 	std::vector< PlayerInstance* > players;
 
+
 	// The city the player associated with this App is currenlty viewing.
 	GameObject* currentViewedCity = nullptr;
 

@@ -2,11 +2,14 @@
 
 #include <vector>
 #include <map>
+#include <cmath>
 
 #include "ColorConsole.h"
 
 #include "ComponentSystem.h"
 #include "IPlayer.h"
+#include "ICity.h"
+#include "IMaptile.h"
 
 
 using RessourceID = std::string;
@@ -88,7 +91,7 @@ public:
 
 
 public:
-	ICityCmp(const ComponentID& name) {
+	ICityCmp(const ComponentID& name, GameObject* cityGO) : cityGameobject(cityGO) {
 		this->name = name;
 		type = "City";
 
@@ -99,6 +102,108 @@ public:
 	ComponentType getType() override { return this->type; }
 
 	void pushSlot(const BuildingSlot& slot) { buildingSlots.push_back(slot); }
+	void setCityName(const std::string& name) { cityName = name; }
+
+	// Using a templated Vector for getting the position of the city.
+	template < typename T >
+	T getCityPosition()
+	{
+		TransformCmp* tr = cityGameobject->getComponent<TransformCmp>("Transform");
+		return { tr->xpos, tr->ypos };
+	}
+
+
+	std::string getMajorReligion() { return majorReligion; }
+	double getMajorReligionStrength() { return religions[majorReligion]; }
+
+	void createReligion(const std::string& religion, double value)
+	{
+		religions[religion] = value;
+		_updateMajorReligion();
+	}
+
+	std::map< std::string, float > getReligions() { return religions; }
+
+	void updateReligion(std::vector<std::vector<GameObject*>>& world)
+	{
+		using namespace std;
+
+		// Apply accomodated pressure values from previous turn.
+		_updatePressureValues();
+
+
+		// Base decay for all religions.
+		/*
+		for (auto& r : religions)
+		{
+			r.second -= 0.2f;
+			if (r.second < 0.0) r.second = 0.0;
+		}
+		*/
+
+		// Normalize religion values to be summed to 100.
+		// This possibly makes the base decay obsolete.
+		_normalizeReligionValues();
+
+
+		// Update the major religion for the city.
+		_updateMajorReligion();
+
+
+		// Update religious pressure on all neighboring cities,
+		// where "neighboring" means with manhatten distance lower than DEFAULT_RELIGION_SPREAD_DISTANCE.
+		std::vector< GameObject* > maptiles = _getMaptilesWithinRange(world, DEFAULT_RELIGION_SPREAD_DISTANCE);
+
+
+		// For each maptile in range with a city.
+		TransformCmp* cityTransform = cityGameobject->getComponent<TransformCmp>("Transform");
+		for (auto& m : maptiles)
+		{
+			IMaptileCmp* maptileComponent = m->getComponent<IMaptileCmp>("Maptile");
+			TransformCmp* maptileTransform = m->getComponent<TransformCmp>("Transform");
+			if (maptileComponent->hasCity())
+			{
+
+				double majorReligionValue = religions[majorReligion];
+
+
+				// Compute the distance between this city and other.
+				double dist = _manhattenDistance(cityTransform->xpos, cityTransform->ypos, maptileTransform->xpos, maptileTransform->ypos);
+				
+
+				// Allow for the city to influence itself by default,
+				// to disallow it change "0.0" to "1.0".
+				if (dist <= 0.0) continue;
+
+
+				// Compute pressure value of major religion for other city.
+				double pressureValue = majorReligionValue / (dist * dist * dist);
+
+
+				if (pressureValue >= 100.0) continue;
+
+
+				ICityCmp* city = _getCityOfMaptile(maptileComponent);
+
+				// Add the pressure value for the city to be update in next religious update.
+				city->addPressureValue(majorReligion, pressureValue);
+
+
+				//cout << color(colors::GREEN);
+				//cout << "[" << getCityName() << "]->[" << city->getCityName() << "] Add ReligionPressure \"" << majorReligion << "\":" << pressureValue << endl;
+				//cout << "[" << getCityName() << "]->[" << city->getCityName() << "] ManhattenDistance:" << dist << white << endl << endl;
+
+			}
+		}
+	}
+
+
+	void addPressureValue(const std::string& religion, double value)
+	{
+		// Add or set.
+		religionPressureValue[religion] = value;
+	}
+
 
 
 	/*
@@ -240,6 +345,7 @@ public:
 
 	CityFortificationLevel getFortificationLevel() { return fortificationLevel; }
 	CityType getCityType() { return cityType; }
+	std::string getCityName() { return cityName; }
 
 	std::vector< GameObject* > getUnits() { return units; }
 	std::vector< GameObject* > getBuildings(){ return buildings; }
@@ -247,12 +353,14 @@ public:
 	std::map< std::string, int > getCityData() { return data; }
 	std::vector< BuildingSlot > getCityBuildingSlots() { return buildingSlots; }
 
+
 private:
 	std::string type;
 
 	// To which player this city belongs.
 	IPlayer* player = nullptr;
 
+	std::string cityName;
 
 	// Whether a city or fort and
 	// whether on a Plain, Forest, Hill etc.
@@ -283,4 +391,151 @@ private:
 
 	// Central data storage for stuff like "Happiness" etc.
 	std::map< std::string, int > data;
+
+	// Religions of the city.
+	std::map< std::string, float > religions;
+	std::map< std::string, double > religionPressureValue;
+	std::string majorReligion; // Current Hightest Value religion.
+
+	// The Gameobject representing the city.
+	GameObject* cityGameobject = nullptr;
+
+
+
+private:
+
+	std::vector< GameObject* > _getMaptilesWithinRange(std::vector<std::vector<GameObject*>>& world, double dist)
+	{
+		std::vector< GameObject* > ret;
+
+		TransformCmp* transform = cityGameobject->getComponent<TransformCmp>("Transform");
+
+		for (int x = 0; x < world.size(); x++)
+		{
+			for (int y = 0; y < world[x].size(); y++)
+			{
+
+				TransformCmp* maptileTransform = world[x][y]->getComponent<TransformCmp>("Transform");
+
+				double manDist = std::abs(transform->xpos - maptileTransform->xpos) + std::abs(transform->ypos - maptileTransform->ypos);
+
+				if (manDist <= dist)
+				{
+					ret.push_back(world[x][y]);
+				}
+
+			}
+		}
+
+
+
+		return ret;
+	}
+
+	// Go through all religions and set the highest value one as new major religion for the city.
+	void _updateMajorReligion()
+	{
+		double max = 0.0;
+		for (auto& r : religions)
+		{
+			if (r.second > max)
+			{
+				max = r.second;
+				majorReligion = r.first;
+			}
+		}
+	}
+
+
+	void _updatePressureValues()
+	{
+		using namespace std;
+
+		if (religionPressureValue.size() == 0) return;
+
+		/*
+		// Compute sum value of all religion pressures.
+		double sum = 0.0;
+		sum += religions[majorReligion];
+		for (auto& d :religionPressureValue)
+		{
+			sum += d.second;
+		}
+
+
+		// Increase religion value of pressurized religions based on percentage value.
+		for (auto& r : religionPressureValue)
+		{
+			// Compute percentage value.
+			double p = (r.second * 100.0) / sum;
+
+			// Increase religion value by precentage.
+			religions[r.first] += (float)p;
+
+
+
+			cout << color(colors::MAGENTA);
+			cout << "["<< getCityName() << "] Religion Surplus: \"" << r.first << "\" : " << r.second << ", value: "<< religions[r.first] << white << endl;
+		}
+		*/
+
+		for (auto& r : religionPressureValue)
+		{
+
+			// Increase religion value by precentage.
+			religions[r.first] += (float)r.second;
+
+			//cout << color(colors::MAGENTA);
+			//cout << "[" << getCityName() << "] Religion Surplus: \"" << r.first << "\":" << r.second << ", ReligionValue: " << religions[r.first] << white << endl;
+		}
+
+		// Reset the pressure values.
+		for (auto& it : religionPressureValue)
+		{
+			it.second = 0.0;
+		}
+	}
+
+	// Normalize the religion values to be percentage based and between 0 and 100.
+	void _normalizeReligionValues()
+	{
+		float sum = 0.0;
+		for (auto& r : religions)
+		{
+			sum += r.second;
+		}
+
+		std::map< std::string, float > percentageValues;
+		for (auto& r : religions)
+		{
+			float percentValue = (r.second * 100.0f) / sum;
+			percentageValues.emplace(r.first,  percentValue);
+		}
+
+		for (auto& pv : percentageValues)
+		{
+			religions[pv.first] = pv.second;
+		}
+	}
+
+
+	double _manhattenDistance(int x1, int y1, int x2, int y2)
+	{
+		return std::abs(x1 - x2) + std::abs(y1 - y2);
+	}
+
+
+	ICityCmp* _getCityOfMaptile(IMaptileCmp* maptile)
+	{
+		for (auto& tag : maptile->getGameobjects())
+		{
+			GameObject* go = GameObjectStorage::get()->getGOByTag(tag);
+			if (go->hasComponent("City"))
+			{
+				return go->getComponent<ICityCmp>("City");
+			}
+		}
+
+		return nullptr;
+	}
 };

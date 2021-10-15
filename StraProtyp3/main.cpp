@@ -24,8 +24,19 @@ static int imnodes_tech_dependency_id = 1;
 static int imnodes_tech_dependency_display_id = 100000;
 static bool imnodes_tech_tree_initialized = false;
 static bool render_2d_grid = true;
+static bool render_city_religions = false;
+static bool show_city_religion_update_button = false;
 
-
+/*
+* Religion Helpers.
+*/
+static std::vector<std::string> availableColors;
+static int nextColorIndex = 0;
+static std::map< std::string, std::string > religionColors;
+static std::map< std::string, double > worldReligionsStrengths;
+static Timer religionStepTimer;
+static bool religionContinuousUpdateStarted = false;
+static bool religionContinuousUpdate = false;
 
 int main()
 {
@@ -80,8 +91,8 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 	GameWorldTime::get()->update(); // Update Game World Time.
 
-
 	stateMachine.update(fElapsedTime);
+
 
 
 	SetDrawTarget((uint8_t)m_GameLayer);
@@ -110,6 +121,18 @@ bool App::OnUserCreate()
 {
 	using namespace std;
 
+	// Define available colors for religions.
+	availableColors.push_back("green");
+	availableColors.push_back("dark_green");
+	availableColors.push_back("dark_blue");
+	availableColors.push_back("red");
+	availableColors.push_back("dark_red");
+	availableColors.push_back("yellow");
+	availableColors.push_back("dark_yellow");
+	availableColors.push_back("magenta");
+	availableColors.push_back("dark_magenta");
+
+
 	// Create Font
 	font = new olc::Font("Data/Assets/Font/data-latin.png");
 
@@ -128,6 +151,8 @@ bool App::OnUserCreate()
 	if (!_loadAppStateDefinitions()) return false;
 	if (!_loadGameobjectPathdefinitions()) return false;
 	if (!_initGameworldMatrix()) return false;
+
+
 
 
 	m_GameLayer = CreateLayer();
@@ -273,24 +298,37 @@ bool App::OnUserCreate()
 	go = creator.create("Data/Sand_Maptile.xml", "Maptile", 3, 4);
 	go = creator.create("Data/Sand_Maptile.xml", "Maptile", 4, 3);
 
+	*/
 
 	// City should be created after all maptiles are done.
-	go = creator.create("Data/City_Plain.xml", "Endoral", 7, 6);
+	go = creator.create("Data/City_Plain.xml", "Endoral", 15, 10);
+	go->getComponent<ICityCmp>("City")->createReligion("Endoral Cult", 75.0);
 
 	go = creator.create("Data/City_Plain.xml", "Durotar", 1, 1);
+	go->getComponent<ICityCmp>("City")->createReligion("Durotar Cult", 100.0);
 
-	go = creator.create("Data/City_Plain.xml", "Waldenwood", 2, 0);
 
-	go = creator.create("Data/City_Plain.xml", "Villean", 0, 2);
+	go = creator.create("Data/City_Plain.xml", "Waldenwood", 16, 0);
+	go->getComponent<ICityCmp>("City")->createReligion("Waldenwood Cult", 100.0);
+
+	go = creator.create("Data/City_Plain.xml", "Villean", 0, 12);
+	go->getComponent<ICityCmp>("City")->createReligion("Villean Cult", 25.2);
 
 	go = creator.create("Data/City_Plain.xml", "Durotan", 4, 4);
+	go->getComponent<ICityCmp>("City")->createReligion("Durotan Cult", 28.1);
 
-	go = creator.create("Data/City_Plain.xml", "Flamenburg", 2, 2);
+	go = creator.create("Data/City_Plain.xml", "Flamenburg", 8, 2);
+	go->getComponent<ICityCmp>("City")->createReligion("Flamenburg Cult", 76.1);
 
-	go = creator.create("Data/City_Plain.xml", "Grobushheim", 3, 2);
+	go = creator.create("Data/City_Plain.xml", "Grobushheim", 13, 2);
+	go->getComponent<ICityCmp>("City")->createReligion("Grobushheim Cult", 18.0);
+	go->getComponent<ICityCmp>("City")->createReligion("Dark Brotherhood Cult", 28.0);
+	go->getComponent<ICityCmp>("City")->createReligion("Durotan Cult", 15.0);
 
-	go = creator.create("Data/City_Plain.xml", "Enderil", 4, 2);
-	*/
+
+	go = creator.create("Data/City_Plain.xml", "Enderil", 5, 12);
+	go->getComponent<ICityCmp>("City")->createReligion("Enderil Cult", 100.0);
+	go->getComponent<ICityCmp>("City")->createReligion("Dark Brotherhood Cult", 48.0);
 
 
 	NavMesh::get()->bake();
@@ -1305,6 +1343,15 @@ bool App::_loadDecalDatabase()
 	decal = new olc::Decal(sprite);
 	_storeDecal("bg_maptile_savannah", decal);
 
+
+
+	// UI and other stuff.
+	default_path = "Data/Assets/UI/";
+	sprite = new olc::Sprite(default_path + "circle.png");
+	decal = new olc::Decal(sprite);
+	_storeDecal("circle", decal);
+
+
 	return true;
 }
 
@@ -1366,8 +1413,8 @@ void AppStateCityView::update(float)
 	cout << "[AppStateCityView] update" << white << endl;
 	*/
 
-
 	app->SetDrawTarget((uint8_t)app->m_GameLayer);
+
 
 	ICityCmp* city = app->getCurrentViewedCity()->getComponent<ICityCmp>("City");
 	if (city)
@@ -1644,17 +1691,6 @@ void AppStateWorldMap::update(float)
 	olc::TileTransformedView tv = app->getRenderer();
 
 
-	// Update all agents.
-	//for (auto& go : GameObjectStorage::get()->getStorage())
-	//{
-	//	// Update Navigator, for each entity which can move, let it move.
-	//	if (go->hasComponent("Navigator"))
-	//	{
-	//		go->getComponent<NavigatorCmp>("Navigator")->update(GameWorldTime::get()->getTimeSpeed());
-	//	}
-	//}
-
-
 	if (render_2d_grid)
 	{
 
@@ -1682,6 +1718,10 @@ void AppStateWorldMap::update(float)
 	_renderGameworld();
 
 
+
+
+
+	// Dra UI Stuff for debugging.
 	if (selected_ui_gameobject)
 	{
 		TransformCmp* tr = static_cast<TransformCmp*> (selected_ui_gameobject->getComponent("Transform"));
@@ -1847,9 +1887,6 @@ void AppStateWorldMap::_drawUI()
 {
 	using namespace std;
 
-	app->SetDrawTarget((uint8_t)app->m_GameLayer);
-
-
 	selected_ui_gameobject = nullptr;
 
 
@@ -1885,6 +1922,15 @@ void AppStateWorldMap::_drawUI()
 				ImGui::EndMenu();
 			}
 
+
+			if (ImGui::BeginMenu("Religion"))
+			{
+				if (ImGui::MenuItem("Display City Religions"))
+				{
+					render_city_religions = (render_city_religions == true) ? false : true;
+				}
+				ImGui::EndMenu();
+			}
 
 
 			if (ImGui::BeginMenu("Time Speed"))
@@ -2394,6 +2440,133 @@ void AppStateWorldMap::_drawUI()
 		}
 	}
 	ImGui::End();
+
+
+
+
+	if (render_city_religions)
+	{
+		static float religion_update_timer = 0.1f;
+
+		if (ImGui::Begin("Religion Spread Menu", &show_city_religion_update_button))
+		{
+			if (ImGui::Button("Religion Update Continuous"))
+			{
+
+				religionContinuousUpdate = religionContinuousUpdate == true ? false : true;
+			}
+
+			if (religionContinuousUpdate)
+			{
+				ImGui::SameLine();
+				ImGui::SliderFloat("Circle Size", &religion_update_timer, 0.0f, 10.0f, "%.3f", ImGuiSliderFlags_Logarithmic);
+
+				// Update Cities Religions.
+				for (auto& c : ComponentStorage::get()->getAllOfType<ICityCmp>("City"))
+				{
+					c->updateReligion(app->gameWorldMatrix);
+				}
+
+				/*
+				// Automatically every second do a religion update.
+				if (!religionContinuousUpdateStarted)
+				{
+					religionStepTimer.startTimer();
+					religionContinuousUpdateStarted = true;
+				}
+				else if (religionStepTimer.getElapsedSeconds() > religion_update_timer)
+				{
+					// Update Cities Religions.
+					for (auto& c : ComponentStorage::get()->getAllOfType<ICityCmp>("City"))
+					{
+						c->updateReligion(app->gameWorldMatrix);
+					}
+
+					religionContinuousUpdateStarted = false;
+				}
+				*/
+			}
+
+
+
+
+
+
+
+			if (ImGui::Button("Religion Update Step"))
+			{
+				// Update Cities Religions.
+				for (auto& c : ComponentStorage::get()->getAllOfType<ICityCmp>("City"))
+				{
+					c->updateReligion(app->gameWorldMatrix);
+				}
+			}
+
+			for (auto& r : worldReligionsStrengths)
+			{
+				ImGui::Text("\"%s\" : %.3f", r.first.c_str(), r.second);
+			}
+
+
+			std::vector< ICityCmp* > cities = ComponentStorage::get()->getAllOfType<ICityCmp>("City");
+			for (auto& c : cities)
+			{
+				if (ImGui::TreeNode(c->getCityName().c_str()))
+				{
+					
+					for (auto& r : c->getReligions())
+					{
+						ImGui::Text("\"%s\":%.3f", r.first.c_str(), r.second);
+					}
+
+					ImGui::TreePop();
+				}
+			}
+
+			//ImGui::SliderFloat("Circle Size", &religion_spread_size, 0.0f, 10.0f, "%.3f", ImGuiSliderFlags_Logarithmic);
+		}
+
+
+		// Draw the religions spread for each major religion of each city.
+		for (auto& c : ComponentStorage::get()->getAllOfType<ICityCmp>("City"))
+		{
+			olc::vi2d position = c->getCityPosition<olc::vi2d>();
+			std::string religion = c->getMajorReligion();
+			if (religion.empty()) continue;
+
+
+			double strength = c->getMajorReligionStrength();
+			
+			worldReligionsStrengths[religion] = strength;
+			
+			float religionSpreadSize = strength / 50.0f;
+
+
+
+			std::string colorName = religionColors[religion];
+			if (colorName.empty())
+			{
+				// Assign new color.
+				religionColors[religion] = availableColors[nextColorIndex++];
+				colorName = religionColors[religion];
+			}
+
+			olc::Pixel color = app->_getColorFromString(colorName);
+			color.a = (int)strength + 100;
+
+			// Get Decal from database and render religion spread circle.
+			olc::Decal* d = app->_getDecal("circle");
+			app->tv.DrawDecal({ 0.5f + (float)position.x - (float)religionSpreadSize / 2, 0.5f + (float)position.y - (float)religionSpreadSize / 2 }, d, { (float)religionSpreadSize, (float)religionSpreadSize }, color);
+
+
+			// Draw Religion Name.
+			color.a = 255;
+			olc::vf2d screenPoint = app->tv.WorldToScreen(position);
+			app->font->DrawRotatedStringDecal(screenPoint, religion, 0.1f, { 0, 0 }, color, { 0.5f, 0.5f });
+		}
+
+		ImGui::End();
+	}
 
 
 

@@ -10,6 +10,7 @@
 #define DEFAULT_DECAL_SIZE_Y 256
 #define DEFAULT_MAPSIZE_X 17
 #define DEFAULT_MAPSIZE_Y 13
+#define DEFAULT_RELIGION_SPREAD_DISTANCE 15.0
 
 static std::hash<std::string> hasher;
 

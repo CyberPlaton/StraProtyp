@@ -28,7 +28,7 @@
 				<Entry name="Health" amount="100"></Entry>
 				<Entry name="Order" amount="100"></Entry>
 			</Data>
-
+			
 			<BuildingSlots>
 				<!--The BuildingSlot x and y positions define where it is drawn on the citymap-->
 				<Slot number="1" xpos="266" ypos="340" type="Normal"></Slot>
