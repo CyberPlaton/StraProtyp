@@ -24,6 +24,8 @@ using GOTag = std::string;
 */
 using GOName = std::string;
 
+
+
 class GameObject;
 
 class GameObjectStorage

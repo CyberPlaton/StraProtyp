@@ -121,6 +121,22 @@ bool App::OnUserCreate()
 {
 	using namespace std;
 
+
+	GameobjectStorage::get();
+
+	{
+		// Pointer will reset itself automatically after scope end
+		auto ptr = GameobjectStorage::get()->Instantiate("RandomDude");
+	}
+
+	TestComponent testCmp("Testing Component");
+	testCmp.update();
+
+
+	GameobjectStorage::del();
+	return false;
+
+
 	// Define available colors for religions.
 	availableColors.push_back("green");
 	availableColors.push_back("dark_green");

@@ -103,17 +103,23 @@
     <ClInclude Include="common\include\imgui-master\imstb_truetype.h" />
     <ClInclude Include="common\include\imgui_impl_pge.h" />
     <ClInclude Include="common\include\tinyxml2.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="ComponentSystem.h" />
     <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObject2.h" />
     <ClInclude Include="GameObjectCreator.h" />
+    <ClInclude Include="GameObjectStorage.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="GameWorldTime.h" />
     <ClInclude Include="GameWorldTimer.h" />
     <ClInclude Include="IBuilding.h" />
     <ClInclude Include="ICity.h" />
+    <ClInclude Include="IComponent.h" />
     <ClInclude Include="IForest.h" />
+    <ClInclude Include="IGameObject.h" />
+    <ClInclude Include="IGameObjectStorage.h" />
     <ClInclude Include="IHill.h" />
     <ClInclude Include="IImprovement.h" />
     <ClInclude Include="IMaptile.h" />
@@ -133,6 +139,7 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="RandomNameGenerator.h" />
     <ClInclude Include="TechInstance.h" />
+    <ClInclude Include="TestingComponent.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="WorldState.h" />
   </ItemGroup>
@@ -151,8 +158,11 @@
     <ClCompile Include="ComponentSystem.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectCreator.cpp" />
+    <ClCompile Include="GameObjectStorage.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="GameWorldTime.cpp" />
+    <ClCompile Include="IComponent.cpp" />
+    <ClCompile Include="IGameObjectStorage.cpp" />
     <ClCompile Include="IMaptile.cpp" />
     <ClCompile Include="ITech.cpp" />
     <ClCompile Include="main.cpp" />

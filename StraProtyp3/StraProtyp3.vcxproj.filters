@@ -28,6 +28,15 @@
     <Filter Include="Source Files\Game\Helper">
       <UniqueIdentifier>{baf0991f-6f31-4565-8464-6ced25b1bc93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Base\ECS">
+      <UniqueIdentifier>{97ff00e8-b0b6-4646-a239-dd921a0dd17b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Base\ECS\Storage">
+      <UniqueIdentifier>{d248361f-3b1f-4e87-8601-46ceec8ee589}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Base\ECS\Components">
+      <UniqueIdentifier>{c934a89c-be5d-463d-86b7-48e588978e8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -99,19 +108,7 @@
     <ClInclude Include="Timer.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="IUnit.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="IBuilding.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="IImprovement.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="ITech.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="IPlayer.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="AVLTree.h">
@@ -135,17 +132,11 @@
     <ClInclude Include="Random.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="IMaptile.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="MaptileRegions.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="FiniteStateMachine.h">
       <Filter>Source Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="ICity.h">
-      <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="RandomNameGenerator.h">
       <Filter>Source Files\Game\Helper</Filter>
@@ -156,20 +147,59 @@
     <ClInclude Include="olcPGEX_Font.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="IForest.h">
-      <Filter>Source Files\Game</Filter>
+    <ClInclude Include="IRiver.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
     </ClInclude>
     <ClInclude Include="IRessource.h">
-      <Filter>Source Files\Game</Filter>
+      <Filter>Source Files\Base\ECS\Components</Filter>
     </ClInclude>
-    <ClInclude Include="IRiver.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="IHill.h">
-      <Filter>Source Files\Game</Filter>
+    <ClInclude Include="IPlayer.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
     </ClInclude>
     <ClInclude Include="IMountain.h">
-      <Filter>Source Files\Game</Filter>
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IMaptile.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IImprovement.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IHill.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IForest.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ICity.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IBuilding.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IUnit.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectStorage.h">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObjectStorage.h">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObject.h">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="TestingComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject2.h">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="IComponent.h">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -236,14 +266,23 @@
     <ClCompile Include="Random.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="IMaptile.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="MaptileRegions.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="RandomNameGenerator.cpp">
       <Filter>Source Files\Game\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="IMaptile.cpp">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectStorage.cpp">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameObjectStorage.cpp">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
+    </ClCompile>
+    <ClCompile Include="IComponent.cpp">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

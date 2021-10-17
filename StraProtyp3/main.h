@@ -72,6 +72,8 @@ struct ImNodesNode
 #include "PlayerInstance.h"
 
 
+#include "GameObjectStorage.h"
+
 
 struct AppStateWorldMap;
 struct AppStateCityView;
