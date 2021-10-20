@@ -30,9 +30,9 @@ void GameobjectStorage::del()
 			object.reset();
 		}
 
-		// Clear the Storage vector
+		// Clear the Storage vector and map.
 		IGameobjectStorage::g_IGameobjectStorage->GetStorage().clear();
-
+		IGameobjectStorage::g_IGameobjectStorage->GetPrefabStorage().clear();
 
 		delete IGameobjectStorage::g_IGameobjectStorage;
 		IGameobjectStorage::g_IGameobjectStorage = nullptr;

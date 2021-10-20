@@ -2,6 +2,7 @@
 #include "IGameObject.h"
 #include "IComponent.h"
 
+
 /*
 * The GOTag can be seen as the App unique identifier for a the GameObject.
 * Thus we can identify each and we can easily search for each.
@@ -9,6 +10,7 @@
 * The tag is generated automatically on construction like for example "GO_16_Furniture".
 */
 using GOTag = std::string;
+
 
 /*
 * THE GOName is some given or generated name for a gameobject, which is not necesseraly
@@ -21,7 +23,35 @@ class GameObject2 : public IGameObject
 {
 public:
 	GameObject2() = default;
-	GameObject2(const GOTag& tag, const GOName& name) : m_Name(name), m_Tag(tag) {};
+	GameObject2(const GOTag& tag, const GOName& name) : m_Name(name), m_Tag(tag) 
+	{
+		m_Hash = ++IGameObject::g_GameObjectCount;
+	};
+	GameObject2(const GameObject2& other)
+	{
+		m_Tag = other.m_Tag;
+		m_Name = other.m_Name;
+		m_Hash = ++IGameObject::g_GameObjectCount;
+	}
+	~GameObject2()
+	{
+		using namespace std;
+
+		// Delete Components.
+		for (int i = 0; i < components.size(); i++)
+		{
+			if (components[i].use_count() > 1)
+			{
+				cout << color(colors::RED);
+				cout << "[GameObject2::~GameObject2] Component \""<< components[i]->getComponentID() << "\" has more than one Uses! Current count: " << components[i].use_count() << white << endl;
+			}
+
+			components[i].reset();
+		}
+
+		components.clear();
+	}
+
 
 	void setTag(const std::string& tag) override final
 	{
@@ -44,30 +74,48 @@ public:
 	}
 
 
-	void setHashvalue(size_t) override final
+	void setHashvalue(size_t h) override final
 	{
-
+		m_Hash = h;
 	}
 
 	size_t getHashvalue() override final
 	{
-		return 0;
+		return m_Hash;
 	}
 
 
 	void addComponent(Pointer<IComponent> component) override final
 	{
-		component.reset();
+		components.push_back(component);
 	}
 
-	void removeComponent(Pointer<IComponent> component) override final
+	void removeComponent(Reference<IComponent> component) override final
 	{
-		component.reset();
+		auto ptr = component.lock();
+		if (!ptr) return;
+
+		for (int i = 0; i < components.size(); i++)
+		{
+			if (components[i]->getComponentID().compare(ptr->getComponentID()) == 0)
+			{
+				components[i].reset(); // Reset the Component and clear from memory.
+				components.erase(components.begin() + i); // Remove it from Vector entry.
+				return;
+			}
+		}
 	}
 
-	Pointer<IComponent> getComponent(const std::string&) override final
+
+	Reference<IComponent> getComponent(const std::string& id) override final
 	{
-		return nullptr;
+		for (int i = 0; i < components.size(); i++)
+		{
+			if (components[i]->getComponentID().compare(id) == 0)
+			{
+				return std::weak_ptr<IComponent>(components[i]);
+			}
+		}
 	}
 
 	ComponentStorageVec<IComponent>& getComponents() override final
@@ -85,5 +133,6 @@ public:
 private:
 	std::string m_Name;
 	std::string m_Tag;
+	size_t m_Hash;
 	ComponentStorageVec<IComponent> components;
 };

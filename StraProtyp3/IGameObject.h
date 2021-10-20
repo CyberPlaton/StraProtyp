@@ -23,6 +23,8 @@ using ComponentStorageVec = std::vector< Pointer< T > >;
 class IGameObject
 {
 public:
+	static size_t g_GameObjectCount;
+public:
 
 	virtual void setTag(const std::string&) = 0;
 	virtual std::string getTag() = 0;
@@ -35,8 +37,8 @@ public:
 	virtual size_t getHashvalue() = 0;
 
 	virtual void addComponent(Pointer<IComponent>) = 0;
-	virtual void removeComponent(Pointer<IComponent>) = 0;
-	virtual Pointer<IComponent> getComponent(const std::string&) = 0;
+	virtual void removeComponent(Reference<IComponent>) = 0;
+	virtual Reference<IComponent> getComponent(const std::string&) = 0;
 	virtual ComponentStorageVec<IComponent>& getComponents() = 0;
 
 	virtual bool hasComponent(const std::string&) = 0;

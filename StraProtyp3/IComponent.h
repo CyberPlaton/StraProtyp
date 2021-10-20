@@ -1,4 +1,9 @@
 #pragma once
+/*
+* Interface class for a component.
+* See a component as Data, where it stores some data related to a very specific field.
+* And thus Systems can operate on that Data altering the state of an entity.
+*/
 
 #include <string>
 #include <map>
@@ -28,7 +33,7 @@ public:
 	static size_t g_ComponentHash;
 
 public:
-	virtual bool initialize(const ComponentType&, const ComponentID&, size_t) = 0;
+	virtual bool initialize(const ComponentType&, const ComponentID&) = 0;
 
 	virtual ComponentType getComponentType() = 0;
 	virtual ComponentID getComponentID() = 0;

@@ -90,7 +90,10 @@
   <ItemGroup>
     <ClInclude Include="Any.h" />
     <ClInclude Include="AVLTree.h" />
+    <ClInclude Include="BuildingComponent.h" />
+    <ClInclude Include="CityComponent.h" />
     <ClInclude Include="ColorConsole.h" />
+    <ClInclude Include="Common.h" />
     <ClInclude Include="common\include\imgui-master\examples\imgui_impl_glfw.h" />
     <ClInclude Include="common\include\imgui-master\examples\imgui_impl_opengl3.h" />
     <ClInclude Include="common\include\imgui-master\imconfig.h" />
@@ -103,7 +106,7 @@
     <ClInclude Include="common\include\imgui-master\imstb_truetype.h" />
     <ClInclude Include="common\include\imgui_impl_pge.h" />
     <ClInclude Include="common\include\tinyxml2.h" />
-    <ClInclude Include="Component.h" />
+    <ClInclude Include="Component2.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="ComponentSystem.h" />
     <ClInclude Include="FiniteStateMachine.h" />
@@ -138,13 +141,16 @@
     <ClInclude Include="PlayerInstance.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="RandomNameGenerator.h" />
+    <ClInclude Include="SecondTestingComponent.h" />
     <ClInclude Include="TechInstance.h" />
     <ClInclude Include="TestingComponent.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="UnitComponent.h" />
     <ClInclude Include="WorldState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Any.cpp" />
+    <ClCompile Include="BuildingComponent.cpp" />
     <ClCompile Include="common\include\imgui-master\examples\imgui_impl_glfw.cpp" />
     <ClCompile Include="common\include\imgui-master\examples\imgui_impl_opengl3.cpp" />
     <ClCompile Include="common\include\imgui-master\imgui.cpp" />
@@ -162,6 +168,7 @@
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="GameWorldTime.cpp" />
     <ClCompile Include="IComponent.cpp" />
+    <ClCompile Include="IGameObject.cpp" />
     <ClCompile Include="IGameObjectStorage.cpp" />
     <ClCompile Include="IMaptile.cpp" />
     <ClCompile Include="ITech.cpp" />
@@ -171,6 +178,7 @@
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RandomNameGenerator.cpp" />
     <ClCompile Include="TechInstance.cpp" />
+    <ClCompile Include="UnitComponent.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

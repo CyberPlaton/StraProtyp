@@ -122,18 +122,35 @@ bool App::OnUserCreate()
 	using namespace std;
 
 
-	GameobjectStorage::get();
+	GameobjectStorage::get(); // Initiaization
+	GameobjectStorage::get()->LoadPrefabs(""); // Loading of all "Prefabs"
+
+	// Testing of Instantiation
+	auto ptr = GameobjectStorage::get()->Instantiate("Test");
+	cout << "Name: " << ptr->getName() << ", Hash: " << ptr->getHashvalue() << ", Uses: " << ptr.use_count() << ", Components: "<< ptr->getComponents().size() << endl;
+
+	auto ptr2 = GameobjectStorage::get()->Instantiate("Test");
+	cout << "Name: " << ptr2->getName() << ", Hash: " << ptr2->getHashvalue() << ", Uses: " << ptr2.use_count() << ", Components: " << ptr2->getComponents().size() << endl;
+
+	auto ptr3 = GameobjectStorage::get()->Instantiate("Test");
+	cout << "Name: " << ptr3->getName() << ", Hash: " << ptr3->getHashvalue() << ", Uses: " << ptr3.use_count() << ", Components: " << ptr3->getComponents().size() << endl;
+
+
+	// We could dont do this, as the Pointers are reset after scope end automatically.
+	ptr.reset();
+	ptr2.reset();
+	ptr3.reset();
+
 
 	{
 		// Pointer will reset itself automatically after scope end
 		auto ptr = GameobjectStorage::get()->Instantiate("RandomDude");
 	}
 
-	TestComponent testCmp("Testing Component");
-	testCmp.update();
-
-
 	GameobjectStorage::del();
+
+	// At this point "gameworld" maptiles are invalid, because their were deleted by Gameobjectstorage.
+
 	return false;
 
 

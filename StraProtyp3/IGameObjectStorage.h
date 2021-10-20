@@ -9,6 +9,9 @@
 template < class T >
 using GameobjectStorageVec = std::vector< Pointer< T > >;
 
+using PrefabStorageMap = std::map< std::string, std::string>;
+
+
 class GameObject2;
 class IGameobjectStorage
 {
@@ -17,7 +20,9 @@ public:
 	virtual Pointer<GameObject2> Instantiate(const std::string&) = 0;
 	virtual Reference<GameObject2> GetReference(const std::string&) = 0;
 	virtual GameobjectStorageVec<GameObject2>& GetStorage() = 0;
+	virtual PrefabStorageMap& GetPrefabStorage() = 0;
 
+	virtual bool LoadPrefabs(const std::string&) = 0;
 
 	// With this static we can Access the deriving class Object "GameobjectStorage"
 	// which implements the functions above.
