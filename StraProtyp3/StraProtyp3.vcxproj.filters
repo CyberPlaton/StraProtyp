@@ -216,6 +216,30 @@
     <ClInclude Include="Common.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
+    <ClInclude Include="ForestComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="HillComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ImprovementComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MountainComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RiverComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MaptileComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RessourceComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -306,6 +330,12 @@
       <Filter>Source Files\Base\ECS\Components</Filter>
     </ClCompile>
     <ClCompile Include="UnitComponent.cpp">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MaptileComponent.cpp">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CityComponent.cpp">
       <Filter>Source Files\Base\ECS\Components</Filter>
     </ClCompile>
   </ItemGroup>

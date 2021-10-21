@@ -13,6 +13,10 @@ using BuildingSlotType = std::string;
 using CityFortificationLevel = std::string;
 using ReligionID = std::string;
 using UnitProfession = std::string;
+using MaptileType = std::string;
+using GOTag = std::string;
+using GOName = std::string;
+
 
 
 template < class A, class B >

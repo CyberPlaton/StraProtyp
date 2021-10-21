@@ -1,6 +1,7 @@
 #pragma once
 #include "IGameObject.h"
 #include "IComponent.h"
+#include "ColorConsole.h"
 
 
 /*
@@ -17,6 +18,7 @@ using GOTag = std::string;
 * unique and can be duplicate, like the name "John" in a city.
 */
 using GOName = std::string;
+
 
 
 class GameObject2 : public IGameObject
@@ -102,6 +104,20 @@ public:
 				components[i].reset(); // Reset the Component and clear from memory.
 				components.erase(components.begin() + i); // Remove it from Vector entry.
 				return;
+			}
+		}
+	}
+
+
+	template < typename T >
+	Reference<T> getComponent(const std::string& id)
+	{
+		for (int i = 0; i < components.size(); i++)
+		{
+			if (components[i]->getComponentID().compare(id) == 0)
+			{
+				auto ref = std::static_pointer_cast<T>(components[i]);
+				return ref;
 			}
 		}
 	}
