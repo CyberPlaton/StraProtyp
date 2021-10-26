@@ -42,6 +42,38 @@ void BuildingComponent::AddRessourceRequirement(const RessourceID& id, int a)
 }
 
 
+bool BuildingComponent::CanProduceRessource(const RessourceID& id)
+{
+	for (auto& p : m_ProductionRessources)
+	{
+		if (p.first.compare(id) == 0)
+		{
+			// Check whether this ressource does not need any other ressource
+			// to be produced.
+			if (p.second.x.compare("none") == 0) return true;
+			else
+			{
+				// Check whether City has enough of the required ressources
+				// to produce given ressource.
+
+				Pointer<CityComponent> city = m_City->getComponent<CityComponent>("City");
+				if (city->HasRessourceAmount(p.second.x, p.second.y))
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+	}
+
+
+	return false;
+}
+
+
 void BuildingComponent::AddProductionTuple(const RessourceID& id, int prAmount, int prTime, const RessourceID& ressourceNeed, int ressourceNeedAmount)
 {
 	// Store production.
@@ -75,25 +107,23 @@ void BuildingComponent::SetSlotType(const BuildingSlotType& t)
 }
 
 
-void BuildingComponent::SetCity(Reference<GameObject2> c)
+void BuildingComponent::SetCity(Pointer<GameObject2> c)
 {
 	m_City = c;
 }
 
 
-bool BuildingComponent::SetBuildingSlot(Reference<GameObject2> building, int slotNumber, const BuildingSlotType& t)
+bool BuildingComponent::SetBuildingSlot(Pointer<GameObject2> building, int slotNumber, const BuildingSlotType& t)
 {
-	auto ptr = building.lock();
-	if (ptr)
+	if (building)
 	{
-		if (ptr->hasComponent("City") == 0)
+		if (building->hasComponent("City") == 0)
 		{
-			auto city = ptr->getComponent<CityComponent>("City");
+			auto city = building->getComponent<CityComponent>("City");
 		
-			auto pCity = city.lock();
-			if (pCity)
+			if (city)
 			{
-				pCity->AssignBuildingToSlot(building, slotNumber, t);
+				city->AssignBuildingToSlot(building, slotNumber, t);
 				return true;
 			}
 		}
@@ -120,9 +150,7 @@ void BuildingComponent::SetProductionRessource(const RessourceID& id)
 bool BuildingComponent::ProduceRessource()
 {
 	// Perform action only if the Worker and City are valid Gameobjects.
-	auto pWorker = m_Worker.lock();
-	auto pCity = m_City.lock();
-	if (pWorker && pCity)
+	if (m_Worker && m_City)
 	{
 		if (m_IsBeingWorked)
 		{

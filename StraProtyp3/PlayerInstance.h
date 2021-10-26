@@ -2,11 +2,9 @@
 
 #include <stdexcept>
 
-#include "IPlayer.h"
-
 #include "tinyxml2.h"
 
-
+/*
 class PlayerInstance : public IPlayer
 {
 public:
@@ -24,3 +22,5 @@ public:
 
 	PlayerTechnologies techs;
 };
+
+*/

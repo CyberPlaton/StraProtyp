@@ -4,9 +4,10 @@
 #include <stdexcept>
 
 #include "Any.h"
-#include "ITech.h"
 #include "ColorConsole.h"
 
+
+/*
 using CheckDefinition = std::pair<ITech::CheckType, ITech::CheckArea>;
 
 class TechInstance : public ITech
@@ -172,3 +173,5 @@ public:
 	// Map of checks.
 	std::map< Any*, CheckDefinition> checks;
 };
+
+*/

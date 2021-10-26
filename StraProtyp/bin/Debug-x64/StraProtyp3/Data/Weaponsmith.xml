@@ -1,5 +1,6 @@
 <Gameobject>
-	<Name>Weapon Smiths Workshop</Name>
+	<Tag>Weaponsmiths Workshop</Tag>
+	<Name>Weaponsmiths Workshop</Name>
 	<Components>
 		<Component name="Renderable">
 			<Width>1.0</Width>

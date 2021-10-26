@@ -72,19 +72,7 @@
     <ClInclude Include="common\include\tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentSystem.h">
-      <Filter>Source Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Components.h">
-      <Filter>Source Files\Base</Filter>
-    </ClInclude>
     <ClInclude Include="ColorConsole.h">
-      <Filter>Source Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Source Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectCreator.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="GameWorldTimer.h">
@@ -93,23 +81,14 @@
     <ClInclude Include="GameWorldTime.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="GameWorld.h">
-      <Filter>Source Files\Base</Filter>
-    </ClInclude>
     <ClInclude Include="olcPixelGameEngine.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="olcPGEX_TransformedView.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="WorldState.h">
-      <Filter>Source Files\Base</Filter>
-    </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Source Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="ITech.h">
-      <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="AVLTree.h">
       <Filter>Source Files\Base\Datastructs</Filter>
@@ -132,9 +111,6 @@
     <ClInclude Include="Random.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="MaptileRegions.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="FiniteStateMachine.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
@@ -146,39 +122,6 @@
     </ClInclude>
     <ClInclude Include="olcPGEX_Font.h">
       <Filter>Source Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="IRiver.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IRessource.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IPlayer.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IMountain.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IMaptile.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IImprovement.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IHill.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IForest.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ICity.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IBuilding.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IUnit.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectStorage.h">
       <Filter>Source Files\Base\ECS\Storage</Filter>
@@ -222,9 +165,6 @@
     <ClInclude Include="HillComponent.h">
       <Filter>Source Files\Base\ECS\Components</Filter>
     </ClInclude>
-    <ClInclude Include="ImprovementComponent.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
     <ClInclude Include="MountainComponent.h">
       <Filter>Source Files\Base\ECS\Components</Filter>
     </ClInclude>
@@ -239,6 +179,24 @@
     </ClInclude>
     <ClInclude Include="PlayerComponent.h">
       <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderableComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatorComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionBoxComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="NavigatorComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="NavMesh.h">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -269,31 +227,13 @@
     <ClCompile Include="common\include\tinyxml2.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentSystem.cpp">
-      <Filter>Source Files\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Components.cpp">
-      <Filter>Source Files\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectCreator.cpp">
-      <Filter>Source Files\Base</Filter>
-    </ClCompile>
     <ClCompile Include="GameWorldTime.cpp">
-      <Filter>Source Files\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="GameWorld.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
     <ClCompile Include="Any.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
     <ClCompile Include="TechInstance.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="ITech.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="common\include\imgui-master\imnodes.cpp">
@@ -305,14 +245,8 @@
     <ClCompile Include="Random.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="MaptileRegions.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="RandomNameGenerator.cpp">
       <Filter>Source Files\Game\Helper</Filter>
-    </ClCompile>
-    <ClCompile Include="IMaptile.cpp">
-      <Filter>Source Files\Base\ECS\Components</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectStorage.cpp">
       <Filter>Source Files\Base\ECS\Storage</Filter>
@@ -337,6 +271,12 @@
     </ClCompile>
     <ClCompile Include="CityComponent.cpp">
       <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="NavigatorComponent.cpp">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="NavMesh.cpp">
+      <Filter>Source Files\Base\ECS\Storage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

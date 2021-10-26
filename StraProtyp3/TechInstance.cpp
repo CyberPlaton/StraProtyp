@@ -1,5 +1,6 @@
 #include "TechInstance.h"
 
+/*
 TechInstance::TechInstance(const std::string& path)
 {
 	using namespace tinyxml2;
@@ -69,3 +70,5 @@ TechInstance::TechInstance(const std::string& path)
 		req = req->NextSiblingElement("Req");
 	}
 }
+
+*/

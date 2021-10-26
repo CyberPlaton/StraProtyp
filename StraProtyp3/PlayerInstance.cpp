@@ -1,4 +1,5 @@
 #include"PlayerInstance.h"
+/*
 
 PlayerInstance::PlayerInstance(const std::string& path)
 {
@@ -36,3 +37,5 @@ PlayerInstance::PlayerInstance(const std::string& path)
 		tech = tech->NextSiblingElement("Tech");
 	}
 }
+
+*/

@@ -1,0 +1,163 @@
+<DecalDefinition>
+	<Decals path="Data/Assets/Map/">
+		<Decal>forest_tundra_normal.png</Decal>
+		<Decal>forest_tundra_scarce.png</Decal>
+		<Decal>forest_tundra_dying.png</Decal>
+		<Decal>forest_tundra_deep.png</Decal>
+
+		<Decal>forest_jungle_deep.png</Decal>
+		<Decal>forest_jungle_normal.png</Decal>
+		<Decal>forest_jungle_scarce.png</Decal>
+		<Decal>forest_jungle_dying.png</Decal>
+
+		<Decal>forest_temperate_dying.png</Decal>
+		<Decal>forest_temperate_deep.png</Decal>
+		<Decal>forest_temperate_normal.png</Decal>
+		<Decal>forest_temperate_scarce.png</Decal>
+
+		<Decal>forest_savannah_scarce.png</Decal>
+		<Decal>forest_savannah_normal.png</Decal>
+		<Decal>forest_savannah_deep.png</Decal>
+		<Decal>forest_savannah_dying.png</Decal>
+
+		<Decal>forest_snow_scarce.png</Decal>
+		<Decal>forest_snow_normal.png</Decal>
+		<Decal>forest_snow_deep.png</Decal>
+		<Decal>forest_snow_dying.png</Decal>
+
+		<Decal>jungle.png</Decal>
+		<Decal>sand.png</Decal>
+		<Decal>snow.png</Decal>
+		<Decal>savannah.png</Decal>
+		<Decal>temperate.png</Decal>
+		<Decal>tundra.png</Decal>
+		<Decal>ice.png</Decal>
+		<Decal>water_deep.png</Decal>
+		<Decal>water_shallow.png</Decal>
+
+		<Decal>river_down_left.png</Decal>
+		<Decal>river_down_right.png</Decal>
+		<Decal>river_left_right.png</Decal>
+		<Decal>river_left_right_down.png</Decal>
+		<Decal>river_left_up_down.png</Decal>
+		<Decal>river_up_down.png</Decal>
+		<Decal>river_up_left.png</Decal>
+		<Decal>river_up_right.png</Decal>
+		<Decal>river_up_right_down.png</Decal>
+		<Decal>river_up_right_left.png</Decal>
+		<Decal>river_up_right_left_down.png</Decal>
+
+		<Decal>hills.png</Decal>
+		<Decal>highmountain.png</Decal>
+	</Decals>
+	
+	<Decals path="Data/Assets/Map/">
+		<Decal>aristocrat.png</Decal>
+		<Decal>assassin.png</Decal>
+		<Decal>assassin_2.png</Decal>
+		<Decal>battlemage.png</Decal>
+		<Decal>battlemage_2.png</Decal>
+		<Decal>civic_researcher.png</Decal>
+		<Decal>crossbowman.png</Decal>
+		<Decal>fighter.png</Decal>
+		<Decal>heavy_maceman.png</Decal>
+		<Decal>heavy_spearman_iron.png</Decal>
+		<Decal>heavy_swordman_bronze.png</Decal>
+		<Decal>heavy_swordman_iron.png</Decal>
+		<Decal>high_senator.png</Decal>
+		<Decal>knight_bronze.png</Decal>
+		<Decal>light_archer.png</Decal>
+		<Decal>light_cavalry.png</Decal>
+		<Decal>local_merchant.png</Decal>
+		<Decal>longswordsman.png</Decal>
+		<Decal>mage.png</Decal>
+		<Decal>magick_researcher.png</Decal>
+		<Decal>merchant.png</Decal>
+		<Decal>mounted_knight.png</Decal>
+		<Decal>mounted_scout.png</Decal>
+		<Decal>paladin_adamantium.png</Decal>
+		<Decal>paladin_malachite.png</Decal>
+		<Decal>senator.png</Decal>
+		<Decal>sorcerer.png</Decal>
+		<Decal>spearman.png</Decal>
+		<Decal>spy.png</Decal>
+	</Decals>
+
+	<Decals path="Data/Assets/Ressource/">
+		<Decal>jungle_small_hunter.png</Decal>
+		<Decal>savannah_small_hunter.png</Decal>
+		<Decal>jungle_mushroom_eater.png</Decal>
+		<Decal>wheat_plant.png</Decal>
+		<Decal>mudcrab.png</Decal>
+		<Decal>iron_ore.png</Decal>
+		<Decal>bronze_ore.png</Decal>
+		<Decal>gold_ore.png</Decal>
+		<Decal>silver_ore.png</Decal>
+		<Decal>adamantium_ore.png</Decal>
+		<Decal>malachite_ore.png</Decal>
+		<Decal>iron_bars.png</Decal>
+		<Decal>bronze_bars.png</Decal>
+		<Decal>steel_bars.png</Decal>
+		<Decal>gold_bars.png</Decal>
+		<Decal>silver_bars.png</Decal>
+		<Decal>adamantium_bars.png</Decal>
+		<Decal>malachite_bars.png</Decal>
+		<Decal>stone.png</Decal>
+		<Decal>stone_blocks.png</Decal>
+		<Decal>wood.png</Decal>
+		<Decal>wood_planks.png</Decal>
+		<Decal>hops.png</Decal>
+		<Decal>grapes.png</Decal>
+		<Decal>skuma_plant.png</Decal>
+		<Decal>beer.png</Decal>
+		<Decal>wine.png</Decal>
+		<Decal>skuma.png</Decal>
+		<Decal>salt.png</Decal>
+		<Decal>raw_manastones.png</Decal>
+		<Decal>manastones.png</Decal>
+		<Decal>flax.png</Decal>
+		<Decal>fish.png</Decal>
+		<Decal>clothing.png</Decal>
+		<Decal>cotton.png</Decal>
+		<Decal>clay.png</Decal>
+		<Decal>honey_bees.png</Decal>
+		<Decal>food.png</Decal>
+		<Decal>bronze_tools.png</Decal>
+		<Decal>iron_tools.png</Decal>
+		<Decal>steel_tools.png</Decal>
+		<Decal>leather_armor.png</Decal>
+		<Decal>bronze_armor.png</Decal>
+		<Decal>iron_armor.png</Decal>
+		<Decal>leather.png</Decal>
+		<Decal>corn.png</Decal>
+		<Decal>narcotic_plant.png</Decal>
+		<Decal>cow.png</Decal>
+		<Decal>chicken.png</Decal>
+		<Decal>steel_armor.png</Decal>
+		<Decal>malachite_armor.png</Decal>
+		<Decal>adamantium_armor.png</Decal>
+	</Decals>
+
+	<Decals path="Data/Assets/Building/">
+		<Decal>tavern.png</Decal>
+		<Decal>weaponsmiths_workshop.png</Decal>
+	</Decals>
+
+	<Decals path="Data/Assets/City/">
+		<Decal>city_plain.png</Decal>
+		<Decal>fort_plain.png</Decal>
+		<Decal>temperate_forest_bg.png</Decal>
+		<Decal>jungle_forest_bg.png</Decal>
+		<Decal>city_bg_temperate_plain.png</Decal>
+		<Decal>city_bg_savannah_plain.png</Decal>
+		<Decal>city_bg_jungle_plain.png</Decal>
+		<Decal>bg_maptile_jungle.png</Decal>
+		<Decal>bg_maptile_temperate.png</Decal>
+		<Decal>bg_maptile_savannah.png</Decal>
+	</Decals>
+
+	<Decals path="Data/Assets/UI/">
+		<Decal>circle.png</Decal>
+	</Decals>
+	
+</DecalDefinition>

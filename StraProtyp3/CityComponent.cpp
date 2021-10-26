@@ -15,11 +15,15 @@ CityComponent::~CityComponent()
 	m_CityFortificationLevel.clear();
 }
 
-void CityComponent::UpdateReligion(Reference<GameObject2> game)
+void CityComponent::AddRessource(const RessourceID& id, int amount)
+{
+	m_Ressources[id] += amount;
+}
+
+void CityComponent::UpdateReligion(Pointer<GameObject2> game)
 {
 	// Perform an Update if the Gameobject Game is still alive and valid.
-	auto ptr = game.lock();
-	if (ptr)
+	if (game)
 	{
 		// Update Pressure Values
 
@@ -51,12 +55,12 @@ void CityComponent::AddReligionPressure(const ReligionID& r, float v)
 	m_ReligionPressureValues[r] = v;
 }
 
-void CityComponent::AddUnit(Reference<GameObject2> u)
+void CityComponent::AddUnit(Pointer<GameObject2> u)
 {
 	m_Units.push_back(u);
 }
 
-void CityComponent::AssignBuildingToSlot(Reference<GameObject2> b, int s, const BuildingSlotType& t)
+void CityComponent::AssignBuildingToSlot(Pointer<GameObject2> b, int s, const BuildingSlotType& t)
 {
 	auto pSlot = m_BuildingSlots[s - 1];
 
@@ -70,9 +74,8 @@ void CityComponent::AssignBuildingToSlot(Reference<GameObject2> b, int s, const 
 
 		m_Buildings.push_back(b);
 
-		auto ptr = b.lock();
-		// Assign Position of Gameobject according to Slot Position.
-	
+
+		// Assign Position of Gameobject according to Slot Position.	
 
 	}
 }
@@ -159,12 +162,11 @@ void CityComponent::SetFortificationLevel(const CityFortificationLevel& level)
 	m_CityFortificationLevel = level;
 }
 
-void CityComponent::SetPlayer(Reference<GameObject2> p)
+void CityComponent::SetPlayer(Pointer<GameObject2> p)
 {
-	auto ptr = p.lock();
-	if (ptr)
+	if (p)
 	{
-		m_Player = std::shared_ptr<GameObject2>(ptr);
+		m_Player.swap(p);
 	}
 }
 
@@ -209,12 +211,12 @@ ReligionID CityComponent::GetMajorReligion()
 	return m_MajorReligion;
 }
 
-std::vector< Reference<GameObject2> >& CityComponent::GetUnits()
+std::vector< Pointer<GameObject2> >& CityComponent::GetUnits()
 {
 	return m_Units;
 }
 
-std::vector< Reference<GameObject2> >& CityComponent::GetBuildings()
+std::vector< Pointer<GameObject2> >& CityComponent::GetBuildings()
 {
 	return m_Buildings;
 }

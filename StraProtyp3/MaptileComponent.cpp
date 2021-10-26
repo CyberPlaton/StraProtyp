@@ -1,14 +1,7 @@
 #include "MaptileComponent.h"
 
-void MaptileComponent::AddGameobject(Reference<GameObject2> ref)
+void MaptileComponent::AddGameobject(Pointer<GameObject2> ref)
 {
-	m_Gameobjects.push_back(ref);
-}
-
-
-void MaptileComponent::AddGameobject(Pointer<GameObject2> ptr)
-{
-	Reference<GameObject2> ref = ptr;
 	m_Gameobjects.push_back(ref);
 }
 
@@ -17,7 +10,7 @@ void MaptileComponent::RemoveGameobject(const GOTag& t)
 {
 	for (int i = 0; i < m_Gameobjects.size(); i++)
 	{
-		auto ptr = m_Gameobjects[i].lock();
+		auto ptr = m_Gameobjects[i];
 		if (ptr)
 		{
 			if (ptr->getTag().compare(t) == 0)
@@ -47,7 +40,7 @@ bool MaptileComponent::_hasGameobjectWithComponent(const std::string& componentT
 {
 	for (int i = 0; i< m_Gameobjects.size(); i++)
 	{
-		auto ptr = m_Gameobjects[i].lock();
+		auto ptr = m_Gameobjects[i];
 		if (ptr->hasComponent(componentTag))
 		{
 			return true;

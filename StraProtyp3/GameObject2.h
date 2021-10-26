@@ -92,14 +92,11 @@ public:
 		components.push_back(component);
 	}
 
-	void removeComponent(Reference<IComponent> component) override final
+	void removeComponent(Pointer<IComponent> component) override final
 	{
-		auto ptr = component.lock();
-		if (!ptr) return;
-
 		for (int i = 0; i < components.size(); i++)
 		{
-			if (components[i]->getComponentID().compare(ptr->getComponentID()) == 0)
+			if (components[i]->getComponentID().compare(component->getComponentID()) == 0)
 			{
 				components[i].reset(); // Reset the Component and clear from memory.
 				components.erase(components.begin() + i); // Remove it from Vector entry.
@@ -110,7 +107,7 @@ public:
 
 
 	template < typename T >
-	Reference<T> getComponent(const std::string& id)
+	Pointer<T> getComponent(const std::string& id)
 	{
 		for (int i = 0; i < components.size(); i++)
 		{
@@ -123,13 +120,13 @@ public:
 	}
 
 
-	Reference<IComponent> getComponent(const std::string& id) override final
+	Pointer<IComponent> getComponent(const std::string& id) override final
 	{
 		for (int i = 0; i < components.size(); i++)
 		{
 			if (components[i]->getComponentID().compare(id) == 0)
 			{
-				return std::weak_ptr<IComponent>(components[i]);
+				return std::shared_ptr<IComponent>(components[i]);
 			}
 		}
 	}

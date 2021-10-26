@@ -8,8 +8,11 @@
 #include "CityComponent.h"
 
 
+class GameobjectStorage;
 class BuildingComponent : public Component2
 {
+	friend class GameobjectStorage;
+
 public:
 	BuildingComponent(const ComponentID& name)
 	{
@@ -27,12 +30,13 @@ public:
 
 	void SetName(const std::string& name);
 	void SetSlotType(const BuildingSlotType& t);
-	void SetCity(Reference<GameObject2> c);
-	bool SetBuildingSlot(Reference<GameObject2> building, int slotNumber, const BuildingSlotType& t);
+	void SetCity(Pointer<GameObject2> c);
+	bool SetBuildingSlot(Pointer<GameObject2> building, int slotNumber, const BuildingSlotType& t);
 	void SetProductionRessource(const RessourceID& id);
 
 
 	bool ProduceRessource();
+	bool CanProduceRessource(const RessourceID& id);
 
 
 	BuildingSlotType GetBuildingSlotType();
@@ -58,8 +62,8 @@ private:
 	std::vector< Tuple<RessourceID, int > > m_ProductionAmount;
 	std::vector< UnitProfession > m_RequiredProfessions;
 
-	Reference< GameObject2 > m_City;
-	Reference< GameObject2 > m_Worker;
+	Pointer< GameObject2 > m_City;
+	Pointer< GameObject2 > m_Worker;
 
 
 	std::vector< TechID > m_TechRequirements;

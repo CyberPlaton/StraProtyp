@@ -83,15 +83,18 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalOptions>/NODEFAULTLIB:msvcrtd.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatorComponent.h" />
     <ClInclude Include="Any.h" />
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BuildingComponent.h" />
     <ClInclude Include="CityComponent.h" />
+    <ClInclude Include="CollisionBoxComponent.h" />
     <ClInclude Include="ColorConsole.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="common\include\imgui-master\examples\imgui_impl_glfw.h" />
@@ -107,38 +110,21 @@
     <ClInclude Include="common\include\imgui_impl_pge.h" />
     <ClInclude Include="common\include\tinyxml2.h" />
     <ClInclude Include="Component2.h" />
-    <ClInclude Include="Components.h" />
-    <ClInclude Include="ComponentSystem.h" />
     <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="ForestComponent.h" />
-    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObject2.h" />
-    <ClInclude Include="GameObjectCreator.h" />
     <ClInclude Include="GameObjectStorage.h" />
-    <ClInclude Include="GameWorld.h" />
     <ClInclude Include="GameWorldTime.h" />
     <ClInclude Include="GameWorldTimer.h" />
     <ClInclude Include="HillComponent.h" />
-    <ClInclude Include="IBuilding.h" />
-    <ClInclude Include="ICity.h" />
     <ClInclude Include="IComponent.h" />
-    <ClInclude Include="IForest.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectStorage.h" />
-    <ClInclude Include="IHill.h" />
-    <ClInclude Include="IImprovement.h" />
-    <ClInclude Include="IMaptile.h" />
-    <ClInclude Include="IMountain.h" />
-    <ClInclude Include="ImprovementComponent.h" />
-    <ClInclude Include="IPlayer.h" />
-    <ClInclude Include="IRessource.h" />
-    <ClInclude Include="IRiver.h" />
-    <ClInclude Include="ITech.h" />
-    <ClInclude Include="IUnit.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MaptileComponent.h" />
-    <ClInclude Include="MaptileRegions.h" />
     <ClInclude Include="MountainComponent.h" />
+    <ClInclude Include="NavigatorComponent.h" />
+    <ClInclude Include="NavMesh.h" />
     <ClInclude Include="olcPGEX_CustomFont.h" />
     <ClInclude Include="olcPGEX_Font.h" />
     <ClInclude Include="olcPGEX_TransformedView.h" />
@@ -147,14 +133,15 @@
     <ClInclude Include="PlayerInstance.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="RandomNameGenerator.h" />
+    <ClInclude Include="RenderableComponent.h" />
     <ClInclude Include="RessourceComponent.h" />
     <ClInclude Include="RiverComponent.h" />
     <ClInclude Include="SecondTestingComponent.h" />
     <ClInclude Include="TechInstance.h" />
     <ClInclude Include="TestingComponent.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="UnitComponent.h" />
-    <ClInclude Include="WorldState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Any.cpp" />
@@ -169,21 +156,15 @@
     <ClCompile Include="common\include\imgui-master\imgui_widgets.cpp" />
     <ClCompile Include="common\include\imgui-master\imnodes.cpp" />
     <ClCompile Include="common\include\tinyxml2.cpp" />
-    <ClCompile Include="Components.cpp" />
-    <ClCompile Include="ComponentSystem.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameObjectCreator.cpp" />
     <ClCompile Include="GameObjectStorage.cpp" />
-    <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="GameWorldTime.cpp" />
     <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="IGameObject.cpp" />
     <ClCompile Include="IGameObjectStorage.cpp" />
-    <ClCompile Include="IMaptile.cpp" />
-    <ClCompile Include="ITech.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MaptileComponent.cpp" />
-    <ClCompile Include="MaptileRegions.cpp" />
+    <ClCompile Include="NavigatorComponent.cpp" />
+    <ClCompile Include="NavMesh.cpp" />
     <ClCompile Include="PlayerInstance.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RandomNameGenerator.cpp" />

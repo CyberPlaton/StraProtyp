@@ -6,8 +6,10 @@
 #include "Common.h" // Include Common Definitions and Datastructs.
 
 
+class GameobjectStorage;
 class PlayerComponent : public Component2
 {
+	friend class GameobjectStorage;
 public:
 	PlayerComponent(const ComponentID& name)
 	{

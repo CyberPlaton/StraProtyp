@@ -1,0 +1,5 @@
+<PrefabDefinition>
+	<Prefab name="Spearman" path="Data/Spearman.xml"></Prefab>
+	<Prefab name="Tavern" path="Data/Tavern.xml"></Prefab>
+	<Prefab name="Weaponsmiths Workshop" path="Data/Weaponsmith.xml"></Prefab>
+</PrefabDefinition>

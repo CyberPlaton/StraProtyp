@@ -6,8 +6,11 @@
 #include "Common.h" // Include Common Definitions and Datastructs.
 
 
+class GameobjectStorage;
 class MountainComponent : public Component2
 {
+	friend class GameobjectStorage;
+
 public:
 	MountainComponent(const ComponentID& name)
 	{

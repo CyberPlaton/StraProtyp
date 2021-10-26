@@ -56,17 +56,11 @@ struct ImNodesNode
 /*
 * Common includes.
 */
-#include "ComponentSystem.h"
-#include "Components.h"
-#include "GameObject.h"
-#include "GameObjectCreator.h"
-#include "GameWorld.h"
 #include "GameWorldTime.h"
 #include "Random.h"
-#include "IMaptile.h"
-#include "MaptileRegions.h"
 #include "FiniteStateMachine.h"
 
+#include "AVLTree.h"
 
 #include "TechInstance.h"
 #include "PlayerInstance.h"
@@ -79,7 +73,7 @@ struct AppStateWorldMap;
 struct AppStateCityView;
 
 
-using GameworldMatrix = std::vector< std::vector< GameObject* >>;
+using GameworldMatrix = std::vector< std::vector< Pointer<GameObject2> >>;
 
 
 class App : public olc::PixelGameEngine
@@ -87,6 +81,7 @@ class App : public olc::PixelGameEngine
 	friend class AppStateWorldMap;
 	friend class AppStateCityView;
 
+	static size_t g_DecalInstanceID;
 
 public:
 	App() : pge_imgui(false)
@@ -96,27 +91,11 @@ public:
 
 	void shutDown()
 	{
-		// Free Players
-		while (players.size() > 0)
-		{
-			delete players[0];
-			players.erase(players.begin());
-		}
-
 		// Free Decals
 		for (auto& decal : decalNamesInDatabase)
 		{
-			decalDatabase.deleteNode(hasher(decal));
 		}
 		decalNamesInDatabase.clear();
-
-		// Free Techtree
-		while (techTree.size() > 0)
-		{
-			delete techTree[0];
-			techTree.erase(techTree.begin());
-		}
-
 		techTreeNodes.clear();
 		links.clear();
 	}
@@ -126,11 +105,11 @@ public:
 	bool OnUserCreate() override;
 	bool OnUserUpdate(float fElapsedTime) override;
 	void DrawUI(void);
-	std::vector< TechInstance* > getNextTechToChoose(IPlayer* player, ITech::TechArea area);
+	//std::vector< TechInstance* > getNextTechToChoose();
 	StateMachine<App>& getStateMachine() { return stateMachine; }
 	olc::TileTransformedView& getRenderer() { return tv; }
 	
-	GameObject* getCurrentViewedCity() { return currentViewedCity;}
+	Pointer<GameObject2> getCurrentViewedCity() { return currentViewedCity;}
 
 private:
 
@@ -145,24 +124,26 @@ private:
 	int cameray = 0;
 
 	//std::map< std::string, olc::Decal* > decalDatabase;
+	std::vector< Pointer<olc::Sprite> > sprites;
 	std::vector< std::string > decalNamesInDatabase;
-	AVLTree2< olc::Decal* > decalDatabase;
+	AVLTree2< Pointer<olc::Decal> > decalDatabase;
+	std::map< std::string, size_t > decalIDMap;
 
 	std::string lastSelectedGameobjectTag = "none";
 
 	// A vector of all Technologies in game.
 	// Currently for debug/display usage.
-	std::vector< TechInstance* > techTree;
+	//std::vector< TechInstance* > techTree;
 	std::vector< ImNodesNode > techTreeNodes;
 	std::vector< ImNodesLink > links;
 
 
 	// Players in game.
-	std::vector< PlayerInstance* > players;
+	//std::vector< PlayerInstance* > players;
 
 
 	// The city the player associated with this App is currenlty viewing.
-	GameObject* currentViewedCity = nullptr;
+	Pointer<GameObject2> currentViewedCity = nullptr;
 
 	// The State machine associated with this App.
 	StateMachine<App> stateMachine;
@@ -182,8 +163,8 @@ private:
 private:
 
 	// Helpers
-	void _storeDecal(const std::string& name, olc::Decal* decal);
-	olc::Decal* _getDecal(const std::string& name);
+	void _storeDecal(const std::string& name, size_t id, Pointer<olc::Decal> decal);
+	Pointer<olc::Decal> _getDecal(const std::string& name);
 
 	//void _onImGui();
 	void _handleInput();
@@ -242,7 +223,7 @@ private:
 	App* app = nullptr;
 
 
-	void _renderMaptile(GameObject* tile);
+	void _renderMaptile(Pointer<GameObject2> tile);
 	void _renderGameworld();
 	void _drawUI();
 };
@@ -272,28 +253,28 @@ private:
 
 
 	// Render the basic layout for the city.
-	void _renderCityBase(ICityCmp* city);
+	void _renderCityBase(Pointer<GameObject2> city);
 
 
 	// Draw the Background like Maptile, Forest or Hill,
 	// River etc.
-	void _renderCityBackground(ICityCmp* city);
+	void _renderCityBackground(Pointer<GameObject2> city);
 
 
 	// Render the Cityground for Buildings and Walls.
-	void _renderCityGroundAndWalls(ICityCmp* city);
+	void _renderCityGroundAndWalls(Pointer<GameObject2> city);
 
 
 	// Render the Buildings currently Build in the city.
-	void _renderCityBuildings(ICityCmp* city);
+	void _renderCityBuildings(Pointer<GameObject2> city);
 
 
 	// Render Units in the city, working ones, citizens and garrisoned.
-	void _renderCityUnits(ICityCmp* city);
+	void _renderCityUnits(Pointer<GameObject2> city);
 
 
 	// Render needed UI elements for the city etc.
-	void _renderCityOverlay(ICityCmp* city);
+	void _renderCityOverlay(Pointer<GameObject2> city);
 
 };
 

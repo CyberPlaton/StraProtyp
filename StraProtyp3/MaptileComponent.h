@@ -6,8 +6,10 @@
 #include "Common.h" // Include Common Definitions and Datastructs.
 
 
+class GameobjectStorage;
 class MaptileComponent : public Component2
 {
+	friend class GameobjectStorage;
 public:
 	MaptileComponent(const ComponentID& name)
 	{
@@ -16,14 +18,13 @@ public:
 
 
 
-	void AddGameobject(Reference<GameObject2> ref);
-	void AddGameobject(Pointer<GameObject2> ptr);
+	void AddGameobject(Pointer<GameObject2> p);
 	void RemoveGameobject(const GOTag& t);
-	void RemoveGameobject(Pointer<GameObject2> ptr);
-	std::vector< Reference<GameObject2> >& GetGameobjects(){return m_Gameobjects;}
+	void RemoveGameobject(Pointer<GameObject2> p);
+	std::vector< Pointer<GameObject2> >& GetGameobjects(){return m_Gameobjects;}
 
 
-	MaptileType GetMaptileType(){}
+	MaptileType GetMaptileType() { return m_MaptileType; }
 
 
 	bool HasRoad();
@@ -52,7 +53,7 @@ private:
 
 	MaptileType m_MaptileType;
 
-	std::vector< Reference<GameObject2> > m_Gameobjects;
+	std::vector< Pointer<GameObject2> > m_Gameobjects;
 
 	bool m_HasWaterAccess;
 	bool m_HasHill;

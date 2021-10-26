@@ -5,9 +5,11 @@
 #include "IGameObjectStorage.h" // Include for GameobjectStorage Interface, mainly for Instantiation, Finding and Deleting functions
 #include "Common.h" // Include Common Definitions and Datastructs.
 
+class GameobjectStorage;
 
 class RessourceComponent : public Component2
 {
+	friend class GameobjectStorage;
 public:
 	RessourceComponent(const ComponentID& name)
 	{
