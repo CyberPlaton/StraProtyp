@@ -72,6 +72,16 @@ void MaptileComponent::RemoveGameobject(Pointer<GameObject2> ptr)
 }
 
 
+void MaptileComponent::RemoveAllGameobjects()
+{
+	while (GetGameobjects().size() > 0)
+	{
+		auto e = GetGameobjects()[0];
+		RemoveGameobject(e);
+	}
+}
+
+
 bool MaptileComponent::_hasGameobjectWithComponent(const std::string& componentTag)
 {
 	for (int i = 0; i< m_Gameobjects.size(); i++)

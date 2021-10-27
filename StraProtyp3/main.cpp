@@ -214,6 +214,7 @@ bool App::OnUserCreate()
 	}
 
 	
+	auto ptr = GameobjectStorage::get()->Instantiate("City_Plain", 1, 1);
 
 
 

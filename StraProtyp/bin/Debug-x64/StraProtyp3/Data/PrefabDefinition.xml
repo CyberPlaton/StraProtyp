@@ -2,6 +2,7 @@
 	<Prefab name="Spearman" path="Data/Spearman.xml"></Prefab>
 	<Prefab name="Tavern" path="Data/Tavern.xml"></Prefab>
 	<Prefab name="Weaponsmiths Workshop" path="Data/Weaponsmith.xml"></Prefab>
+	<Prefab name="City_Plain" path="Data/City_Plain.xml"></Prefab>
 
 	<Prefab name="Jungle_Scarce" path="Data/Jungle_Scarce.xml"></Prefab>
 	<Prefab name="Jungle_Normal" path="Data/Jungle_Normal.xml"></Prefab>

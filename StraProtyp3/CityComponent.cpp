@@ -39,10 +39,9 @@ void CityComponent::UpdateReligion(Pointer<GameObject2> game)
 	}
 }
 
-void CityComponent::AddBuldingSlot(BuildingSlot s)
+void CityComponent::AddBuldingSlot(Pointer<BuildingSlot> s)
 {
-	auto ptr = std::shared_ptr<BuildingSlot>(&s);
-	m_BuildingSlots.push_back(ptr);
+	m_BuildingSlots.push_back(s);
 }
 
 void CityComponent::AddReligion(const ReligionID& r, float v)

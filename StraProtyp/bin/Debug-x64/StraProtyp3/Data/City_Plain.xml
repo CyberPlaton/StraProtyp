@@ -1,5 +1,5 @@
 <Gameobject>
-	<Tag>City_Plain</Tag>
+	<Tag>City</Tag>
 	<Name>City_Plain</Name>
 	<Components>
 		<Component name="Renderable">

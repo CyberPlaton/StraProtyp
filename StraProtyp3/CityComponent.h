@@ -17,13 +17,12 @@ struct BuildingSlot
 	{
 	}
 
-
-	float m_Xpos;
-	float m_Ypos;
-	int m_SlotNumber;
+	float m_Xpos = 0.0f;
+	float m_Ypos = 0.0f;
+	int m_SlotNumber = 0;
 	BuildingSlotType m_SlotType;
-	bool m_IsUsed;
-	Reference<GameObject2> m_Building;
+	bool m_IsUsed = false;
+	Pointer<GameObject2> m_Building;
 };
 
 
@@ -48,7 +47,7 @@ public:
 	void UpdateReligion(Pointer<GameObject2> game);
 
 
-	void AddBuldingSlot(BuildingSlot s);
+	void AddBuldingSlot(Pointer<BuildingSlot> s);
 	void AddReligion(const ReligionID& r, float v);
 	void AddReligionPressure(const ReligionID& r, float v);
 	void AddUnit(Pointer<GameObject2> u);

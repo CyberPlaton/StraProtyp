@@ -127,6 +127,7 @@ bool GameobjectStorage::_addMountainComponent(Pointer<MountainComponent> cmp, Po
 
 bool GameobjectStorage::_addMaptileComponent(Pointer<MaptileComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
 {
+	cmp->SetMaptileType(data->Attribute("type"));
 	return true;
 }
 
@@ -178,12 +179,16 @@ bool GameobjectStorage::_addCityComponent(Pointer<CityComponent> cmp, Pointer<Ga
 	cmp->SetType(maptileType, type, forest, hill, river, port);
 
 
+	// Add City to Maptile.
+	maptile->AddGameobject(entity);
+
+
 	// Set Building Slots.
 	XMLElement* buildingSlots = data->FirstChildElement("BuildingSlots");
 	XMLElement* slot = buildingSlots->FirstChildElement("Slot");
 	while (slot)
 	{
-		BuildingSlot buildSlot(slot->FloatAttribute("xpos"), slot->FloatAttribute("ypos"), slot->IntAttribute("number"), slot->Attribute("type"));
+		Pointer<BuildingSlot> buildSlot = std::make_shared<BuildingSlot>(slot->FloatAttribute("xpos"), slot->FloatAttribute("ypos"), slot->IntAttribute("number"), slot->Attribute("type"));
 		cmp->AddBuldingSlot(buildSlot);
 
 		slot = slot->NextSiblingElement("Slot");
@@ -212,6 +217,7 @@ bool GameobjectStorage::_addCityComponent(Pointer<CityComponent> cmp, Pointer<Ga
 		for (int i = 1; i <= amount; i++)
 		{
 			Pointer<GameObject2> pUnit = Instantiate(e->Attribute("name"), xpos, ypos);
+			pUnit->getComponent<UnitComponent>("Unit")->SetIsInCity(true);
 		}
 
 		e = e->NextSiblingElement("Entry");

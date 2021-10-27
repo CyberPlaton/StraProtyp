@@ -90,6 +90,19 @@ public:
 
 	void addComponent(Pointer<IComponent> component) override final
 	{
+		using namespace std;
+
+		for (auto& c : components)
+		{
+			if (c->getComponentType().compare(component->getComponentType()) == 0)
+			{
+				cout << color(colors::MAGENTA);
+				cout << "Component \""<< component->getComponentID() << "\{"<< component->getComponentType() << "} will not be added as duplicate" << white << endl;
+				component.reset();
+				return;
+			}
+		}
+
 		components.push_back(component);
 	}
 

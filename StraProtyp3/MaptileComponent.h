@@ -26,11 +26,12 @@ public:
 	void AddGameobject(Pointer<GameObject2> p);
 	void RemoveGameobject(const GOTag& t);
 	void RemoveGameobject(Pointer<GameObject2> p);
+	void RemoveAllGameobjects();
 	std::vector< Pointer<GameObject2> >& GetGameobjects(){return m_Gameobjects;}
 
 
 	MaptileType GetMaptileType() { return m_MaptileType; }
-
+	void SetMaptileType(const MaptileType& t) { m_MaptileType = t; }
 
 	bool HasRoad();
 	bool HasImprovement();
