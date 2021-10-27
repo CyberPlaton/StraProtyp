@@ -91,6 +91,19 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 	GameWorldTime::get()->update(); // Update Game World Time.
 
+
+	// Update all Maptile Components.
+	for (auto ptr : GameobjectStorage::get()->GetStorage())
+	{
+		if (ptr->hasComponent("Maptile"))
+		{
+			Pointer<MaptileComponent> m = ptr->getComponent<MaptileComponent>("Maptile");
+			m->update();
+		}
+	}
+
+
+
 	stateMachine.update(fElapsedTime);
 
 
@@ -178,13 +191,35 @@ bool App::OnUserCreate()
 		for (int j = 0; j < gameWorldMatrix[i].size(); j++)
 		{
 			gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Jungle_Maptile", i, j);
+		
+			auto forest = GameobjectStorage::get()->Instantiate("Jungle_Normal", i, j);
+			auto spearman = GameobjectStorage::get()->Instantiate("Spearman", i, j);
 		}
 	}
 
-	auto forest = GameobjectStorage::get()->Instantiate("Jungle_Normal", 1, 1);
-	auto ptr = GameobjectStorage::get()->Instantiate("Spearman", 2.0f, 2.0f);
+	for (int i = 0; i < gameWorldMatrix.size(); i++)
+	{
+		for (int j = 0; j < gameWorldMatrix[i].size(); j++)
+		{
+			auto ptr = gameWorldMatrix[i][j];
+
+			// Remove all entities from maptile.
+			Pointer<MaptileComponent> m = ptr->getComponent<MaptileComponent>("Maptile");
+			while(m->GetGameobjects().size() > 0)
+			{
+				auto e = m->GetGameobjects()[0];
+				m->RemoveGameobject(e);
+			}
+		}
+	}
+
+	
+
+
+
 
 	NavMesh::get()->Bake();
+
 
 	return true;
 }
@@ -909,8 +944,33 @@ void AppStateCityView::onExit()
 
 
 
+void AppStateWorldMap::_updateGameworldMatrix(GameworldMatrix& world)
+{
+	for (int i = 0; i < world.size(); i++)
+	{
+		for (int j = 0; j < world[i].size(); j++)
+		{
+
+			if (world[i][j])
+			{
+				// Search for Deleted gameobjects and remove them.
+				// A Deleted Gameobjects Tag is Empty.
+				if (world[i][j]->getTag().compare("") == 0)
+				{
+					world[i][j].reset();
+				}
+			}
+		}
+	}
+}
+
+
 void AppStateWorldMap::_renderGameworld()
 {
+	using namespace std;
+
+	_updateGameworldMatrix(app->gameWorldMatrix);
+
 	// Iterate through visible maptiles and render them.
 	olc::vi2d upLeft = app->visiblePointLeftUp;
 	olc::vi2d downRight = app->visiblePointDownRight;
@@ -919,7 +979,15 @@ void AppStateWorldMap::_renderGameworld()
 	{
 		for (int y = upLeft.y; y < downRight.y; y++)
 		{
-			_renderMaptile(app->gameWorldMatrix[x][y]);
+			if (app->gameWorldMatrix[x][y])
+			{
+				_renderMaptile(app->gameWorldMatrix[x][y]);
+			}
+			else
+			{
+				cout << color(colors::MAGENTA);
+				cout << "Maptile {" << x << "," << y << "} is Destroyed" << white << endl;
+			}
 		}
 	}
 }

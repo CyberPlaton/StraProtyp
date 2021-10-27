@@ -60,7 +60,7 @@ public:
 
 
 	void update() override{}
-
+	void destroy() override { m_Hash = 0; m_ID.clear(); m_Type.clear(); }
 
 private:
 	size_t m_Hash = 0;

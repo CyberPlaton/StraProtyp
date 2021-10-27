@@ -147,8 +147,12 @@ public:
 
 
 			std::string tag, name;
-			tag = root->FirstChildElement("Tag")->GetText();
+			size_t gameObjectNumber = ++IGameobjectStorage::g_GameobjectCount;
+			tag = "GO_" + std::to_string(gameObjectNumber) + "_";
+			tag += root->FirstChildElement("Tag")->GetText();
 			name = root->FirstChildElement("Name")->GetText();
+
+			
 
 			cout << color(colors::GREEN);
 			cout << "Instantiate Gameobject \""<< name << "\"{"<< tag << "}" << white << endl;
@@ -375,8 +379,6 @@ public:
 
 
 	// Try to get a reference to an existing Gameobject.
-	// Returns a weak pointer,
-	// where the reference count is not affected.
 	Pointer<GameObject2> GetReference(const std::string& gameobjectTag) override
 	{
 		// Return a weak reference to a shared pointer.

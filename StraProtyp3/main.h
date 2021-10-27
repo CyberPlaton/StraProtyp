@@ -238,7 +238,7 @@ struct AppStateWorldMap : public State<App>
 private:
 	App* app = nullptr;
 
-
+	void _updateGameworldMatrix(GameworldMatrix& world);
 	void _renderMaptile(Pointer<GameObject2> tile);
 	void _renderGameworld();
 	void _drawUI();

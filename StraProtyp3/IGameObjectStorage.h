@@ -33,4 +33,5 @@ public:
 	//
 	// Remember though, on app initialization this Pointer should be populated with an Object.
 	static IGameobjectStorage* g_IGameobjectStorage;
+	static size_t g_GameobjectCount;
 };

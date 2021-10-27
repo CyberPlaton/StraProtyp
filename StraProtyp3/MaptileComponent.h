@@ -21,6 +21,7 @@ public:
 	// Currently the function removes and resets elsewhere deleted gameobjects
 	// which are stored in this Maptile vector.
 	void update() override final;
+	void destroy() override final;
 
 	void AddGameobject(Pointer<GameObject2> p);
 	void RemoveGameobject(const GOTag& t);

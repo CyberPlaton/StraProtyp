@@ -22,6 +22,18 @@ void MaptileComponent::update()
 }
 
 
+void MaptileComponent::destroy()
+{
+	for (int i = 0; i < m_Gameobjects.size(); i++)
+	{
+		m_Gameobjects[i].reset();
+	}
+
+	m_MaptileType.clear();
+
+}
+
+
 void MaptileComponent::RemoveGameobject(const GOTag& t)
 {
 	for (int i = 0; i < m_Gameobjects.size(); i++)

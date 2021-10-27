@@ -48,6 +48,7 @@ public:
 				cout << "[GameObject2::~GameObject2] Component \""<< components[i]->getComponentID() << "\" has more than one Uses! Current count: " << components[i].use_count() << white << endl;
 			}
 
+			components[i]->destroy();
 			components[i].reset();
 		}
 
