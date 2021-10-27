@@ -41,7 +41,7 @@ void GameobjectStorage::del()
 
 
 
-bool GameobjectStorage::_addUnitComponent(Pointer<UnitComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
+bool GameobjectStorage::_addUnitComponent(Pointer<UnitComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos)
 {
 	using namespace tinyxml2;
 
@@ -74,11 +74,19 @@ bool GameobjectStorage::_addUnitComponent(Pointer<UnitComponent> cmp, Pointer<Ga
 		req = req->NextSiblingElement("Requirement");
 	}
 
+
+
+	// Add Unit to Maptile.
+	Pointer<GameObject2> pGO = _getMaptileAtPosition(xpos, ypos);
+	Pointer<MaptileComponent> maptile = pGO->getComponent<MaptileComponent>("Maptile");
+	maptile->AddGameobject(entity);
+
 	return true;
 }
 
-bool GameobjectStorage::_addTransformComponent(Pointer<TransformComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
+bool GameobjectStorage::_addTransformComponent(Pointer<TransformComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos)
 {
+	cmp->SetPosition(xpos, ypos);
 	return true;
 }
 
@@ -127,8 +135,13 @@ bool GameobjectStorage::_addHillComponent(Pointer<HillComponent> cmp, Pointer<Ga
 	return true;
 }
 
-bool GameobjectStorage::_addForestComponent(Pointer<ForestComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
+bool GameobjectStorage::_addForestComponent(Pointer<ForestComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos)
 {
+	// Add Forest to Maptile.
+	Pointer<GameObject2> pGO = _getMaptileAtPosition(xpos, ypos);
+	Pointer<MaptileComponent> maptile = pGO->getComponent<MaptileComponent>("Maptile");
+	maptile->AddGameobject(entity);
+
 	return true;
 }
 

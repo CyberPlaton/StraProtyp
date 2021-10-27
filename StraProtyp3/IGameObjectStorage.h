@@ -18,9 +18,11 @@ class IGameobjectStorage
 public:
 
 	virtual Pointer<GameObject2> Instantiate(const std::string&, float, float) = 0;
-	virtual Reference<GameObject2> GetReference(const std::string&) = 0;
+	virtual Pointer<GameObject2> GetReference(const std::string&) = 0;
 	virtual GameobjectStorageVec<GameObject2>& GetStorage() = 0;
 	virtual PrefabStorageMap& GetPrefabStorage() = 0;
+	virtual bool DestroyGameobject(const std::string&) = 0;
+	virtual bool DestroyGameobject(Pointer<GameObject2>) = 0;
 
 	virtual bool LoadPrefabs(const std::string&) = 0;
 

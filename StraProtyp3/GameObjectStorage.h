@@ -56,6 +56,58 @@ public:
 	static void del();
 
 
+	bool DestroyGameobject(Pointer<GameObject2> entity) override
+	{
+		using namespace std;
+
+		// Delete Gameobject.
+		if (entity.use_count() > 1)
+		{
+			cout << color(colors::RED);
+			cout << "Gameobject \"" << entity->getName() << "\" has " << entity.use_count() << " \"Pointers\" in use..." << white << endl;
+		}
+		else
+		{
+			cout << color(colors::GREEN);
+			cout << "Gameobject \"" << entity->getName() << "\" fully deleted" << white << endl;
+		}
+
+		// Remove entry from storage
+		for (int index = 0; index < gameObjectStorage.size(); index++)
+		{
+			if (entity->getTag().compare(gameObjectStorage[index]->getTag()) == 0)
+			{
+				gameObjectStorage.erase(gameObjectStorage.begin() + index);
+				break;
+			}
+		}
+		entity->~GameObject2(); // Destroy Components and their data
+		entity.reset(); // Destroy Gameobject Pointer self
+
+
+		return true;
+	}
+
+
+	bool DestroyGameobject(const std::string& tag) override
+	{
+		using namespace std;
+
+		for (auto& entity : gameObjectStorage)
+		{
+			if (entity->getTag().compare(tag) == 0)
+			{
+				// Delete Gameobject.
+				DestroyGameobject(entity);
+			}
+		}
+
+
+		return false;
+	}
+
+
+
 	// Construct a new Gameobject from preexisting prefab definition.
 	// Returns a shared pointer,
 	// where the instance itself is destructed on App shutdown.
@@ -126,7 +178,7 @@ public:
 
 					auto transform = std::make_shared<TransformComponent>(name + "_Transform");
 					ptr->addComponent(transform);
-					_addTransformComponent(transform, ptr, cmp);
+					_addTransformComponent(transform, ptr, cmp, xpos, ypos);
 					transform.reset();
 				
 				}
@@ -138,7 +190,7 @@ public:
 
 					auto forest = std::make_shared<ForestComponent>(name + "Forest");
 					ptr->addComponent(forest);
-					_addForestComponent(forest, ptr, cmp);
+					_addForestComponent(forest, ptr, cmp, xpos, ypos);
 					forest.reset();
 					
 				}
@@ -162,7 +214,7 @@ public:
 
 					auto unit = std::make_shared<UnitComponent>(name + "Unit");
 					ptr->addComponent(unit);
-					_addUnitComponent(unit, ptr, cmp);
+					_addUnitComponent(unit, ptr, cmp, xpos, ypos);
 					unit.reset();
 
 				}
@@ -325,12 +377,20 @@ public:
 	// Try to get a reference to an existing Gameobject.
 	// Returns a weak pointer,
 	// where the reference count is not affected.
-	Reference<GameObject2> GetReference(const std::string& gameobjectTag) override
+	Pointer<GameObject2> GetReference(const std::string& gameobjectTag) override
 	{
 		// Return a weak reference to a shared pointer.
 		// Thus not increasing the reference count.
 		// The correct index of the Gameobject should be found first.
-		return gameObjectStorage[0];
+		for (auto& entity : gameObjectStorage)
+		{
+			if (entity->getTag().compare(gameobjectTag) == 0)
+			{
+				return entity;
+			}
+		}
+
+		return nullptr;
 	}
 
 
@@ -403,8 +463,8 @@ private:
 private:
 
 
-	bool _addUnitComponent(Pointer<UnitComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
-	bool _addTransformComponent(Pointer<TransformComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
+	bool _addUnitComponent(Pointer<UnitComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
+	bool _addTransformComponent(Pointer<TransformComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
 	bool _addRiverComponent(Pointer<RiverComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addRessourceComponent(Pointer<RessourceComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addRenderableComponent(Pointer<RenderableComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
@@ -413,7 +473,7 @@ private:
 	bool _addMountainComponent(Pointer<MountainComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addMaptileComponent(Pointer<MaptileComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addHillComponent(Pointer<HillComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
-	bool _addForestComponent(Pointer<ForestComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
+	bool _addForestComponent(Pointer<ForestComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
 	bool _addCollisionBoxComponent(Pointer<CollisionBoxComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addCityComponent(Pointer<CityComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
 	bool _addBuildingComponent(Pointer<BuildingComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);

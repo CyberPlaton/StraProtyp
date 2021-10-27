@@ -1,5 +1,5 @@
 <Gameobject>
-	<Tag>Water_Deep_Maptile</Tag>
+	<Tag>Maptile</Tag>
 	<Name>Water_Deep_Maptile</Name>
 	<Components>
 		<Component name="Renderable">

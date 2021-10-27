@@ -6,6 +6,22 @@ void MaptileComponent::AddGameobject(Pointer<GameObject2> ref)
 }
 
 
+void MaptileComponent::update()
+{
+	for (int i = 0; i < m_Gameobjects.size(); i++)
+	{
+
+		// Search for Deleted gameobjects and remove them.
+		// A Deleted Gameobjects Tag is Empty.
+		if (m_Gameobjects[i]->getTag().compare("") == 0)
+		{
+			m_Gameobjects[i].reset();
+			m_Gameobjects.erase(m_Gameobjects.begin() + i);
+		}
+	}
+}
+
+
 void MaptileComponent::RemoveGameobject(const GOTag& t)
 {
 	for (int i = 0; i < m_Gameobjects.size(); i++)
@@ -15,8 +31,16 @@ void MaptileComponent::RemoveGameobject(const GOTag& t)
 		{
 			if (ptr->getTag().compare(t) == 0)
 			{
+				m_Gameobjects[i].reset();
 				m_Gameobjects.erase(m_Gameobjects.begin() + i);
 				return;
+			}
+			else if (ptr->getTag().compare("") == 0)
+			{
+				// Remove invalid or deleted Gameobjects.
+				m_Gameobjects[i].reset();
+				m_Gameobjects.erase(m_Gameobjects.begin() + i);
+				continue;
 			}
 		}
 		else

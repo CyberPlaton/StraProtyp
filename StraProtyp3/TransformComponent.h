@@ -32,6 +32,11 @@ public:
 		ypos = 0;
 	}
 
+
+	float GetXPos() { return xpos; }
+	float GetYPos() { return ypos; }
+
+
 	void SetPosition(float x, float y)
 	{
 		xpos = x;

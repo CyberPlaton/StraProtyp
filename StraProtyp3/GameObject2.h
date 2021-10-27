@@ -111,7 +111,7 @@ public:
 	{
 		for (int i = 0; i < components.size(); i++)
 		{
-			if (components[i]->getComponentID().compare(id) == 0)
+			if (components[i]->getComponentType().compare(id) == 0)
 			{
 				auto ref = std::static_pointer_cast<T>(components[i]);
 				return ref;
@@ -137,8 +137,13 @@ public:
 	}
 
 
-	bool hasComponent(const std::string&) override final
+	bool hasComponent(const std::string& tag) override final
 	{
+		for (auto& c : components)
+		{
+			if (c->getComponentType().compare(tag) == 0) return true;
+		}
+
 		return false;
 	}
 

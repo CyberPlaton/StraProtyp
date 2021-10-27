@@ -1,6 +1,6 @@
 #include "main.h"
 
-size_t App::g_DecalInstanceID = 0;
+size_t App::g_DecalInstanceID = 1;
 
 /*
 * IMGUI related variables, for easier iterating.
@@ -24,7 +24,7 @@ static int imnodes_tech_link_id = 1;
 static int imnodes_tech_dependency_id = 1;
 static int imnodes_tech_dependency_display_id = 100000;
 static bool imnodes_tech_tree_initialized = false;
-static bool render_2d_grid = true;
+static bool render_2d_grid = false;
 static bool render_city_religions = false;
 static bool show_city_religion_update_button = false;
 
@@ -172,10 +172,17 @@ bool App::OnUserCreate()
 	GameWorldTime::get()->setTimeSpeed(0.016);
 
 
-	auto ptr = GameobjectStorage::get()->Instantiate("Spearman", 1.0f, 1.0f);
-	ptr = GameobjectStorage::get()->Instantiate("Tavern", 1.0f, 1.0f);
-	ptr = GameobjectStorage::get()->Instantiate("Weaponsmiths Workshop", 1.0f, 1.0f);
 
+	for (int i = 0; i < gameWorldMatrix.size(); i++)
+	{
+		for (int j = 0; j < gameWorldMatrix[i].size(); j++)
+		{
+			gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Jungle_Maptile", i, j);
+		}
+	}
+
+	auto forest = GameobjectStorage::get()->Instantiate("Jungle_Normal", 1, 1);
+	auto ptr = GameobjectStorage::get()->Instantiate("Spearman", 2.0f, 2.0f);
 
 	NavMesh::get()->Bake();
 
@@ -606,8 +613,9 @@ olc::Decal* App::_getDecal(const std::string& name)
 }
 */
 
-void App::_storeDecal(const std::string& name, size_t id, Pointer<olc::Decal> decal)
+void App::_storeDecal(const std::string& name, size_t id, Pointer<olc::Decal> decal, Pointer<olc::Sprite> sprite)
 {
+	sprites.push_back(sprite);
 	decalIDMap[name] = id;
 	decalDatabase.insert(id, decal);
 }
@@ -658,11 +666,26 @@ bool App::_loadDecalDatabase()
 
 			std::string path = default_path + decal->GetText();
 
+			std::string decalName = decal->GetText();
+			size_t pos = decalName.find(".png");
+			if (pos != std::string::npos)
+			{
+				decalName.erase(pos, decalName.length());
+			}
+
 
 			pSprite = std::make_shared<olc::Sprite>(path);
+
+			if (pSprite->width == 0 && pSprite->height == 0 && pSprite->pColData.size() == 0)
+			{
+				cout << color(colors::RED);
+				cout << "Failed loading Sprite \""<< decalName << "\"{"<< path << "}" << white << endl;
+			}
+
+
 			pDecal = std::make_shared<olc::Decal>(pSprite.get());
 
-			_storeDecal(decal->GetText(), ++App::g_DecalInstanceID, pDecal);
+			_storeDecal(decalName, ++App::g_DecalInstanceID, pDecal, pSprite);
 
 
 			decal = decal->NextSiblingElement("Decal");
@@ -913,6 +936,81 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 	// 6 - road
 	// 7 - city or fort
 	// 8 - unit
+
+	using namespace std;
+
+
+	std::map< int, Pointer<GameObject2> > drawOrder;
+	for (int i = 1; i < 9; i++) drawOrder.emplace(i, nullptr);
+
+	Pointer<MaptileComponent> maptile = tile->getComponent<MaptileComponent>("Maptile");
+
+	// Render Maptile itself as first.
+	drawOrder[1] = tile;
+
+
+	for (auto go : maptile->GetGameobjects())
+	{
+		// Store gameobject in correct slot for ordered rendering.
+		if (go->hasComponent("Renderable"))
+		{
+
+			// Do not render units in city as outside.
+			if (go->hasComponent("Unit") && go->getComponent<UnitComponent>("Unit")->IsInCity() == true) continue;
+
+
+			Pointer<RenderableComponent> render = go->getComponent<RenderableComponent>("Renderable");
+
+			if (render->IsRendering())
+			{
+				if (render->GetRenderingLayer().compare("forest") == 0) // And Mountain, Hill
+				{
+					drawOrder[2] = go;
+				}
+				else if (render->GetRenderingLayer().compare("river") == 0)
+				{
+					drawOrder[3] = go;
+				}
+				else if (render->GetRenderingLayer().compare("ressource") == 0)
+				{
+					drawOrder[4] = go;
+				}
+				else if (render->GetRenderingLayer().compare("improvement") == 0)
+				{
+					drawOrder[5] = go;
+				}
+				else if (render->GetRenderingLayer().compare("road") == 0)
+				{
+					drawOrder[6] = go;
+				}
+				else if (render->GetRenderingLayer().compare("city") == 0)
+				{
+					drawOrder[7] = go;
+				}
+				else if (render->GetRenderingLayer().compare("unit") == 0)
+				{
+					drawOrder[8] = go;
+				}
+			}
+		}
+	}
+
+
+	for (int i = 1; i < 9; i++)
+	{
+		// Render the Gameobjects in correct order.
+		Pointer<GameObject2> go = drawOrder[i];
+		if (go)
+		{
+			Pointer<TransformComponent> transform = go->getComponent<TransformComponent>("Transform");
+			Pointer<RenderableComponent>  render = go->getComponent<RenderableComponent>("Renderable");
+
+			Pointer<olc::Decal> decal = app->_getDecal(render->GetDecalName());
+
+			app->tv.DrawDecal(olc::vf2d(transform->GetXPos(), transform->GetYPos()), decal.get());
+		}
+	}
+
 
 	/*
 	std::map< int, GameObject* > drawOrder;

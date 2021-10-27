@@ -43,4 +43,7 @@ public:
 
 	virtual size_t getComponentHashvalue() = 0;
 	virtual void setComponentHashvalue(size_t) = 0;
+
+
+	virtual void update() = 0;
 };

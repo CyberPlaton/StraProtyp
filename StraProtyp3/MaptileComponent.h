@@ -16,7 +16,11 @@ public:
 		initialize("Maptile", name);
 	}
 
-
+	
+	// Function for general update of the component, intended to be called once per frame.
+	// Currently the function removes and resets elsewhere deleted gameobjects
+	// which are stored in this Maptile vector.
+	void update() override final;
 
 	void AddGameobject(Pointer<GameObject2> p);
 	void RemoveGameobject(const GOTag& t);

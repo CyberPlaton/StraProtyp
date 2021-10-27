@@ -1,5 +1,5 @@
 <Gameobject>
-	<Tag>Sand_Maptile</Tag>
+	<Tag>Maptile</Tag>
 	<Name>Sand_Maptile</Name>
 	<Components>
 		<Component name="Renderable">

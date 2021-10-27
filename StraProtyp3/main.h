@@ -94,8 +94,24 @@ public:
 		// Free Decals
 		for (auto& decal : decalNamesInDatabase)
 		{
+			decal.clear();
 		}
 		decalNamesInDatabase.clear();
+
+		for (auto& s : sprites)
+		{
+			s.reset();
+		}
+		sprites.clear();
+		
+		/*
+		for (auto& id : decalIDMap)
+		{
+			decalDatabase.deleteNode(id.second);
+		}
+		decalIDMap.clear();
+		*/
+
 		techTreeNodes.clear();
 		links.clear();
 	}
@@ -163,7 +179,7 @@ private:
 private:
 
 	// Helpers
-	void _storeDecal(const std::string& name, size_t id, Pointer<olc::Decal> decal);
+	void _storeDecal(const std::string& name, size_t id, Pointer<olc::Decal> decal, Pointer<olc::Sprite> sprite);
 	Pointer<olc::Decal> _getDecal(const std::string& name);
 
 	//void _onImGui();

@@ -59,6 +59,8 @@ public:
 	}
 
 
+	void update() override{}
+
 
 private:
 	size_t m_Hash = 0;

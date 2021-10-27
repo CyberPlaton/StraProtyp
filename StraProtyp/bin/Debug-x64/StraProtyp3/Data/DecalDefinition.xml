@@ -51,7 +51,7 @@
 		<Decal>highmountain.png</Decal>
 	</Decals>
 	
-	<Decals path="Data/Assets/Map/">
+	<Decals path="Data/Assets/Unit/">
 		<Decal>aristocrat.png</Decal>
 		<Decal>assassin.png</Decal>
 		<Decal>assassin_2.png</Decal>
