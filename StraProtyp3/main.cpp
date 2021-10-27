@@ -197,19 +197,14 @@ bool App::OnUserCreate()
 		}
 	}
 
-	for (int i = 0; i < gameWorldMatrix.size(); i++)
-	{
-		for (int j = 0; j < gameWorldMatrix[i].size(); j++)
-		{
-			auto ptr = gameWorldMatrix[i][j];
 
-			// Remove all entities from maptile.
-			Pointer<MaptileComponent> m = ptr->getComponent<MaptileComponent>("Maptile");
-			while(m->GetGameobjects().size() > 0)
-			{
-				auto e = m->GetGameobjects()[0];
-				m->RemoveGameobject(e);
-			}
+	auto vec = GetAllComponentsOfType<MaptileComponent>("Maptile");
+	for (auto& m : vec)
+	{
+		while (m->GetGameobjects().size() > 0)
+		{
+			auto e = m->GetGameobjects()[0];
+			m->RemoveGameobject(e);
 		}
 	}
 

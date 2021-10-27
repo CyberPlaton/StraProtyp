@@ -1,5 +1,6 @@
 #include "GameObjectStorage.h"
 
+
 IGameobjectStorage* GameobjectStorage::get()
 {
 	if (!IGameobjectStorage::g_IGameobjectStorage)

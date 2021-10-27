@@ -500,3 +500,21 @@ private:
 		return nullptr;
 	}
 };
+
+
+
+template < typename T >
+std::vector< Pointer< T > > GetAllComponentsOfType(const std::string& t)
+{
+	std::vector< Pointer< T > > vec;
+
+	for (auto e : GameobjectStorage::get()->GetStorage())
+	{
+		if (e->hasComponent(t))
+		{
+			vec.push_back(e->getComponent<T>(t));
+		}
+	}
+
+	return vec;
+}
