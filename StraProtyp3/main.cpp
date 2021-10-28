@@ -192,7 +192,6 @@ bool App::OnUserCreate()
 		{
 			gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Jungle_Maptile", i, j);
 		
-			auto forest = GameobjectStorage::get()->Instantiate("Jungle_Normal", i, j);
 			auto spearman = GameobjectStorage::get()->Instantiate("Spearman", i, j);
 		}
 	}
@@ -211,6 +210,30 @@ bool App::OnUserCreate()
 	
 	auto ptr = GameobjectStorage::get()->Instantiate("City_Plain", 1, 1);
 
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Scarce", 1, 1);
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Normal", 2, 1);
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 1, 2);
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Dying", 2, 2);
+
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Scarce", 3, 3);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 4, 3);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 3, 4);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Dying", 4, 4);
+
+	ptr = GameobjectStorage::get()->Instantiate("Tundra_Scarce", 5, 5);
+	ptr = GameobjectStorage::get()->Instantiate("Tundra_Normal", 6, 5);
+	ptr = GameobjectStorage::get()->Instantiate("Tundra_Deep", 5, 6);
+	ptr = GameobjectStorage::get()->Instantiate("Tundra_Dying", 6, 6);
+
+	ptr = GameobjectStorage::get()->Instantiate("Savannah_Scarce", 7, 7);
+	ptr = GameobjectStorage::get()->Instantiate("Savannah_Normal", 8, 7);
+	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 7, 8);
+	ptr = GameobjectStorage::get()->Instantiate("Savannah_Dying", 8, 8);
+
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Scarce", 9, 9);
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Normal", 10, 9);
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 9, 10);
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Dying", 10, 10);
 
 
 

@@ -37,6 +37,9 @@
     <Filter Include="Source Files\Base\ECS\Components">
       <UniqueIdentifier>{c934a89c-be5d-463d-86b7-48e588978e8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Base\ECS\Systems">
+      <UniqueIdentifier>{f5895968-f73b-4466-a63f-010c2d1d3c25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -198,6 +201,9 @@
     <ClInclude Include="NavMesh.h">
       <Filter>Source Files\Base\ECS\Storage</Filter>
     </ClInclude>
+    <ClInclude Include="ForestSystem.h">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -277,6 +283,9 @@
     </ClCompile>
     <ClCompile Include="NavMesh.cpp">
       <Filter>Source Files\Base\ECS\Storage</Filter>
+    </ClCompile>
+    <ClCompile Include="ForestSystem.cpp">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

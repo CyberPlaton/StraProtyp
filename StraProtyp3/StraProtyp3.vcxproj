@@ -112,6 +112,7 @@
     <ClInclude Include="Component2.h" />
     <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="ForestComponent.h" />
+    <ClInclude Include="ForestSystem.h" />
     <ClInclude Include="GameObject2.h" />
     <ClInclude Include="GameObjectStorage.h" />
     <ClInclude Include="GameWorldTime.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="common\include\imgui-master\imgui_widgets.cpp" />
     <ClCompile Include="common\include\imgui-master\imnodes.cpp" />
     <ClCompile Include="common\include\tinyxml2.cpp" />
+    <ClCompile Include="ForestSystem.cpp" />
     <ClCompile Include="GameObjectStorage.cpp" />
     <ClCompile Include="GameWorldTime.cpp" />
     <ClCompile Include="IComponent.cpp" />
