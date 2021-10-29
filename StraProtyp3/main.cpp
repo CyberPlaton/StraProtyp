@@ -472,6 +472,14 @@ void App::_handleInput()
 		}
 	}
 
+	if (stateMachine.getCurrentState().compare("worldMap") == 0)
+	{
+		if (GetKey(olc::SPACE).bPressed)
+		{
+			ForestSystem::get()->Update(gameWorldMatrix);
+		}
+	}
+
 
 	/*
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)

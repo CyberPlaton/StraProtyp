@@ -144,6 +144,11 @@ bool GameobjectStorage::_addForestComponent(Pointer<ForestComponent> cmp, Pointe
 	Pointer<MaptileComponent> maptile = pGO->getComponent<MaptileComponent>("Maptile");
 	maptile->AddGameobject(entity);
 
+
+	cmp->SetForestType(data->FirstChildElement("Type")->GetText());
+	cmp->SetForestBiome(data->FirstChildElement("Biome")->GetText());
+	cmp->SetMaxLifetime(data->FirstChildElement("MaxLifetime")->IntText());
+	cmp->ResetLifetime();
 	return true;
 }
 

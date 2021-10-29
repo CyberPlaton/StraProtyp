@@ -14,8 +14,12 @@
 
 		<Component name ="Animator"></Component>
 
-		<Component name ="Forest"></Component>
-
+		<Component name ="Forest">
+			<Type>Normal</Type>
+			<Biome>Jungle</Biome>
+			<MaxLifetime>50</MaxLifetime>
+		</Component>
+		
 		<Component name="CollisionBox">
 			<Width>1.0</Width>
 			<Height>1.0</Height>

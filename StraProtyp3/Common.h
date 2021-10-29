@@ -24,6 +24,8 @@ using UnitProfession = std::string;
 using MaptileType = std::string;
 using GOTag = std::string;
 using GOName = std::string;
+using ForestType = std::string;
+using ForestBiome = std::string;
 
 
 

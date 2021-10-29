@@ -68,6 +68,8 @@ struct ImNodesNode
 
 #include "GameObjectStorage.h"
 
+#include "ForestSystem.h"
+
 
 struct AppStateWorldMap;
 struct AppStateCityView;

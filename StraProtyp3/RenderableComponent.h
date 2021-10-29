@@ -37,7 +37,7 @@ public:
 	float SetHeight(float h) { height = h; }
 	bool SetIsRendering(bool v) { render = v; }
 	std::string SetColor(std::string c) { color = c; }
-	std::string SetDecalName(std::string d) { decalName = d; }
+	void SetDecalName(std::string d) { decalName = d; }
 	std::string SetRenderingLayer(std::string l) { renderingLayer = l; }
 
 
