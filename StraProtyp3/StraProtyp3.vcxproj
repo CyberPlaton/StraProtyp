@@ -121,6 +121,7 @@
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGameObjectStorage.h" />
+    <ClInclude Include="JobSystem.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MaptileComponent.h" />
     <ClInclude Include="MountainComponent.h" />
@@ -163,6 +164,7 @@
     <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="IGameObject.cpp" />
     <ClCompile Include="IGameObjectStorage.cpp" />
+    <ClCompile Include="JobSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MaptileComponent.cpp" />
     <ClCompile Include="NavigatorComponent.cpp" />

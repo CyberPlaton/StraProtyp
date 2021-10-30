@@ -18,6 +18,11 @@ public:
 	}
 	~ForestComponent()
 	{
+		m_ForestBiome.clear();
+		m_ForestType.clear();
+		m_IsForestPermanent = 0;
+		m_Lifetime = 0;
+		m_MaxLifetime = 0;
 	}
 
 

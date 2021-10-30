@@ -23,7 +23,7 @@ void GameobjectStorage::del()
 			if (object.use_count() > 1)
 			{
 				cout << color(colors::RED);
-				cout << "[GameobjectStorage::del] Gameobject has more than one Uses! Current count: " << object.use_count() << white << endl;
+				cout << "[GameobjectStorage::del] Gameobject \""<< object->getName() << "\" has more than one Uses! Current count: " << object.use_count() << white << endl;
 			}
 
 

@@ -32,6 +32,13 @@
 struct ImNodesLink
 {
 	ImNodesLink(int id, int start, int end) : id(id), start(start), end(end) {};
+	~ImNodesLink()
+	{
+		id = 0;
+		start = 0;
+		end = 0;
+	}
+
 	int id, start, end;
 };
 
@@ -41,6 +48,23 @@ struct ImNodesNode
 	ImNodesNode(const std::string& name, int id,
 		const std::string& area, const std::string& category) :name(name), id(id),
 	area(area), subCategory(category) {};
+
+	~ImNodesNode()
+	{
+		name.clear();
+		area.clear();
+		subCategory.clear();
+		id = 0;
+		while (dependencies.size() > 0)
+		{
+			dependencies.erase(dependencies.begin());
+		}
+
+		while (techDependencies.size() > 0)
+		{
+			techDependencies.erase(techDependencies.begin());
+		}
+	}
 
 	std::string name;
 	std::string area;
@@ -70,6 +94,8 @@ struct ImNodesNode
 
 #include "ForestSystem.h"
 
+#include "JobSystem.h"
+
 
 struct AppStateWorldMap;
 struct AppStateCityView;
@@ -93,29 +119,45 @@ public:
 
 	void shutDown()
 	{
-		// Free Decals
-		for (auto& decal : decalNamesInDatabase)
+		while (sprites.size() > 0)
 		{
-			decal.clear();
+			sprites[0].reset();
+			sprites.erase(sprites.begin());
 		}
-		decalNamesInDatabase.clear();
 
-		for (auto& s : sprites)
+		while (decalNamesInDatabase.size() > 0)
 		{
-			s.reset();
+			decalNamesInDatabase[0].clear();
+			decalNamesInDatabase.erase(decalNamesInDatabase.begin());
 		}
-		sprites.clear();
-		
-		/*
-		for (auto& id : decalIDMap)
-		{
-			decalDatabase.deleteNode(id.second);
-		}
-		decalIDMap.clear();
-		*/
 
-		techTreeNodes.clear();
-		links.clear();
+		while (decalIDMap.size() > 0)
+		{
+			decalIDMap.erase(decalIDMap.begin());
+		}
+
+		while (techTreeNodes.size() > 0)
+		{
+			techTreeNodes[0].~ImNodesNode();
+			techTreeNodes.erase(techTreeNodes.begin());
+		}
+
+		while (links.size() > 0)
+		{
+			links[0].~ImNodesLink();
+			links.erase(links.begin());
+		}
+
+		for (int i = 0; i < gameWorldMatrix.size(); i++)
+		{
+			for (int j = 0; j < gameWorldMatrix[i].size(); j++)
+			{
+				gameWorldMatrix[i][j].reset();
+			}
+		}
+
+		delete font;
+		font = nullptr;
 	}
 
 public:

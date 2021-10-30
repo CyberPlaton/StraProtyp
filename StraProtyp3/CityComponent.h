@@ -17,6 +17,16 @@ struct BuildingSlot
 	{
 	}
 
+	~BuildingSlot()
+	{
+		m_Building.reset();
+		m_Xpos = 0;
+		m_Ypos = 0;
+		m_SlotNumber = 0;
+		m_SlotType.clear();
+		m_IsUsed = 0;
+	}
+
 	float m_Xpos = 0.0f;
 	float m_Ypos = 0.0f;
 	int m_SlotNumber = 0;

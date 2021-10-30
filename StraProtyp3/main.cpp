@@ -51,12 +51,13 @@ int main()
 	if (demo.Construct(1360, 768, 1, 1))
 		demo.Start();
 
-
 	demo.shutDown();
-
 
 	NavMesh::del();
 	GameWorldTime::del();
+	JobSystem::del();
+	ForestSystem::del();
+	GameobjectStorage::del();
 
 
 	ImNodes::SaveCurrentEditorStateToIniFile("tech_tree_graph.ini");
@@ -415,6 +416,12 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player, ITech::Te
 */
 
 
+void UpdateForestSystem(GameworldMatrix& world)
+{
+	ForestSystem::get()->Update(world);
+}
+
+
 void App::_handleInput()
 {
 	using namespace std;
@@ -559,7 +566,7 @@ void App::_handleInput()
 	{
 		if (GetKey(olc::SPACE).bPressed)
 		{
-			ForestSystem::get()->Update(gameWorldMatrix);
+			JobSystem::get()->getVgjsJobSystem()->schedule(std::bind(UpdateForestSystem, gameWorldMatrix));
 		}
 
 

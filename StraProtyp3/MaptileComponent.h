@@ -16,6 +16,16 @@ public:
 		initialize("Maptile", name);
 	}
 
+	~MaptileComponent()
+	{
+		while (m_Gameobjects.size() > 0)
+		{
+			m_Gameobjects[0].reset();
+			m_Gameobjects.erase(m_Gameobjects.begin());
+		}
+		m_MaptileType.clear();
+	}
+
 	
 	// Function for general update of the component, intended to be called once per frame.
 	// Currently the function removes and resets elsewhere deleted gameobjects

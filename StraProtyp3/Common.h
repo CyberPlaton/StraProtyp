@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <functional>
 
 
 #define DEFAULT_DECAL_SIZE_X 256

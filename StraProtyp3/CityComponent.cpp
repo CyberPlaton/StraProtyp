@@ -2,6 +2,24 @@
 
 CityComponent::~CityComponent()
 {
+	while (m_Units.size() > 0)
+	{
+		m_Units[0].reset();
+		m_Units.erase(m_Units.begin());
+	}
+
+	while (m_Buildings.size() > 0)
+	{
+		m_Buildings[0].reset();
+		m_Buildings.erase(m_Buildings.begin());
+	}
+
+	while (m_BuildingSlots.size() > 0)
+	{
+		m_BuildingSlots[0].reset();
+		m_BuildingSlots.erase(m_BuildingSlots.begin());
+	}
+
 	m_Player.reset();
 	m_City.reset();
 	m_Units.clear();
