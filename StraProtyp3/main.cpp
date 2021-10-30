@@ -109,7 +109,7 @@ bool App::OnUserUpdate(float fElapsedTime)
 	}
 
 
-	//ForestSystem::get()->Update(gameWorldMatrix);
+	ForestSystem::get()->Update(gameWorldMatrix);
 
 
 	stateMachine.update(fElapsedTime);
@@ -237,10 +237,13 @@ bool App::OnUserCreate()
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 5, 18);
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 25, 16);
 
-	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 0, 0);
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 5, 1);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 
-	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 2, 0);
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 7, 1);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 6, 3);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 
 
@@ -254,14 +257,31 @@ bool App::OnUserCreate()
 	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 5, 9);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 4, 10);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
 
 	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 19, 14);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
+	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 21, 14);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
+	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 20, 15);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 3, 18);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 
+
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 1, 18);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
+
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 2, 19);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 
 
 

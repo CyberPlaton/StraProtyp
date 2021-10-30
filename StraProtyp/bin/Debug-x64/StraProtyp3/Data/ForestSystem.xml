@@ -1,10 +1,10 @@
 <ForestSystem>
 	<Jungle>
 		<MaxLifetime>
-			<Def type="Deep">100</Def>
-			<Def type="Normal">30</Def>
-			<Def type="Scarce">20</Def>
-			<Def type="Dying">10</Def>
+			<Def type="Deep">150</Def>
+			<Def type="Normal">55</Def>
+			<Def type="Scarce">25</Def>
+			<Def type="Dying">45</Def>
 		</MaxLifetime>
 		
 		<!--Base prob. of generating new Forest on Jungle maptile-->
@@ -24,14 +24,14 @@
 			<Def type="Deep">225</Def>
 			<Def type="Normal">70</Def>
 			<Def type="Scarce">35</Def>
-			<Def type="Dying">20</Def>
+			<Def type="Dying">50</Def>
 		</MaxLifetime>
 		
 		<!--Base prob. of generating new Forest on Jungle maptile-->
 		<MaptileBaseProbability>0.024</MaptileBaseProbability>
 		
 		<!--How much each neighboring Forest increases the base probability-->
-		<NeighborProbabilityIncrease>0.15</NeighborProbabilityIncrease>
+		<NeighborProbabilityIncrease>0.20</NeighborProbabilityIncrease>
 	
 		<!--How much a River on the maptile increases the base probability-->
 		<RiverProbabilityIncrease>0.3</RiverProbabilityIncrease>
@@ -51,7 +51,7 @@
 		<MaptileBaseProbability>0.018</MaptileBaseProbability>
 		
 		<!--How much each neighboring Forest increases the base probability-->
-		<NeighborProbabilityIncrease>0.15</NeighborProbabilityIncrease>
+		<NeighborProbabilityIncrease>0.095</NeighborProbabilityIncrease>
 	
 		<!--How much a River on the maptile increases the base probability-->
 		<RiverProbabilityIncrease>0.03</RiverProbabilityIncrease>
@@ -82,16 +82,16 @@
 	<Snow>
 		<MaxLifetime>
 			<Def type="Deep">300</Def>
-			<Def type="Normal">230</Def>
+			<Def type="Normal">187</Def>
 			<Def type="Scarce">80</Def>
-			<Def type="Dying">75</Def>
+			<Def type="Dying">100</Def>
 		</MaxLifetime>
 		
 		<!--Base prob. of generating new Forest on Jungle maptile-->
 		<MaptileBaseProbability>0.0082</MaptileBaseProbability>
 		
 		<!--How much each neighboring Forest increases the base probability-->
-		<NeighborProbabilityIncrease>0.19</NeighborProbabilityIncrease>
+		<NeighborProbabilityIncrease>0.11</NeighborProbabilityIncrease>
 	
 		<!--How much a River on the maptile increases the base probability-->
 		<RiverProbabilityIncrease>0.01</RiverProbabilityIncrease>

@@ -198,7 +198,7 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 		// Forest keeps on living in its state.
 		if (life > maxLife && neighborCount == 3)
 		{
-			forest->DecrementLifetime();
+			forest->ResetLifetime();
 		}
 		// Forest becomes Deep.
 		else if (life > maxLife && neighborCount == 4)
@@ -212,12 +212,11 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 			// ..
 			_changeForestType(entity, "Dying");
 		}
-
 		// Forest dies due to underpopulation.
 		else if (life > maxLife && neighborCount < 3)
 		{
 			// ...
-			_changeForestType(entity, "Dying");
+			_changeForestType(entity, "Scarce");
 		}
 	}
 	else if (forest->GetForestType().compare("Scarce") == 0)
@@ -226,22 +225,22 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 		auto maxLife = forest->GetMaxLifetime();
 
 		// Forest becomes a Normal forest.
-		if (life > maxLife && neighborCount > 1)
+		if (life > maxLife && (neighborCount == 3 || neighborCount == 4))
 		{
 			// ...
 			_changeForestType(entity, "Normal");
 		}
 		// Forest dies due to underpopulation.
-		else if (life > maxLife && neighborCount < 1)
+		else if (life > maxLife && (neighborCount < 2 || neighborCount > 4))
 		{
 			// ...
 			_changeForestType(entity, "Dying");
 		}
 		// Forest stayes the same, rejuvenating.
-		else if (life > maxLife && neighborCount == 1)
+		else if (life > maxLife && neighborCount == 2)
 		{
 			// ...
-			forest->DecrementLifetime();
+			forest->ResetLifetime();
 		}
 	}
 	else if (forest->GetForestType().compare("Deep") == 0)
@@ -252,26 +251,27 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 		if (forest->IsForestPermanent())
 		{
 			forest->ResetLifetime();
+			return;
 		}
 
 		// Forest becomes Normal forest again.
-		if (life > maxLife && neighborCount < 6)
+		if (life > maxLife && neighborCount < 5)
 		{
 			// ...
 			_changeForestType(entity, "Normal");
 		}
 		// Forest keeps on living in its state.
+		else if (life > maxLife && neighborCount == 5)
+		{
+			// ...
+			forest->ResetLifetime();
+		}
+		// Forest dies due to underpopulation.
 		else if (life > maxLife && neighborCount > 5)
 		{
 			// ...
-			forest->DecrementLifetime();
+			_changeForestType(entity, "Scarce");
 		}
-		// Forest dies due to underpopulation.
-		//else if (life > maxLife && neighborCount < 4)
-		//{
-			// ...
-			//_changeForestType(entity, "Scarce");
-		//}
 	}
 	else if (forest->GetForestType().compare("Dying") == 0)
 	{
@@ -279,19 +279,13 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 		auto maxLife = forest->GetMaxLifetime();
 
 		// Forest rejuvenates.
-		if (life > maxLife && neighborCount == 3)
+		if (life > maxLife && neighborCount > 5)
 		{
 			// ...
 			_changeForestType(entity, "Scarce");
 		}
 		// Forest seize to exist (delete)
-		else if (life > maxLife && neighborCount > 3)
-		{
-			// ...
-			world[x][y]->getComponent<MaptileComponent>("Maptile")->RemoveGameobject(entity);
-		}
-		// Forest seize to exist (delete)
-		else if (life > maxLife && neighborCount < 3)
+		else if (life > maxLife && neighborCount < 6)
 		{
 			// ...
 			world[x][y]->getComponent<MaptileComponent>("Maptile")->RemoveGameobject(entity);
