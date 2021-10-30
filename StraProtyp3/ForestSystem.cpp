@@ -226,16 +226,22 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 		auto maxLife = forest->GetMaxLifetime();
 
 		// Forest becomes a Normal forest.
-		if (life > maxLife && neighborCount >= 2)
+		if (life > maxLife && neighborCount > 1)
 		{
 			// ...
 			_changeForestType(entity, "Normal");
 		}
 		// Forest dies due to underpopulation.
-		else if (life > maxLife && neighborCount < 2)
+		else if (life > maxLife && neighborCount < 1)
 		{
 			// ...
 			_changeForestType(entity, "Dying");
+		}
+		// Forest stayes the same, rejuvenating.
+		else if (life > maxLife && neighborCount == 1)
+		{
+			// ...
+			forest->DecrementLifetime();
 		}
 	}
 	else if (forest->GetForestType().compare("Deep") == 0)
@@ -249,23 +255,23 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 		}
 
 		// Forest becomes Normal forest again.
-		if (life > maxLife && neighborCount == 3)
+		if (life > maxLife && neighborCount < 6)
 		{
 			// ...
 			_changeForestType(entity, "Normal");
 		}
 		// Forest keeps on living in its state.
-		else if (life > maxLife && neighborCount > 3)
+		else if (life > maxLife && neighborCount > 5)
 		{
 			// ...
 			forest->DecrementLifetime();
 		}
 		// Forest dies due to underpopulation.
-		else if (life > maxLife && neighborCount < 3)
-		{
+		//else if (life > maxLife && neighborCount < 4)
+		//{
 			// ...
-			_changeForestType(entity, "Dying");
-		}
+			//_changeForestType(entity, "Scarce");
+		//}
 	}
 	else if (forest->GetForestType().compare("Dying") == 0)
 	{
@@ -276,7 +282,7 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 		if (life > maxLife && neighborCount == 3)
 		{
 			// ...
-			_changeForestType(entity, "Normal");
+			_changeForestType(entity, "Scarce");
 		}
 		// Forest seize to exist (delete)
 		else if (life > maxLife && neighborCount > 3)
@@ -299,56 +305,97 @@ void ForestSystem::_checkForRandomForestGeneration(int x, int y, GameworldMatrix
 {
 	// Maptile at {x, y} is guaranteed to not have a Forest.
 
-	// Rules:
-	// 1) 1% Probability of creating a new Scarce Forest around any number of Normal Forests.
-	// 2) 5% Probability of creating a new Scarce Forest around any number of Deep Forests.
+	// Get the Biome of the Maptile
+	auto maptile = world[x][y]->getComponent<MaptileComponent>("Maptile");
+	std::string biome = maptile->GetMaptileType();
+
+	
+	// Get Neighbors count of current Maptile.
+	int neighbors = _neighboringForestCount(x, y, world, "Normal");
+	neighbors += _neighboringForestCount(x, y, world, "Deep");
+
+	// Get the Base Probability for Forest.
+	float baseProb = _getBaseProbability(biome);
+
+	// Account for Neighbors.
+	float neighboringMultiplier = _getNeighborMultiplier(biome, neighbors);
+	baseProb += neighboringMultiplier;
+
+	// Account for rivers.
 	// ...
 
-	int neighbors = _neighboringForestCount(x, y, world, "Normal");
-	if (neighbors > 0 && Random::InRange(0.0f, 100.0f) <= 1.0f)
+
+
+	if (Random::InRange(0.0f, 100.0f) <= baseProb)
 	{
 		// ...
 		_createNewForestInMaptile(x, y, world);
 		return;
 	}
-
-
-	neighbors = _neighboringForestCount(x, y, world, "Deep");
-	if (neighbors > 0 && Random::InRange(0.0f, 100.0f) <= 5.0f)
-	{
-		// ...
-		_createNewForestInMaptile(x, y, world);
-		return;
-	}
-
 
 }
 
+
+
+float ForestSystem::_getBaseProbability(const std::string& biome)
+{
+	for (auto p : m_ForestTypeDefinitions)
+	{
+		if (p->m_Biome.compare(biome) == 0)
+		{
+			return p->m_BaseProbability;
+		}
+	}
+	
+	return 0.0f;
+}
+
+
+float ForestSystem::_getNeighborMultiplier(const std::string& biome, int n)
+{
+	float neighboringMultiplier = 0.0f;
+	for (auto p : m_ForestTypeDefinitions)
+	{
+		if (p->m_Biome.compare(biome) == 0)
+		{
+			neighboringMultiplier = n * p->m_NeighborIncrease;
+		}
+	}
+
+	return neighboringMultiplier;
+}
 
 
 void ForestSystem::_createNewForestInMaptile(int x, int y, GameworldMatrix& world)
 {
 	auto maptile = world[x][y]->getComponent<MaptileComponent>("Maptile");
 
-	if (maptile->GetMaptileType().compare("temperate") == 0)
+	Pointer<GameObject2> entity;
+
+	if (maptile->GetMaptileType().compare("Temperate") == 0)
 	{
-		GameobjectStorage::get()->Instantiate("Temperate_Scarce", x, y);
+		entity = GameobjectStorage::get()->Instantiate("Temperate_Scarce", x, y);
+		_setForestMaxLifetime(entity->getComponent<ForestComponent>("Forest"), "Scarce", "Temperate");
 	}
-	else if (maptile->GetMaptileType().compare("tundra") == 0)
+	else if (maptile->GetMaptileType().compare("Tundra") == 0)
 	{
-		GameobjectStorage::get()->Instantiate("Tundra_Scarce", x, y);
+		entity = GameobjectStorage::get()->Instantiate("Tundra_Scarce", x, y);
+		_setForestMaxLifetime(entity->getComponent<ForestComponent>("Forest"), "Scarce", "Tundra");
 	}
-	else if (maptile->GetMaptileType().compare("snow") == 0)
+	else if (maptile->GetMaptileType().compare("Snow") == 0)
 	{
-		GameobjectStorage::get()->Instantiate("Snow_Scarce", x, y);
+		entity = GameobjectStorage::get()->Instantiate("Snow_Scarce", x, y);
+		_setForestMaxLifetime(entity->getComponent<ForestComponent>("Forest"), "Scarce", "Snow");
 	}
-	else if (maptile->GetMaptileType().compare("savannah") == 0)
+	else if (maptile->GetMaptileType().compare("Savannah") == 0)
 	{
-		GameobjectStorage::get()->Instantiate("Savannah_Scarce", x, y);
+		entity = GameobjectStorage::get()->Instantiate("Savannah_Scarce", x, y);
+		_setForestMaxLifetime(entity->getComponent<ForestComponent>("Forest"), "Scarce", "Savannah");
 	}
-	else if (maptile->GetMaptileType().compare("jungle") == 0)
+	else if (maptile->GetMaptileType().compare("Jungle") == 0)
 	{
-		GameobjectStorage::get()->Instantiate("Jungle_Scarce", x, y);
+		entity = GameobjectStorage::get()->Instantiate("Jungle_Scarce", x, y);
+		_setForestMaxLifetime(entity->getComponent<ForestComponent>("Forest"), "Scarce", "Jungle");
 	}
 
 }
@@ -419,28 +466,47 @@ void ForestSystem::_changeForestType(Pointer<GameObject2> entity, const ForestTy
 	if (t.compare("Deep") == 0)
 	{
 		decal += "deep";
-		forest->SetMaxLifetime(m_DeepForestDefaultMaxLifetime);
 	}
 	else if (t.compare("Normal") == 0)
 	{
 		decal += "normal";
-		forest->SetMaxLifetime(m_NormalForestDefaultMaxLifetime);
 	}
 	else if (t.compare("Scarce") == 0)
 	{
 		decal += "scarce";
-		forest->SetMaxLifetime(m_ScarceForestDefaultMaxLifetime);
 	}
 	else if (t.compare("Dying") == 0)
 	{
 		decal += "dying";
-		forest->SetMaxLifetime(m_DyingForestDefaultMaxLifetime);
 	}
 
 
+	_setForestMaxLifetime(forest, t, biome);
 	forest->SetForestType(t);
 	render->SetDecalName(decal);
 	forest->ResetLifetime();
+}
+
+
+void ForestSystem::_setForestMaxLifetime(Pointer<ForestComponent> forest, const ForestType& t, const ForestBiome& b)
+{
+	using namespace std;
+
+	for (auto ptr : m_ForestTypeDefinitions)
+	{
+		if (ptr->m_Biome.compare(b) == 0)
+		{
+
+			int lifetime = ptr->m_MaxLifetime[t];
+			forest->SetMaxLifetime(lifetime);
+			
+
+			//cout << color(colors::YELLOW);
+			//printf("[ForestSystem::_setForestMaxLifetime] Type:\"%s\", Biome:\"%s\", ML:\"%d\"", t.c_str(), b.c_str(), lifetime);
+			//cout << white << endl;
+			return;
+		}
+	}
 }
 
 
@@ -465,6 +531,13 @@ void ForestSystem::del()
 {
 	if (g_ForestSystem)
 	{
+		while (g_ForestSystem->m_ForestTypeDefinitions.size() > 0)
+		{
+			g_ForestSystem->m_ForestTypeDefinitions[0].reset();
+			g_ForestSystem->m_ForestTypeDefinitions.erase(g_ForestSystem->m_ForestTypeDefinitions.begin());
+		}
+
+
 		delete g_ForestSystem;
 	}
 }
@@ -496,7 +569,136 @@ bool ForestSystem::Initialize(const std::string& filepath)
 	}
 
 
+	XMLElement* jungle = root->FirstChildElement("Jungle");
+	XMLElement* temperate = root->FirstChildElement("Temperate");
+	XMLElement* snow = root->FirstChildElement("Snow");
+	XMLElement* savannah = root->FirstChildElement("Savannah");
+	XMLElement* tundra = root->FirstChildElement("Tundra");
 
 
+	// JUNGLE
+	auto ptr = std::make_shared<ForestTypeDefinition>();
+	ptr->m_Biome = "Jungle";
+	ptr->m_BaseProbability = jungle->FirstChildElement("MaptileBaseProbability")->FloatText();
+	ptr->m_NeighborIncrease = jungle->FirstChildElement("NeighborProbabilityIncrease")->FloatText();
+	ptr->m_RiverIncrease = jungle->FirstChildElement("RiverProbabilityIncrease")->FloatText();
+
+	XMLElement* lifetime = jungle->FirstChildElement("MaxLifetime");
+	XMLElement* def = lifetime->FirstChildElement("Def");
+	while (def)
+	{
+		ptr->m_MaxLifetime.emplace(def->Attribute("type"), def->IntText());
+
+		def = def->NextSiblingElement("Def");
+	}
+
+	m_ForestTypeDefinitions.push_back(ptr);
+
+
+
+	// TEMPERATE
+	ptr = std::make_shared<ForestTypeDefinition>();
+	ptr->m_Biome = "Temperate";
+	ptr->m_BaseProbability = temperate->FirstChildElement("MaptileBaseProbability")->FloatText();
+	ptr->m_NeighborIncrease = temperate->FirstChildElement("NeighborProbabilityIncrease")->FloatText();
+	ptr->m_RiverIncrease = temperate->FirstChildElement("RiverProbabilityIncrease")->FloatText();
+
+	lifetime = temperate->FirstChildElement("MaxLifetime");
+	def = lifetime->FirstChildElement("Def");
+	while (def)
+	{
+		ptr->m_MaxLifetime.emplace(def->Attribute("type"), def->IntText());
+
+		def = def->NextSiblingElement("Def");
+	}
+
+	m_ForestTypeDefinitions.push_back(ptr);
+
+
+
+
+	// SAVANNAH
+	ptr = std::make_shared<ForestTypeDefinition>();
+	ptr->m_Biome = "Savannah";
+	ptr->m_BaseProbability = savannah->FirstChildElement("MaptileBaseProbability")->FloatText();
+	ptr->m_NeighborIncrease = savannah->FirstChildElement("NeighborProbabilityIncrease")->FloatText();
+	ptr->m_RiverIncrease = savannah->FirstChildElement("RiverProbabilityIncrease")->FloatText();
+
+	lifetime = savannah->FirstChildElement("MaxLifetime");
+	def = lifetime->FirstChildElement("Def");
+	while (def)
+	{
+		ptr->m_MaxLifetime.emplace(def->Attribute("type"), def->IntText());
+
+		def = def->NextSiblingElement("Def");
+	}
+
+	m_ForestTypeDefinitions.push_back(ptr);
+
+
+
+
+
+	// SNOW
+	ptr = std::make_shared<ForestTypeDefinition>();
+	ptr->m_Biome = "Snow";
+	ptr->m_BaseProbability = snow->FirstChildElement("MaptileBaseProbability")->FloatText();
+	ptr->m_NeighborIncrease = snow->FirstChildElement("NeighborProbabilityIncrease")->FloatText();
+	ptr->m_RiverIncrease = snow->FirstChildElement("RiverProbabilityIncrease")->FloatText();
+
+	lifetime = snow->FirstChildElement("MaxLifetime");
+	def = lifetime->FirstChildElement("Def");
+	while (def)
+	{
+		ptr->m_MaxLifetime.emplace(def->Attribute("type"), def->IntText());
+
+		def = def->NextSiblingElement("Def");
+	}
+
+	m_ForestTypeDefinitions.push_back(ptr);
+
+
+
+
+	// TUNDRA
+	ptr = std::make_shared<ForestTypeDefinition>();
+	ptr->m_Biome = "Tundra";
+	ptr->m_BaseProbability = tundra->FirstChildElement("MaptileBaseProbability")->FloatText();
+	ptr->m_NeighborIncrease = tundra->FirstChildElement("NeighborProbabilityIncrease")->FloatText();
+	ptr->m_RiverIncrease = tundra->FirstChildElement("RiverProbabilityIncrease")->FloatText();
+
+	lifetime = tundra->FirstChildElement("MaxLifetime");
+	def = lifetime->FirstChildElement("Def");
+	while (def)
+	{
+		ptr->m_MaxLifetime.emplace(def->Attribute("type"), def->IntText());
+
+		def = def->NextSiblingElement("Def");
+	}
+
+	m_ForestTypeDefinitions.push_back(ptr);
+
+
+	m_DefinitionFilepath = filepath;
 	return true;
+}
+
+
+bool ForestSystem::ReloadDefinition()
+{
+	using namespace std;
+
+	while (m_ForestTypeDefinitions.size() > 0)
+	{
+		m_ForestTypeDefinitions[0].reset();
+		m_ForestTypeDefinitions.erase(m_ForestTypeDefinitions.begin());
+	}
+
+	if (Initialize(m_DefinitionFilepath))
+	{
+
+		cout << color(colors::GREEN);
+		cout << "[ForestSystem::ReloadDefinition] Success" << white << endl;
+		return true;
+	}
 }

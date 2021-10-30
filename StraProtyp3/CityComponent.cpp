@@ -122,26 +122,26 @@ void CityComponent::SetType(const std::string& type, const std::string& cityType
 
 
 	// Set correct underlying maptile type
-	if (type.compare("temperate") == 0)
+	if (type.compare("Temperate") == 0)
 	{
 		cType += "_temperate";
 	}
-	else if (type.compare("snow") == 0)
+	else if (type.compare("Snow") == 0)
 	{
 		cType += "_snow";
 
 	}
-	else if (type.compare("tundra") == 0)
+	else if (type.compare("Tundra") == 0)
 	{
 		cType += "_tundra";
 
 	}
-	else if (type.compare("savannah") == 0)
+	else if (type.compare("Savannah") == 0)
 	{
 		cType += "_savannah";
 
 	}
-	else if (type.compare("jungle") == 0)
+	else if (type.compare("Jungle") == 0)
 	{
 		cType += "_jungle";
 
@@ -149,8 +149,8 @@ void CityComponent::SetType(const std::string& type, const std::string& cityType
 	else
 	{
 		cout << color(colors::RED);
-		cout << "Undefined Maptile \"" << type << "\", defining as default temperate..." << white << endl;
-		cType += "temperate";
+		cout << "Undefined Maptile \"" << type << "\", defining as default Temperate..." << white << endl;
+		cType += "Temperate";
 	}
 
 	m_CityType = cType;

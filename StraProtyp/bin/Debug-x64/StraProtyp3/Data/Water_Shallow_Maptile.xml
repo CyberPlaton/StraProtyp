@@ -14,7 +14,7 @@
 
 		<Component name ="Animator"></Component>
 
-		<Component name="Maptile" type="water_shallow"></Component>
+		<Component name="Maptile" type="Water_Shallow"></Component>
 
 		<Component name="CollisionBox">
 			<Width>1.0</Width>

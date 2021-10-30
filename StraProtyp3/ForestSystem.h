@@ -6,8 +6,19 @@
 
 using GameworldMatrix = std::vector< std::vector< Pointer<GameObject2> >>;
 
+
 class ForestSystem
 {
+	struct ForestTypeDefinition
+	{
+		ForestBiome m_Biome;
+		std::map< ForestType, int > m_MaxLifetime;
+		float m_BaseProbability = 0.0f;
+		float m_NeighborIncrease = 0.0f;
+		float m_RiverIncrease = 0.0f;
+	};
+
+
 public:
 	static ForestSystem* get();
 	static void del();
@@ -15,23 +26,24 @@ public:
 
 	bool Initialize(const std::string& filepath);
 	void Update(GameworldMatrix& world);
-
+	bool ReloadDefinition();
 
 private:
 	static ForestSystem* g_ForestSystem;
 	
-
-	int m_DeepForestDefaultMaxLifetime = 200;
-	int m_NormalForestDefaultMaxLifetime = 150;
-	int m_ScarceForestDefaultMaxLifetime = 50;
-	int m_DyingForestDefaultMaxLifetime = 25;
-
-	
+	std::string m_DefinitionFilepath;
+	std::vector< Pointer< ForestTypeDefinition > > m_ForestTypeDefinitions;
+		
 private:
 
 	ForestSystem()
 	{
 	}
+
+	float _getBaseProbability(const std::string& biome);
+
+	float _getNeighborMultiplier(const std::string& biome, int n);
+
 
 	void _incrementForestLifetime(Pointer<ForestComponent> forest);
 
@@ -61,5 +73,11 @@ private:
 	Pointer<GameObject2> _getForestInMaptile(int x, int y, GameworldMatrix& world);
 
 
+
 	void _createNewForestInMaptile(int x, int y, GameworldMatrix& world);
+
+
+	// Setting max Lifetime of a forest according to its type and biome.
+	void _setForestMaxLifetime(Pointer<ForestComponent> forest, const ForestType& t, const ForestBiome& b);
+
 };

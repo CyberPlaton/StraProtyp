@@ -14,7 +14,7 @@
 
 		<Component name ="Animator"></Component>
 
-		<Component name="Maptile" type="tundra"></Component>
+		<Component name="Maptile" type="Tundra"></Component>
 
 		<Component name="CollisionBox">
 			<Width>1.0</Width>

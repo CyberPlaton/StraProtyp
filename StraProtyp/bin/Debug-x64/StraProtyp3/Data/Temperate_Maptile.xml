@@ -14,7 +14,7 @@
 
 		<Component name ="Animator"></Component>
 
-		<Component name="Maptile" type="temperate"></Component>
+		<Component name="Maptile" type="Temperate"></Component>
 
 		<Component name="CollisionBox">
 			<Width>1.0</Width>

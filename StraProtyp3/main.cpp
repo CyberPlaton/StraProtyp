@@ -108,22 +108,9 @@ bool App::OnUserUpdate(float fElapsedTime)
 		}
 	}
 
-	/*
-	static Timer forestTimer;
-	if (!forestUpdateStarted)
-	{
-		forestTimer.startTimer();
-		forestUpdateStarted = true;
-	}
 
-	if (forestTimer.getElapsedSeconds() > 0.1f)
-	{
-		ForestSystem::get()->Update(gameWorldMatrix);
-		forestTimer.startTimer();
-	}
-	*/
+	//ForestSystem::get()->Update(gameWorldMatrix);
 
-	ForestSystem::get()->Update(gameWorldMatrix);
 
 	stateMachine.update(fElapsedTime);
 
@@ -211,9 +198,26 @@ bool App::OnUserCreate()
 	{
 		for (int j = 0; j < gameWorldMatrix[i].size(); j++)
 		{
-			gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Jungle_Maptile", i, j);
-		
-			auto spearman = GameobjectStorage::get()->Instantiate("Spearman", i, j);
+			if (j <= 3)
+			{
+				gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Snow_Maptile", i, j);
+			}
+			else if (j <= 7)
+			{
+				gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Tundra_Maptile", i, j);
+			}
+			else if (j <= 11)
+			{
+				gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Temperate_Maptile", i, j);
+			}
+			else if (j <= 15)
+			{
+				gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Savannah_Maptile", i, j);
+			}
+			else
+			{
+				gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Jungle_Maptile", i, j);
+			}
 		}
 	}
 
@@ -229,19 +233,35 @@ bool App::OnUserCreate()
 	}
 
 	
-	auto ptr = GameobjectStorage::get()->Instantiate("City_Plain", 1, 1);
+	auto ptr = GameobjectStorage::get()->Instantiate("City_Plain", 3, 2);
+	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 5, 18);
+	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 25, 16);
 
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 1, 1);
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 0, 0);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 0, 0);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 0, 1);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 0, 2);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 1, 0);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 2, 0);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 2, 1);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 1, 2);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 2, 2);
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 2, 0);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
+
+	ptr = GameobjectStorage::get()->Instantiate("Tundra_Deep", 2, 4);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
+
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 3, 8);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 5, 9);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
+
+	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 19, 14);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
+
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 3, 18);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+
 
 
 
@@ -391,9 +411,6 @@ void App::_handleInput()
 	// where we use the Tiling Transformation.
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)
 	{
-		olc::vi2d topLeft = tv.GetTileUnderScreenPos({ 0, 0 });
-		olc::vi2d bottomDown = tv.GetBottomRightTile();
-		olc::vi2d middle = { bottomDown.x / 2, bottomDown.y / 2 };
 
 		/*
 		cout << color(colors::RED);
@@ -402,6 +419,45 @@ void App::_handleInput()
 		cout << "BottomRight Maptile {" << bottomDown.x << "," << bottomDown.y << "}" << endl;
 		cout << "Middle Maptile {" << middle.x << "," << middle.y << "}" << white << endl;
 		*/
+
+		olc::vi2d topLeft = tv.GetTileUnderScreenPos({ 0, 0 });
+		olc::vi2d bottomDown = tv.GetBottomRightTile();
+		olc::vi2d middle = { bottomDown.x / 2, bottomDown.y / 2 };
+
+		// Is Mouse pressed on Forest.
+		if (GetMouse(0).bPressed)
+		{
+			auto maptile = gameWorldMatrix[mousex][mousey]->getComponent<MaptileComponent>("Maptile");
+			if (maptile->HasForest())
+			{
+				for (auto e : maptile->GetGameobjects())
+				{
+					if (e->hasComponent("Forest"))
+					{
+						selected_gameobject = e;
+						break;
+					}
+				}
+			}
+			else
+			{
+				selected_gameobject.reset();
+			}
+		}
+
+		if (selected_gameobject)
+		{
+			if (GetKey(olc::Key::DEL).bPressed)
+			{
+				Pointer<TransformComponent> transform = selected_gameobject->getComponent<TransformComponent>("Transform");
+				auto maptile = gameWorldMatrix[(int)transform->GetXPos()][(int)transform->GetYPos()]->getComponent<MaptileComponent>("Maptile");
+			
+
+				maptile->RemoveGameobject(selected_gameobject);
+				selected_gameobject.reset();
+			}
+		}
+
 
 		// Do not allow capturing input to imgui and app at same time.
 		if (!imgui_has_focus)
@@ -480,15 +536,22 @@ void App::_handleInput()
 		}
 	}
 
-	/*
+	
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)
 	{
 		if (GetKey(olc::SPACE).bPressed)
 		{
 			ForestSystem::get()->Update(gameWorldMatrix);
 		}
+
+
+		if (GetKey(olc::TAB).bPressed)
+		{
+			ForestSystem::get()->ReloadDefinition();
+		}
+
 	}
-	*/
+	
 
 	/*
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)
@@ -1418,23 +1481,22 @@ void AppStateWorldMap::update(float)
 	}
 	*/
 
-	/*
-	if (!isSelected) selected_gameobject = nullptr;
+	
 
 	if (selected_gameobject)
 	{
-		TransformCmp* tr = static_cast<TransformCmp*> (selected_gameobject->getComponent("Transform"));
-		RendererableCmp* rc = static_cast<RendererableCmp*> (selected_gameobject->getComponent("Renderable"));
+		Pointer<TransformComponent> tr = selected_gameobject->getComponent<TransformComponent>("Transform");
+		Pointer<RenderableComponent> rc = selected_gameobject->getComponent<RenderableComponent>("Renderable");
 
 		if (tr != nullptr && rc != nullptr)
 		{
-			olc::vf2d p = { tr->xpos + rc->width / 2.0f - 0.3f, tr->ypos + rc->height / 2.0f };
+			olc::vf2d p = { tr->GetXPos() + rc->GetWidth() / 2.0f - 0.3f, tr->GetYPos() + rc->GetHeight() / 2.0f };
 			
 			olc::vf2d screenPoint = tv.WorldToScreen(p);
-			app->font->DrawStringDecal(screenPoint, selected_gameobject->name, olc::RED, { 0.75f, 0.75f });
+			app->font->DrawStringDecal(screenPoint, selected_gameobject->getName(), olc::MAGENTA, { 0.75f, 0.75f });
 		}
 	}
-	*/
+	
 }
 
 void AppStateWorldMap::_drawUI()
