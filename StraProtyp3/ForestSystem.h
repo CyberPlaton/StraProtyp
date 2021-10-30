@@ -47,9 +47,14 @@ private:
 
 	void _incrementForestLifetime(Pointer<ForestComponent> forest);
 
-	// Return number of Forest with type of Normal or Deep directly
+	// Return number of Forest with given type directly
 	// around x and y coords.
 	int _neighboringForestCount(int x, int y, GameworldMatrix& world, ForestType type);
+
+	// Return number of Forest with given type 1 Tile away around
+	// x and y coords.
+	int _secondaryNeighboringForestCount(int x, int y, GameworldMatrix& world, ForestType type);
+
 
 	// Execute logic for Transitioning of Forest types and
 	// deleting forests which have died.

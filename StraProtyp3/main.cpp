@@ -108,9 +108,7 @@ bool App::OnUserUpdate(float fElapsedTime)
 		}
 	}
 
-
-	ForestSystem::get()->Update(gameWorldMatrix);
-
+	//ForestSystem::get()->Update(gameWorldMatrix);
 
 	stateMachine.update(fElapsedTime);
 

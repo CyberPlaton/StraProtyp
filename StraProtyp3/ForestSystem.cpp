@@ -29,6 +29,9 @@ void ForestSystem::Update(GameworldMatrix& world)
 					// Check for Forest type Transition.
 					int neighbors = _neighboringForestCount(i, j, world, "Normal");
 					neighbors += _neighboringForestCount(i, j, world, "Deep");
+					neighbors += _secondaryNeighboringForestCount(i, j, world, "Normal");
+					neighbors += _secondaryNeighboringForestCount(i, j, world, "Deep");
+
 					_checkForForestTransition(entity, neighbors, i, j, world);
 				}
 			}
@@ -183,6 +186,186 @@ int ForestSystem::_neighboringForestCount(int x, int y, GameworldMatrix& world, 
 
 	return count;
 }
+
+
+
+int ForestSystem::_secondaryNeighboringForestCount(int x, int y, GameworldMatrix& world, ForestType type)
+{
+	// We need to check 14 Maptiles around x and y.
+	// We count them in floating point and return int cast.
+	float count = 0.0f;
+	float multiplier = 0.2178f;
+
+	// Count the upper row of 5 Maptiles.
+	if (x > 1 && y > 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x - 2, y - 2, world); m) // Left Up
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+	if (x > 0 && y > 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x - 1, y - 2, world); m) // Left Up
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+	if (y > 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x, y - 2, world); m) // Left Up
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+	if (x < world.size() && y > 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x + 1, y - 2, world); m) // Left Up
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+	if (x < world.size() - 1 && y > 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x + 2, y - 2, world); m) // Left Up
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+
+
+
+
+	// Count the downward row of 5 Maptiles.
+	if (x > 1 && y < world[0].size() - 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x - 2, y + 2, world); m)
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+	if (x > 1 && y < world[0].size() - 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x - 1, y + 2, world); m)
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+	if (y < world[0].size() - 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x, y + 2, world); m)
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+	if (x < world.size() && y < world[0].size() - 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x + 1, y + 2, world); m)
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}if (x < world.size() - 1 && y < world[0].size() - 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x + 2, y + 2, world); m)
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+
+
+
+	// Count the left Column of 2 Maptiles.
+	if (x > 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x - 2, y, world); m)
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+	if (x > 0) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x - 1, y, world); m)
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+
+
+	// Count the right Column of 2 Maptiles.
+	if (x < world[0].size() - 1) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x + 2, y, world); m)
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+	if (x < world[0].size()) // Ensure array bounds.
+	{
+		if (auto m = _getForestInMaptile(x + 1, y, world); m)
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count += multiplier;
+			}
+		}
+	}
+
+	return count;
+}
+
 
 
 void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int neighborCount, int x, int y, GameworldMatrix& world)
