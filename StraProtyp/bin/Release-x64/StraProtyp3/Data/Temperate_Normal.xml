@@ -1,0 +1,38 @@
+<Gameobject>
+	<Tag>Forest_Temperate_Normal</Tag>
+	<Name>Forest_Temperate_Normal</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_green</Color>
+			<Decal>forest_temperate_normal</Decal>
+			<Layer>forest</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+
+		<Component name ="Forest">
+			<Type>Normal</Type>
+			<Biome>Temperate</Biome>
+			<MaxLifetime>50</MaxLifetime>
+		</Component>
+
+
+		<Component name="Ressource" ressourceName="Normal Forest">
+			<Def>
+				<Prod amount="2" time="1" prof="Hunter">Leather</Prod>
+				<Prod amount="2" time="1" prof="Hunter">Food</Prod>
+				<Prod amount="4" time="1" prof="Woodcutter">Wood</Prod>
+			</Def>
+		</Component>
+
+		
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

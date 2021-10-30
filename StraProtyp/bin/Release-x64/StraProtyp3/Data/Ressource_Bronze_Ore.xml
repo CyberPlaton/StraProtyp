@@ -1,0 +1,29 @@
+<Gameobject>
+	<Tag>Ressource_Bronze_Ore</Tag>
+	<Name>Ressource_Bronze_Ore</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>red</Color>
+			<Decal>bronze_ore</Decal>
+			<Layer>ressource</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+		
+		<Component name="Ressource" ressourceName="Bronze Ore">
+			<Def>
+				<Prod amount="4" time="1" prof="Miner">Bronze Ore</Prod>
+			</Def>
+		</Component>
+
+		
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

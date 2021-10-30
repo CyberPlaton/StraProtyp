@@ -104,6 +104,9 @@ struct AppStateCityView;
 using GameworldMatrix = std::vector< std::vector< Pointer<GameObject2> >>;
 
 
+void UpdateForestSystem(GameworldMatrix& world);
+
+
 class App : public olc::PixelGameEngine
 {
 	friend class AppStateWorldMap;

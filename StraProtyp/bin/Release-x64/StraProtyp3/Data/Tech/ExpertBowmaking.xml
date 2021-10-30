@@ -1,0 +1,35 @@
+<Technology>
+	<Definition>
+		<!--The display name of the technology-->
+		<Name>Expert Bowmaking</Name>
+
+		<!--The area of research to which this Tech belongs-->
+		<ResearchArea>technical</ResearchArea>
+
+		<!--How many points must be invested to finish research of this Tech-->
+		<ResearchPoints>86</ResearchPoints>
+
+		<!--The base weight for the probability to be picked to be researched-->
+		<BaseWeight>0.0125</BaseWeight>
+
+		<!--A subcategory. Will be define as string and usage dependent on game-->
+		<SubCategory>Industry</SubCategory>
+
+		
+	</Definition>
+	<Requirements>
+		<!--Whether player has already researched following Tech-->
+		<Req area="player_tech_check" type="true">Bowmaking</Req>
+
+		<Req area="player_pop_check" type="greater">50</Req>
+
+		<Req area="player_building_check" type="true">Archery Range</Req>
+		<Req area="player_building_check" type="true">Bowyer</Req>
+	</Requirements>
+	
+	<!--Effects are basic description text-->
+	<!--Each unit and building define their own requirements, which are not stored in the Tech itself-->
+	<Effects>
+		<Text>Allows the recruitment of "Longbowman"</Text>
+	</Effects>
+</Technology>

@@ -416,12 +416,6 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player, ITech::Te
 */
 
 
-void UpdateForestSystem(GameworldMatrix& world)
-{
-	ForestSystem::get()->Update(world);
-}
-
-
 void App::_handleInput()
 {
 	using namespace std;
@@ -1542,4 +1536,11 @@ void AppStateWorldMap::onExit()
 	using namespace std;
 	cout << color(colors::MAGENTA);
 	cout << "[AppStateWorldMap] onExit" << white << endl;
+}
+
+
+
+void UpdateForestSystem(GameworldMatrix& world)
+{
+	ForestSystem::get()->Update(world);
 }

@@ -1,0 +1,78 @@
+<Gameobject>
+	<Tag>City</Tag>
+	<Name>City_Plain</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_magenta</Color>
+			<Decal>city_plain</Decal>
+			<Layer>city</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+
+		<Component name ="City">
+
+			<!--Whether this is a city or fort and on which terrain type it is-->
+			<CityType>city</CityType>
+
+			<Fortification>Earth Wall</Fortification>
+			
+			<MaxStorage>100</MaxStorage>
+			
+			<Data>
+				<Entry name="Happiness" amount="100"></Entry>
+				<Entry name="Health" amount="100"></Entry>
+				<Entry name="Order" amount="100"></Entry>
+			</Data>
+			
+			<BuildingSlots>
+				<!--The BuildingSlot x and y positions define where it is drawn on the citymap-->
+				<Slot number="1" xpos="266" ypos="340" type="Normal"></Slot>
+				<Slot number="2" xpos="376" ypos="300" type="Normal"></Slot>
+				<Slot number="3" xpos="501" ypos="342" type="Normal"></Slot>
+				<Slot number="4" xpos="210" ypos="434" type="Normal"></Slot>
+				<Slot number="5" xpos="156" ypos="509" type="Normal"></Slot>
+				<Slot number="6" xpos="292" ypos="512" type="Normal"></Slot>
+				<Slot number="7" xpos="331" ypos="414" type="Normal"></Slot>
+				<Slot number="8" xpos="448" ypos="436" type="Normal"></Slot>
+				<Slot number="9" xpos="132" ypos="350" type="Special"></Slot>
+				<Slot number="10" xpos="75" ypos="415" type="Special"></Slot>
+			</BuildingSlots>
+
+			<!--The starting ressources of a city-->
+			<Ressources>
+				<Entry name="Food" amount ="50"></Entry>
+				<Entry name="Wood" amount ="20"></Entry>
+				<Entry name="Leather" amount ="20"></Entry>
+			</Ressources>
+
+			<!--The starting units of a city-->
+			<Units>
+				<Entry name="Spearman" amount="50"></Entry>
+			</Units>
+
+			<!--The starting buildings of a city-->
+			<Buildings>
+				<Entry name="Weapon Smiths Workshop" slot="1" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="2" slotType="Normal"></Entry>
+				<Entry name="Weapon Smiths Workshop" slot="3" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="4" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="5" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="6" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="7" slotType="Normal"></Entry>
+				<Entry name="Tavern" slot="8" slotType="Normal"></Entry>
+			</Buildings>
+			
+		</Component>
+
+
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

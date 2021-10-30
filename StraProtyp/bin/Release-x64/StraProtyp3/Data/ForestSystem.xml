@@ -1,0 +1,100 @@
+<ForestSystem>
+	<Jungle>
+		<MaxLifetime>
+			<Def type="Deep">150</Def>
+			<Def type="Normal">55</Def>
+			<Def type="Scarce">25</Def>
+			<Def type="Dying">45</Def>
+		</MaxLifetime>
+		
+		<!--Base prob. of generating new Forest on Jungle maptile-->
+		<MaptileBaseProbability>0.05</MaptileBaseProbability>
+		
+		<!--How much each neighboring Forest increases the base probability-->
+		<NeighborProbabilityIncrease>0.289</NeighborProbabilityIncrease>
+	
+		<!--How much a River on the maptile increases the base probability-->
+		<RiverProbabilityIncrease>0.02</RiverProbabilityIncrease>
+	
+	</Jungle>
+	
+	
+	<Temperate>
+		<MaxLifetime>
+			<Def type="Deep">225</Def>
+			<Def type="Normal">70</Def>
+			<Def type="Scarce">35</Def>
+			<Def type="Dying">50</Def>
+		</MaxLifetime>
+		
+		<!--Base prob. of generating new Forest on Jungle maptile-->
+		<MaptileBaseProbability>0.024</MaptileBaseProbability>
+		
+		<!--How much each neighboring Forest increases the base probability-->
+		<NeighborProbabilityIncrease>0.20</NeighborProbabilityIncrease>
+	
+		<!--How much a River on the maptile increases the base probability-->
+		<RiverProbabilityIncrease>0.3</RiverProbabilityIncrease>
+	
+	</Temperate>
+	
+	
+	<Tundra>
+		<MaxLifetime>
+			<Def type="Deep">300</Def>
+			<Def type="Normal">135</Def>
+			<Def type="Scarce">75</Def>
+			<Def type="Dying">50</Def>
+		</MaxLifetime>
+		
+		<!--Base prob. of generating new Forest on Jungle maptile-->
+		<MaptileBaseProbability>0.018</MaptileBaseProbability>
+		
+		<!--How much each neighboring Forest increases the base probability-->
+		<NeighborProbabilityIncrease>0.095</NeighborProbabilityIncrease>
+	
+		<!--How much a River on the maptile increases the base probability-->
+		<RiverProbabilityIncrease>0.03</RiverProbabilityIncrease>
+	
+	</Tundra>
+		
+	
+	<Savannah>
+		<MaxLifetime>
+			<Def type="Deep">350</Def>
+			<Def type="Normal">150</Def>
+			<Def type="Scarce">100</Def>
+			<Def type="Dying">75</Def>
+		</MaxLifetime>
+		
+		<!--Base prob. of generating new Forest on Jungle maptile-->
+		<MaptileBaseProbability>0.015</MaptileBaseProbability>
+		
+		<!--How much each neighboring Forest increases the base probability-->
+		<NeighborProbabilityIncrease>0.18</NeighborProbabilityIncrease>
+	
+		<!--How much a River on the maptile increases the base probability-->
+		<RiverProbabilityIncrease>1.0</RiverProbabilityIncrease>
+	
+	</Savannah>
+
+
+	<Snow>
+		<MaxLifetime>
+			<Def type="Deep">300</Def>
+			<Def type="Normal">187</Def>
+			<Def type="Scarce">80</Def>
+			<Def type="Dying">100</Def>
+		</MaxLifetime>
+		
+		<!--Base prob. of generating new Forest on Jungle maptile-->
+		<MaptileBaseProbability>0.0082</MaptileBaseProbability>
+		
+		<!--How much each neighboring Forest increases the base probability-->
+		<NeighborProbabilityIncrease>0.11</NeighborProbabilityIncrease>
+	
+		<!--How much a River on the maptile increases the base probability-->
+		<RiverProbabilityIncrease>0.01</RiverProbabilityIncrease>
+	
+	</Snow>
+</ForestSystem>

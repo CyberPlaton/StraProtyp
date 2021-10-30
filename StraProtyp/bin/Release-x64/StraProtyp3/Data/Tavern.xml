@@ -1,0 +1,67 @@
+<Gameobject>
+	<Tag>Tavern</Tag>
+	<Name>Tavern</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_yellow</Color>
+			<Decal>tavern</Decal>
+			<Layer>building</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name="Navigator"></Component>
+
+		<Component name ="Animator"></Component>
+		
+		<Component name="Building">			
+			<Requirements>
+				<!--Required Technology to build this building-->
+				<Req type="tech">Alcohol Making</Req>
+				
+				<!--Required Ressources to build this building-->
+				<Req type="ressource" amount="30">Planks</Req>
+
+
+				<!--Required race defines which race is needed to build it-->
+				<!--Thus if some race is not here, then that race cannot build it-->
+				<Req type="race">Human</Req>
+				<Req type="race">Orc</Req>
+				<Req type="race">High Elf</Req>
+				<Req type="race">Dark Elf</Req>
+				<Req type="race">Troll</Req>
+				<Req type="race">Gnome</Req>
+				<Req type="race">Dwarf</Req>
+				<Req type="race">Goblin</Req>
+
+
+				<!--Required Slot Type in the city for the Building-->
+				<Req type="slot">Normal</Req>
+				
+				
+				<!--Required Unit Profession to work this Building-->
+				<!--The Tavern is Special, as it does not need to be worked by nobody-->
+				<Req type="worker_prof"></Req>
+				
+
+				<!--Required Ressources to produce one unit of the produceable ressource-->
+				<!--The Tavern is Special, as it does not need any ressources for production-->
+				<Req type="production">
+					<Def>
+						<Prod amount="2" time="1">Happiness</Prod>
+						<Need amount="0"></Need>
+					</Def>
+				</Req>
+
+
+			</Requirements>
+		</Component>
+
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>
