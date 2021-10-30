@@ -36,10 +36,14 @@ public:
 	int GetMaxLifetime() { return m_MaxLifetime; }
 	void SetMaxLifetime(int n) { m_MaxLifetime = n; }
 
+	bool IsForestPermanent() { return m_IsForestPermanent; }
+	void SetIsForestPermanent(bool v) { m_IsForestPermanent = v; }
+
 private:
 
 	ForestBiome m_ForestBiome;
 	ForestType m_ForestType;
 	int m_Lifetime = 0;
 	int m_MaxLifetime = 0;
+	bool m_IsForestPermanent = false;
 };

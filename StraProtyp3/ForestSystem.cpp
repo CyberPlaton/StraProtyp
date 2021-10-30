@@ -10,14 +10,14 @@ void ForestSystem::Update(GameworldMatrix& world)
 	{
 		for (int j = 0; j < world[i].size(); j++)
 		{
-
+			bool doesForestExist = false;
 			// Go through each entity on the maptile.
 			for (auto entity : world[i][j]->getComponent<MaptileComponent>("Maptile")->GetGameobjects())
 			{
-
 				// Pick out the Forests.
 				if (entity->hasComponent("Forest"))
 				{
+					doesForestExist = true;
 
 					auto forest = entity->getComponent<ForestComponent>("Forest");
 					
@@ -31,16 +31,17 @@ void ForestSystem::Update(GameworldMatrix& world)
 					neighbors += _neighboringForestCount(i, j, world, "Deep");
 					_checkForForestTransition(entity, neighbors, i, j, world);
 				}
+			}
 
 
+			if (!doesForestExist)
+			{
 				// Try generate a new Forest at given location.
 				if (!_checkForForestGeneration(i, j, world))
 				{
 					// Check for Random Forest generation around existing Forests.
 					_checkForRandomForestGeneration(i, j, world);
 				}
-
-
 			}
 		}
 	}
@@ -58,6 +59,9 @@ void ForestSystem::_incrementForestLifetime(Pointer<ForestComponent> forest)
 
 Pointer<GameObject2> ForestSystem::_getForestInMaptile(int x, int y, GameworldMatrix& world)
 {
+	if (x < 0 || y < 0 || x >= world.size() || y >= world[0].size()) return nullptr;
+
+
 	for (auto entity : world[x][y]->getComponent<MaptileComponent>("Maptile")->GetGameobjects())
 	{
 		if (entity->hasComponent("Forest"))
@@ -75,82 +79,104 @@ int ForestSystem::_neighboringForestCount(int x, int y, GameworldMatrix& world, 
 	// Checking for 8 direct neighboring Maptiles around {x, y}.
 
 	int count = 0;
-	if (auto m = _getForestInMaptile(x - 1, y - 1, world); m) // Left Up
+
+	if (x > 0 && y > 0) // Ensure array bounds.
 	{
-		auto ptr = m->getComponent<ForestComponent>("Forest");
-		if (ptr->GetForestType().compare(type) == 0)
+		if (auto m = _getForestInMaptile(x - 1, y - 1, world); m) // Left Up
 		{
-			count++;
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count++;
+			}
+		}
+	}
+
+	if (x > 0)
+	{
+		if (auto m = _getForestInMaptile(x - 1, y, world); m) // Left
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count++;
+			}
 		}
 	}
 
 
-	if (auto m = _getForestInMaptile(x - 1, y, world); m) // Left
+	if (y > 0)
 	{
-		auto ptr = m->getComponent<ForestComponent>("Forest");
-		if (ptr->GetForestType().compare(type) == 0)
+		if (auto m = _getForestInMaptile(x, y - 1, world); m) // Up
 		{
-			count++;
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count++;
+			}
+		}
+	}
+
+	if (x < world.size() && y < world[0].size())
+	{
+		if (auto m = _getForestInMaptile(x + 1, y + 1, world); m) // Right Down
+		{
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count++;
+			}
 		}
 	}
 
 
-	if (auto m = _getForestInMaptile(x, y - 1, world); m) // Up
+	if (x < world.size())
 	{
-		auto ptr = m->getComponent<ForestComponent>("Forest");
-		if (ptr->GetForestType().compare(type) == 0)
+		if (auto m = _getForestInMaptile(x + 1, y, world); m) // Right
 		{
-			count++;
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count++;
+			}
 		}
 	}
 
 
-	if (auto m = _getForestInMaptile(x + 1, y + 1, world); m) // Right Down
+	if (y < world[0].size())
 	{
-		auto ptr = m->getComponent<ForestComponent>("Forest");
-		if (ptr->GetForestType().compare(type) == 0)
+		if (auto m = _getForestInMaptile(x, y + 1, world); m) // Down
 		{
-			count++;
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count++;
+			}
 		}
 	}
 
 
-	if (auto m = _getForestInMaptile(x + 1, y, world); m) // Right
+	if (x > 0 && y < world[0].size())
 	{
-		auto ptr = m->getComponent<ForestComponent>("Forest");
-		if (ptr->GetForestType().compare(type) == 0)
+		if (auto m = _getForestInMaptile(x - 1, y + 1, world); m) // Left Down
 		{
-			count++;
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count++;
+			}
 		}
 	}
 
-
-	if (auto m = _getForestInMaptile(x, y + 1, world); m) // Down
+	if (x < world.size() && y > 0)
 	{
-		auto ptr = m->getComponent<ForestComponent>("Forest");
-		if (ptr->GetForestType().compare(type) == 0)
+		if (auto m = _getForestInMaptile(x + 1, y - 1, world); m) // Right Up
 		{
-			count++;
-		}
-	}
-
-
-	if (auto m = _getForestInMaptile(x - 1, y + 1, world); m) // Left Down
-	{
-		auto ptr = m->getComponent<ForestComponent>("Forest");
-		if (ptr->GetForestType().compare(type) == 0)
-		{
-			count++;
-		}
-	}
-
-
-	if (auto m = _getForestInMaptile(x + 1, y - 1, world); m) // Right Up
-	{
-		auto ptr = m->getComponent<ForestComponent>("Forest");
-		if (ptr->GetForestType().compare(type) == 0)
-		{
-			count++;
+			auto ptr = m->getComponent<ForestComponent>("Forest");
+			if (ptr->GetForestType().compare(type) == 0)
+			{
+				count++;
+			}
 		}
 	}
 
@@ -175,11 +201,18 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 			forest->DecrementLifetime();
 		}
 		// Forest becomes Deep.
-		else if (life > maxLife && neighborCount > 3)
+		else if (life > maxLife && neighborCount == 4)
 		{
 			// ..
 			_changeForestType(entity, "Deep");
 		}
+		// Forest dies on overpopulation.
+		else if (life > maxLife && neighborCount > 4)
+		{
+			// ..
+			_changeForestType(entity, "Dying");
+		}
+
 		// Forest dies due to underpopulation.
 		else if (life > maxLife && neighborCount < 3)
 		{
@@ -193,13 +226,13 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 		auto maxLife = forest->GetMaxLifetime();
 
 		// Forest becomes a Normal forest.
-		if (life > maxLife && neighborCount >= 3)
+		if (life > maxLife && neighborCount >= 2)
 		{
 			// ...
 			_changeForestType(entity, "Normal");
 		}
 		// Forest dies due to underpopulation.
-		else if (life > maxLife && neighborCount < 3)
+		else if (life > maxLife && neighborCount < 2)
 		{
 			// ...
 			_changeForestType(entity, "Dying");
@@ -209,6 +242,11 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 	{
 		auto life = forest->GetLifetime();
 		auto maxLife = forest->GetMaxLifetime();
+
+		if (forest->IsForestPermanent())
+		{
+			forest->ResetLifetime();
+		}
 
 		// Forest becomes Normal forest again.
 		if (life > maxLife && neighborCount == 3)
@@ -220,6 +258,7 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 		else if (life > maxLife && neighborCount > 3)
 		{
 			// ...
+			forest->DecrementLifetime();
 		}
 		// Forest dies due to underpopulation.
 		else if (life > maxLife && neighborCount < 3)
@@ -269,6 +308,8 @@ void ForestSystem::_checkForRandomForestGeneration(int x, int y, GameworldMatrix
 	if (neighbors > 0 && Random::InRange(0.0f, 100.0f) <= 1.0f)
 	{
 		// ...
+		_createNewForestInMaptile(x, y, world);
+		return;
 	}
 
 
@@ -276,8 +317,39 @@ void ForestSystem::_checkForRandomForestGeneration(int x, int y, GameworldMatrix
 	if (neighbors > 0 && Random::InRange(0.0f, 100.0f) <= 5.0f)
 	{
 		// ...
+		_createNewForestInMaptile(x, y, world);
+		return;
 	}
 
+
+}
+
+
+
+void ForestSystem::_createNewForestInMaptile(int x, int y, GameworldMatrix& world)
+{
+	auto maptile = world[x][y]->getComponent<MaptileComponent>("Maptile");
+
+	if (maptile->GetMaptileType().compare("temperate") == 0)
+	{
+		GameobjectStorage::get()->Instantiate("Temperate_Scarce", x, y);
+	}
+	else if (maptile->GetMaptileType().compare("tundra") == 0)
+	{
+		GameobjectStorage::get()->Instantiate("Tundra_Scarce", x, y);
+	}
+	else if (maptile->GetMaptileType().compare("snow") == 0)
+	{
+		GameobjectStorage::get()->Instantiate("Snow_Scarce", x, y);
+	}
+	else if (maptile->GetMaptileType().compare("savannah") == 0)
+	{
+		GameobjectStorage::get()->Instantiate("Savannah_Scarce", x, y);
+	}
+	else if (maptile->GetMaptileType().compare("jungle") == 0)
+	{
+		GameobjectStorage::get()->Instantiate("Jungle_Scarce", x, y);
+	}
 
 }
 
@@ -295,7 +367,7 @@ bool ForestSystem::_checkForForestGeneration(int x, int y, GameworldMatrix& worl
 	if (neighbors == 3)
 	{
 		// ...
-		return true;
+		return false;
 	}
 
 
@@ -303,7 +375,7 @@ bool ForestSystem::_checkForForestGeneration(int x, int y, GameworldMatrix& worl
 	if (neighbors > 1)
 	{
 		// ...
-		return true;
+		return false;
 	}
 
 
@@ -347,22 +419,22 @@ void ForestSystem::_changeForestType(Pointer<GameObject2> entity, const ForestTy
 	if (t.compare("Deep") == 0)
 	{
 		decal += "deep";
-		forest->SetMaxLifetime(100);
+		forest->SetMaxLifetime(m_DeepForestDefaultMaxLifetime);
 	}
 	else if (t.compare("Normal") == 0)
 	{
 		decal += "normal";
-		forest->SetMaxLifetime(50);
+		forest->SetMaxLifetime(m_NormalForestDefaultMaxLifetime);
 	}
 	else if (t.compare("Scarce") == 0)
 	{
 		decal += "scarce";
-		forest->SetMaxLifetime(25);
+		forest->SetMaxLifetime(m_ScarceForestDefaultMaxLifetime);
 	}
 	else if (t.compare("Dying") == 0)
 	{
 		decal += "dying";
-		forest->SetMaxLifetime(25);
+		forest->SetMaxLifetime(m_DyingForestDefaultMaxLifetime);
 	}
 
 
@@ -377,6 +449,11 @@ ForestSystem* ForestSystem::get()
 	if (!g_ForestSystem)
 	{
 		g_ForestSystem = new ForestSystem();
+		if (!g_ForestSystem->Initialize("Data/ForestSystem.xml"))
+		{
+			delete g_ForestSystem;
+			g_ForestSystem = NULL;
+		}
 	}
 
 
@@ -390,4 +467,36 @@ void ForestSystem::del()
 	{
 		delete g_ForestSystem;
 	}
+}
+
+
+
+bool ForestSystem::Initialize(const std::string& filepath)
+{
+	using namespace tinyxml2;
+
+	// Create an object defined from xml.
+	tinyxml2::XMLDocument doc;
+
+
+	XMLError result = doc.LoadFile(filepath.c_str());
+	if (result != XMLError::XML_SUCCESS)
+	{
+		// Clean up.
+		doc.Clear();
+		return false;
+	}
+
+	XMLNode* root = doc.FirstChild();
+	if (root == nullptr)
+	{
+		// Clean up.
+		doc.Clear();
+		return false;
+	}
+
+
+
+
+	return true;
 }

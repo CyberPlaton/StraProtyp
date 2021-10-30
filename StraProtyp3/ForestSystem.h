@@ -12,14 +12,19 @@ public:
 	static ForestSystem* get();
 	static void del();
 
-	
 
+	bool Initialize(const std::string& filepath);
 	void Update(GameworldMatrix& world);
 
 
 private:
 	static ForestSystem* g_ForestSystem;
 	
+
+	int m_DeepForestDefaultMaxLifetime = 200;
+	int m_NormalForestDefaultMaxLifetime = 150;
+	int m_ScarceForestDefaultMaxLifetime = 50;
+	int m_DyingForestDefaultMaxLifetime = 25;
 
 	
 private:
@@ -54,4 +59,7 @@ private:
 	// Return the Forest Gameobject on given Maptile.
 	// If none exists a nullptr is returned.
 	Pointer<GameObject2> _getForestInMaptile(int x, int y, GameworldMatrix& world);
+
+
+	void _createNewForestInMaptile(int x, int y, GameworldMatrix& world);
 };

@@ -39,6 +39,12 @@ static Timer religionStepTimer;
 static bool religionContinuousUpdateStarted = false;
 static bool religionContinuousUpdate = false;
 
+
+/*
+* Forest Helpers.
+*/
+static bool forestUpdateStarted = false;
+
 int main()
 {
 	App demo;
@@ -102,7 +108,22 @@ bool App::OnUserUpdate(float fElapsedTime)
 		}
 	}
 
+	/*
+	static Timer forestTimer;
+	if (!forestUpdateStarted)
+	{
+		forestTimer.startTimer();
+		forestUpdateStarted = true;
+	}
 
+	if (forestTimer.getElapsedSeconds() > 0.1f)
+	{
+		ForestSystem::get()->Update(gameWorldMatrix);
+		forestTimer.startTimer();
+	}
+	*/
+
+	ForestSystem::get()->Update(gameWorldMatrix);
 
 	stateMachine.update(fElapsedTime);
 
@@ -210,30 +231,17 @@ bool App::OnUserCreate()
 	
 	auto ptr = GameobjectStorage::get()->Instantiate("City_Plain", 1, 1);
 
-	ptr = GameobjectStorage::get()->Instantiate("Jungle_Scarce", 1, 1);
-	ptr = GameobjectStorage::get()->Instantiate("Jungle_Normal", 2, 1);
-	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 1, 2);
-	ptr = GameobjectStorage::get()->Instantiate("Jungle_Dying", 2, 2);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 1, 1);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Scarce", 3, 3);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 4, 3);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 3, 4);
-	ptr = GameobjectStorage::get()->Instantiate("Temperate_Dying", 4, 4);
-
-	ptr = GameobjectStorage::get()->Instantiate("Tundra_Scarce", 5, 5);
-	ptr = GameobjectStorage::get()->Instantiate("Tundra_Normal", 6, 5);
-	ptr = GameobjectStorage::get()->Instantiate("Tundra_Deep", 5, 6);
-	ptr = GameobjectStorage::get()->Instantiate("Tundra_Dying", 6, 6);
-
-	ptr = GameobjectStorage::get()->Instantiate("Savannah_Scarce", 7, 7);
-	ptr = GameobjectStorage::get()->Instantiate("Savannah_Normal", 8, 7);
-	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 7, 8);
-	ptr = GameobjectStorage::get()->Instantiate("Savannah_Dying", 8, 8);
-
-	ptr = GameobjectStorage::get()->Instantiate("Snow_Scarce", 9, 9);
-	ptr = GameobjectStorage::get()->Instantiate("Snow_Normal", 10, 9);
-	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 9, 10);
-	ptr = GameobjectStorage::get()->Instantiate("Snow_Dying", 10, 10);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 0, 0);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 0, 1);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 0, 2);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 1, 0);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 2, 0);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 2, 1);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 1, 2);
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Normal", 2, 2);
 
 
 
@@ -472,6 +480,7 @@ void App::_handleInput()
 		}
 	}
 
+	/*
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)
 	{
 		if (GetKey(olc::SPACE).bPressed)
@@ -479,7 +488,7 @@ void App::_handleInput()
 			ForestSystem::get()->Update(gameWorldMatrix);
 		}
 	}
-
+	*/
 
 	/*
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)
@@ -1104,6 +1113,29 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 
 			app->tv.DrawDecal(olc::vf2d(transform->GetXPos(), transform->GetYPos()), decal.get());
 		}
+	}
+
+
+	// Render some text about a Forest.
+	if (drawOrder[2])
+	{
+		auto forest = drawOrder[2]->getComponent<ForestComponent>("Forest");
+		auto transform = drawOrder[2]->getComponent<TransformComponent>("Transform");
+		auto render = drawOrder[2]->getComponent<RenderableComponent>("Renderable");
+
+		std::string type, biome;
+		int life, maxLife;
+
+		type = forest->GetForestType();
+		biome = forest->GetForestBiome();
+		life = forest->GetLifetime();
+		maxLife = forest->GetMaxLifetime();
+
+		std::string text = "\"" + type + "\",\n\"" + biome + "\",\n\"" + std::to_string(life) + "\"/\"" + std::to_string(maxLife) + "\"";
+
+		olc::vf2d p = { transform->GetXPos() + render->GetWidth() / 2.0f - 0.3f, transform->GetYPos() + render->GetHeight() / 2.0f };
+		olc::vf2d screenPoint = app->tv.WorldToScreen(p);
+		app->font->DrawStringDecal(screenPoint, text, olc::RED, { 0.45f, 0.45f });
 	}
 
 

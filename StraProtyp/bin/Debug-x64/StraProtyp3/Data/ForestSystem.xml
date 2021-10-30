@@ -1,0 +1,28 @@
+<ForestSystem>
+	<MaxLifetime>
+		<Def type="Deep" biome="Jungle">150</Def>
+		<Def type="Normal" biome="Jungle">75</Def>
+		<Def type="Scarce" biome="Jungle">15</Def>
+		<Def type="Dying" biome="Jungle">25</Def>
+
+		<Def type="Deep" biome="Tundra">200</Def>
+		<Def type="Normal" biome="Tundra">125</Def>
+		<Def type="Scarce" biome="Tundra">45</Def>
+		<Def type="Dying" biome="Tundra">35</Def>
+
+		<Def type="Deep" biome="Temperate">175</Def>
+		<Def type="Normal" biome="Temperate">100</Def>
+		<Def type="Scarce" biome="Temperate">25</Def>
+		<Def type="Dying" biome="Temperate">25</Def>
+
+		<Def type="Deep" biome="Savannah">100</Def>
+		<Def type="Normal" biome="Savannah">100</Def>
+		<Def type="Scarce" biome="Savannah">75</Def>
+		<Def type="Dying" biome="Savannah"> 50</Def>
+
+		<Def type="Deep" biome="Snow">250</Def>
+		<Def type="Normal" biome="Snow">200</Def>
+		<Def type="Scarce" biome="Snow">150</Def>
+		<Def type="Dying" biome="Snow">100</Def>
+	</MaxLifetime>
+</ForestSystem>
