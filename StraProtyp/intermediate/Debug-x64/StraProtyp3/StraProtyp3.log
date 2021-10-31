@@ -58,12 +58,12 @@ C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\mai
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(214,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(218,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(218,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(449,35): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(449,43): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(456,35): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(456,43): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\AVLTree.h(238,55): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\AVLTree.h(238): message : while compiling class template member function 'int AVLTree2<std::shared_ptr<olc::Decal>>::max(size_t,size_t)'
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\AVLTree.h(365): message : see reference to function template instantiation 'int AVLTree2<std::shared_ptr<olc::Decal>>::max(size_t,size_t)' being compiled
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(192): message : see reference to class template instantiation 'AVLTree2<std::shared_ptr<olc::Decal>>' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(198): message : see reference to class template instantiation 'AVLTree2<std::shared_ptr<olc::Decal>>' being compiled
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\AVLTree.h(237,55): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\AVLTree.h(237): message : while compiling class template member function 'int AVLTree2<std::shared_ptr<olc::Decal>>::min(size_t,size_t)'
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\AVLTree.h(364): message : see reference to function template instantiation 'int AVLTree2<std::shared_ptr<olc::Decal>>::min(size_t,size_t)' being compiled

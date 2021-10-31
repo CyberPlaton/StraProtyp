@@ -1,0 +1,26 @@
+<Gameobject>
+	<Tag>Mountain</Tag>
+	<Name>Mountain_Sand</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_green</Color>
+			<Decal>mountain_sand</Decal>
+			<Layer>forest</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+
+		<Component name="Ressource" ressourceName="Sand Mountain"></Component>
+
+		<Component name ="Mountain" type="Sand"></Component>		
+
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

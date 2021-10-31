@@ -151,7 +151,7 @@ private:
 		}
 
 		// Write the update balance logic here 
-
+		updateBalance(node);
 
 		return node;
 	}

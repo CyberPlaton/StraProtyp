@@ -122,6 +122,12 @@ public:
 
 	void shutDown()
 	{
+		for (auto n : decalIDMap)
+		{
+			decalDatabase.findStoredData(n.second).reset();
+		}
+
+
 		while (sprites.size() > 0)
 		{
 			sprites[0].reset();
@@ -169,7 +175,7 @@ public:
 	bool OnUserUpdate(float fElapsedTime) override;
 	void DrawUI(void);
 	//std::vector< TechInstance* > getNextTechToChoose();
-	StateMachine<App>& getStateMachine() { return stateMachine; }
+	StateMachine<Pointer<App>>& getStateMachine() { return stateMachine; }
 	olc::TileTransformedView& getRenderer() { return tv; }
 	
 	Pointer<GameObject2> getCurrentViewedCity() { return currentViewedCity;}
@@ -209,7 +215,7 @@ private:
 	Pointer<GameObject2> currentViewedCity = nullptr;
 
 	// The State machine associated with this App.
-	StateMachine<App> stateMachine;
+	StateMachine<Pointer<App>> stateMachine;
 
 	// The Gameworld represented as a matrix.
 	// In here are stored maptile Gameobject according to their position in 
@@ -266,9 +272,14 @@ private:
 
 
 
-struct AppStateWorldMap : public State<App>
+struct AppStateWorldMap : public State<Pointer<App>>
 {
-	AppStateWorldMap(App* app): app(app){}
+	AppStateWorldMap(Pointer<App> app): app(app){}
+	~AppStateWorldMap()
+	{
+		app.reset();
+	}
+
 
 	void update(float) override final;
 
@@ -276,14 +287,14 @@ struct AppStateWorldMap : public State<App>
 
 	void onExit() override final;
 
-	App* getOwner() override final
+	Pointer<App> getOwner() override final
 	{
 		return app;
 	}
 
 
 private:
-	App* app = nullptr;
+	Pointer<App> app = nullptr;
 
 	void _updateGameworldMatrix(GameworldMatrix& world);
 	void _renderMaptile(Pointer<GameObject2> tile);
@@ -293,10 +304,13 @@ private:
 
 
 
-struct AppStateCityView : public State<App>
+struct AppStateCityView : public State<Pointer<App>>
 {
-	AppStateCityView(App* app) : app(app) {}
-
+	AppStateCityView(Pointer<App> app) : app(app) {}
+	~AppStateCityView()
+	{
+		app.reset();
+	}
 
 	void update(float) override final;
 
@@ -304,14 +318,14 @@ struct AppStateCityView : public State<App>
 
 	void onExit() override final;
 
-	App* getOwner() override final
+	Pointer<App> getOwner() override final
 	{
 		return app;
 	}
 
 
 private:
-	App* app = nullptr;
+	Pointer<App> app = nullptr;
 
 
 
@@ -343,10 +357,13 @@ private:
 
 
 
-struct AppStateMainMenu : public State<App>
+struct AppStateMainMenu : public State<Pointer<App>>
 {
-	AppStateMainMenu(App* app) : app(app) {}
-
+	AppStateMainMenu(Pointer<App> app) : app(app) {}
+	~AppStateMainMenu()
+	{
+		app.reset();
+	}
 
 	void update(float) override final;
 
@@ -354,12 +371,12 @@ struct AppStateMainMenu : public State<App>
 
 	void onExit() override final;
 
-	App* getOwner() override final
+	Pointer<App> getOwner() override final
 	{
 		return app;
 	}
 
 
 private:
-	App* app = nullptr;
+	Pointer<App> app = nullptr;
 };

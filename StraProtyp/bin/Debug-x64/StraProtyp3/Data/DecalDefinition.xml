@@ -48,7 +48,12 @@
 		<Decal>river_up_right_left_down.png</Decal>
 
 		<Decal>hills.png</Decal>
-		<Decal>highmountain.png</Decal>
+		<Decal>mountain_jungle.png</Decal>
+		<Decal>mountain_temperate.png</Decal>
+		<Decal>mountain_tundra.png</Decal>
+		<Decal>mountain_sand.png</Decal>
+		<Decal>mountain_snow.png</Decal>
+		<Decal>mountain_savannah.png</Decal>
 	</Decals>
 	
 	<Decals path="Data/Assets/Unit/">

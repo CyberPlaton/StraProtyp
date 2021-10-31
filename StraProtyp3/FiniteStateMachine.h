@@ -11,7 +11,7 @@ struct State
 	virtual void update(float) = 0;
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
-	virtual T* getOwner() = 0;
+	virtual T getOwner() = 0;
 };
 
 

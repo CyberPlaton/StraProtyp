@@ -96,8 +96,6 @@ bool App::OnUserUpdate(float fElapsedTime)
 	_handleInput(); // Handle the users input.
 		
 
-	GameWorldTime::get()->update(); // Update Game World Time.
-
 
 	// Update all Maptile Components.
 	for (auto ptr : GameobjectStorage::get()->GetStorage())
@@ -113,6 +111,8 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 	stateMachine.update(fElapsedTime);
 
+	// Uncomment for continuous Forest System update.
+	//JobSystem::get()->getVgjsJobSystem()->schedule(std::bind(UpdateForestSystem, gameWorldMatrix));
 
 
 	SetDrawTarget((uint8_t)m_GameLayer);
@@ -282,6 +282,13 @@ bool App::OnUserCreate()
 	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 2, 19);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 
+
+	ptr = GameobjectStorage::get()->Instantiate("Mountain_Snow", 4, 0);
+	ptr = GameobjectStorage::get()->Instantiate("Mountain_Sand", 5, 13);
+	ptr = GameobjectStorage::get()->Instantiate("Mountain_Savannah", 4, 14);
+	ptr = GameobjectStorage::get()->Instantiate("Mountain_Temperate", 18, 8);
+	ptr = GameobjectStorage::get()->Instantiate("Mountain_Tundra", 0, 4);
+	ptr = GameobjectStorage::get()->Instantiate("Mountain_Jungle", 9, 17);
 
 
 	NavMesh::get()->Bake();
@@ -867,9 +874,11 @@ bool App::_loadGameobjectPathdefinitions()
 
 bool App::_loadAppStateDefinitions()
 {
-	stateMachine.storeStateDefinition("worldMap", new AppStateWorldMap(this));
-	stateMachine.storeStateDefinition("cityView", new AppStateCityView(this));
-	stateMachine.storeStateDefinition("mainMenu", new AppStateMainMenu(this));
+	auto ptr = std::shared_ptr<App>(this);
+
+	stateMachine.storeStateDefinition("worldMap", new AppStateWorldMap(ptr));
+	stateMachine.storeStateDefinition("cityView", new AppStateCityView(ptr));
+	stateMachine.storeStateDefinition("mainMenu", new AppStateMainMenu(ptr));
 
 	// Set initial state.
 	stateMachine.setInitialState("worldMap");
@@ -1199,7 +1208,8 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 
 
 	// Render some text about a Forest.
-	if (drawOrder[2])
+	// Will crash if we select a Mountain or Hill...
+	if (drawOrder[2] && drawOrder[2]->hasComponent("Forest"))
 	{
 		auto forest = drawOrder[2]->getComponent<ForestComponent>("Forest");
 		auto transform = drawOrder[2]->getComponent<TransformComponent>("Transform");

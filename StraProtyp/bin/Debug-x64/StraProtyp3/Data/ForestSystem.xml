@@ -8,7 +8,7 @@
 		</MaxLifetime>
 		
 		<!--Base prob. of generating new Forest on Jungle maptile-->
-		<MaptileBaseProbability>0.05</MaptileBaseProbability>
+		<MaptileBaseProbability>0.085</MaptileBaseProbability>
 		
 		<!--How much each neighboring Forest increases the base probability-->
 		<NeighborProbabilityIncrease>0.289</NeighborProbabilityIncrease>
