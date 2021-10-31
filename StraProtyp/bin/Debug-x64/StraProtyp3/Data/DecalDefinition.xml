@@ -37,13 +37,13 @@
 
 		<Decal>river_down_left.png</Decal>
 		<Decal>river_down_right.png</Decal>
-		<Decal>river_left_right.png</Decal>
-		<Decal>river_left_right_down.png</Decal>
-		<Decal>river_left_up_down.png</Decal>
-		<Decal>river_up_down.png</Decal>
-		<Decal>river_up_left.png</Decal>
+		<Decal>river_right_left.png</Decal>
+		<Decal>river_down_right_left.png</Decal>
+		<Decal>river_down_up_left.png</Decal>
+		<Decal>river_down_up.png</Decal>
+		<Decal>river_up_left.png</Decal> 
 		<Decal>river_up_right.png</Decal>
-		<Decal>river_up_right_down.png</Decal>
+		<Decal>river_down_up_right.png</Decal>
 		<Decal>river_up_right_left.png</Decal>
 		<Decal>river_up_right_left_down.png</Decal>
 

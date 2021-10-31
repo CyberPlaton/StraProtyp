@@ -41,5 +41,7 @@
 	<Prefab name="Mountain_Tundra" path="Data/Mountain_Tundra.xml"></Prefab>
 	<Prefab name="Mountain_Temperate" path="Data/Mountain_Temperate.xml"></Prefab>
 	<Prefab name="Mountain_Jungle" path="Data/Mountain_Jungle.xml"></Prefab>
-	
+
+	<Prefab name="River" path="Data/River.xml"></Prefab>
+
 </PrefabDefinition>

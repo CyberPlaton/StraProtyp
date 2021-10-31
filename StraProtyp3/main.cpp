@@ -290,6 +290,11 @@ bool App::OnUserCreate()
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Tundra", 0, 4);
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Jungle", 9, 17);
 
+	ptr = GameobjectStorage::get()->Instantiate("River", 0, 1);
+	ptr = GameobjectStorage::get()->Instantiate("River", 1, 1);
+	ptr = GameobjectStorage::get()->Instantiate("River", 2, 1);
+	ptr = GameobjectStorage::get()->Instantiate("River", 3, 1);
+	ptr = GameobjectStorage::get()->Instantiate("River", 4, 1);
 
 	NavMesh::get()->Bake();
 

@@ -181,7 +181,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(const std::string& prefabNam
 
 				auto river = std::make_shared<RiverComponent>(name + "River");
 				ptr->addComponent(river);
-				_addRiverComponent(river, ptr, cmp);
+				_addRiverComponent(river, ptr, cmp, xpos, ypos);
 				river.reset();
 			}
 			else if (componentType.compare("Ressource") == 0)
@@ -426,8 +426,17 @@ bool GameobjectStorage::_addTransformComponent(Pointer<TransformComponent> cmp, 
 	return true;
 }
 
-bool GameobjectStorage::_addRiverComponent(Pointer<RiverComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
+bool GameobjectStorage::_addRiverComponent(Pointer<RiverComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos)
 {
+
+	// Add River to Maptile.
+	Pointer<GameObject2> pGO = _getMaptileAtPosition(xpos, ypos);
+	Pointer<MaptileComponent> maptile = pGO->getComponent<MaptileComponent>("Maptile");
+	maptile->AddGameobject(entity);
+
+
+	maptile->SetHasRiver(true);
+
 	return true;
 }
 
@@ -463,6 +472,8 @@ bool GameobjectStorage::_addMountainComponent(Pointer<MountainComponent> cmp, Po
 	Pointer<MaptileComponent> maptile = pGO->getComponent<MaptileComponent>("Maptile");
 	maptile->AddGameobject(entity);
 
+
+	maptile->SetHasMountain(true);
 
 	return true;
 }
