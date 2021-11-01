@@ -143,6 +143,8 @@
     <ClInclude Include="RiverComponent.h" />
     <ClInclude Include="SecondTestingComponent.h" />
     <ClInclude Include="TechInstance.h" />
+    <ClInclude Include="TechnologyComponent.h" />
+    <ClInclude Include="TechnologySystem.h" />
     <ClInclude Include="TestingComponent.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformComponent.h" />
@@ -177,6 +179,8 @@
     <ClCompile Include="RandomNameGenerator.cpp" />
     <ClCompile Include="ReligionSystem.cpp" />
     <ClCompile Include="TechInstance.cpp" />
+    <ClCompile Include="TechnologyComponent.cpp" />
+    <ClCompile Include="TechnologySystem.cpp" />
     <ClCompile Include="UnitComponent.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

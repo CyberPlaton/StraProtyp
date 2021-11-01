@@ -283,6 +283,16 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(const std::string& prefabNam
 				_addRenderableComponent(render, ptr, cmp);
 				render.reset();
 			}
+			else if (componentType.compare("Technology") == 0)
+			{
+				cout << color(colors::DARKGREEN);
+				std::cout << "\tAdding Technology" << white << endl;
+
+				auto tech = std::make_shared<TechnologyComponent>(name + "Technology");
+				ptr->addComponent(tech);
+				_addTechnologyComponent(tech, ptr, cmp);
+				tech.reset();
+			}
 			else
 			{
 				std::cout << color(colors::RED);
@@ -456,6 +466,12 @@ bool GameobjectStorage::_addRenderableComponent(Pointer<RenderableComponent> cmp
 }
 
 bool GameobjectStorage::_addPlayerComponent(Pointer<PlayerComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
+{
+	return true;
+}
+
+
+bool GameobjectStorage::_addTechnologyComponent(Pointer<TechnologyComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
 {
 	return true;
 }

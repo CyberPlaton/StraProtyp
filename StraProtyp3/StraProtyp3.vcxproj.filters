@@ -210,6 +210,12 @@
     <ClInclude Include="ReligionSystem.h">
       <Filter>Source Files\Base\ECS\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="TechnologySystem.h">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="TechnologyComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -298,6 +304,12 @@
     </ClCompile>
     <ClCompile Include="ReligionSystem.cpp">
       <Filter>Source Files\Base\ECS\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="TechnologySystem.cpp">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="TechnologyComponent.cpp">
+      <Filter>Source Files\Base\ECS\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

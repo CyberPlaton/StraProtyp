@@ -30,6 +30,7 @@
 #include "ForestComponent.h"
 #include "HillComponent.h"
 #include "RessourceComponent.h"
+#include "TechnologyComponent.h"
 
 #include "TestingComponent.h"
 #include "SecondTestingComponent.h"
@@ -148,7 +149,7 @@ private:
 	bool _addCityComponent(Pointer<CityComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
 	bool _addBuildingComponent(Pointer<BuildingComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addAnimatorComponent(Pointer<AnimatorComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
-
+	bool _addTechnologyComponent(Pointer<TechnologyComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 
 	Pointer<GameObject2> _getMaptileAtPosition(int x, int y)
 	{

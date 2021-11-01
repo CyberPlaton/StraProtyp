@@ -1,30 +1,36 @@
-<Technology>
-	<Definition>
-		<!--The display name of the technology-->
-		<Name>Advanced Armor Forging</Name>
+<Gameobject>
+	<Tag>Technology</Tag>
+	<Name>Advanced Armor Forging_Tech</Name>
+	<Components>
+		<Component name="Technology">
+			<Definition>
+				<!--The display name of the technology-->
+				<Name>Advanced Armor Forging</Name>
 
-		<!--The area of research to which this Tech belongs-->
-		<ResearchArea>technical</ResearchArea>
+				<!--The area of research to which this Tech belongs-->
+				<ResearchArea>technical</ResearchArea>
 
-		<!--How many points must be invested to finish research of this Tech-->
-		<ResearchPoints>150</ResearchPoints>
+				<!--How many points must be invested to finish research of this Tech-->
+				<ResearchPoints>150</ResearchPoints>
 
-		<!--The base weight for the probability to be picked to be researched-->
-		<BaseWeight>0.1</BaseWeight>
+				<!--The base weight for the probability to be picked to be researched-->
+				<BaseWeight>0.1</BaseWeight>
 
-		<!--A subcategory. Will be define as string and usage dependent on game-->
-		<SubCategory>Industry</SubCategory>
+				<!--A subcategory. Will be define as string and usage dependent on game-->
+				<SubCategory>Industry</SubCategory>
 
-		
-	</Definition>
-	<Requirements>
-		<Req area="player_tech_check" type="true">Armor Forging</Req>
-		<Req area="player_tech_check" type="true">Iron Working</Req>
-	</Requirements>
-	
-	<!--Effects are basic description text-->
-	<!--Each unit and building define their own requirements, which are not stored in the Tech itself-->
-	<Effects>
-		<Text>None</Text>
-	</Effects>
-</Technology>
+
+			</Definition>
+			<Requirements>
+				<Req area="player_tech_check" type="true">Armor Forging</Req>
+				<Req area="player_tech_check" type="true">Iron Working</Req>
+			</Requirements>
+
+			<!--Effects are basic description text-->
+			<!--Each unit and building define their own requirements, which are not stored in the Tech itself-->
+			<Effects>
+				<Text>None</Text>
+			</Effects>
+		</Component>
+	</Components>
+</Gameobject>
