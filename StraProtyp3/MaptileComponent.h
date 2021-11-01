@@ -71,11 +71,11 @@ private:
 
 	std::vector< Pointer<GameObject2> > m_Gameobjects;
 
-	bool m_HasWaterAccess;
-	bool m_HasHill;
-	bool m_HasMountain;
-	bool m_HasRiver;
-	bool m_HasRessource;
+	bool m_HasWaterAccess = false;
+	bool m_HasHill = false;
+	bool m_HasMountain = false;
+	bool m_HasRiver = false;
+	bool m_HasRessource = false;
 
 
 

@@ -91,10 +91,11 @@ struct ImNodesNode
 
 
 #include "GameObjectStorage.h"
+#include "JobSystem.h"
+
 
 #include "ForestSystem.h"
-
-#include "JobSystem.h"
+#include "ReligionSystem.h"
 
 
 struct AppStateWorldMap;
@@ -105,6 +106,7 @@ using GameworldMatrix = std::vector< std::vector< Pointer<GameObject2> >>;
 
 
 void UpdateForestSystem(GameworldMatrix& world);
+void UpdateReligionSystem(GameworldMatrix& world);
 
 
 class App : public olc::PixelGameEngine
@@ -241,7 +243,6 @@ private:
 	bool _loadDecalDatabase();
 	bool _loadTechTreeDefinitions();
 	bool _loadAppStateDefinitions();
-	bool _loadGameobjectPathdefinitions();
 	bool _initGameworldMatrix();
 
 

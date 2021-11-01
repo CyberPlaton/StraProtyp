@@ -137,6 +137,7 @@
     <ClInclude Include="PlayerInstance.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="RandomNameGenerator.h" />
+    <ClInclude Include="ReligionSystem.h" />
     <ClInclude Include="RenderableComponent.h" />
     <ClInclude Include="RessourceComponent.h" />
     <ClInclude Include="RiverComponent.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="PlayerInstance.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RandomNameGenerator.cpp" />
+    <ClCompile Include="ReligionSystem.cpp" />
     <ClCompile Include="TechInstance.cpp" />
     <ClCompile Include="UnitComponent.cpp" />
   </ItemGroup>

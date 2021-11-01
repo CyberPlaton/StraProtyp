@@ -478,12 +478,38 @@ void ForestSystem::_checkForForestTransition(Pointer<GameObject2> entity, int ne
 }
 
 
+bool ForestSystem::_isMaptileSuitableForForest(Pointer<GameObject2> maptile, int x, int y, GameworldMatrix& world)
+{
+	auto m = world[x][y]->getComponent<MaptileComponent>("Maptile");
+
+	// Check whether maptile is suitable for a Forest.
+	if (m->HasCity() ||
+		m->HasFort() ||
+		m->HasHill() ||
+		m->HasMountain() ||
+		m->HasImprovement())
+	{
+		return false;
+	}
+
+	return true;
+}
+
+
+
 void ForestSystem::_checkForRandomForestGeneration(int x, int y, GameworldMatrix& world)
 {
+	using namespace std;
+
 	// Maptile at {x, y} is guaranteed to not have a Forest.
 
-	// Get the Biome of the Maptile
 	auto maptile = world[x][y]->getComponent<MaptileComponent>("Maptile");
+
+	// Check whether maptile is suitable for a Forest.
+	if (!_isMaptileSuitableForForest(world[x][y], x, y, world)) return;
+
+
+	// Get the Biome of the Maptile
 	std::string biome = maptile->GetMaptileType();
 
 	
@@ -545,6 +571,10 @@ float ForestSystem::_getNeighborMultiplier(const std::string& biome, int n)
 
 void ForestSystem::_createNewForestInMaptile(int x, int y, GameworldMatrix& world)
 {
+	// Do another Maptile suitability Check...
+	if (!_isMaptileSuitableForForest(world[x][y], x, y, world)) return;
+
+
 	auto maptile = world[x][y]->getComponent<MaptileComponent>("Maptile");
 
 	Pointer<GameObject2> entity;
@@ -676,11 +706,6 @@ void ForestSystem::_setForestMaxLifetime(Pointer<ForestComponent> forest, const 
 
 			int lifetime = ptr->m_MaxLifetime[t];
 			forest->SetMaxLifetime(lifetime);
-			
-
-			//cout << color(colors::YELLOW);
-			//printf("[ForestSystem::_setForestMaxLifetime] Type:\"%s\", Biome:\"%s\", ML:\"%d\"", t.c_str(), b.c_str(), lifetime);
-			//cout << white << endl;
 			return;
 		}
 	}

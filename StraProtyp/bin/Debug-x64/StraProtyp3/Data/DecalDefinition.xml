@@ -47,6 +47,18 @@
 		<Decal>river_up_right_left.png</Decal>
 		<Decal>river_up_right_left_down.png</Decal>
 
+		<Decal>road_down_left.png</Decal>
+		<Decal>road_down_right.png</Decal>
+		<Decal>road_right_left.png</Decal>
+		<Decal>road_down_right_left.png</Decal>
+		<Decal>road_down_up_left.png</Decal>
+		<Decal>road_down_up.png</Decal>
+		<Decal>road_up_left.png</Decal> 
+		<Decal>road_up_right.png</Decal>
+		<Decal>road_down_up_right.png</Decal>
+		<Decal>road_up_right_left.png</Decal>
+		<Decal>road_up_right_left_down.png</Decal>
+
 		<Decal>hills.png</Decal>
 		<Decal>mountain_jungle.png</Decal>
 		<Decal>mountain_temperate.png</Decal>

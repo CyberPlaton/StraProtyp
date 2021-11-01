@@ -107,13 +107,7 @@ bool App::OnUserUpdate(float fElapsedTime)
 		}
 	}
 
-	//ForestSystem::get()->Update(gameWorldMatrix);
-
 	stateMachine.update(fElapsedTime);
-
-	// Uncomment for continuous Forest System update.
-	//JobSystem::get()->getVgjsJobSystem()->schedule(std::bind(UpdateForestSystem, gameWorldMatrix));
-
 
 	SetDrawTarget((uint8_t)m_GameLayer);
 	DrawStringDecal(olc::vf2d(1200, 50), "FPS: " + std::to_string(GetFPS()));
@@ -174,7 +168,6 @@ bool App::OnUserCreate()
 	if (!_loadDecalDatabase()) return false;
 	if (!_loadTechTreeDefinitions()) return false;
 	if (!_loadAppStateDefinitions()) return false;
-	if (!_loadGameobjectPathdefinitions()) return false;
 	if (!_initGameworldMatrix()) return false;
 
 
@@ -233,8 +226,28 @@ bool App::OnUserCreate()
 
 	
 	auto ptr = GameobjectStorage::get()->Instantiate("City_Plain", 3, 2);
+	ptr->setName("Durotar");
+	ReligionSystem::get()->CreateReligion(ptr, "Horde");
+	ptr->getComponent<CityComponent>("City")->SetReligionColor(255, 0, 0, 255);
+
+	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 8, 3);
+	ptr->setName("Orgrimmar");
+	ReligionSystem::get()->CreateReligion(ptr, "New Horde");
+	ptr->getComponent<CityComponent>("City")->SetReligionColor(0, 0, 255, 255);
+
+
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 5, 18);
+	ptr->setName("Valenwood");
+	ReligionSystem::get()->CreateReligion(ptr, "Dark Elf");
+	ptr->getComponent<CityComponent>("City")->SetReligionColor(0, 255, 0, 255);
+
+
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 25, 16);
+	ptr->setName("Mournhold");
+	ReligionSystem::get()->CreateReligion(ptr, "Dark Elf");
+	ptr->getComponent<CityComponent>("City")->SetReligionColor(0, 255, 0, 255);
+
+
 
 	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 5, 1);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
@@ -284,8 +297,8 @@ bool App::OnUserCreate()
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Snow", 4, 0);
-	ptr = GameobjectStorage::get()->Instantiate("Mountain_Sand", 5, 13);
-	ptr = GameobjectStorage::get()->Instantiate("Mountain_Savannah", 4, 14);
+	ptr = GameobjectStorage::get()->Instantiate("Mountain_Sand", 5, 8);
+	ptr = GameobjectStorage::get()->Instantiate("Mountain_Savannah", 4, 9);
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Temperate", 18, 8);
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Tundra", 0, 4);
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Jungle", 9, 17);
@@ -470,6 +483,17 @@ void App::_handleInput()
 					}
 				}
 			}
+			else if (maptile->HasCity())
+			{
+				for (auto e : maptile->GetGameobjects())
+				{
+					if (e->hasComponent("City"))
+					{
+						selected_gameobject = e;
+						break;
+					}
+				}
+			}
 			else
 			{
 				selected_gameobject.reset();
@@ -573,6 +597,7 @@ void App::_handleInput()
 		if (GetKey(olc::SPACE).bPressed)
 		{
 			JobSystem::get()->getVgjsJobSystem()->schedule(std::bind(UpdateForestSystem, gameWorldMatrix));
+			JobSystem::get()->getVgjsJobSystem()->schedule(std::bind(UpdateReligionSystem, gameWorldMatrix));
 		}
 
 
@@ -862,18 +887,6 @@ bool App::_loadDecalDatabase()
 	return true;
 }
 
-
-
-
-bool App::_loadGameobjectPathdefinitions()
-{
-	/*
-	GameObjectCreator::createGameobjectPathDefinition("Spearman", "Data/Spearman.xml");
-	GameObjectCreator::createGameobjectPathDefinition("Tavern", "Data/Tavern.xml");
-	GameObjectCreator::createGameobjectPathDefinition("Weapon Smiths Workshop", "Data/Weaponsmith.xml");
-	*/
-	return true;
-}
 
 
 
@@ -1236,83 +1249,21 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 	}
 
 
-	/*
-	std::map< int, GameObject* > drawOrder;
-	for (int i = 1; i < 9; i++) drawOrder.emplace(i, nullptr);
 
-	IMaptileCmp* maptile = tile->getComponent<IMaptileCmp>("Maptile");
-
-	// Render Maptile itself as first.
-	drawOrder[1] = tile;
-
-
-	for (auto& tag : maptile->getGameobjects())
+	// Render Religion related text above city.
+	if (drawOrder[7] && drawOrder[7]->hasComponent("City"))
 	{
-		// Get the gameobject on maptile.
-		GameObject* go = GameObjectStorage::get()->getGOByTag(tag);
+		auto c = drawOrder[7]->getComponent<CityComponent>("City");
+		auto transform = drawOrder[7]->getComponent<TransformComponent>("Transform");
+		auto render = drawOrder[7]->getComponent<RenderableComponent>("Renderable");
 
+		std::string text = c->GetName();
 
-		// Store gameobject in correct slot for ordered rendering.
-		if (go->hasComponent("Renderable"))
-		{
-
-			// Do not render units in city as outside.
-			if (go->hasComponent("Unit") && go->getComponent<IUnitCmp>("Unit")->isInCity() == true) continue;
-
-
-			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
-
-
-			if (render->render)
-			{
-				if (render->renderingLayer.compare("forest") == 0) // And Mountain, Hill
-				{
-					drawOrder[2] = go;
-				}
-				else if (render->renderingLayer.compare("river") == 0)
-				{
-					drawOrder[3] = go;
-				}
-				else if (render->renderingLayer.compare("ressource") == 0)
-				{
-					drawOrder[4] = go;
-				}
-				else if (render->renderingLayer.compare("improvement") == 0)
-				{
-					drawOrder[5] = go;
-				}
-				else if (render->renderingLayer.compare("road") == 0)
-				{
-					drawOrder[6] = go;
-				}
-				else if (render->renderingLayer.compare("city") == 0)
-				{
-					drawOrder[7] = go;
-				}
-				else if (render->renderingLayer.compare("unit") == 0)
-				{
-					drawOrder[8] = go;
-				}
-			}
-		}
+		olc::vf2d p = { transform->GetXPos() + render->GetWidth() / 2.0f - 0.3f, transform->GetYPos() + render->GetHeight() / 2.0f };
+		olc::vf2d screenPoint = app->tv.WorldToScreen(p);
+		app->font->DrawStringDecal(screenPoint, text, olc::RED, { 0.5f, 0.5f });
+	
 	}
-
-
-	for (int i = 1; i < 9; i++)
-	{
-		// Render the Gameobjects in correct order.
-		GameObject* go = drawOrder[i];
-		if (go)
-		{
-			TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
-			RendererableCmp* render = go->getComponent<RendererableCmp>("Renderable");
-
-			olc::Decal* decal = app->_getDecal(render->decalName);
-
-			app->tv.DrawDecal(olc::vf2d(transform->xpos, transform->ypos), decal);
-		}
-	}
-	*/
 }
 
 
@@ -1529,13 +1480,66 @@ void AppStateWorldMap::update(float)
 			olc::vf2d screenPoint = tv.WorldToScreen(p);
 			app->font->DrawStringDecal(screenPoint, selected_gameobject->getName(), olc::MAGENTA, { 0.75f, 0.75f });
 		}
+
+
+
+		if (selected_gameobject->hasComponent("City"))
+		{
+
+			auto c = selected_gameobject->getComponent<CityComponent>("City");
+			auto transform = selected_gameobject->getComponent<TransformComponent>("Transform");
+			auto render = selected_gameobject->getComponent<RenderableComponent>("Renderable");
+
+			std::map< ReligionID, float > religions = c->GetReligions();
+
+			std::string text;
+			for (auto r : religions)
+			{
+				text += r.first + " : " + std::to_string(r.second) +" \n";
+			}
+
+			olc::vf2d p = { transform->GetXPos() + render->GetWidth(), transform->GetYPos() + render->GetHeight()};
+			olc::vf2d screenPoint = app->tv.WorldToScreen(p);
+			app->font->DrawStringDecal(screenPoint, text, olc::RED, { 0.5f, 0.5f });
+		}
+
 	}
 	
 }
 
 void AppStateWorldMap::_drawUI()
 {
+	for (int i = 0; i < app->gameWorldMatrix.size(); i++)
+	{
+		for (int j = 0; j < app->gameWorldMatrix[i].size(); j++)
+		{
+			Pointer<MaptileComponent> m = app->gameWorldMatrix[i][j]->getComponent<MaptileComponent>("Maptile");
+			if (m->HasCity())
+			{
+				Pointer<GameObject2> c;
+				for (auto ptr : m->GetGameobjects())
+				{
+					if (ptr->hasComponent("City")) c = ptr; break;
+				}
 
+				auto city = c->getComponent<CityComponent>("City");
+				auto cityTransform = c->getComponent<TransformComponent>("Transform");
+
+				olc::Pixel color;
+				color.r = city->GetReligionColor().r;
+				color.g = city->GetReligionColor().g;
+				color.b = city->GetReligionColor().b;
+				color.a = 100;
+
+				float strength = city->GetReligions()[city->GetMajorReligion()];
+				float div = 4.0f;
+
+				olc::vf2d p = { cityTransform->GetXPos() - (strength / div) / 2.0f, cityTransform->GetYPos() - (strength / div) / 2.0f };
+
+				app->tv.DrawDecal(p, app->_getDecal("circle").get(), { strength / div, strength / div}, color);
+			}
+		}
+	}
 }
 
 
@@ -1554,8 +1558,12 @@ void AppStateWorldMap::onExit()
 }
 
 
-
 void UpdateForestSystem(GameworldMatrix& world)
 {
 	ForestSystem::get()->Update(world);
+}
+
+void UpdateReligionSystem(GameworldMatrix& world)
+{
+	ReligionSystem::get()->UpdateReligions(world);
 }

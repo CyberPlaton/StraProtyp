@@ -9,6 +9,18 @@
 #include "ColorConsole.h"
 
 
+struct ReligionColor
+{
+	ReligionColor() : a(0), r(0), g(0), b(0)
+	{
+	}
+	ReligionColor(int r, int g, int b, int a) : a(a), r(r), g(g), b(b)
+	{
+	}
+
+	int a, r, g, b;
+};
+
 
 struct BuildingSlot
 {
@@ -63,25 +75,27 @@ public:
 	void AddUnit(Pointer<GameObject2> u);
 	void AssignBuildingToSlot(Pointer<GameObject2> b, int s, const BuildingSlotType& t);
 	void AddRessource(const RessourceID& id, int amount);
+	void AddPressureValue(const ReligionID& id, float v) { m_ReligionPressureValues[id] += v; }
 
 	void SetName(const std::string& name);
 	void SetMaxStorage(int n);
 	void SetType(const std::string& type, const std::string& cityType, bool forest = false, bool hill = false, bool river = false, bool port = false);
 	void SetFortificationLevel(const CityFortificationLevel& level);
 	void SetPlayer(Pointer<GameObject2> p);
-
-
-
+	void SetMajorReligion(const ReligionID& id) { m_MajorReligion = id; }
+	void SetReligionColor(int r, int g, int b, int a) { m_ReligionColor.a = a; m_ReligionColor.r = r; m_ReligionColor.g = g; m_ReligionColor.b = b;}
+	
 	void IncreaseRessorce(const RessourceID& r, int a);
 	void DereaseRessorce(const RessourceID& r, int a);
 	bool HasRessourceAmount(const RessourceID& r, int a);
 
 
-
 	CityFortificationLevel GetFortificationLevel();
+	ReligionColor GetReligionColor() { return m_ReligionColor; }
 	CityType GetType();
 	std::string GetName();
 	ReligionID GetMajorReligion();
+	std::map< ReligionID, float >& GetReligionPressureValues() { return m_ReligionPressureValues; }
 	std::vector< Pointer<GameObject2> >& GetUnits();
 	std::vector< Pointer<GameObject2> >& GetBuildings();
 	std::map< ReligionID, float >& GetReligions();
@@ -91,6 +105,8 @@ public:
 
 
 private:
+
+	ReligionColor m_ReligionColor;
 
 	Pointer<GameObject2> m_Player;
 

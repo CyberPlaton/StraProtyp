@@ -40,12 +40,19 @@ private:
 	{
 	}
 
+	bool _isMaptileSuitableForForest(Pointer<GameObject2> maptile, int x, int y, GameworldMatrix& world);
+
+
+	// Return the base probability value to generate a Forest in given Biome.
 	float _getBaseProbability(const std::string& biome);
 
+	// Return the probability multiplier for n neighboring Normal/Deep forests
+	// for given biome.
 	float _getNeighborMultiplier(const std::string& biome, int n);
 
 
 	void _incrementForestLifetime(Pointer<ForestComponent> forest);
+
 
 	// Return number of Forest with given type directly
 	// around x and y coords.

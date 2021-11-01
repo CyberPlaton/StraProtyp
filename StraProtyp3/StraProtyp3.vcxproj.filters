@@ -207,6 +207,9 @@
     <ClInclude Include="JobSystem.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
+    <ClInclude Include="ReligionSystem.h">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -292,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="JobSystem.cpp">
       <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ReligionSystem.cpp">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
