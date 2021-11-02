@@ -16,6 +16,8 @@
 
 using RaceID = std::string;
 using TechID = std::string;
+using TechArea = std::string;
+using TechSubcategory = std::string;
 using RessourceID = std::string;
 using CityType = std::string;
 using BuildingSlotType = std::string;

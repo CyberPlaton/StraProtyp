@@ -1,11 +1,11 @@
 <Gameobject>
 	<Tag>Technology</Tag>
-	<Name>Economy Theory_Tech</Name>
+	<Name>Economy Theory I_Tech</Name>
 	<Components>
 		<Component name="Technology">
 			<Definition>
 				<!--The display name of the technology-->
-				<Name>Economy Theory</Name>
+				<Name>Economy Theory I</Name>
 
 				<!--The area of research to which this Tech belongs-->
 				<ResearchArea>civics</ResearchArea>

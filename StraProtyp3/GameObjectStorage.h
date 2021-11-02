@@ -126,6 +126,12 @@ public:
 		return true;
 	}
 
+
+	void AddPrefab(const std::string& prefabName, const std::string& filepath) override final
+	{
+		prefabStorage.emplace(prefabName, filepath);
+	}
+
 private:
 
 	GameobjectStorageVec<GameObject2> gameObjectStorage;

@@ -317,7 +317,19 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(const std::string& prefabNam
 			cmp = cmp->NextSiblingElement("Component");
 		}
 
-		gameObjectStorage.push_back(ptr);
+
+
+		if (!ptr)
+		{
+			cout << color(colors::RED);
+			cout << "Could not Instantiate Prefab \""<< prefabName << "\" {"<< prefabStorage[prefabName]  << "}" << white << endl;
+		}
+		else
+		{
+			gameObjectStorage.push_back(ptr);
+
+		}
+
 		doc.Clear();
 		return ptr;
 	}
@@ -363,18 +375,18 @@ void GameobjectStorage::del()
 
 	if (IGameobjectStorage::g_IGameobjectStorage)
 	{
-		for (auto& object : IGameobjectStorage::g_IGameobjectStorage->GetStorage())
+		while (IGameobjectStorage::g_IGameobjectStorage->GetStorage().size() > 0)
 		{
-			if (object.use_count() > 1)
+			if (IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0].use_count() > 1)
 			{
 				cout << color(colors::RED);
-				cout << "[GameobjectStorage::del] Gameobject \""<< object->getName() << "\" has more than one Uses! Current count: " << object.use_count() << white << endl;
+				cout << "[GameobjectStorage::del] Gameobject \"" << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0]->getName() << "\" has more than one Uses! Current count: " << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0].use_count() << white << endl;
 			}
 
-
-			// Free the Gameobjects memory
-			object.reset();
+			IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0].reset();
+			IGameobjectStorage::g_IGameobjectStorage->GetStorage().erase(IGameobjectStorage::g_IGameobjectStorage->GetStorage().begin());
 		}
+
 
 		// Clear the Storage vector and map.
 		IGameobjectStorage::g_IGameobjectStorage->GetStorage().clear();
@@ -473,6 +485,75 @@ bool GameobjectStorage::_addPlayerComponent(Pointer<PlayerComponent> cmp, Pointe
 
 bool GameobjectStorage::_addTechnologyComponent(Pointer<TechnologyComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
 {
+	using namespace tinyxml2;
+	using namespace std;
+
+	// Get definition.
+	XMLElement* definition = data->FirstChildElement("Definition");
+	cmp->SetTechID(definition->FirstChildElement("Name")->GetText());
+	cmp->SetTechArea(definition->FirstChildElement("ResearchArea")->GetText());
+	cmp->SetResearchPoints(definition->FirstChildElement("ResearchPoints")->IntText());
+	cmp->SetBaseWeight(definition->FirstChildElement("BaseWeight")->FloatText());
+	cmp->SetTechSubcategory(definition->FirstChildElement("SubCategory")->GetText());
+
+
+	// Get the requirements.
+	XMLElement* requirements = data->FirstChildElement("Requirements");
+	XMLElement* req = requirements->FirstChildElement("Req");
+	while (req)
+	{
+		Pointer<TechnologyComponent::Requirement> requirement = std::make_shared<TechnologyComponent::Requirement>();
+		Pointer<Any> value = std::make_shared<Any>();
+
+		std::string checkArea = req->Attribute("area");
+		std::string checkType = req->Attribute("type");
+
+
+		if (checkArea.compare("player_start_biome_check") == 0 ||
+			checkArea.compare("player_tech_check") == 0 ||
+			checkArea.compare("player_unit_check") == 0 ||
+			checkArea.compare("player_building_check") == 0 ||
+			checkArea.compare("player_fort_check") == 0 ||
+			checkArea.compare("player_race_check") == 0)
+		{
+			// CheckType is a boolean: True or False.
+			value->set<std::string>(req->GetText(), "string");
+		}
+		else if (checkArea.compare("player_pop_check") == 0 ||
+			checkArea.compare("player_city_check") == 0)
+		{
+			// CheckType is a comparison(String): Smaller, Greater or Equal a certain number.
+			value->set<int>(req->IntText(), "int");
+		}
+		else
+		{
+			cout << color(colors::RED);
+			cout << "[GameobjectStorage::_addTechnologyComponent] Unknown Checkarea \""<< checkArea << "\"\n" << white << endl;;
+		}
+
+		requirement->m_CheckArea = checkArea;
+		requirement->m_CheckType = checkType;
+		requirement->m_Value = value;
+
+
+		if (requirement)
+		{
+			// Store the requirement for the Technology.
+			cmp->AddRequirement(requirement);
+		}
+		else
+		{
+			cout << color(colors::RED);
+			cout << "[GameobjectStorage::_addTechnologyComponent] Could not create Requirement\n" << white << endl;;
+		}
+
+
+		req = req->NextSiblingElement("Req");
+	}
+
+
+	// Get the effects.
+
 	return true;
 }
 

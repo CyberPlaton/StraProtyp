@@ -6,10 +6,16 @@
 class Any
 {
 public:
+	Any() = default;
 	Any(std::any value, const std::string& type)
 	{
 		m_Value = value;
 		m_Type = type;
+	}
+	Any(const Any& other)
+	{
+		m_Value = other.m_Value;
+		m_Type = other.m_Type;
 	}
 
 	~Any()

@@ -24,6 +24,7 @@
 			<Requirements>
 				<Req area="player_tech_check" type="true">Armor Forging</Req>
 				<Req area="player_tech_check" type="true">Iron Working</Req>
+				<Req area="player_pop_check" type="greater">30</Req>
 			</Requirements>
 
 			<!--Effects are basic description text-->

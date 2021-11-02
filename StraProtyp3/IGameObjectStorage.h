@@ -25,6 +25,8 @@ public:
 	virtual bool DestroyGameobject(Pointer<GameObject2>) = 0;
 
 	virtual bool LoadPrefabs(const std::string&) = 0;
+	virtual void AddPrefab(const std::string&, const std::string&) = 0;
+
 
 	// With this static we can Access the deriving class Object "GameobjectStorage"
 	// which implements the functions above.

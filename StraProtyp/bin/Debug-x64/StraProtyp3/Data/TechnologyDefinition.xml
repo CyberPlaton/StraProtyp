@@ -29,7 +29,7 @@
 		<Tech name="Leather Working" path="LeatherWorking.xml"></Tech>
 		<Tech name="Magical Properties of Stones" path="MagicalPropertiesOfStones.xml"></Tech>
 		<Tech name="Magical Staffs" path="MagicalStaffs.xml"></Tech>
-		<Tech name="Malachite Smelting" path="MalachitSmelting.xml"></Tech>
+		<Tech name="Malachite Smelting" path="MalachiteSmelting.xml"></Tech>
 		<Tech name="Mana Stone Binding" path="ManaStoneBinding.xml"></Tech>
 		<Tech name="Masonry" path="Masonry.xml"></Tech>
 		<Tech name="Mysticism" path="Mysticism.xml"></Tech>
@@ -47,7 +47,7 @@
 		<Tech name="Tool Making" path="ToolMaking.xml"></Tech>
 		<Tech name="Trade" path="Trade.xml"></Tech>
 		<Tech name="Warfare Theory" path="WarfareTheory.xml"></Tech>
-		<Tech name="Warrior Code" path="WarrioCode.xml"></Tech>
+		<Tech name="Warrior Code" path="WarriorCode.xml"></Tech>
 		<Tech name="Weapon Forging" path="WeaponForging.xml"></Tech>
 		<Tech name="Wood Working" path="WoodWorking.xml"></Tech>
 		<Tech name="Writing" path="Writing.xml"></Tech>

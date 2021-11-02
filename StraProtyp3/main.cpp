@@ -57,6 +57,8 @@ int main()
 	GameWorldTime::del();
 	JobSystem::del();
 	ForestSystem::del();
+	TechnologySystem::del();
+	ReligionSystem::del();
 	GameobjectStorage::del();
 
 
@@ -169,7 +171,7 @@ bool App::OnUserCreate()
 	if (!_loadTechTreeDefinitions()) return false;
 	if (!_loadAppStateDefinitions()) return false;
 	if (!_initGameworldMatrix()) return false;
-
+	if (!TechnologySystem::get()->Initialize("Data/TechnologyDefinition.xml")) return false;
 
 
 

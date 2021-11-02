@@ -170,6 +170,9 @@ public:
 
 		delete font;
 		font = nullptr;
+
+
+		currentViewedCity.reset();
 	}
 
 public:
