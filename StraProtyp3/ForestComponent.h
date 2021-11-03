@@ -12,7 +12,7 @@ class ForestComponent : public Component2
 {
 	friend class GameobjectStorage;
 public:
-	ForestComponent(const ComponentID& name)
+	ForestComponent(ComponentID name)
 	{
 		initialize("Forest", name);
 	}
@@ -27,10 +27,10 @@ public:
 
 
 	ForestType GetForestType() { return m_ForestType; }
-	void SetForestType(const ForestType& t) { m_ForestType = t; }
+	void SetForestType(ForestType t) { m_ForestType = t; }
 
 	ForestBiome GetForestBiome() { return m_ForestBiome; }
-	void SetForestBiome(const ForestBiome& b) { m_ForestBiome = b; }
+	void SetForestBiome(ForestBiome b) { m_ForestBiome = b; }
 
 
 	void ResetLifetime() { m_Lifetime = 0; }

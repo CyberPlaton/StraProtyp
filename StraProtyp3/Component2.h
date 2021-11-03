@@ -19,7 +19,7 @@ public:
 		m_Hash = 0;
 	}
 
-	bool initialize(const ComponentType& type, const ComponentID& id) override
+	bool initialize(ComponentType type, ComponentID id) override
 	{
 		m_Type = type;
 		m_ID = id;
@@ -38,12 +38,12 @@ public:
 		return m_ID;
 	}
 
-	void setComponentType(const ComponentType& type) override final
+	void setComponentType(ComponentType type) override final
 	{
 		m_Type = type;
 	}
 
-	void setComponentID(const ComponentID& id) override final
+	void setComponentID(ComponentID id) override final
 	{
 		m_ID = id;
 	}

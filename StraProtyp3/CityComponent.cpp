@@ -31,9 +31,10 @@ CityComponent::~CityComponent()
 	m_CityName.clear();
 	m_CityType.clear();
 	m_CityFortificationLevel.clear();
+	m_ReligionColor.~ReligionColor();
 }
 
-void CityComponent::AddRessource(const RessourceID& id, int amount)
+void CityComponent::AddRessource(RessourceID id, int amount)
 {
 	m_Ressources[id] += amount;
 }
@@ -62,12 +63,12 @@ void CityComponent::AddBuldingSlot(Pointer<BuildingSlot> s)
 	m_BuildingSlots.push_back(s);
 }
 
-void CityComponent::AddReligion(const ReligionID& r, float v)
+void CityComponent::AddReligion(ReligionID r, float v)
 {
 	m_Religions.emplace(r, v);
 }
 
-void CityComponent::AddReligionPressure(const ReligionID& r, float v)
+void CityComponent::AddReligionPressure(ReligionID r, float v)
 {
 	m_ReligionPressureValues[r] = v;
 }
@@ -77,7 +78,7 @@ void CityComponent::AddUnit(Pointer<GameObject2> u)
 	m_Units.push_back(u);
 }
 
-void CityComponent::AssignBuildingToSlot(Pointer<GameObject2> b, int s, const BuildingSlotType& t)
+void CityComponent::AssignBuildingToSlot(Pointer<GameObject2> b, int s, BuildingSlotType t)
 {
 	auto pSlot = m_BuildingSlots[s - 1];
 
@@ -99,7 +100,7 @@ void CityComponent::AssignBuildingToSlot(Pointer<GameObject2> b, int s, const Bu
 
 
 
-void CityComponent::SetName(const std::string& name)
+void CityComponent::SetName(std::string name)
 {
 	m_CityName = name;
 }
@@ -109,7 +110,7 @@ void CityComponent::SetMaxStorage(int n)
 	m_MaxStorage = n;
 }
 
-void CityComponent::SetType(const std::string& type, const std::string& cityType, bool forest, bool hill, bool river, bool port)
+void CityComponent::SetType(std::string type, std::string cityType, bool forest, bool hill, bool river, bool port)
 {
 	using namespace std;
 
@@ -174,7 +175,7 @@ void CityComponent::SetType(const std::string& type, const std::string& cityType
 	m_CityType = cType;
 }
 
-void CityComponent::SetFortificationLevel(const CityFortificationLevel& level)
+void CityComponent::SetFortificationLevel(CityFortificationLevel level)
 {
 	m_CityFortificationLevel = level;
 }
@@ -190,17 +191,17 @@ void CityComponent::SetPlayer(Pointer<GameObject2> p)
 
 
 
-void CityComponent::IncreaseRessorce(const RessourceID& r, int a)
+void CityComponent::IncreaseRessorce(RessourceID r, int a)
 {
 	m_Ressources[r] += a;
 }
 
-void CityComponent::DereaseRessorce(const RessourceID& r, int a)
+void CityComponent::DereaseRessorce(RessourceID r, int a)
 {
 	m_Ressources[r] -= a;
 }
 
-bool CityComponent::HasRessourceAmount(const RessourceID& r, int a)
+bool CityComponent::HasRessourceAmount(RessourceID r, int a)
 {
 	return m_Ressources[r] >= a;
 }

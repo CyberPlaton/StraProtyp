@@ -34,7 +34,7 @@ bool GameobjectStorage::DestroyGameobject(Pointer<GameObject2> entity)
 }
 
 
-bool GameobjectStorage::DestroyGameobject(const std::string& tag)
+bool GameobjectStorage::DestroyGameobject(std::string tag)
 {
 	using namespace std;
 
@@ -51,7 +51,7 @@ bool GameobjectStorage::DestroyGameobject(const std::string& tag)
 	return false;
 }
 
-Pointer<GameObject2> GameobjectStorage::Instantiate(const std::string& prefabName, float xpos, float ypos)
+Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, float xpos, float ypos)
 {
 	using namespace std;
 	using namespace tinyxml2;
@@ -340,7 +340,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(const std::string& prefabNam
 
 
 
-Pointer<GameObject2> GameobjectStorage::GetReference(const std::string& gameobjectTag)
+Pointer<GameObject2> GameobjectStorage::GetReference(std::string gameobjectTag)
 {
 	// Return a weak reference to a shared pointer.
 	// Thus not increasing the reference count.

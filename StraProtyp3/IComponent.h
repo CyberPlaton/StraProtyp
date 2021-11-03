@@ -18,6 +18,7 @@
 */
 using ComponentID = std::string;
 
+
 /*
 * The ComponentType is more of a runtime  type information and describes what kind of class the component it,
 * thus we can know to what we can cast it. For now it is a string, but will be enumed or hashed...
@@ -33,13 +34,13 @@ public:
 	static size_t g_ComponentHash;
 
 public:
-	virtual bool initialize(const ComponentType&, const ComponentID&) = 0;
+	virtual bool initialize(ComponentType, ComponentID) = 0;
 
 	virtual ComponentType getComponentType() = 0;
 	virtual ComponentID getComponentID() = 0;
 
-	virtual void setComponentType(const ComponentType&) = 0;
-	virtual void setComponentID(const ComponentID&) = 0;
+	virtual void setComponentType(ComponentType) = 0;
+	virtual void setComponentID(ComponentID) = 0;
 
 	virtual size_t getComponentHashvalue() = 0;
 	virtual void setComponentHashvalue(size_t) = 0;

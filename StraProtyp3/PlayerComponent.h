@@ -11,7 +11,7 @@ class PlayerComponent : public Component2
 {
 	friend class GameobjectStorage;
 public:
-	PlayerComponent(const ComponentID& name)
+	PlayerComponent(ComponentID name)
 	{
 		initialize("Player", name);
 	}

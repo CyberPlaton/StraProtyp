@@ -11,7 +11,7 @@ class MaptileComponent : public Component2
 {
 	friend class GameobjectStorage;
 public:
-	MaptileComponent(const ComponentID& name)
+	MaptileComponent(ComponentID name)
 	{
 		initialize("Maptile", name);
 	}
@@ -34,14 +34,14 @@ public:
 	void destroy() override final;
 
 	void AddGameobject(Pointer<GameObject2> p);
-	void RemoveGameobject(const GOTag& t);
+	void RemoveGameobject(GOTag t);
 	void RemoveGameobject(Pointer<GameObject2> p);
 	void RemoveAllGameobjects();
 	std::vector< Pointer<GameObject2> >& GetGameobjects(){return m_Gameobjects;}
 
 
 	MaptileType GetMaptileType() { return m_MaptileType; }
-	void SetMaptileType(const MaptileType& t) { m_MaptileType = t; }
+	void SetMaptileType(MaptileType t) { m_MaptileType = t; }
 
 	bool HasRoad();
 	bool HasImprovement();
@@ -81,5 +81,5 @@ private:
 
 private:
 
-	bool _hasGameobjectWithComponent(const std::string& componentTag);
+	bool _hasGameobjectWithComponent(std::string componentTag);
 };

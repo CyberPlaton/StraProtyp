@@ -9,7 +9,7 @@ public:
 	static TechnologySystem* get();
 	static void del();
 
-	bool Initialize(const std::string& filepath);
+	bool Initialize(std::string filepath);
 
 private:
 	static TechnologySystem* g_TechnologySystem;

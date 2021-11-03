@@ -11,7 +11,7 @@ class RessourceComponent : public Component2
 {
 	friend class GameobjectStorage;
 public:
-	RessourceComponent(const ComponentID& name)
+	RessourceComponent(ComponentID name)
 	{
 		initialize("Ressource", name);
 	}

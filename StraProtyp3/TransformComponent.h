@@ -21,7 +21,7 @@ class TransformComponent : public Component2
 	friend class GameobjectStorage;
 
 public:
-	TransformComponent(const std::string& name)
+	TransformComponent(ComponentID name)
 	{
 		initialize("Transform", name);
 	}

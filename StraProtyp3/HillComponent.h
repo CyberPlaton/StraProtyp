@@ -11,7 +11,7 @@ class HillComponent : public Component2
 {
 	friend class GameobjectStorage;
 public:
-	HillComponent(const ComponentID& name)
+	HillComponent(ComponentID name)
 	{
 		initialize("Hill", name);
 	}

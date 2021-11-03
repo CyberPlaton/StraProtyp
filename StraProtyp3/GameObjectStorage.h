@@ -58,15 +58,15 @@ public:
 
 
 	bool DestroyGameobject(Pointer<GameObject2> entity) override;
-	bool DestroyGameobject(const std::string& tag) override;
+	bool DestroyGameobject(std::string tag) override;
 
 	// Construct a new Gameobject from preexisting prefab definition.
 	// Returns a shared pointer,
 	// where the instance itself is destructed on App shutdown.
-	Pointer<GameObject2> Instantiate(const std::string& prefabName, float xpos, float ypos) override;
+	Pointer<GameObject2> Instantiate(std::string prefabName, float xpos, float ypos) override;
 
 	// Try to get a reference to an existing Gameobject.
-	Pointer<GameObject2> GetReference(const std::string& gameobjectTag) override;
+	Pointer<GameObject2> GetReference(std::string gameobjectTag) override;
 
 	GameobjectStorageVec<GameObject2>& GetStorage() override
 	{
@@ -82,7 +82,7 @@ public:
 	// Try loading all prefabs defined in XML File.
 	// The XML File itself should only specify prefab name with another
 	// XML File path for loading it.
-	bool LoadPrefabs(const std::string& file) override final
+	bool LoadPrefabs(std::string file) override final
 	{
 		using namespace std;
 		using namespace tinyxml2;
@@ -122,12 +122,11 @@ public:
 			element = element->NextSiblingElement("Prefab");
 		}
 
-
 		return true;
 	}
 
 
-	void AddPrefab(const std::string& prefabName, const std::string& filepath) override final
+	void AddPrefab(std::string prefabName, std::string filepath) override final
 	{
 		prefabStorage.emplace(prefabName, filepath);
 	}
@@ -179,7 +178,7 @@ private:
 
 
 template < typename T >
-std::vector< Pointer< T > > GetAllComponentsOfType(const std::string& t)
+std::vector< Pointer< T > > GetAllComponentsOfType(std::string t)
 {
 	std::vector< Pointer< T > > vec;
 

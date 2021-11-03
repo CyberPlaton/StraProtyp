@@ -15,7 +15,7 @@ public:
 
 
 	void UpdateReligions(GameworldMatrix& world);
-	void CreateReligion(Pointer<GameObject2> city, const ReligionID& religion);
+	void CreateReligion(Pointer<GameObject2> city, ReligionID religion);
 
 
 private:

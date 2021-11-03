@@ -8,6 +8,7 @@
 template < class T >
 struct State
 {
+	virtual void shutDown() = 0;
 	virtual void update(float) = 0;
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
@@ -62,6 +63,19 @@ struct StateMachine
 	void storeStateDefinition(const std::string& name, State<T>* state)
 	{
 		states.emplace(name, state);
+	}
+
+
+	void shutDown()
+	{
+		for (auto s : states)
+		{
+			s.second->shutDown();
+		}
+
+		currentState.clear();
+		nextState.clear();
+		states.clear();
 	}
 
 private:

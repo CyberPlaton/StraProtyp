@@ -1,5 +1,6 @@
 #pragma once
 
+
 /*
 * OpenGL, GLFW
 */
@@ -125,11 +126,12 @@ public:
 
 	void shutDown()
 	{
-		for (auto n : decalIDMap)
+		while (m_DecalDatabase.size() > 0)
 		{
-			decalDatabase.findStoredData(n.second).reset();
+			m_DecalDatabase[0].reset();
+			m_DecalDatabase.erase(m_DecalDatabase.begin());
 		}
-
+		decalIDMap.clear();
 
 		while (sprites.size() > 0)
 		{
@@ -171,7 +173,7 @@ public:
 		delete font;
 		font = nullptr;
 
-
+		stateMachine.shutDown();
 		currentViewedCity.reset();
 	}
 
@@ -180,8 +182,7 @@ public:
 	bool OnUserCreate() override;
 	bool OnUserUpdate(float fElapsedTime) override;
 	void DrawUI(void);
-	//std::vector< TechInstance* > getNextTechToChoose();
-	StateMachine<Pointer<App>>& getStateMachine() { return stateMachine; }
+	StateMachine<App*>& getStateMachine() { return stateMachine; }
 	olc::TileTransformedView& getRenderer() { return tv; }
 	
 	Pointer<GameObject2> getCurrentViewedCity() { return currentViewedCity;}
@@ -198,10 +199,10 @@ private:
 	int camerax = 0;
 	int cameray = 0;
 
-	//std::map< std::string, olc::Decal* > decalDatabase;
+
 	std::vector< Pointer<olc::Sprite> > sprites;
 	std::vector< std::string > decalNamesInDatabase;
-	AVLTree2< Pointer<olc::Decal> > decalDatabase;
+	std::vector< Pointer< olc::Decal > > m_DecalDatabase;
 	std::map< std::string, size_t > decalIDMap;
 
 	std::string lastSelectedGameobjectTag = "none";
@@ -221,7 +222,7 @@ private:
 	Pointer<GameObject2> currentViewedCity = nullptr;
 
 	// The State machine associated with this App.
-	StateMachine<Pointer<App>> stateMachine;
+	StateMachine<App*> stateMachine;
 
 	// The Gameworld represented as a matrix.
 	// In here are stored maptile Gameobject according to their position in 
@@ -238,8 +239,8 @@ private:
 private:
 
 	// Helpers
-	void _storeDecal(const std::string& name, size_t id, Pointer<olc::Decal> decal, Pointer<olc::Sprite> sprite);
-	Pointer<olc::Decal> _getDecal(const std::string& name);
+	void _storeDecal(std::string name, size_t id, Pointer<olc::Decal> decal, Pointer<olc::Sprite> sprite);
+	Pointer<olc::Decal> _getDecal(std::string name);
 
 	//void _onImGui();
 	void _handleInput();
@@ -277,14 +278,18 @@ private:
 
 
 
-struct AppStateWorldMap : public State<Pointer<App>>
+struct AppStateWorldMap : public State<App*>
 {
-	AppStateWorldMap(Pointer<App> app): app(app){}
+	AppStateWorldMap(App* app): app(app){}
 	~AppStateWorldMap()
 	{
-		app.reset();
 	}
 
+	void shutDown() override final
+	{
+		app = nullptr;
+		delete this;
+	}
 
 	void update(float) override final;
 
@@ -292,14 +297,14 @@ struct AppStateWorldMap : public State<Pointer<App>>
 
 	void onExit() override final;
 
-	Pointer<App> getOwner() override final
+	App* getOwner() override final
 	{
 		return app;
 	}
 
 
 private:
-	Pointer<App> app = nullptr;
+	App* app = nullptr;
 
 	void _updateGameworldMatrix(GameworldMatrix& world);
 	void _renderMaptile(Pointer<GameObject2> tile);
@@ -309,12 +314,17 @@ private:
 
 
 
-struct AppStateCityView : public State<Pointer<App>>
+struct AppStateCityView : public State<App*>
 {
-	AppStateCityView(Pointer<App> app) : app(app) {}
+	AppStateCityView(App* app) : app(app) {}
 	~AppStateCityView()
 	{
-		app.reset();
+	}
+
+	void shutDown() override final
+	{
+		app = nullptr;
+		delete this;
 	}
 
 	void update(float) override final;
@@ -323,14 +333,14 @@ struct AppStateCityView : public State<Pointer<App>>
 
 	void onExit() override final;
 
-	Pointer<App> getOwner() override final
+	App* getOwner() override final
 	{
 		return app;
 	}
 
 
 private:
-	Pointer<App> app = nullptr;
+	App* app = nullptr;
 
 
 
@@ -362,12 +372,17 @@ private:
 
 
 
-struct AppStateMainMenu : public State<Pointer<App>>
+struct AppStateMainMenu : public State< App* >
 {
-	AppStateMainMenu(Pointer<App> app) : app(app) {}
+	AppStateMainMenu(App* app) : app(app) {}
 	~AppStateMainMenu()
 	{
-		app.reset();
+	}
+
+	void shutDown() override final
+	{
+		app = nullptr;
+		delete this;
 	}
 
 	void update(float) override final;
@@ -376,12 +391,12 @@ struct AppStateMainMenu : public State<Pointer<App>>
 
 	void onExit() override final;
 
-	Pointer<App> getOwner() override final
+	App* getOwner() override final
 	{
 		return app;
 	}
 
 
 private:
-	Pointer<App> app = nullptr;
+	App* app = nullptr;
 };

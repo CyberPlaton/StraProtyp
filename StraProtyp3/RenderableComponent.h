@@ -11,7 +11,7 @@ class RenderableComponent : public Component2
 {
 	friend class GameobjectStorage;
 public:
-	RenderableComponent(const std::string& name)
+	RenderableComponent(ComponentID name)
 	{
 		initialize("Renderable", name);
 	}

@@ -3,7 +3,7 @@
 ReligionSystem* ReligionSystem::g_ReligionSystem = nullptr;
 
 
-void ReligionSystem::CreateReligion(Pointer<GameObject2> city, const ReligionID& religion)
+void ReligionSystem::CreateReligion(Pointer<GameObject2> city, ReligionID religion)
 {
 	Pointer<CityComponent> c = city->getComponent<CityComponent>("City");
 

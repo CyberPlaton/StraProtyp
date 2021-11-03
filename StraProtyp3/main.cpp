@@ -61,7 +61,6 @@ int main()
 	ReligionSystem::del();
 	GameobjectStorage::del();
 
-
 	ImNodes::SaveCurrentEditorStateToIniFile("tech_tree_graph.ini");
 	ImGui::DestroyContext();
 	ImNodes::DestroyContext();
@@ -231,85 +230,126 @@ bool App::OnUserCreate()
 	ptr->setName("Durotar");
 	ReligionSystem::get()->CreateReligion(ptr, "Horde");
 	ptr->getComponent<CityComponent>("City")->SetReligionColor(255, 0, 0, 255);
+	ptr.reset();
 
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 8, 3);
 	ptr->setName("Orgrimmar");
 	ReligionSystem::get()->CreateReligion(ptr, "New Horde");
 	ptr->getComponent<CityComponent>("City")->SetReligionColor(0, 0, 255, 255);
+	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 5, 18);
 	ptr->setName("Valenwood");
 	ReligionSystem::get()->CreateReligion(ptr, "Dark Elf");
 	ptr->getComponent<CityComponent>("City")->SetReligionColor(0, 255, 0, 255);
+	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 25, 16);
 	ptr->setName("Mournhold");
 	ReligionSystem::get()->CreateReligion(ptr, "Dark Elf");
 	ptr->getComponent<CityComponent>("City")->SetReligionColor(0, 255, 0, 255);
+	ptr.reset();
 
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 5, 1);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
+
 
 	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 7, 1);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
+
 
 	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 6, 3);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
+
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Tundra_Deep", 2, 4);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 3, 8);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 5, 9);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 4, 10);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 19, 14);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 21, 14);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 20, 15);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 3, 18);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 1, 18);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 2, 19);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Snow", 4, 0);
+	ptr.reset();
+
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Sand", 5, 8);
+	ptr.reset();
+
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Savannah", 4, 9);
+	ptr.reset();
+
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Temperate", 18, 8);
+	ptr.reset();
+
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Tundra", 0, 4);
+	ptr.reset();
+
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Jungle", 9, 17);
+	ptr.reset();
 
 	ptr = GameobjectStorage::get()->Instantiate("River", 0, 1);
+	ptr.reset();
+
 	ptr = GameobjectStorage::get()->Instantiate("River", 1, 1);
+	ptr.reset();
+
 	ptr = GameobjectStorage::get()->Instantiate("River", 2, 1);
+	ptr.reset();
+
 	ptr = GameobjectStorage::get()->Instantiate("River", 3, 1);
+	ptr.reset();
+
 	ptr = GameobjectStorage::get()->Instantiate("River", 4, 1);
+	ptr.reset();
+
 
 	NavMesh::get()->Bake();
 
@@ -789,34 +829,30 @@ bool App::_loadTechTreeDefinitions()
 }
 */
 
-/*
-void App::_storeDecal(const std::string& name, olc::Decal* decal)
-{
-	int hash = hasher(name);
-	decalDatabase.insert(hash, decal);
-	decalNamesInDatabase.push_back(name);
-}
 
 
-olc::Decal* App::_getDecal(const std::string& name)
-{
-	int hash = hasher(name);
-	return decalDatabase.findStoredData(hash);
-}
-*/
-
-void App::_storeDecal(const std::string& name, size_t id, Pointer<olc::Decal> decal, Pointer<olc::Sprite> sprite)
+void App::_storeDecal(std::string name, size_t id, Pointer<olc::Decal> decal, Pointer<olc::Sprite> sprite)
 {
 	sprites.push_back(sprite);
 	decalIDMap[name] = id;
-	decalDatabase.insert(id, decal);
+
+	if (m_DecalDatabase.size() < id)
+	{
+		m_DecalDatabase.resize(id);
+	}
+
+	m_DecalDatabase[id - 1] = decal;
+
+	name.~basic_string();
+	id = 0;
 }
 
 
-Pointer<olc::Decal> App::_getDecal(const std::string& name)
+Pointer<olc::Decal> App::_getDecal(std::string name)
 {
-	size_t id = decalIDMap[name];
-	return decalDatabase.findStoredData(id);
+	size_t id = decalIDMap[name];	
+	name.~basic_string();
+	return m_DecalDatabase[id - 1];
 }
 
 
@@ -850,6 +886,9 @@ bool App::_loadDecalDatabase()
 	XMLElement* decals = root->FirstChildElement("Decals");
 	while (decals)
 	{
+		pSprite.reset();
+		pDecal.reset();
+
 		std::string default_path = decals->Attribute("path");
 
 		XMLElement* decal = decals->FirstChildElement("Decal");
@@ -894,11 +933,9 @@ bool App::_loadDecalDatabase()
 
 bool App::_loadAppStateDefinitions()
 {
-	auto ptr = std::shared_ptr<App>(this);
-
-	stateMachine.storeStateDefinition("worldMap", new AppStateWorldMap(ptr));
-	stateMachine.storeStateDefinition("cityView", new AppStateCityView(ptr));
-	stateMachine.storeStateDefinition("mainMenu", new AppStateMainMenu(ptr));
+	stateMachine.storeStateDefinition("worldMap", new AppStateWorldMap(this));
+	stateMachine.storeStateDefinition("cityView", new AppStateCityView(this));
+	stateMachine.storeStateDefinition("mainMenu", new AppStateMainMenu(this));
 
 	// Set initial state.
 	stateMachine.setInitialState("worldMap");
@@ -915,6 +952,7 @@ void AppStateMainMenu::update(float)
 	cout << "[AppStateMainMenu] update" << white << endl;
 }
 
+
 void AppStateMainMenu::onEnter() 
 {
 	using namespace std;
@@ -928,6 +966,7 @@ void AppStateMainMenu::onExit()
 	cout << color(colors::MAGENTA);
 	cout << "[AppStateMainMenu] onExit" << white << endl;
 }
+
 
 void AppStateCityView::update(float)
 {

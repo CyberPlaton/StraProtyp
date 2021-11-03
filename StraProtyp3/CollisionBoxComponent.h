@@ -18,7 +18,7 @@ class CollisionBoxComponent : public Component2
 	friend class GameobjectStorage;
 
 public:
-	CollisionBoxComponent(const std::string& name)
+	CollisionBoxComponent(ComponentID name)
 	{
 		initialize("CollisionBox", name);
 	}

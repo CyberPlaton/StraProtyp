@@ -10,17 +10,17 @@ class UnitComponent : public Component2
 {
 	friend class GameobjectStorage;
 public:
-	UnitComponent(const ComponentID& name)
+	UnitComponent(ComponentID name)
 	{
 		initialize("Unit", name);
 	}
 	~UnitComponent();
 
-	void AddTechRequirement(const TechID& techID);
-	void AddRaceRequirement(const RaceID& raceID);
+	void AddTechRequirement(TechID techID);
+	void AddRaceRequirement(RaceID raceID);
 	void AddRessourceRequirement(Tuple< std::string, int > reqTuple);
-	void SetName(const std::string& name);
-	void SetProfession(const UnitProfession& p);
+	void SetName(std::string name);
+	void SetProfession(UnitProfession p);
 	void SetIsInCity(bool val);
 
 

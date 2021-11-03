@@ -24,7 +24,7 @@ public:
 	static void del();
 
 
-	bool Initialize(const std::string& filepath);
+	bool Initialize(std::string filepath);
 	void Update(GameworldMatrix& world);
 	bool ReloadDefinition();
 
@@ -44,11 +44,11 @@ private:
 
 
 	// Return the base probability value to generate a Forest in given Biome.
-	float _getBaseProbability(const std::string& biome);
+	float _getBaseProbability(std::string biome);
 
 	// Return the probability multiplier for n neighboring Normal/Deep forests
 	// for given biome.
-	float _getNeighborMultiplier(const std::string& biome, int n);
+	float _getNeighborMultiplier(std::string biome, int n);
 
 
 	void _incrementForestLifetime(Pointer<ForestComponent> forest);
@@ -77,7 +77,7 @@ private:
 
 	// Change the Type of the forest.
 	// Resetting the Lifetime, setting max lifetime and decal accordingly.
-	void _changeForestType(Pointer<GameObject2> entity, const ForestType& t);
+	void _changeForestType(Pointer<GameObject2> entity, ForestType t);
 
 
 	// Return the Forest Gameobject on given Maptile.
@@ -90,6 +90,6 @@ private:
 
 
 	// Setting max Lifetime of a forest according to its type and biome.
-	void _setForestMaxLifetime(Pointer<ForestComponent> forest, const ForestType& t, const ForestBiome& b);
+	void _setForestMaxLifetime(Pointer<ForestComponent> forest, ForestType t, ForestBiome b);
 
 };

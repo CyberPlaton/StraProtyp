@@ -540,7 +540,7 @@ void ForestSystem::_checkForRandomForestGeneration(int x, int y, GameworldMatrix
 
 
 
-float ForestSystem::_getBaseProbability(const std::string& biome)
+float ForestSystem::_getBaseProbability(std::string biome)
 {
 	for (auto p : m_ForestTypeDefinitions)
 	{
@@ -554,7 +554,7 @@ float ForestSystem::_getBaseProbability(const std::string& biome)
 }
 
 
-float ForestSystem::_getNeighborMultiplier(const std::string& biome, int n)
+float ForestSystem::_getNeighborMultiplier(std::string biome, int n)
 {
 	float neighboringMultiplier = 0.0f;
 	for (auto p : m_ForestTypeDefinitions)
@@ -637,7 +637,7 @@ bool ForestSystem::_checkForForestGeneration(int x, int y, GameworldMatrix& worl
 }
 
 
-void ForestSystem::_changeForestType(Pointer<GameObject2> entity, const ForestType& t)
+void ForestSystem::_changeForestType(Pointer<GameObject2> entity, ForestType t)
 {
 	auto forest = entity->getComponent<ForestComponent>("Forest");
 	auto render = entity->getComponent<RenderableComponent>("Renderable");
@@ -695,7 +695,7 @@ void ForestSystem::_changeForestType(Pointer<GameObject2> entity, const ForestTy
 }
 
 
-void ForestSystem::_setForestMaxLifetime(Pointer<ForestComponent> forest, const ForestType& t, const ForestBiome& b)
+void ForestSystem::_setForestMaxLifetime(Pointer<ForestComponent> forest, ForestType t, ForestBiome b)
 {
 	using namespace std;
 
@@ -746,7 +746,7 @@ void ForestSystem::del()
 
 
 
-bool ForestSystem::Initialize(const std::string& filepath)
+bool ForestSystem::Initialize(std::string filepath)
 {
 	using namespace tinyxml2;
 

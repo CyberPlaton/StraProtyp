@@ -12,7 +12,7 @@ class MountainComponent : public Component2
 	friend class GameobjectStorage;
 
 public:
-	MountainComponent(const ComponentID& name)
+	MountainComponent(ComponentID name)
 	{
 		initialize("Mountain", name);
 	}

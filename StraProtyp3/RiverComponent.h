@@ -12,7 +12,7 @@ class RiverComponent : public Component2
 	friend class GameobjectStorage;
 
 public:
-	RiverComponent(const ComponentID& name)
+	RiverComponent(ComponentID name)
 	{
 		initialize("River", name);
 	}

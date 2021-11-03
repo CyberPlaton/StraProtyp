@@ -21,19 +21,19 @@ BuildingComponent::~BuildingComponent()
 	m_ProductionCommenced = 0;
 }
 
-void BuildingComponent::AddTechRequirement(const TechID& id)
+void BuildingComponent::AddTechRequirement(TechID id)
 {
-	m_TechRequirements.push_back(id);
+	m_TechRequirements.push_back(std::move(id));
 }
 
 
-void BuildingComponent::AddRaceRequirement(const RaceID& id)
+void BuildingComponent::AddRaceRequirement(RaceID id)
 {
-	m_RaceRequirements.push_back(id);
+	m_RaceRequirements.push_back(std::move(id));
 }
 
 
-void BuildingComponent::AddRessourceRequirement(const RessourceID& id, int a)
+void BuildingComponent::AddRessourceRequirement(RessourceID id, int a)
 {
 	Tuple<std::string, int > req;
 	req.x = id;
@@ -42,7 +42,7 @@ void BuildingComponent::AddRessourceRequirement(const RessourceID& id, int a)
 }
 
 
-bool BuildingComponent::CanProduceRessource(const RessourceID& id)
+bool BuildingComponent::CanProduceRessource(RessourceID id)
 {
 	for (auto& p : m_ProductionRessources)
 	{
@@ -74,7 +74,7 @@ bool BuildingComponent::CanProduceRessource(const RessourceID& id)
 }
 
 
-void BuildingComponent::AddProductionTuple(const RessourceID& id, int prAmount, int prTime, const RessourceID& ressourceNeed, int ressourceNeedAmount)
+void BuildingComponent::AddProductionTuple(RessourceID id, int prAmount, int prTime, RessourceID ressourceNeed, int ressourceNeedAmount)
 {
 	// Store production.
 	m_ProductionRessources[id].x = ressourceNeed;
@@ -88,20 +88,20 @@ void BuildingComponent::AddProductionTuple(const RessourceID& id, int prAmount, 
 }
 
 
-void BuildingComponent::AddRequiredProfession(const UnitProfession& id)
+void BuildingComponent::AddRequiredProfession(UnitProfession id)
 {
 	m_RequiredProfessions.push_back(id);
 }
 
 
 
-void BuildingComponent::SetName(const std::string& name)
+void BuildingComponent::SetName(std::string name)
 {
 	m_Name = name;
 }
 
 
-void BuildingComponent::SetSlotType(const BuildingSlotType& t)
+void BuildingComponent::SetSlotType(BuildingSlotType t)
 {
 	m_BuildingSlotType = t;
 }
@@ -113,7 +113,7 @@ void BuildingComponent::SetCity(Pointer<GameObject2> c)
 }
 
 
-bool BuildingComponent::SetBuildingSlot(Pointer<GameObject2> building, int slotNumber, const BuildingSlotType& t)
+bool BuildingComponent::SetBuildingSlot(Pointer<GameObject2> building, int slotNumber, BuildingSlotType t)
 {
 	if (building)
 	{
@@ -133,7 +133,7 @@ bool BuildingComponent::SetBuildingSlot(Pointer<GameObject2> building, int slotN
 }
 
 
-void BuildingComponent::SetProductionRessource(const RessourceID& id)
+void BuildingComponent::SetProductionRessource(RessourceID id)
 {
 	for (auto& it : m_ProductionRessources)
 	{

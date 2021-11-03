@@ -17,15 +17,15 @@ class IGameobjectStorage
 {
 public:
 
-	virtual Pointer<GameObject2> Instantiate(const std::string&, float, float) = 0;
-	virtual Pointer<GameObject2> GetReference(const std::string&) = 0;
+	virtual Pointer<GameObject2> Instantiate(std::string, float, float) = 0;
+	virtual Pointer<GameObject2> GetReference(std::string) = 0;
 	virtual GameobjectStorageVec<GameObject2>& GetStorage() = 0;
 	virtual PrefabStorageMap& GetPrefabStorage() = 0;
-	virtual bool DestroyGameobject(const std::string&) = 0;
+	virtual bool DestroyGameobject(std::string) = 0;
 	virtual bool DestroyGameobject(Pointer<GameObject2>) = 0;
 
-	virtual bool LoadPrefabs(const std::string&) = 0;
-	virtual void AddPrefab(const std::string&, const std::string&) = 0;
+	virtual bool LoadPrefabs(std::string) = 0;
+	virtual void AddPrefab(std::string, std::string) = 0;
 
 
 	// With this static we can Access the deriving class Object "GameobjectStorage"

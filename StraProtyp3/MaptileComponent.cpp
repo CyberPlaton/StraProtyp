@@ -34,7 +34,7 @@ void MaptileComponent::destroy()
 }
 
 
-void MaptileComponent::RemoveGameobject(const GOTag& t)
+void MaptileComponent::RemoveGameobject(GOTag t)
 {
 	for (int i = 0; i < m_Gameobjects.size(); i++)
 	{
@@ -82,7 +82,7 @@ void MaptileComponent::RemoveAllGameobjects()
 }
 
 
-bool MaptileComponent::_hasGameobjectWithComponent(const std::string& componentTag)
+bool MaptileComponent::_hasGameobjectWithComponent(std::string componentTag)
 {
 	for (int i = 0; i< m_Gameobjects.size(); i++)
 	{

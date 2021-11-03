@@ -25,7 +25,7 @@ class GameObject2 : public IGameObject
 {
 public:
 	GameObject2() = default;
-	GameObject2(const GOTag& tag, const GOName& name) : m_Name(name), m_Tag(tag) 
+	GameObject2(GOTag tag, GOName name) : m_Name(name), m_Tag(tag) 
 	{
 		m_Hash = ++IGameObject::g_GameObjectCount;
 	};
@@ -56,7 +56,7 @@ public:
 	}
 
 
-	void setTag(const std::string& tag) override final
+	void setTag(std::string tag) override final
 	{
 		m_Tag = tag;
 	}
@@ -66,7 +66,7 @@ public:
 		return m_Tag;
 	}
 
-	void setName(const std::string& name) override final
+	void setName(std::string name) override final
 	{
 		m_Name = name;
 	}
@@ -121,7 +121,7 @@ public:
 
 
 	template < typename T >
-	Pointer<T> getComponent(const std::string& id)
+	Pointer<T> getComponent(std::string id)
 	{
 		for (int i = 0; i < components.size(); i++)
 		{
@@ -134,7 +134,7 @@ public:
 	}
 
 
-	Pointer<IComponent> getComponent(const std::string& id) override final
+	Pointer<IComponent> getComponent(std::string id) override final
 	{
 		for (int i = 0; i < components.size(); i++)
 		{
@@ -151,7 +151,7 @@ public:
 	}
 
 
-	bool hasComponent(const std::string& tag) override final
+	bool hasComponent(std::string tag) override final
 	{
 		for (auto& c : components)
 		{

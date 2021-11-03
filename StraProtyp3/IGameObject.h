@@ -26,10 +26,10 @@ public:
 	static size_t g_GameObjectCount;
 public:
 
-	virtual void setTag(const std::string&) = 0;
+	virtual void setTag(std::string) = 0;
 	virtual std::string getTag() = 0;
 
-	virtual void setName(const std::string&) = 0;
+	virtual void setName(std::string) = 0;
 	virtual std::string getName() = 0;
 
 	
@@ -38,8 +38,8 @@ public:
 
 	virtual void addComponent(Pointer<IComponent>) = 0;
 	virtual void removeComponent(Pointer<IComponent>) = 0;
-	virtual Pointer<IComponent> getComponent(const std::string&) = 0;
+	virtual Pointer<IComponent> getComponent(std::string) = 0;
 	virtual ComponentStorageVec<IComponent>& getComponents() = 0;
 
-	virtual bool hasComponent(const std::string&) = 0;
+	virtual bool hasComponent(std::string) = 0;
 };

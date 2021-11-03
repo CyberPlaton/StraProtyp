@@ -3,7 +3,7 @@
 TechnologySystem* TechnologySystem::g_TechnologySystem = nullptr;
 
 
-bool TechnologySystem::Initialize(const std::string& filepath)
+bool TechnologySystem::Initialize(std::string filepath)
 {
 	using namespace tinyxml2;
 	using namespace std;

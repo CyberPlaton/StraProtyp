@@ -18,7 +18,7 @@ class TechnologyComponent : public Component2
 	struct Requirement
 	{
 		Requirement() = default;
-		Requirement(Pointer<Any> value, const std::string& checkArea, const std::string& checkType)
+		Requirement(Pointer<Any> value, std::string checkArea, std::string checkType)
 			: m_CheckArea(checkArea), m_CheckType(checkType)
 		{
 			m_Value = value;
@@ -42,12 +42,25 @@ class TechnologyComponent : public Component2
 
 
 public:
-	TechnologyComponent(const ComponentID& name)
+	TechnologyComponent(ComponentID name)
 	{
 		initialize("Technology", name);
 	}
 	~TechnologyComponent()
 	{
+		m_TechArea.clear();
+		m_TechName.clear();
+		m_TechSubcategory.clear();
+		m_BaseWeight = 0;
+		m_ResearchPoints = 0;
+
+		while (m_Requirements.size() > 0)
+		{
+			m_Requirements[0].reset();
+			m_Requirements.erase(m_Requirements.begin());
+		}
+
+		m_Requirements.clear();
 	}
 
 
@@ -58,9 +71,9 @@ public:
 	int GetResearchPoints();
 
 
-	void SetTechID(const TechID& v) { m_TechName = v; }
-	void SetTechArea(const TechArea& v) { m_TechArea = v; }
-	void SetTechSubcategory(const TechSubcategory& v) { m_TechSubcategory = v; }
+	void SetTechID(TechID v) { m_TechName = v; }
+	void SetTechArea(TechArea v) { m_TechArea = v; }
+	void SetTechSubcategory(TechSubcategory v) { m_TechSubcategory = v; }
 	void SetBaseWeight(float v) { m_BaseWeight = v; }
 	void SetResearchPoints(int v){m_ResearchPoints = v;}
 	void AddRequirement(Pointer<Requirement> r) { m_Requirements.push_back(r); }

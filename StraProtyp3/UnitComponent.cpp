@@ -10,13 +10,13 @@ UnitComponent::~UnitComponent()
 	m_IsInCity = 0;
 }
 
-void UnitComponent::AddTechRequirement(const TechID& techID)
+void UnitComponent::AddTechRequirement(TechID techID)
 {
 	m_TechRequirements.push_back(techID);
 }
 
 
-void UnitComponent::AddRaceRequirement(const RaceID& raceID)
+void UnitComponent::AddRaceRequirement(RaceID raceID)
 {
 	m_RaceRequirements.push_back(raceID);
 }
@@ -26,12 +26,12 @@ void UnitComponent::AddRessourceRequirement(Tuple< std::string, int > reqTuple)
 	m_RessourceRequirements.push_back(reqTuple);
 }
 
-void UnitComponent::SetName(const std::string& name)
+void UnitComponent::SetName(std::string name)
 {
 	m_UnitName = name;
 }
 
-void UnitComponent::SetProfession(const UnitProfession& p)
+void UnitComponent::SetProfession(UnitProfession p)
 {
 	m_Profession = p;
 }

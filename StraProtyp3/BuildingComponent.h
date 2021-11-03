@@ -14,29 +14,29 @@ class BuildingComponent : public Component2
 	friend class GameobjectStorage;
 
 public:
-	BuildingComponent(const ComponentID& name)
+	BuildingComponent(ComponentID name)
 	{
 		initialize("Building", name);
 	}
 	~BuildingComponent();
 
 
-	void AddTechRequirement(const TechID& id);
-	void AddRaceRequirement(const RaceID& id);
-	void AddRessourceRequirement(const RessourceID& id, int a);
-	void AddProductionTuple(const RessourceID& id, int prAmount, int prTime, const RessourceID& ressourceNeed, int ressourceNeedAmount);
-	void AddRequiredProfession(const UnitProfession& id);
+	void AddTechRequirement(TechID id);
+	void AddRaceRequirement(RaceID id);
+	void AddRessourceRequirement(RessourceID id, int a);
+	void AddProductionTuple(RessourceID id, int prAmount, int prTime, RessourceID ressourceNeed, int ressourceNeedAmount);
+	void AddRequiredProfession(UnitProfession id);
 
 
-	void SetName(const std::string& name);
-	void SetSlotType(const BuildingSlotType& t);
+	void SetName(std::string name);
+	void SetSlotType(BuildingSlotType t);
 	void SetCity(Pointer<GameObject2> c);
-	bool SetBuildingSlot(Pointer<GameObject2> building, int slotNumber, const BuildingSlotType& t);
-	void SetProductionRessource(const RessourceID& id);
+	bool SetBuildingSlot(Pointer<GameObject2> building, int slotNumber, BuildingSlotType t);
+	void SetProductionRessource(RessourceID id);
 
 
 	bool ProduceRessource();
-	bool CanProduceRessource(const RessourceID& id);
+	bool CanProduceRessource(RessourceID id);
 
 
 	BuildingSlotType GetBuildingSlotType();

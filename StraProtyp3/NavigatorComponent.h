@@ -18,7 +18,7 @@ class NavigatorComponent : public Component2
 	friend class GameobjectStorage;
 
 public:
-	NavigatorComponent(const std::string& name)
+	NavigatorComponent(ComponentID name)
 	{
 		initialize("Navigator", name);
 	}
