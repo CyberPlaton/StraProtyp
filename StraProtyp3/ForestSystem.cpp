@@ -526,7 +526,10 @@ void ForestSystem::_checkForRandomForestGeneration(int x, int y, GameworldMatrix
 
 	// Account for rivers.
 	// ...
-
+	if (maptile->HasRiver())
+	{
+		baseProb += _getRiverProbabilityMultiplier(biome);
+	}
 
 
 	if (Random::InRange(0.0f, 100.0f) <= baseProb)
@@ -550,6 +553,20 @@ float ForestSystem::_getBaseProbability(std::string biome)
 		}
 	}
 	
+	return 0.0f;
+}
+
+
+float ForestSystem::_getRiverProbabilityMultiplier(std::string biome)
+{
+	for (auto p : m_ForestTypeDefinitions)
+	{
+		if (p->m_Biome.compare(biome) == 0)
+		{
+			return p->m_RiverIncrease;
+		}
+	}
+
 	return 0.0f;
 }
 

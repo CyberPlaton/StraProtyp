@@ -39,13 +39,16 @@ public:
 	{
 		using namespace std;
 
+		cout << color(colors::DARKCYAN);
+		cout << "\t[GameObject2::~GameObject2] Destroying Gameobject" << white << endl;
+
 		// Delete Components.
 		for (int i = 0; i < components.size(); i++)
 		{
 			if (components[i].use_count() > 1)
 			{
-				cout << color(colors::RED);
-				cout << "[GameObject2::~GameObject2] Component \""<< components[i]->getComponentID() << "\" has more than one Uses! Current count: " << components[i].use_count() << white << endl;
+				cout << color(colors::DARKRED);
+				cout << "\t\tComponent \""<< components[i]->getComponentID() << "\" has more than one Uses! Current count: " << components[i].use_count() << white << endl;
 			}
 
 			components[i]->destroy();

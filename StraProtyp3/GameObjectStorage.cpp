@@ -4,16 +4,19 @@ bool GameobjectStorage::DestroyGameobject(Pointer<GameObject2> entity)
 {
 	using namespace std;
 
+	cout << color(colors::DARKYELLOW);
+	cout << "[GameobjectStorage::DestroyGameobject] Destroy Entity \""<< entity->getName() <<"\"{"<< entity->getTag() << "} " << white << endl;
+
 	// Delete Gameobject.
 	if (entity.use_count() > 1)
 	{
-		cout << color(colors::RED);
-		cout << "Gameobject \"" << entity->getName() << "\" has " << entity.use_count() << " \"Pointers\" in use..." << white << endl;
+		cout << color(colors::DARKRED);
+		cout << "\tGameobject \"" << entity->getName() << "\" has " << entity.use_count() << " \"Pointers\" in use" << white << endl;
 	}
 	else
 	{
-		cout << color(colors::GREEN);
-		cout << "Gameobject \"" << entity->getName() << "\" fully deleted" << white << endl;
+		cout << color(colors::DARKGREEN);
+		cout << "\tGameobject \"" << entity->getName() << "\" has not \"Pointers\" in use" << white << endl;
 	}
 
 	// Remove entry from storage
@@ -21,12 +24,22 @@ bool GameobjectStorage::DestroyGameobject(Pointer<GameObject2> entity)
 	{
 		if (entity->getTag().compare(gameObjectStorage[index]->getTag()) == 0)
 		{
+			// Erase to be destroyed Gameobject from Storage.
 			gameObjectStorage.erase(gameObjectStorage.begin() + index);
 			break;
 		}
+		else if (gameObjectStorage[index] == nullptr)
+		{
+			cout << color(colors::RED);
+			cout << "\t\tErasing Invalid Gameobject from Storage!" << white << endl;
+
+			// While searching erase any invalid Gameobjects on our path.
+			gameObjectStorage.erase(gameObjectStorage.begin() + index);
+			continue;
+		}
 	}
 
-	entity->~GameObject2(); // Destroy Components and their data
+	//entity->~GameObject2(); // Destroy Components and their data
 	entity.reset(); // Destroy Gameobject Pointer self
 
 
@@ -50,6 +63,7 @@ bool GameobjectStorage::DestroyGameobject(std::string tag)
 
 	return false;
 }
+
 
 Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, float xpos, float ypos)
 {
@@ -383,7 +397,8 @@ void GameobjectStorage::del()
 				cout << "[GameobjectStorage::del] Gameobject \"" << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0]->getName() << "\" has more than one Uses! Current count: " << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0].use_count() << white << endl;
 			}
 
-			IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0].reset();
+
+			IGameobjectStorage::g_IGameobjectStorage->DestroyGameobject(IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0]);
 			IGameobjectStorage::g_IGameobjectStorage->GetStorage().erase(IGameobjectStorage::g_IGameobjectStorage->GetStorage().begin());
 		}
 

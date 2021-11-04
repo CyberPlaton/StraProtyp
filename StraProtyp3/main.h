@@ -107,6 +107,7 @@ struct AppStateCityView;
 using GameworldMatrix = std::vector< std::vector< Pointer<GameObject2> >>;
 
 
+void UpdateGameSystems(GameworldMatrix& world);
 void UpdateForestSystem(GameworldMatrix& world);
 void UpdateReligionSystem(GameworldMatrix& world);
 

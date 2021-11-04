@@ -1,28 +1,27 @@
 <Gameobject>
 	<Tag>Technology</Tag>
-	<Name>Mysticism_Tech</Name>
+	<Name>Political Theory I_Tech</Name>
 	<Components>
 		<Component name="Technology">
 			<Definition>
 				<!--The display name of the technology-->
-				<Name>Mysticism</Name>
+				<Name>Political Theory I</Name>
 
 				<!--The area of research to which this Tech belongs-->
-				<ResearchArea>magick</ResearchArea>
+				<ResearchArea>civics</ResearchArea>
 
 				<!--How many points must be invested to finish research of this Tech-->
-				<ResearchPoints>45</ResearchPoints>
-
+				<ResearchPoints>100</ResearchPoints>
 
 				<!--The base weight for the probability to be picked to be researched-->
-				<BaseWeight>1.0</BaseWeight>
+				<BaseWeight>0.5</BaseWeight>
 
 				<!--A subcategory. Will be define as string and usage dependent on game-->
-				<SubCategory>Magick Theory</SubCategory>
-
+				<SubCategory>Political Theory</SubCategory>
 
 			</Definition>
 			<Requirements>
+				<Req area="player_tech_check" type="true">Philosophy</Req>
 			</Requirements>
 
 			<!--Effects are basic description text-->

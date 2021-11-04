@@ -41,15 +41,21 @@ void MaptileComponent::RemoveGameobject(GOTag t)
 		auto ptr = m_Gameobjects[i];
 		if (ptr)
 		{
+
 			if (ptr->getTag().compare(t) == 0)
 			{
+				// Erase the Gameobject from this Maptile Storage.
 				m_Gameobjects[i].reset();
 				m_Gameobjects.erase(m_Gameobjects.begin() + i);
+
+				// Ask for deletion from Program.
+				IGameobjectStorage::g_IGameobjectStorage->DestroyGameobject(ptr);
 				return;
 			}
 			else if (ptr->getTag().compare("") == 0)
 			{
 				// Remove invalid or deleted Gameobjects.
+				IGameobjectStorage::g_IGameobjectStorage->DestroyGameobject(ptr);
 				m_Gameobjects[i].reset();
 				m_Gameobjects.erase(m_Gameobjects.begin() + i);
 				continue;

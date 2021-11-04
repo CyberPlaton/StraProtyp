@@ -34,7 +34,7 @@
 		<NeighborProbabilityIncrease>0.20</NeighborProbabilityIncrease>
 	
 		<!--How much a River on the maptile increases the base probability-->
-		<RiverProbabilityIncrease>0.3</RiverProbabilityIncrease>
+		<RiverProbabilityIncrease>0.24</RiverProbabilityIncrease>
 	
 	</Temperate>
 	
@@ -54,7 +54,7 @@
 		<NeighborProbabilityIncrease>0.095</NeighborProbabilityIncrease>
 	
 		<!--How much a River on the maptile increases the base probability-->
-		<RiverProbabilityIncrease>0.03</RiverProbabilityIncrease>
+		<RiverProbabilityIncrease>0.1</RiverProbabilityIncrease>
 	
 	</Tundra>
 		
@@ -74,7 +74,7 @@
 		<NeighborProbabilityIncrease>0.18</NeighborProbabilityIncrease>
 	
 		<!--How much a River on the maptile increases the base probability-->
-		<RiverProbabilityIncrease>1.0</RiverProbabilityIncrease>
+		<RiverProbabilityIncrease>0.5</RiverProbabilityIncrease>
 	
 	</Savannah>
 

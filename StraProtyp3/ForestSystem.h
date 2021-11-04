@@ -43,6 +43,8 @@ private:
 	bool _isMaptileSuitableForForest(Pointer<GameObject2> maptile, int x, int y, GameworldMatrix& world);
 
 
+	float _getRiverProbabilityMultiplier(std::string biome);
+
 	// Return the base probability value to generate a Forest in given Biome.
 	float _getBaseProbability(std::string biome);
 

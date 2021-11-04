@@ -1,6 +1,6 @@
 <Gameobject>
 	<Tag>Tavern</Tag>
-	<Name>Tavern</Name>
+	<Name>Tavern_Building</Name>
 	<Components>
 		<Component name="Renderable">
 			<Width>1.0</Width>
@@ -11,8 +11,6 @@
 		</Component>
 
 		<Component name="Transform"></Component>
-
-		<Component name="Navigator"></Component>
 
 		<Component name ="Animator"></Component>
 		

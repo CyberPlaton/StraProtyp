@@ -99,14 +99,11 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 
 	// Update all Maptile Components.
-	for (auto ptr : GameobjectStorage::get()->GetStorage())
+	for (auto& m : GetAllComponentsOfType<MaptileComponent>("Maptile"))
 	{
-		if (ptr->hasComponent("Maptile"))
-		{
-			Pointer<MaptileComponent> m = ptr->getComponent<MaptileComponent>("Maptile");
-			m->update();
-		}
+		m->update();
 	}
+
 
 	stateMachine.update(fElapsedTime);
 
@@ -284,7 +281,9 @@ bool App::OnUserCreate()
 
 	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 4, 10);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
-	ptr.reset();
+
+	ptr = GameobjectStorage::get()->Instantiate("Temperate_Deep", 5, 11);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Savannah_Deep", 19, 14);
@@ -344,21 +343,72 @@ bool App::OnUserCreate()
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Jungle", 9, 17);
 	ptr.reset();
 
+
+
 	ptr = GameobjectStorage::get()->Instantiate("River", 0, 1);
-	ptr.reset();
-
 	ptr = GameobjectStorage::get()->Instantiate("River", 1, 1);
-	ptr.reset();
-
 	ptr = GameobjectStorage::get()->Instantiate("River", 2, 1);
-	ptr.reset();
-
 	ptr = GameobjectStorage::get()->Instantiate("River", 3, 1);
-	ptr.reset();
-
 	ptr = GameobjectStorage::get()->Instantiate("River", 4, 1);
-	ptr.reset();
 
+
+	ptr = GameobjectStorage::get()->Instantiate("River", 0, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 1, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 2, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 3, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 4, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 5, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 6, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 7, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 8, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 9, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 10, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 11, 7);
+	ptr = GameobjectStorage::get()->Instantiate("River", 12, 7);
+
+	ptr = GameobjectStorage::get()->Instantiate("River", 0, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 1, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 2, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 3, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 4, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 5, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 6, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 7, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 8, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 9, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 10, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 11, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 12, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 13, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 14, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 15, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 16, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 17, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 18, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 19, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 20, 11);
+	ptr = GameobjectStorage::get()->Instantiate("River", 21, 11);
+
+	ptr = GameobjectStorage::get()->Instantiate("River", 0, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 1, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 2, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 3, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 4, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 5, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 6, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 7, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 8, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 9, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 10, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 11, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 12, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 13, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 14, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 15, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 16, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 17, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 18, 15);
+	ptr = GameobjectStorage::get()->Instantiate("River", 19, 15);
 
 	NavMesh::get()->Bake();
 
@@ -647,8 +697,7 @@ void App::_handleInput()
 	{
 		if (GetKey(olc::SPACE).bPressed)
 		{
-			JobSystem::get()->getVgjsJobSystem()->schedule(std::bind(UpdateForestSystem, gameWorldMatrix));
-			JobSystem::get()->getVgjsJobSystem()->schedule(std::bind(UpdateReligionSystem, gameWorldMatrix));
+			UpdateGameSystems(gameWorldMatrix);
 		}
 
 
@@ -657,6 +706,11 @@ void App::_handleInput()
 			ForestSystem::get()->ReloadDefinition();
 		}
 
+
+		if (GetKey(olc::R).bPressed)
+		{
+			render_city_religions = render_city_religions == true ? false : true;
+		}
 	}
 	
 
@@ -1063,8 +1117,8 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 {
 	// Rendering Order:
 	// 1 - maptile itself.
-	// 2 - hill, mountain or forest
-	// 3 - river
+	// 2 - river
+	// 3 - hill, mountain or forest
 	// 4 - ressource
 	// 5 - improvement
 	// 6 - road
@@ -1097,13 +1151,13 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 
 			if (render->IsRendering())
 			{
-				if (render->GetRenderingLayer().compare("forest") == 0) // And Mountain, Hill
+				if (render->GetRenderingLayer().compare("forest") == 0) // And Mountain, Hill.
 				{
-					drawOrder[2] = go;
+					drawOrder[3] = go;
 				}
 				else if (render->GetRenderingLayer().compare("river") == 0)
 				{
-					drawOrder[3] = go;
+					drawOrder[2] = go;
 				}
 				else if (render->GetRenderingLayer().compare("ressource") == 0)
 				{
@@ -1148,11 +1202,11 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 
 	// Render some text about a Forest.
 	// Will crash if we select a Mountain or Hill...
-	if (drawOrder[2] && drawOrder[2]->hasComponent("Forest"))
+	if (drawOrder[3] && drawOrder[3]->hasComponent("Forest"))
 	{
-		auto forest = drawOrder[2]->getComponent<ForestComponent>("Forest");
-		auto transform = drawOrder[2]->getComponent<TransformComponent>("Transform");
-		auto render = drawOrder[2]->getComponent<RenderableComponent>("Renderable");
+		auto forest = drawOrder[3]->getComponent<ForestComponent>("Forest");
+		auto transform = drawOrder[3]->getComponent<TransformComponent>("Transform");
+		auto render = drawOrder[3]->getComponent<RenderableComponent>("Renderable");
 
 		std::string type, biome;
 		int life, maxLife;
@@ -1430,34 +1484,38 @@ void AppStateWorldMap::update(float)
 
 void AppStateWorldMap::_drawUI()
 {
-	for (int i = 0; i < app->gameWorldMatrix.size(); i++)
+
+	if (render_city_religions)
 	{
-		for (int j = 0; j < app->gameWorldMatrix[i].size(); j++)
+		for (int i = 0; i < app->gameWorldMatrix.size(); i++)
 		{
-			Pointer<MaptileComponent> m = app->gameWorldMatrix[i][j]->getComponent<MaptileComponent>("Maptile");
-			if (m->HasCity())
+			for (int j = 0; j < app->gameWorldMatrix[i].size(); j++)
 			{
-				Pointer<GameObject2> c;
-				for (auto ptr : m->GetGameobjects())
+				Pointer<MaptileComponent> m = app->gameWorldMatrix[i][j]->getComponent<MaptileComponent>("Maptile");
+				if (m->HasCity())
 				{
-					if (ptr->hasComponent("City")) c = ptr; break;
+					Pointer<GameObject2> c;
+					for (auto ptr : m->GetGameobjects())
+					{
+						if (ptr->hasComponent("City")) c = ptr; break;
+					}
+
+					auto city = c->getComponent<CityComponent>("City");
+					auto cityTransform = c->getComponent<TransformComponent>("Transform");
+
+					olc::Pixel color;
+					color.r = ReligionSystem::get()->GetReligionColor(city->GetMajorReligion()).r;
+					color.g = ReligionSystem::get()->GetReligionColor(city->GetMajorReligion()).g;
+					color.b = ReligionSystem::get()->GetReligionColor(city->GetMajorReligion()).b;
+					color.a = 100;
+
+					float strength = city->GetReligions()[city->GetMajorReligion()];
+					float div = 4.0f;
+
+					olc::vf2d p = { cityTransform->GetXPos() - (strength / div) / 2.0f, cityTransform->GetYPos() - (strength / div) / 2.0f };
+
+					app->tv.DrawDecal(p, app->_getDecal("circle").get(), { strength / div, strength / div }, color);
 				}
-
-				auto city = c->getComponent<CityComponent>("City");
-				auto cityTransform = c->getComponent<TransformComponent>("Transform");
-
-				olc::Pixel color;
-				color.r = ReligionSystem::get()->GetReligionColor(city->GetMajorReligion()).r;
-				color.g = ReligionSystem::get()->GetReligionColor(city->GetMajorReligion()).g;
-				color.b = ReligionSystem::get()->GetReligionColor(city->GetMajorReligion()).b;
-				color.a = 100;
-
-				float strength = city->GetReligions()[city->GetMajorReligion()];
-				float div = 4.0f;
-
-				olc::vf2d p = { cityTransform->GetXPos() - (strength / div) / 2.0f, cityTransform->GetYPos() - (strength / div) / 2.0f };
-
-				app->tv.DrawDecal(p, app->_getDecal("circle").get(), { strength / div, strength / div}, color);
 			}
 		}
 	}
@@ -1478,6 +1536,11 @@ void AppStateWorldMap::onExit()
 	cout << "[AppStateWorldMap] onExit" << white << endl;
 }
 
+void UpdateGameSystems(GameworldMatrix& world)
+{
+	UpdateForestSystem(world);
+	UpdateReligionSystem(world);
+}
 
 void UpdateForestSystem(GameworldMatrix& world)
 {

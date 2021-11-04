@@ -1,0 +1,65 @@
+<TechnologyDefintion>
+	<!--General Technologies available for all races-->
+	<General path="Data/Tech/">
+		<Tech name="Adamantium Smelting" path="AdamantiumSmelting.xml"></Tech>
+		<Tech name="Advanced Armor Forging" path="AdvancedArmorForging.xml"></Tech>
+		<Tech name="Advanced Clothing" path="AdvancedClothing.xml"></Tech>
+		<Tech name="Adanced Weapon Forging" path="AdvancedWeaponForging.xml"></Tech>
+		<Tech name="Alchemy" path="Alchemy.xml"></Tech>
+		<Tech name="Alcohol Making" path="AlcoholMaking.xml"></Tech>
+		<Tech name="Animal Husbandry" path="AnimalHusbandry.xml"></Tech>
+		<Tech name="Animal Taiming" path="AnimalTaiming.xml"></Tech>
+		<Tech name="Armor Forging" path="ArmorForging.xml"></Tech>
+		<Tech name="Barber" path="Barber.xml"></Tech>
+		<Tech name="Bowmaking" path="Bowmaking.xml"></Tech>
+		<Tech name="Brick Burning" path="BrickBurning.xml"></Tech>
+		<Tech name="Bronze Working" path="BronzeWorking.xml"></Tech>
+		<Tech name="Clay Working" path="ClayWorking.xml"></Tech>
+		<Tech name="Crop Rotation" path="CropRotation.xml"></Tech>
+		<Tech name="Economy Theory I" path="EconomyTheoryI.xml"></Tech>
+		<Tech name="Economy Theory II" path="EconomyTheoryII.xml"></Tech>
+		<Tech name="Economy Theory III" path="EconomyTheoryIII.xml"></Tech>
+		<Tech name="Elder Circle" path="ElderCircle.xml"></Tech>
+		<Tech name="Expert Bowmaking" path="ExpertBowmaking.xml"></Tech>
+		<Tech name="Honor" path="Honor.xml"></Tech>
+		<Tech name="Horse Riding" path="HorseRiding.xml"></Tech>
+		<Tech name="Hunting" path="Hunting.xml"></Tech>
+		<Tech name="Iron Working" path="IronWorking.xml"></Tech>
+		<Tech name="Irrigation" path="Irrigation.xml"></Tech>
+		<Tech name="Leather Working" path="LeatherWorking.xml"></Tech>
+		<Tech name="Magical Properties of Stones" path="MagicalPropertiesOfStones.xml"></Tech>
+		<Tech name="Magical Staffs" path="MagicalStaffs.xml"></Tech>
+		<Tech name="Malachite Smelting" path="MalachiteSmelting.xml"></Tech>
+		<Tech name="Mana Stone Binding" path="ManaStoneBinding.xml"></Tech>
+		<Tech name="Masonry" path="Masonry.xml"></Tech>
+		<Tech name="Mysticism" path="Mysticism.xml"></Tech>
+		<Tech name="Philosophy" path="Philosophy.xml"></Tech>
+		<Tech name="Plant Cultivation" path="PlantCultivation.xml"></Tech>
+		<Tech name="Plant Knowledge" path="PlantKnowledge.xml"></Tech>
+		<Tech name="Political Theory I" path="PoliticalTheoryI.xml"></Tech>
+		<Tech name="Political Theory II" path="PoliticalTheoryII.xml"></Tech>
+		<Tech name="Pottery Making" path="PotteryMaking.xml"></Tech>
+		<Tech name="Scissors" path="Scissors.xml"></Tech>
+		<Tech name="Skuma Distillation" path="SkumaDistillation.xml"></Tech>
+		<Tech name="Steel Making" path="SteelMaking.xml"></Tech>
+		<Tech name="Stone Working" path="StoneWorking.xml"></Tech>
+		<Tech name="Tactics" path="Tactics.xml"></Tech>
+		<Tech name="Tool Making" path="ToolMaking.xml"></Tech>
+		<Tech name="Trade" path="Trade.xml"></Tech>
+		<Tech name="Warfare Theory" path="WarfareTheory.xml"></Tech>
+		<Tech name="Warrior Code" path="WarriorCode.xml"></Tech>
+		<Tech name="Weapon Forging" path="WeaponForging.xml"></Tech>
+		<Tech name="Wood Working" path="WoodWorking.xml"></Tech>
+		<Tech name="Writing" path="Writing.xml"></Tech>
+	</General>
+
+	<!--Race specific Technologies available only for given race-->
+	<Human></Human>
+	<Dwarf></Dwarf>
+	<DarkElf></DarkElf>
+	<HighElf></HighElf>
+	<Goblin></Goblin>
+	<Gnome></Gnome>
+	<Troll></Troll>
+	<Orc></Orc>
+</TechnologyDefintion>
