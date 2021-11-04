@@ -9,20 +9,6 @@
 #include "ColorConsole.h"
 
 
-struct ReligionColor
-{
-	ReligionColor() : a(0), r(0), g(0), b(0)
-	{
-	}
-	ReligionColor(int r, int g, int b, int a) : a(a), r(r), g(g), b(b)
-	{
-	}
-	~ReligionColor() = default;
-
-	int a, r, g, b;
-};
-
-
 struct BuildingSlot
 {
 	BuildingSlot(float x, float y, int n, BuildingSlotType t)
@@ -84,7 +70,6 @@ public:
 	void SetFortificationLevel(CityFortificationLevel level);
 	void SetPlayer(Pointer<GameObject2> p);
 	void SetMajorReligion(ReligionID id) { m_MajorReligion = id; }
-	void SetReligionColor(int r, int g, int b, int a) { m_ReligionColor.a = a; m_ReligionColor.r = r; m_ReligionColor.g = g; m_ReligionColor.b = b;}
 	
 	void IncreaseRessorce(RessourceID r, int a);
 	void DereaseRessorce(RessourceID r, int a);
@@ -92,7 +77,6 @@ public:
 
 
 	CityFortificationLevel GetFortificationLevel();
-	ReligionColor GetReligionColor() { return m_ReligionColor; }
 	CityType GetType();
 	std::string GetName();
 	ReligionID GetMajorReligion();
@@ -106,8 +90,6 @@ public:
 
 
 private:
-
-	ReligionColor m_ReligionColor;
 
 	Pointer<GameObject2> m_Player;
 

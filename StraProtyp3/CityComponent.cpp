@@ -31,7 +31,6 @@ CityComponent::~CityComponent()
 	m_CityName.clear();
 	m_CityType.clear();
 	m_CityFortificationLevel.clear();
-	m_ReligionColor.~ReligionColor();
 }
 
 void CityComponent::AddRessource(RessourceID id, int amount)

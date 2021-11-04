@@ -229,27 +229,26 @@ bool App::OnUserCreate()
 	auto ptr = GameobjectStorage::get()->Instantiate("City_Plain", 3, 2);
 	ptr->setName("Durotar");
 	ReligionSystem::get()->CreateReligion(ptr, "Horde");
-	ptr->getComponent<CityComponent>("City")->SetReligionColor(255, 0, 0, 255);
+	ReligionSystem::get()->SetReligionColor("Horde", 255, 0, 50, 255);
 	ptr.reset();
 
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 8, 3);
 	ptr->setName("Orgrimmar");
-	ReligionSystem::get()->CreateReligion(ptr, "New Horde");
-	ptr->getComponent<CityComponent>("City")->SetReligionColor(0, 0, 255, 255);
+	ReligionSystem::get()->CreateReligion(ptr, "Lich King");
+	ReligionSystem::get()->SetReligionColor("Lich King", 255, 150, 0, 255);
 	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 5, 18);
 	ptr->setName("Valenwood");
-	ReligionSystem::get()->CreateReligion(ptr, "Dark Elf");
-	ptr->getComponent<CityComponent>("City")->SetReligionColor(0, 255, 0, 255);
+	ReligionSystem::get()->CreateReligion(ptr, "Forest Pact");
+	ReligionSystem::get()->SetReligionColor("Forest Pact", 0, 200, 0, 255);
 	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 25, 16);
 	ptr->setName("Mournhold");
-	ReligionSystem::get()->CreateReligion(ptr, "Dark Elf");
-	ptr->getComponent<CityComponent>("City")->SetReligionColor(0, 255, 0, 255);
+	ReligionSystem::get()->CreateReligion(ptr, "Forest Pact");
 	ptr.reset();
 
 
@@ -313,6 +312,16 @@ bool App::OnUserCreate()
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 2, 19);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
+
+
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 4, 17);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
+
+
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 5, 16);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 	ptr.reset();
 
@@ -704,131 +713,6 @@ bool App::_loadTechTreeDefinitions()
 	return true;
 }
 
-/*
-bool App::_loadTechTreeDefinitions()
-{
-	std::string default_path = "Data/Tech/";
-
-	TechInstance* tech = new TechInstance(default_path + "Hunting.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "AdvancedArmorForging.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "AdvancedWeaponForging.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "ArmorForging.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "WeaponForging.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "Bowmaking.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "ExpertBowmaking.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "Honor.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "Tactics.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "WarfareTheory.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "WarriorCode.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "AdvancedClothing.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "Alchemy.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "AnimalHusbandry.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "AnimalTaiming.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "ClayWorking.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "CropRotation.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "Irrigation.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "LeatherWorking.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "MagicalPropertiesOfStones.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "MagicalStaffs.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "ManaStoneBounding.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "Masonry.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "IronWorking.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "BronzeWorking.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "Mysticism.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "PlantCultivation.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "PlantKnowledge.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "PotteryMaking.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "StoneWorking.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "ToolMaking.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "WoodWorking.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "AdamantiumSmelting.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "MalachiteSmelting.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "AlcoholMaking.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "SkumaDistillation.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "HorseRiding.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "SteelMaking.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "BrickBurning.xml");
-	techTree.push_back(tech);
-
-	tech = new TechInstance(default_path + "Barber.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "EconomyTheory.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "EconomyTheoryII.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "EconomyTheoryIII.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "ElderCircle.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "Philosophy.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "PoliticalTheory.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "PoliticalTheoryII.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "Scissors.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "Writing.xml");
-	techTree.push_back(tech);
-	tech = new TechInstance(default_path + "Trade.xml");
-	techTree.push_back(tech);
-
-
-	return true;
-}
-*/
-
 
 
 void App::_storeDecal(std::string name, size_t id, Pointer<olc::Decal> decal, Pointer<olc::Sprite> sprite)
@@ -842,16 +726,12 @@ void App::_storeDecal(std::string name, size_t id, Pointer<olc::Decal> decal, Po
 	}
 
 	m_DecalDatabase[id - 1] = decal;
-
-	name.~basic_string();
-	id = 0;
 }
 
 
 Pointer<olc::Decal> App::_getDecal(std::string name)
 {
 	size_t id = decalIDMap[name];	
-	name.~basic_string();
 	return m_DecalDatabase[id - 1];
 }
 
@@ -1567,9 +1447,9 @@ void AppStateWorldMap::_drawUI()
 				auto cityTransform = c->getComponent<TransformComponent>("Transform");
 
 				olc::Pixel color;
-				color.r = city->GetReligionColor().r;
-				color.g = city->GetReligionColor().g;
-				color.b = city->GetReligionColor().b;
+				color.r = ReligionSystem::get()->GetReligionColor(city->GetMajorReligion()).r;
+				color.g = ReligionSystem::get()->GetReligionColor(city->GetMajorReligion()).g;
+				color.b = ReligionSystem::get()->GetReligionColor(city->GetMajorReligion()).b;
 				color.a = 100;
 
 				float strength = city->GetReligions()[city->GetMajorReligion()];
