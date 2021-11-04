@@ -135,9 +135,6 @@
     <ClInclude Include="IGameObject.h">
       <Filter>Source Files\Base\ECS\Storage</Filter>
     </ClInclude>
-    <ClInclude Include="TestingComponent.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject2.h">
       <Filter>Source Files\Base\ECS\Storage</Filter>
     </ClInclude>
@@ -146,9 +143,6 @@
     </ClInclude>
     <ClInclude Include="Component2.h">
       <Filter>Source Files\Base\ECS\Storage</Filter>
-    </ClInclude>
-    <ClInclude Include="SecondTestingComponent.h">
-      <Filter>Source Files\Base\ECS\Components</Filter>
     </ClInclude>
     <ClInclude Include="UnitComponent.h">
       <Filter>Source Files\Base\ECS\Components</Filter>
@@ -215,6 +209,12 @@
     </ClInclude>
     <ClInclude Include="TechnologyComponent.h">
       <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="NationComponent.h">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="NationSystem.h">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +309,15 @@
       <Filter>Source Files\Base\ECS\Systems</Filter>
     </ClCompile>
     <ClCompile Include="TechnologyComponent.cpp">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="NationComponent.cpp">
+      <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="NationSystem.cpp">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
       <Filter>Source Files\Base\ECS\Components</Filter>
     </ClCompile>
   </ItemGroup>

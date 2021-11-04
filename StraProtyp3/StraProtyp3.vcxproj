@@ -127,6 +127,8 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="MaptileComponent.h" />
     <ClInclude Include="MountainComponent.h" />
+    <ClInclude Include="NationComponent.h" />
+    <ClInclude Include="NationSystem.h" />
     <ClInclude Include="NavigatorComponent.h" />
     <ClInclude Include="NavMesh.h" />
     <ClInclude Include="olcPGEX_CustomFont.h" />
@@ -141,11 +143,9 @@
     <ClInclude Include="RenderableComponent.h" />
     <ClInclude Include="RessourceComponent.h" />
     <ClInclude Include="RiverComponent.h" />
-    <ClInclude Include="SecondTestingComponent.h" />
     <ClInclude Include="TechInstance.h" />
     <ClInclude Include="TechnologyComponent.h" />
     <ClInclude Include="TechnologySystem.h" />
-    <ClInclude Include="TestingComponent.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="UnitComponent.h" />
@@ -172,8 +172,11 @@
     <ClCompile Include="JobSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MaptileComponent.cpp" />
+    <ClCompile Include="NationComponent.cpp" />
+    <ClCompile Include="NationSystem.cpp" />
     <ClCompile Include="NavigatorComponent.cpp" />
     <ClCompile Include="NavMesh.cpp" />
+    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlayerInstance.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RandomNameGenerator.cpp" />

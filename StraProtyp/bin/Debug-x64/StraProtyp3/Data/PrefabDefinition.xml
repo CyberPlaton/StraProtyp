@@ -44,4 +44,8 @@
 
 	<Prefab name="River" path="Data/River.xml"></Prefab>
 
+
+
+	<Prefab name="DefaultNation" path="Data/DefaultNation.xml"></Prefab>
+
 </PrefabDefinition>

@@ -13,7 +13,8 @@
 #define DEFAULT_RELIGION_SPREAD_DISTANCE 15.0
 
 
-
+using NationID = std::string;
+using NationCharacteristic = std::string;
 using RaceID = std::string;
 using TechID = std::string;
 using TechArea = std::string;

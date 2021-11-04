@@ -307,6 +307,16 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 				_addTechnologyComponent(tech, ptr, cmp);
 				tech.reset();
 			}
+			else if (componentType.compare("Nation") == 0)
+			{
+				cout << color(colors::DARKGREEN);
+				std::cout << "\tAdding Nation" << white << endl;
+
+				auto nation = std::make_shared<NationComponent>(name + "Nation");
+				ptr->addComponent(nation);
+				_addNationComponent(nation, ptr, cmp);
+				nation.reset();
+			}
 			else
 			{
 				std::cout << color(colors::RED);
@@ -412,6 +422,11 @@ void GameobjectStorage::del()
 	}
 }
 
+
+bool GameobjectStorage::_addNationComponent(Pointer<NationComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
+{
+	return true;
+}
 
 
 bool GameobjectStorage::_addUnitComponent(Pointer<UnitComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos)

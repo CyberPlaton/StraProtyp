@@ -98,6 +98,7 @@ struct ImNodesNode
 #include "ForestSystem.h"
 #include "ReligionSystem.h"
 #include "TechnologySystem.h"
+#include "NationSystem.h"
 
 
 struct AppStateWorldMap;
@@ -243,11 +244,9 @@ private:
 	void _storeDecal(std::string name, size_t id, Pointer<olc::Decal> decal, Pointer<olc::Sprite> sprite);
 	Pointer<olc::Decal> _getDecal(std::string name);
 
-	//void _onImGui();
 	void _handleInput();
 	void _updateVisibleRect();
 	bool _loadDecalDatabase();
-	bool _loadTechTreeDefinitions();
 	bool _loadAppStateDefinitions();
 	bool _initGameworldMatrix();
 

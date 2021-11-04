@@ -31,17 +31,14 @@
 #include "HillComponent.h"
 #include "RessourceComponent.h"
 #include "TechnologyComponent.h"
-
-#include "TestingComponent.h"
-#include "SecondTestingComponent.h"
-
-
+#include "NationComponent.h"
 #include "NavigatorComponent.h"
-#include "NavMesh.h"
 #include "TransformComponent.h"
 #include "RenderableComponent.h"
 #include "CollisionBoxComponent.h"
 #include "AnimatorComponent.h"
+
+#include "NavMesh.h"
 
 
 // For loading the Prefabs from XML File.
@@ -156,6 +153,7 @@ private:
 	bool _addBuildingComponent(Pointer<BuildingComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addAnimatorComponent(Pointer<AnimatorComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addTechnologyComponent(Pointer<TechnologyComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
+	bool _addNationComponent(Pointer<NationComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 
 	Pointer<GameObject2> _getMaptileAtPosition(int x, int y)
 	{

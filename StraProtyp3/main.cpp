@@ -164,10 +164,10 @@ bool App::OnUserCreate()
 
 	// Load Assets and Definitions etc.
 	if (!_loadDecalDatabase()) return false;
-	if (!_loadTechTreeDefinitions()) return false;
 	if (!_loadAppStateDefinitions()) return false;
 	if (!_initGameworldMatrix()) return false;
 	if (!TechnologySystem::get()->Initialize("Data/TechnologyDefinition.xml")) return false;
+	if (!NationSystem::get()->Initialize("Data/NationSystem.xml")) return false;
 
 
 
@@ -221,6 +221,8 @@ bool App::OnUserCreate()
 			m->RemoveGameobject(e);
 		}
 	}
+
+
 
 	
 	auto ptr = GameobjectStorage::get()->Instantiate("City_Plain", 3, 2);
@@ -411,7 +413,6 @@ bool App::OnUserCreate()
 	ptr = GameobjectStorage::get()->Instantiate("River", 19, 15);
 
 	NavMesh::get()->Bake();
-
 
 	return true;
 }
@@ -759,12 +760,6 @@ void App::_handleInput()
 		}
 	}
 	*/
-}
-
-
-bool App::_loadTechTreeDefinitions()
-{
-	return true;
 }
 
 

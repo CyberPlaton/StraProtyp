@@ -6,6 +6,9 @@
 #include "Common.h" // Include Common Definitions and Datastructs.
 
 
+#include "UnitComponent.h"
+
+
 class GameobjectStorage;
 class PlayerComponent : public Component2
 {
@@ -19,4 +22,13 @@ public:
 	{
 	}
 
+	bool Initialize(std::string filepath);
+	bool CreateUnit(std::string unitName, float xpos, float ypos);
+
+
+
+private:
+
+	Pointer<GameObject2> m_ControlledNation;
+	std::vector< Pointer< GameObject2 > > m_Units;
 };
