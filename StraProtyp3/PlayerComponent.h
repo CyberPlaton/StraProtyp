@@ -23,9 +23,9 @@ public:
 	}
 
 	bool Initialize(std::string filepath);
-	bool CreateUnit(std::string unitName, float xpos, float ypos);
 
-
+	void AddUnit(Pointer< GameObject2 > u) { m_Units.push_back(u); }
+	void SetNation(Pointer<GameObject2> n) { m_ControlledNation = n; }
 
 private:
 

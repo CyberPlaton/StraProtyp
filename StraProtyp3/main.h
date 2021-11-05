@@ -99,6 +99,8 @@ struct ImNodesNode
 #include "ReligionSystem.h"
 #include "TechnologySystem.h"
 #include "NationSystem.h"
+#include "UnitCreationSystem.h"
+#include "PlayerSystem.h"
 
 
 struct AppStateWorldMap;

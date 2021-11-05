@@ -47,5 +47,6 @@
 
 
 	<Prefab name="DefaultNation" path="Data/DefaultNation.xml"></Prefab>
+	<Prefab name="DefaultPlayer" path="Data/DefaultPlayer.xml"></Prefab>
 
 </PrefabDefinition>

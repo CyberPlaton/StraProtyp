@@ -168,7 +168,7 @@ bool App::OnUserCreate()
 	if (!_initGameworldMatrix()) return false;
 	if (!TechnologySystem::get()->Initialize("Data/TechnologyDefinition.xml")) return false;
 	if (!NationSystem::get()->Initialize("Data/NationSystem.xml")) return false;
-
+	if (!UnitCreationSystem::get()->Initialize("Data/UnitCreationSystem.xml")) return false;
 
 
 	m_GameLayer = CreateLayer();
@@ -411,6 +411,7 @@ bool App::OnUserCreate()
 	ptr = GameobjectStorage::get()->Instantiate("River", 17, 15);
 	ptr = GameobjectStorage::get()->Instantiate("River", 18, 15);
 	ptr = GameobjectStorage::get()->Instantiate("River", 19, 15);
+
 
 	NavMesh::get()->Bake();
 

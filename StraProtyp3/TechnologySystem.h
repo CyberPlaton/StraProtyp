@@ -14,9 +14,7 @@ public:
 private:
 	static TechnologySystem* g_TechnologySystem;
 
-
 	std::vector< Pointer< GameObject2 > > m_Technologies;
-
 
 private:
 	TechnologySystem(){}

@@ -19,6 +19,14 @@ void NationSystem::del()
 {
 	if (g_NationSystem)
 	{
+		while (g_NationSystem->m_Nations.size() > 0)
+		{
+			g_NationSystem->m_Nations[0].reset();
+			g_NationSystem->m_Nations.erase(g_NationSystem->m_Nations.begin());
+		}
+
+		g_NationSystem->m_DefinitionPath.clear();
+
 		delete g_NationSystem;
 		g_NationSystem = 0;
 	}
@@ -108,4 +116,19 @@ bool NationSystem::Initialize(std::string filepath)
 
 	g_NationSystem->m_DefinitionPath = filepath;
 	return true;
+}
+
+
+void NationSystem::AssignNationToPlayer(Pointer<GameObject2> player, NationID nation)
+{
+	for (int i = 0; i < m_Nations.size(); i++)
+	{
+		if (auto cmp = m_Nations[i]->getComponent<NationComponent>("Nation"); cmp)
+		{
+			if (cmp->GetNationName().compare(nation) == 0)
+			{
+				return;
+			}
+		}
+	}
 }

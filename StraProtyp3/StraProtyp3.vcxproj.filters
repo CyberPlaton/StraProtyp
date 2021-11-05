@@ -216,6 +216,12 @@
     <ClInclude Include="NationSystem.h">
       <Filter>Source Files\Base\ECS\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerSystem.h">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitCreationSystem.h">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -319,6 +325,12 @@
     </ClCompile>
     <ClCompile Include="PlayerComponent.cpp">
       <Filter>Source Files\Base\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSystem.cpp">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitCreationSystem.cpp">
+      <Filter>Source Files\Base\ECS\Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

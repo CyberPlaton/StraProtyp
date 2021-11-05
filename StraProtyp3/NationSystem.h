@@ -14,6 +14,11 @@ public:
 	bool Initialize(std::string filepath);
 
 
+	// Set player to control a nation from nations initialized.
+	void AssignNationToPlayer(Pointer<GameObject2> player, NationID nation);
+
+
+
 private:
 	static NationSystem* g_NationSystem;
 

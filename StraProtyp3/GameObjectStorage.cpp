@@ -24,6 +24,9 @@ bool GameobjectStorage::DestroyGameobject(Pointer<GameObject2> entity)
 	{
 		if (entity->getTag().compare(gameObjectStorage[index]->getTag()) == 0)
 		{
+			cout << "Storage Size: " << gameObjectStorage.size() << endl;
+			cout << "Erase Entity at: " << index << endl;
+
 			// Erase to be destroyed Gameobject from Storage.
 			gameObjectStorage.erase(gameObjectStorage.begin() + index);
 			break;
@@ -35,6 +38,9 @@ bool GameobjectStorage::DestroyGameobject(Pointer<GameObject2> entity)
 
 			// While searching erase any invalid Gameobjects on our path.
 			gameObjectStorage.erase(gameObjectStorage.begin() + index);
+
+			index = index - 1;
+
 			continue;
 		}
 	}
@@ -409,7 +415,6 @@ void GameobjectStorage::del()
 
 
 			IGameobjectStorage::g_IGameobjectStorage->DestroyGameobject(IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0]);
-			IGameobjectStorage::g_IGameobjectStorage->GetStorage().erase(IGameobjectStorage::g_IGameobjectStorage->GetStorage().begin());
 		}
 
 
@@ -434,35 +439,6 @@ bool GameobjectStorage::_addUnitComponent(Pointer<UnitComponent> cmp, Pointer<Ga
 	using namespace tinyxml2;
 
 	cmp->SetProfession(data->FirstChildElement("Profession")->GetText());
-
-	XMLElement* e = data->FirstChildElement("Requirements");
-	XMLElement* req = e->FirstChildElement("Requirement");
-	while (req)
-	{
-		std::string reqType = req->Attribute("type");
-		
-
-		if (reqType.compare("tech") == 0)
-		{
-			cmp->AddTechRequirement(req->GetText());
-		}
-		else if(reqType.compare("race") == 0)
-		{
-			cmp->AddRaceRequirement(req->GetText());
-		}
-		else if (reqType.compare("ressource") == 0)
-		{
-			Tuple<std::string, int> reqTuple;
-			reqTuple.x = req->GetText();
-			reqTuple.y = req->IntAttribute("amount");
-			cmp->AddRessourceRequirement(reqTuple);
-		}
-
-
-		req = req->NextSiblingElement("Requirement");
-	}
-
-
 
 	// Add Unit to Maptile.
 	Pointer<GameObject2> pGO = _getMaptileAtPosition(xpos, ypos);

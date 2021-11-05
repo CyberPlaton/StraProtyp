@@ -137,6 +137,7 @@
     <ClInclude Include="olcPixelGameEngine.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="PlayerInstance.h" />
+    <ClInclude Include="PlayerSystem.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="RandomNameGenerator.h" />
     <ClInclude Include="ReligionSystem.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="UnitComponent.h" />
+    <ClInclude Include="UnitCreationSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Any.cpp" />
@@ -178,6 +180,7 @@
     <ClCompile Include="NavMesh.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlayerInstance.cpp" />
+    <ClCompile Include="PlayerSystem.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RandomNameGenerator.cpp" />
     <ClCompile Include="ReligionSystem.cpp" />
@@ -185,6 +188,7 @@
     <ClCompile Include="TechnologyComponent.cpp" />
     <ClCompile Include="TechnologySystem.cpp" />
     <ClCompile Include="UnitComponent.cpp" />
+    <ClCompile Include="UnitCreationSystem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
