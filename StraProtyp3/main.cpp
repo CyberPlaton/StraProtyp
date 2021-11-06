@@ -231,6 +231,14 @@ bool App::OnUserCreate()
 	ReligionSystem::get()->SetReligionColor("Horde", 255, 0, 50, 255);
 	ptr.reset();
 
+	ptr = GameobjectStorage::get()->Instantiate("Road", 3, 2);
+	ptr = GameobjectStorage::get()->Instantiate("Road", 2, 2);
+	ptr = GameobjectStorage::get()->Instantiate("Road", 1, 2);
+	ptr = GameobjectStorage::get()->Instantiate("Road", 4, 2);
+	ptr = GameobjectStorage::get()->Instantiate("Road", 5, 2);
+
+
+
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 8, 3);
 	ptr->setName("Orgrimmar");
 	ReligionSystem::get()->CreateReligion(ptr, "Lich King");
@@ -253,6 +261,10 @@ bool App::OnUserCreate()
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 5, 1);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
+
+	ptr = GameobjectStorage::get()->Instantiate("Snow_Deep", 5, 0);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 	ptr.reset();
 
@@ -347,11 +359,12 @@ bool App::OnUserCreate()
 
 
 
-	ptr = GameobjectStorage::get()->Instantiate("River", 0, 1);
-	ptr = GameobjectStorage::get()->Instantiate("River", 1, 1);
-	ptr = GameobjectStorage::get()->Instantiate("River", 2, 1);
-	ptr = GameobjectStorage::get()->Instantiate("River", 3, 1);
-	ptr = GameobjectStorage::get()->Instantiate("River", 4, 1);
+	ptr = GameobjectStorage::get()->Instantiate("River", 0, 0);
+	ptr = GameobjectStorage::get()->Instantiate("River", 1, 0);
+	ptr = GameobjectStorage::get()->Instantiate("River", 2, 0);
+	ptr = GameobjectStorage::get()->Instantiate("River", 3, 0);
+	ptr = GameobjectStorage::get()->Instantiate("River", 4, 0);
+	ptr = GameobjectStorage::get()->Instantiate("River", 5, 0);
 
 
 	ptr = GameobjectStorage::get()->Instantiate("River", 0, 7);
@@ -1113,19 +1126,20 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 {
 	// Rendering Order:
 	// 1 - maptile itself.
-	// 2 - river
-	// 3 - hill, mountain or forest
-	// 4 - ressource
-	// 5 - improvement
-	// 6 - road
-	// 7 - city or fort
-	// 8 - unit
+	// 2 - hill, mountain
+	// 3 - river
+	// 4 - forest
+	// 5 - ressource
+	// 6 - improvement
+	// 7 - road
+	// 8 - city or fort
+	// 9 - unit
 
 	using namespace std;
 
 
 	std::map< int, Pointer<GameObject2> > drawOrder;
-	for (int i = 1; i < 9; i++) drawOrder.emplace(i, nullptr);
+	for (int i = 1; i < 10; i++) drawOrder.emplace(i, nullptr);
 
 	Pointer<MaptileComponent> maptile = tile->getComponent<MaptileComponent>("Maptile");
 
@@ -1149,31 +1163,35 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 			{
 				if (render->GetRenderingLayer().compare("forest") == 0) // And Mountain, Hill.
 				{
-					drawOrder[3] = go;
+					drawOrder[4] = go;
 				}
-				else if (render->GetRenderingLayer().compare("river") == 0)
+				else if (render->GetRenderingLayer().compare("mountain") == 0)
 				{
 					drawOrder[2] = go;
 				}
-				else if (render->GetRenderingLayer().compare("ressource") == 0)
+				else if (render->GetRenderingLayer().compare("river") == 0)
 				{
-					drawOrder[4] = go;
+					drawOrder[3] = go;
 				}
-				else if (render->GetRenderingLayer().compare("improvement") == 0)
+				else if (render->GetRenderingLayer().compare("ressource") == 0)
 				{
 					drawOrder[5] = go;
 				}
-				else if (render->GetRenderingLayer().compare("road") == 0)
+				else if (render->GetRenderingLayer().compare("improvement") == 0)
 				{
 					drawOrder[6] = go;
 				}
-				else if (render->GetRenderingLayer().compare("city") == 0)
+				else if (render->GetRenderingLayer().compare("road") == 0)
 				{
 					drawOrder[7] = go;
 				}
-				else if (render->GetRenderingLayer().compare("unit") == 0)
+				else if (render->GetRenderingLayer().compare("city") == 0)
 				{
 					drawOrder[8] = go;
+				}
+				else if (render->GetRenderingLayer().compare("unit") == 0)
+				{
+					drawOrder[9] = go;
 				}
 			}
 		}
@@ -1198,7 +1216,7 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 
 	// Render some text about a Forest.
 	// Will crash if we select a Mountain or Hill...
-	if (drawOrder[3] && drawOrder[3]->hasComponent("Forest"))
+	if (drawOrder[4] && drawOrder[4]->hasComponent("Forest"))
 	{
 		auto forest = drawOrder[3]->getComponent<ForestComponent>("Forest");
 		auto transform = drawOrder[3]->getComponent<TransformComponent>("Transform");
@@ -1222,7 +1240,7 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 
 
 	// Render Religion related text above city.
-	if (drawOrder[7] && drawOrder[7]->hasComponent("City"))
+	if (drawOrder[8] && drawOrder[8]->hasComponent("City"))
 	{
 		auto c = drawOrder[7]->getComponent<CityComponent>("City");
 		auto transform = drawOrder[7]->getComponent<TransformComponent>("Transform");

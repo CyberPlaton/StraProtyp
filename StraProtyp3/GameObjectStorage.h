@@ -37,6 +37,7 @@
 #include "RenderableComponent.h"
 #include "CollisionBoxComponent.h"
 #include "AnimatorComponent.h"
+#include "RoadComponent.h"
 
 #include "NavMesh.h"
 
@@ -140,6 +141,7 @@ private:
 	bool _addUnitComponent(Pointer<UnitComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
 	bool _addTransformComponent(Pointer<TransformComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
 	bool _addRiverComponent(Pointer<RiverComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
+	bool _addRoadComponent(Pointer<RoadComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
 	bool _addRessourceComponent(Pointer<RessourceComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addRenderableComponent(Pointer<RenderableComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);
 	bool _addPlayerComponent(Pointer<PlayerComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data);

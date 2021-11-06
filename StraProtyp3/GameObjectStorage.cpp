@@ -204,6 +204,17 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 				_addRiverComponent(river, ptr, cmp, xpos, ypos);
 				river.reset();
 			}
+			else if (componentType.compare("Road") == 0)
+			{
+				cout << color(colors::DARKGREEN);
+				std::cout << "\tAdding Road" << white << endl;
+
+
+				auto road = std::make_shared<RoadComponent>(name + "Road");
+				ptr->addComponent(road);
+				_addRoadComponent(road, ptr, cmp, xpos, ypos);
+				road.reset();
+			}
 			else if (componentType.compare("Ressource") == 0)
 			{
 				cout << color(colors::DARKGREEN);
@@ -467,6 +478,17 @@ bool GameobjectStorage::_addRiverComponent(Pointer<RiverComponent> cmp, Pointer<
 
 	return true;
 }
+
+bool GameobjectStorage::_addRoadComponent(Pointer<RoadComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos)
+{
+	// Add Road to Maptile.
+	Pointer<GameObject2> pGO = _getMaptileAtPosition(xpos, ypos);
+	Pointer<MaptileComponent> maptile = pGO->getComponent<MaptileComponent>("Maptile");
+	maptile->AddGameobject(entity);
+
+	return true;
+}
+
 
 bool GameobjectStorage::_addRessourceComponent(Pointer<RessourceComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
 {

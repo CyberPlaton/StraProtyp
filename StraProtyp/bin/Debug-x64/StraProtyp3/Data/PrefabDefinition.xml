@@ -1,48 +1,82 @@
 <PrefabDefinition>
-	<Prefab name="Spearman" path="Data/Spearman.xml"></Prefab>
+	<Prefab name="Spearman" path="Data/Unit/Spearman.xml"></Prefab>
+	<Prefab name="Heavy Iron Spearman" path="Data/Unit/Heavy_Spearman_Iron.xml"></Prefab>
+	<Prefab name="Spearman" path="Data/Unit/Spearman.xml"></Prefab>
+	<Prefab name="Light Archer" path="Data/Unit/Archer_Light.xml"></Prefab>
+	<Prefab name="Assassin" path="Data/Unit/Assassin.xml"></Prefab>
+	<Prefab name="Aristocrat" path="Data/Unit/Aristocrat.xml"></Prefab>
+	<Prefab name="Battlemage" path="Data/Unit/Battlemage.xml"></Prefab>
+	<Prefab name="Light Cavalry" path="Data/Unit/Cavalry_Light.xml"></Prefab>
+	<Prefab name="Civic Researcher" path="Data/Unit/Civic_Researcher.xml"></Prefab>
+	<Prefab name="Crossbowman" path="Data/Unit/Crossbowman.xml"></Prefab>
+	<Prefab name="Fighter" path="Data/Unit/Fighter.xml"></Prefab>
+	<Prefab name="Heavy Battlemage" path="Data/Unit/Heavy_Battlemage.xml"></Prefab>
+	<Prefab name="Heavy Maceman" path="Data/Unit/Heavy_Maceman.xml"></Prefab>
+	<Prefab name="Heavy Iron Spearman" path="Data/Unit/Heavy_Spearman_Iron.xml"></Prefab>
+	<Prefab name="Heavy Iron Swordman" path="Data/Unit/Heavy_Swordman_Iron.xml"></Prefab>
+	<Prefab name="Heavy Bronze Swordman" path="Data/Unit/Heavy_Swordman_Bronze.xml"></Prefab>
+	<Prefab name="High Senator" path="Data/Unit/High_Senator.xml"></Prefab>
+	<Prefab name="Bronze Knight" path="Data/Unit/Knight_Bronze.xml"></Prefab>
+	<Prefab name="Mounted Knight" path="Data/Unit/Knight_Mounted.xml"></Prefab>
+	<Prefab name="Local Merchant" path="Data/Unit/Merchant_Local.xml"></Prefab>
+	<Prefab name="Longswordsman" path="Data/Unit/Longswordsman.xml"></Prefab>
+	<Prefab name="Maceman" path="Data/Unit/Maceman.xml"></Prefab>
+	<Prefab name="Mage" path="Data/Unit/Mage.xml"></Prefab>
+	<Prefab name="Magick Researcher" path="Data/Unit/Magick_Researcher.xml"></Prefab>
+	<Prefab name="Merchant" path="Data/Unit/Merchant.xml"></Prefab>
+	<Prefab name="Nightblade" path="Data/Unit/Nightblade.xml"></Prefab>
+	<Prefab name="Malachite Paladine" path="Data/Unit/Paladin_Malachite.xml"></Prefab>
+	<Prefab name="Adamantium Paladine" path="Data/Unit/Paladin_Adamantium.xml"></Prefab>
+	<Prefab name="Mounted Scout" path="Data/Unit/Scout_Mounted.xml"></Prefab>
+	<Prefab name="Senator" path="Data/Unit/Senator.xml"></Prefab>
+	<Prefab name="Sorcerer" path="Data/Unit/Sorcerer.xml"></Prefab>
+	<Prefab name="Spy" path="Data/Unit/Spy.xml"></Prefab>
+
+	
 	<Prefab name="Tavern" path="Data/Tavern.xml"></Prefab>
 	<Prefab name="Weaponsmiths Workshop" path="Data/Weaponsmith.xml"></Prefab>
 	<Prefab name="City_Plain" path="Data/City_Plain.xml"></Prefab>
 
-	<Prefab name="Jungle_Scarce" path="Data/Jungle_Scarce.xml"></Prefab>
-	<Prefab name="Jungle_Normal" path="Data/Jungle_Normal.xml"></Prefab>
-	<Prefab name="Jungle_Deep" path="Data/Jungle_Deep.xml"></Prefab>
-	<Prefab name="Jungle_Dying" path="Data/Jungle_Dying.xml"></Prefab>
-	<Prefab name="Temperate_Scarce" path="Data/Temperate_Scarce.xml"></Prefab>
-	<Prefab name="Temperate_Normal" path="Data/Temperate_Normal.xml"></Prefab>
-	<Prefab name="Temperate_Deep" path="Data/Temperate_Deep.xml"></Prefab>
-	<Prefab name="Temperate_Dying" path="Data/Temperate_Dying.xml"></Prefab>
-	<Prefab name="Savannah_Scarce" path="Data/Savannah_Scarce.xml"></Prefab>
-	<Prefab name="Savannah_Normal" path="Data/Savannah_Normal.xml"></Prefab>
-	<Prefab name="Savannah_Deep" path="Data/Savannah_Deep.xml"></Prefab>
-	<Prefab name="Savannah_Dying" path="Data/Savannah_Dying.xml"></Prefab>
-	<Prefab name="Tundra_Scarce" path="Data/Tundra_Scarce.xml"></Prefab>
-	<Prefab name="Tundra_Normal" path="Data/Tundra_Normal.xml"></Prefab>
-	<Prefab name="Tundra_Deep" path="Data/Tundra_Deep.xml"></Prefab>
-	<Prefab name="Tundra_Dying" path="Data/Tundra_Dying.xml"></Prefab>
-	<Prefab name="Snow_Scarce" path="Data/Snow_Scarce.xml"></Prefab>
-	<Prefab name="Snow_Normal" path="Data/Snow_Normal.xml"></Prefab>
-	<Prefab name="Snow_Deep" path="Data/Snow_Deep.xml"></Prefab>
-	<Prefab name="Snow_Dying" path="Data/Snow_Dying.xml"></Prefab>
+	<Prefab name="Jungle_Scarce" path="Data/Maptile/Jungle_Scarce.xml"></Prefab>
+	<Prefab name="Jungle_Normal" path="Data/Maptile/Jungle_Normal.xml"></Prefab>
+	<Prefab name="Jungle_Deep" path="Data/Maptile/Jungle_Deep.xml"></Prefab>
+	<Prefab name="Jungle_Dying" path="Data/Maptile/Jungle_Dying.xml"></Prefab>
+	<Prefab name="Temperate_Scarce" path="Data/Maptile/Temperate_Scarce.xml"></Prefab>
+	<Prefab name="Temperate_Normal" path="Data/Maptile/Temperate_Normal.xml"></Prefab>
+	<Prefab name="Temperate_Deep" path="Data/Maptile/Temperate_Deep.xml"></Prefab>
+	<Prefab name="Temperate_Dying" path="Data/Maptile/Temperate_Dying.xml"></Prefab>
+	<Prefab name="Savannah_Scarce" path="Data/Maptile/Savannah_Scarce.xml"></Prefab>
+	<Prefab name="Savannah_Normal" path="Data/Maptile/Savannah_Normal.xml"></Prefab>
+	<Prefab name="Savannah_Deep" path="Data/Maptile/Savannah_Deep.xml"></Prefab>
+	<Prefab name="Savannah_Dying" path="Data/Maptile/Savannah_Dying.xml"></Prefab>
+	<Prefab name="Tundra_Scarce" path="Data/Maptile/Tundra_Scarce.xml"></Prefab>
+	<Prefab name="Tundra_Normal" path="Data/Maptile/Tundra_Normal.xml"></Prefab>
+	<Prefab name="Tundra_Deep" path="Data/Maptile/Tundra_Deep.xml"></Prefab>
+	<Prefab name="Tundra_Dying" path="Data/Maptile/Tundra_Dying.xml"></Prefab>
+	<Prefab name="Snow_Scarce" path="Data/Maptile/Snow_Scarce.xml"></Prefab>
+	<Prefab name="Snow_Normal" path="Data/Maptile/Snow_Normal.xml"></Prefab>
+	<Prefab name="Snow_Deep" path="Data/Maptile/Snow_Deep.xml"></Prefab>
+	<Prefab name="Snow_Dying" path="Data/Maptile/Snow_Dying.xml"></Prefab>
 
-	<Prefab name="Jungle_Maptile" path="Data/Jungle_Maptile.xml"></Prefab>
-	<Prefab name="Temperate_Maptile" path="Data/Temperate_Maptile.xml"></Prefab>
-	<Prefab name="Savannah_Maptile" path="Data/Savannah_Maptile.xml"></Prefab>
-	<Prefab name="Snow_Maptile" path="Data/Snow_Maptile.xml"></Prefab>
-	<Prefab name="Sand_Maptile" path="Data/Sand_Maptile.xml"></Prefab>
-	<Prefab name="Water_Shallow_Maptile" path="Data/Water_Shallow_Maptile.xml"></Prefab>
-	<Prefab name="Water_Deep_Maptile" path="Data/Water_Deep_Maptile.xml"></Prefab>
-	<Prefab name="Tundra_Maptile" path="Data/Tundra_Maptile.xml"></Prefab>
-	<Prefab name="Ice_Maptile" path="Data/Ice_Maptile.xml"></Prefab>
+	<Prefab name="Jungle_Maptile" path="Data/Maptile/Jungle_Maptile.xml"></Prefab>
+	<Prefab name="Temperate_Maptile" path="Data/Maptile/Temperate_Maptile.xml"></Prefab>
+	<Prefab name="Savannah_Maptile" path="Data/Maptile/Savannah_Maptile.xml"></Prefab>
+	<Prefab name="Snow_Maptile" path="Data/Maptile/Snow_Maptile.xml"></Prefab>
+	<Prefab name="Sand_Maptile" path="Data/Maptile/Sand_Maptile.xml"></Prefab>
+	<Prefab name="Water_Shallow_Maptile" path="Data/Maptile/Water_Shallow_Maptile.xml"></Prefab>
+	<Prefab name="Water_Deep_Maptile" path="Data/Maptile/Water_Deep_Maptile.xml"></Prefab>
+	<Prefab name="Tundra_Maptile" path="Data/Maptile/Tundra_Maptile.xml"></Prefab>
+	<Prefab name="Ice_Maptile" path="Data/Maptile/Ice_Maptile.xml"></Prefab>
 
-	<Prefab name="Mountain_Snow" path="Data/Mountain_Snow.xml"></Prefab>
-	<Prefab name="Mountain_Sand" path="Data/Mountain_Sand.xml"></Prefab>
-	<Prefab name="Mountain_Savannah" path="Data/Mountain_Savannah.xml"></Prefab>
-	<Prefab name="Mountain_Tundra" path="Data/Mountain_Tundra.xml"></Prefab>
-	<Prefab name="Mountain_Temperate" path="Data/Mountain_Temperate.xml"></Prefab>
-	<Prefab name="Mountain_Jungle" path="Data/Mountain_Jungle.xml"></Prefab>
+	<Prefab name="Mountain_Snow" path="Data/Maptile/Mountain_Snow.xml"></Prefab>
+	<Prefab name="Mountain_Sand" path="Data/Maptile/Mountain_Sand.xml"></Prefab>
+	<Prefab name="Mountain_Savannah" path="Data/Maptile/Mountain_Savannah.xml"></Prefab>
+	<Prefab name="Mountain_Tundra" path="Data/Maptile/Mountain_Tundra.xml"></Prefab>
+	<Prefab name="Mountain_Temperate" path="Data/Maptile/Mountain_Temperate.xml"></Prefab>
+	<Prefab name="Mountain_Jungle" path="Data/Maptile/Mountain_Jungle.xml"></Prefab>
 
-	<Prefab name="River" path="Data/River.xml"></Prefab>
+	<Prefab name="River" path="Data/Maptile/River.xml"></Prefab>
+	<Prefab name="Road" path="Data/Maptile/Road.xml"></Prefab>
 
 
 

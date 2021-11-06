@@ -1,0 +1,57 @@
+<Gameobject>
+	<Tag>Unit_Heavy_Spearman_Iron</Tag>
+	<Name>Heavy_Spearman_Iron</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_green</Color>
+			<Decal>heavy_spearman_iron</Decal>
+			<Layer>unit</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+		
+		<Component name="Unit">
+			<Profession>Spearman</Profession>
+			<Requirements>
+				<Req type="tech">Iron Working</Req>
+				
+				<Req type="race">Human</Req>
+				<Req type="race">Orc</Req>
+				<Req type="race">High Elf</Req>
+				<Req type="race">Dark Elf</Req>
+				<Req type="race">Troll</Req>
+				<Req type="race">Dwarf</Req>
+				
+				<Req type="ressource" amount="5">Iron Weapons</Req>
+				<Req type="ressource" amount="2">Iron Armor</Req>
+				<Req type="ressource" amount="10">Wood</Req>
+			</Requirements>
+			
+			<UnitStats>
+				<Stat name="Health">50</Stat>
+				<Stat name="Mana">1</Stat>
+				<Stat name="Fatigue">10</Stat>
+				<Stat name="Attack">21</Stat>
+				<Stat name="Defense">19</Stat>
+				<Stat name="Armor">50</Stat>
+				<Stat name="Agility">10</Stat>
+				<Stat name="Speed">10</Stat>
+				<Stat name="Strength">17</Stat>
+				<Stat name="Endurance">15</Stat>
+				<Stat name="Intelligence">3</Stat>
+				<Stat name="Willpower">5</Stat>
+			</UnitStats>
+		
+		
+		</Component>
+
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

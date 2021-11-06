@@ -144,6 +144,7 @@
     <ClInclude Include="RenderableComponent.h" />
     <ClInclude Include="RessourceComponent.h" />
     <ClInclude Include="RiverComponent.h" />
+    <ClInclude Include="RoadComponent.h" />
     <ClInclude Include="TechInstance.h" />
     <ClInclude Include="TechnologyComponent.h" />
     <ClInclude Include="TechnologySystem.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RandomNameGenerator.cpp" />
     <ClCompile Include="ReligionSystem.cpp" />
+    <ClCompile Include="RoadComponent.cpp" />
     <ClCompile Include="TechInstance.cpp" />
     <ClCompile Include="TechnologyComponent.cpp" />
     <ClCompile Include="TechnologySystem.cpp" />

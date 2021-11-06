@@ -1,0 +1,59 @@
+<Gameobject>
+	<Tag>Unit_Spearman</Tag>
+	<Name>Spearman</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_green</Color>
+			<Decal>spearman</Decal>
+			<Layer>unit</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+		
+		<Component name="Unit">
+			<Profession>Spearman</Profession>
+			<Requirements>
+				<Req type="tech">Bronze Working</Req>
+				
+				<Req type="race">Human</Req>
+				<Req type="race">Orc</Req>
+				<Req type="race">High Elf</Req>
+				<Req type="race">Dark Elf</Req>
+				<Req type="race">Troll</Req>
+				<Req type="race">Gnome</Req>
+				<Req type="race">Dwarf</Req>
+				<Req type="race">Goblin</Req>
+				
+				<Req type="ressource" amount="5">Bronze Weapons</Req>
+				<Req type="ressource" amount="10">Leather</Req>
+				<Req type="ressource" amount="10">Wood</Req>
+			</Requirements>
+			
+			<UnitStats>
+				<Stat name="Health">20</Stat>
+				<Stat name="Mana">1</Stat>
+				<Stat name="Fatigue">10</Stat>
+				<Stat name="Attack">15</Stat>
+				<Stat name="Defense">10</Stat>
+				<Stat name="Armor">5</Stat>
+				<Stat name="Agility">10</Stat>
+				<Stat name="Speed">20</Stat>
+				<Stat name="Strength">13</Stat>
+				<Stat name="Endurance">10</Stat>
+				<Stat name="Intelligence">3</Stat>
+				<Stat name="Willpower">5</Stat>
+			</UnitStats>
+		
+		
+		</Component>
+
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>
