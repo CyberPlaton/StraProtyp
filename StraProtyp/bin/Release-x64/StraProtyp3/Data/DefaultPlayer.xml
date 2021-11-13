@@ -1,0 +1,7 @@
+<Gameobject>
+	<Tag>Player</Tag>
+	<Name>Default_Player</Name>
+	<Components>
+		<Component name="Player"></Component>
+	</Components>
+</Gameobject>

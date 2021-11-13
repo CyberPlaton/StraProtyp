@@ -2,8 +2,8 @@
 
 JobSystem* JobSystem::g_pJobSystem = nullptr;
 
-JobSystem::JobSystem() {
-
+JobSystem::JobSystem()
+{
 	p_vgjsJobSystem = new vgjs::JobSystem();
 
 	// Setting main thread as index 0.
@@ -11,6 +11,7 @@ JobSystem::JobSystem() {
 	//p_vgjsJobSystem->thread_task(vgjs::thread_index_t(0));
 }
 
-JobSystem::~JobSystem() {
+JobSystem::~JobSystem()
+{
 
 }

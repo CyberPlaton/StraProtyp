@@ -16,6 +16,9 @@ bool NavMesh::Bake()
 
 	for (auto& go : IGameobjectStorage::g_IGameobjectStorage->GetStorage())
 	{
+		if (go == nullptr) continue;
+
+
 		if (go->getTag().find("Building") == std::string::npos) continue;
 
 		// Start baking the Graph too.

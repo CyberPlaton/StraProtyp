@@ -1,0 +1,34 @@
+<UnitCreationSystem>
+	<Units path="Data/Unit/">
+		<Unit name="Spearman" path="Spearman.xml"></Unit>
+		<Unit name="Light Archer" path="Archer_Light.xml"></Unit>
+		<Unit name="Assassin" path="Assassin.xml"></Unit>
+		<Unit name="Aristocrat" path="Aristocrat.xml"></Unit>
+		<Unit name="Battlemage" path="Battlemage.xml"></Unit>
+		<Unit name="Light Cavalry" path="Cavalry_Light.xml"></Unit>
+		<Unit name="Civic Researcher" path="Civic_Researcher.xml"></Unit>
+		<Unit name="Crossbowman" path="Crossbowman.xml"></Unit>
+		<Unit name="Fighter" path="Fighter.xml"></Unit>
+		<Unit name="Heavy Battlemage" path="Heavy_Battlemage.xml"></Unit>
+		<Unit name="Heavy Maceman" path="Heavy_Maceman.xml"></Unit>
+		<Unit name="Heavy Iron Spearman" path="Heavy_Spearman_Iron.xml"></Unit>
+		<Unit name="Heavy Iron Swordman" path="Heavy_Swordman_Iron.xml"></Unit>
+		<Unit name="Heavy Bronze Swordman" path="Heavy_Swordman_Bronze.xml"></Unit>
+		<Unit name="High Senator" path="High_Senator.xml"></Unit>
+		<Unit name="Bronze Knight" path="Knight_Bronze.xml"></Unit>
+		<Unit name="Mounted Knight" path="Knight_Mounted.xml"></Unit>
+		<Unit name="Local Merchant" path="Merchant_Local.xml"></Unit>
+		<Unit name="Longswordsman" path="Longswordsman.xml"></Unit>
+		<Unit name="Maceman" path="Maceman.xml"></Unit>
+		<Unit name="Mage" path="Mage.xml"></Unit>
+		<Unit name="Magick Researcher" path="Magick_Researcher.xml"></Unit>
+		<Unit name="Merchant" path="Merchant.xml"></Unit>
+		<Unit name="Nightblade" path="Nightblade.xml"></Unit>
+		<Unit name="Malachite Paladine" path="Paladin_Malachite.xml"></Unit>
+		<Unit name="Adamantium Paladine" path="Paladin_Adamantium.xml"></Unit>
+		<Unit name="Mounted Scout" path="Scout_Mounted.xml"></Unit>
+		<Unit name="Senator" path="Senator.xml"></Unit>
+		<Unit name="Sorcerer" path="Sorcerer.xml"></Unit>
+		<Unit name="Spy" path="Spy.xml"></Unit>
+	</Units>
+</UnitCreationSystem>

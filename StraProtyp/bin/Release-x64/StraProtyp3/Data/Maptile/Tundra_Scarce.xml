@@ -1,0 +1,28 @@
+<Gameobject>
+	<Tag>Forest_Tundra_Scarce</Tag>
+	<Name>Forest_Tundra_Scarce</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_green</Color>
+			<Decal>forest_tundra_scarce</Decal>
+			<Layer>forest</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+
+		<Component name ="Forest">
+			<Type>Scarce</Type>
+			<Biome>Tundra</Biome>
+			<MaxLifetime>25</MaxLifetime>
+		</Component>
+
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

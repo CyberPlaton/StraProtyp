@@ -138,6 +138,8 @@ private:
 
 private:
 
+	size_t _getHashFromGameobjectTag(std::string tag);
+
 	bool _addUnitComponent(Pointer<UnitComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
 	bool _addTransformComponent(Pointer<TransformComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
 	bool _addRiverComponent(Pointer<RiverComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data, float xpos, float ypos);
@@ -183,8 +185,12 @@ std::vector< Pointer< T > > GetAllComponentsOfType(std::string t)
 {
 	std::vector< Pointer< T > > vec;
 
-	for (auto e : GameobjectStorage::get()->GetStorage())
+	for (int i = 0; i < IGameobjectStorage::g_IGameobjectStorage->GetStorage().size(); i++)
 	{
+		auto e = IGameobjectStorage::g_IGameobjectStorage->GetStorage()[i];
+
+		if (e == nullptr)continue;
+
 		if (e->hasComponent(t))
 		{
 			vec.push_back(e->getComponent<T>(t));

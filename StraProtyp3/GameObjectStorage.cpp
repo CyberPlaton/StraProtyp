@@ -19,6 +19,10 @@ bool GameobjectStorage::DestroyGameobject(Pointer<GameObject2> entity)
 		cout << "\tGameobject \"" << entity->getName() << "\" has not \"Pointers\" in use" << white << endl;
 	}
 
+
+
+
+	/*
 	// Remove entry from storage
 	for (int index = 0; index < gameObjectStorage.size(); index++)
 	{
@@ -44,11 +48,9 @@ bool GameobjectStorage::DestroyGameobject(Pointer<GameObject2> entity)
 			continue;
 		}
 	}
+	*/
 
-	//entity->~GameObject2(); // Destroy Components and their data
 	entity.reset(); // Destroy Gameobject Pointer self
-
-
 	return true;
 }
 
@@ -57,6 +59,7 @@ bool GameobjectStorage::DestroyGameobject(std::string tag)
 {
 	using namespace std;
 
+	/*
 	for (auto& entity : gameObjectStorage)
 	{
 		if (entity->getTag().compare(tag) == 0)
@@ -65,7 +68,9 @@ bool GameobjectStorage::DestroyGameobject(std::string tag)
 			return DestroyGameobject(entity);
 		}
 	}
+	*/
 
+	return DestroyGameobject(gameObjectStorage[_getHashFromGameobjectTag(tag)]);
 
 	return false;
 }
@@ -106,20 +111,18 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 		}
 
 
+		// Create a Gameobject.
 		std::string tag, name;
 		size_t gameObjectNumber = ++IGameobjectStorage::g_GameobjectCount;
 		tag = "GO_" + std::to_string(gameObjectNumber) + "_";
 		tag += root->FirstChildElement("Tag")->GetText();
 		name = root->FirstChildElement("Name")->GetText();
 
-
+		ptr = std::make_shared<GameObject2>(tag, name, gameObjectNumber);
 
 		cout << color(colors::GREEN);
 		cout << "Instantiate Gameobject \"" << name << "\"{" << tag << "}" << white << endl;
 
-
-		// Create a Gameobject.
-		ptr = std::make_shared<GameObject2>(tag, name);
 
 		// Get the defined components.
 		XMLElement* components = root->FirstChildElement("Components");
@@ -367,7 +370,14 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 		}
 		else
 		{
-			gameObjectStorage.push_back(ptr);
+			if (gameObjectStorage.size() <= gameObjectNumber)
+			{
+				// Doubling the size of the storage.
+				gameObjectStorage.resize(gameObjectStorage.size() == 0 ? 1000 : gameObjectStorage.size() * 2);
+			}
+
+			gameObjectStorage[gameObjectNumber] = ptr;
+			//gameObjectStorage.push_back(ptr);
 
 		}
 
@@ -386,15 +396,37 @@ Pointer<GameObject2> GameobjectStorage::GetReference(std::string gameobjectTag)
 	// Return a weak reference to a shared pointer.
 	// Thus not increasing the reference count.
 	// The correct index of the Gameobject should be found first.
-	for (auto& entity : gameObjectStorage)
+	//for (auto& entity : gameObjectStorage)
+	//{
+	//	if (entity->getTag().compare(gameobjectTag) == 0)
+	//	{
+	//		return entity;
+	//	}
+	//}
+
+	// Our Tag has the form "GO_#_Spearman", where # is the hash of the Gameobject.
+	// Thus we easily can retrieve the index in the Storage:
+	return gameObjectStorage[_getHashFromGameobjectTag(gameobjectTag)];
+}
+
+
+size_t GameobjectStorage::_getHashFromGameobjectTag(std::string tag)
+{
+	std::string hash;
+
+	for (int i = 0; i < tag.size(); i++)
 	{
-		if (entity->getTag().compare(gameobjectTag) == 0)
+		// Skipping "GO_"
+		if (i < 3) continue;
+
+		// Get the number
+		if (std::isdigit(tag[i]))
 		{
-			return entity;
+			hash += tag[i];
 		}
 	}
 
-	return nullptr;
+	return std::stoi(hash);
 }
 
 
@@ -416,6 +448,7 @@ void GameobjectStorage::del()
 
 	if (IGameobjectStorage::g_IGameobjectStorage)
 	{
+		/*
 		while (IGameobjectStorage::g_IGameobjectStorage->GetStorage().size() > 0)
 		{
 			if (IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0].use_count() > 1)
@@ -426,6 +459,24 @@ void GameobjectStorage::del()
 
 
 			IGameobjectStorage::g_IGameobjectStorage->DestroyGameobject(IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0]);
+		}
+		*/
+
+
+		// Reset all Gameobjects.
+		for (int i = 0; i < IGameobjectStorage::g_IGameobjectStorage->GetStorage().size(); i++)
+		{
+			if (IGameobjectStorage::g_IGameobjectStorage->GetStorage()[i] == nullptr) continue;
+
+
+			if (IGameobjectStorage::g_IGameobjectStorage->GetStorage()[i].use_count() > 1)
+			{
+				cout << color(colors::RED);
+				cout << "[GameobjectStorage::del] Gameobject \"" << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[i]->getName() << "\" has more than one Uses! Current count: " << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[i].use_count() << white << endl;
+			}
+
+
+			IGameobjectStorage::g_IGameobjectStorage->DestroyGameobject(IGameobjectStorage::g_IGameobjectStorage->GetStorage()[i]);
 		}
 
 

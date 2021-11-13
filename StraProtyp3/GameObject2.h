@@ -24,16 +24,14 @@ using GOName = std::string;
 class GameObject2 : public IGameObject
 {
 public:
-	GameObject2() = default;
-	GameObject2(GOTag tag, GOName name) : m_Name(name), m_Tag(tag) 
+	GameObject2(GOTag tag, GOName name, size_t hash) : m_Name(name), m_Tag(tag), m_Hash(hash)
 	{
-		m_Hash = ++IGameObject::g_GameObjectCount;
 	};
-	GameObject2(const GameObject2& other)
+	GameObject2(const GameObject2& other, size_t hash)
 	{
 		m_Tag = other.m_Tag;
 		m_Name = other.m_Name;
-		m_Hash = ++IGameObject::g_GameObjectCount;
+		m_Hash = hash;
 	}
 	~GameObject2()
 	{

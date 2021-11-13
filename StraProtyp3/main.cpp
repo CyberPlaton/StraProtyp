@@ -710,7 +710,7 @@ void App::_handleInput()
 	
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)
 	{
-		if (GetKey(olc::SPACE).bPressed)
+		if (GetKey(olc::SPACE).bHeld)
 		{
 			UpdateGameSystems(gameWorldMatrix);
 		}
@@ -1218,9 +1218,9 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 	// Will crash if we select a Mountain or Hill...
 	if (drawOrder[4] && drawOrder[4]->hasComponent("Forest"))
 	{
-		auto forest = drawOrder[3]->getComponent<ForestComponent>("Forest");
-		auto transform = drawOrder[3]->getComponent<TransformComponent>("Transform");
-		auto render = drawOrder[3]->getComponent<RenderableComponent>("Renderable");
+		auto forest = drawOrder[4]->getComponent<ForestComponent>("Forest");
+		auto transform = drawOrder[4]->getComponent<TransformComponent>("Transform");
+		auto render = drawOrder[4]->getComponent<RenderableComponent>("Renderable");
 
 		std::string type, biome;
 		int life, maxLife;
@@ -1242,9 +1242,9 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 	// Render Religion related text above city.
 	if (drawOrder[8] && drawOrder[8]->hasComponent("City"))
 	{
-		auto c = drawOrder[7]->getComponent<CityComponent>("City");
-		auto transform = drawOrder[7]->getComponent<TransformComponent>("Transform");
-		auto render = drawOrder[7]->getComponent<RenderableComponent>("Renderable");
+		auto c = drawOrder[8]->getComponent<CityComponent>("City");
+		auto transform = drawOrder[8]->getComponent<TransformComponent>("Transform");
+		auto render = drawOrder[8]->getComponent<RenderableComponent>("Renderable");
 
 		std::string text = c->GetName();
 

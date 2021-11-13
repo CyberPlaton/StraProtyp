@@ -1,0 +1,7 @@
+<Gameobject>
+	<Tag>Nation</Tag>
+	<Name>Default_Nation</Name>
+	<Components>
+		<Component name="Nation"></Component>
+	</Components>
+</Gameobject>

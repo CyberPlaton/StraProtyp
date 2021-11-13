@@ -23,8 +23,6 @@ using ComponentStorageVec = std::vector< Pointer< T > >;
 class IGameObject
 {
 public:
-	static size_t g_GameObjectCount;
-public:
 
 	virtual void setTag(std::string) = 0;
 	virtual std::string getTag() = 0;
