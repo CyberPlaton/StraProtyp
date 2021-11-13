@@ -179,6 +179,9 @@ bool App::OnUserCreate()
 	// Create Transformed View renderer with given Screen Dimension and given Tile Size (256, 256).
 	tv = olc::TileTransformedView({ ScreenWidth(), ScreenHeight() }, { DEFAULT_DECAL_SIZE_X, DEFAULT_DECAL_SIZE_Y });
 
+	// Initialize HID Manager
+	g_HIDManager = new olc::hid::OLCHIDManager(new olc::hid::OLCMouse(this), new olc::hid::OLCKeyboard(this));
+
 	
 	GameWorldTime::get()->setTimeSpeed(0.016);
 
@@ -560,6 +563,26 @@ std::vector< TechInstance* > App::getNextTechToChoose(IPlayer* player, ITech::Te
 void App::_handleInput()
 {
 	using namespace std;
+
+	g_HIDManager->update();
+	std::vector<std::string> pads;
+	g_HIDManager->enumerateGamepads(&pads);
+	for (auto& p: pads)
+	{
+		cout << "Gamepad: "<< p << ", Vendor: " << g_HIDManager->vendor(p.c_str()) << endl;
+
+		if (g_HIDManager->buttonDown(p.c_str(), "button_up"))
+		{
+			g_HIDManager->rumble(p.c_str(), olc::hid::SMALL_RUMBLE);
+		}
+	}
+	
+	if (g_HIDManager->keyDown(olc::Key::SPACE))
+	{
+		cout << "[SPACE] Down" << endl;
+	}
+
+	cout << g_HIDManager->mouseX() << ", " << g_HIDManager->mouseY() << endl;
 
 
 	olc::vf2d point = tv.ScreenToWorld({ GetMouseX(), GetMouseY() });

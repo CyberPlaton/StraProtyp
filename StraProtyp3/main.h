@@ -24,6 +24,8 @@
 #include "olcPGEX_Font.h"
 #define OLC_PGEX_CUSTOMFONT
 #include "olcPGEX_CustomFont.h"
+#define OLC_PGEX_HIDMANAGER
+#include "olcPGEX_HIDManager.h"
 
 
 /*
@@ -192,6 +194,8 @@ public:
 	Pointer<GameObject2> getCurrentViewedCity() { return currentViewedCity;}
 
 private:
+
+	olc::hid::OLCHIDManager* g_HIDManager = nullptr;
 
 	olc::TileTransformedView tv;
 	olc::imgui::PGE_ImGUI pge_imgui;
