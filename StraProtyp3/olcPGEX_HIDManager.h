@@ -15,15 +15,6 @@
 #include<Xinput.h>
 #pragma comment(lib, "Xinput.lib")
 
-
-/*
-* FOR PS GAMEPAD
-*/
-#include "olcPGEX_HIDManager/JoyShockLibrary/JoyShockLibrary.h"
-#pragma comment(lib, "JoyShockLibrary.lib")
-
-
-
 #include <iostream>
 
 
@@ -38,7 +29,6 @@ namespace olc
 		struct Rumble;
 		struct GamepadColor;
 		class OLCHIDManager;
-		class PSGamepad;
 		class XBoxGamepad;
 		class OLCKeyboard;
 		class OLCMouse;
@@ -65,7 +55,9 @@ namespace olc
 			virtual void update() = 0;
 			virtual int gamepad(std::string) = 0;
 			virtual void enumerateGamepads(std::vector<std::string>*) = 0;
-
+			virtual void setGamepadStickThreshhold(float) = 0; // Numerical threshhold for registering input.
+			virtual void removeGamepad(const char*) = 0;
+			virtual void storeGamepad(Gamepad*) = 0;
 
 			/*
 			* Keyboard stuff.
@@ -177,20 +169,10 @@ namespace olc
 				*/
 				m_XboxRumbleRight = (big * 65535) / 100;
 				m_XboxRumbleLeft = (little * 65535) / 100;
-
-				/*
-				* Analog to XBox but with max of 255.
-				*/
-				m_PSBigRumble = (big * 255) / 100;
-				m_PSSmallRumble = (little * 255) / 100;
 			}
 
 			int m_XboxRumbleLeft = 0; // Big gyro.
 			int m_XboxRumbleRight = 0; // Small gyro.
-
-			int m_PSBigRumble = 0;
-			int m_PSSmallRumble = 0;
-
 
 		private:
 			int m_Big = 0;
@@ -614,171 +596,6 @@ namespace olc
 
 		};
 
-		/*
-		* PS Gamepad
-		*/
-		class PSGamepad : public Gamepad
-		{
-		public:
-			PSGamepad(int id) : m_DeviceID(id)
-			{
-				m_DeviceType = JslGetControllerType(m_DeviceID);
-				switch (m_DeviceType)
-				{
-				case JS_TYPE_DS:
-					m_DeviceName = "dualsense_" + std::to_string(m_DeviceID);
-					break;
-				case JS_TYPE_DS4:
-					m_DeviceName = "dualshock_" + std::to_string(m_DeviceID);
-					break;
-				case JS_TYPE_PRO_CONTROLLER:
-					m_DeviceName = "pro_" + std::to_string(m_DeviceID);
-					break;
-				case JS_TYPE_JOYCON_RIGHT:
-					m_DeviceName = "joycon_right_" + std::to_string(m_DeviceID);
-					break;
-				case JS_TYPE_JOYCON_LEFT:
-					m_DeviceName = "joycon_left_" + std::to_string(m_DeviceID);
-					break;
-				default:
-					m_DeviceName = "unknown";
-					break;
-				}
-			}
-
-			~PSGamepad()
-			{
-				JslDisconnectAndDisposeAll();
-			}
-
-			int id() override
-			{
-				return m_DeviceID;
-			}
-			bool refresh() override
-			{
-				return JslGetControllerType(m_DeviceID) == m_DeviceType;
-			}
-
-			void rumble(Rumble r) override
-			{
-				JslSetRumble(m_DeviceID, r.m_PSSmallRumble, r.m_PSBigRumble);
-			}
-			void rumbleOff() override
-			{
-				JslSetRumble(m_DeviceID, 0, 0);
-			}
-
-			float leftTrigger() override
-			{
-				return JslGetLeftTrigger(m_DeviceID);
-			}
-			float rightTrigger() override
-			{
-				return JslGetRightTrigger(m_DeviceID);
-			}
-
-			float leftStickX() override
-			{
-				return JslGetLeftX(m_DeviceID);
-			}
-			float leftStickY() override
-			{
-				return JslGetLeftY(m_DeviceID);
-			}
-			float rightStickX() override
-			{
-				return JslGetRightX(m_DeviceID);
-			}
-			float rightStickY() override
-			{
-				return JslGetRightY(m_DeviceID);
-			}
-
-			bool buttonDown(int mask) override
-			{
-				JOY_SHOCK_STATE state = JslGetSimpleState(m_DeviceID);
-				return state.buttons == mask;
-			}
-
-			float oneFingerTouchPadX() override
-			{
-				return JslGetTouchState(m_DeviceID).t0X;
-			}
-			float oneFingerTouchPadY() override
-			{
-				return JslGetTouchState(m_DeviceID).t0Y;
-			}
-			float twoFingerTouchPadX() override
-			{
-				return JslGetTouchState(m_DeviceID).t1X;
-			}
-			float twoFingerTouchPadY() override
-			{
-				return JslGetTouchState(m_DeviceID).t1Y;
-			}
-
-			float gravityX() override
-			{
-				return JslGetMotionState(m_DeviceID).gravX;
-			}
-			float gravityY() override
-			{
-				return JslGetMotionState(m_DeviceID).gravY;
-			}
-			float gravityZ() override
-			{
-				return JslGetMotionState(m_DeviceID).gravZ;
-			}
-
-			void setColor(GamepadColor c) override
-			{
-				int color = (c.m_R << 16) + (c.m_G << 8) + (c.m_B);
-
-				JslSetLightColour(m_DeviceID, color);
-				m_Color = c;
-			}
-			GamepadColor color() override
-			{
-				return m_Color;
-			}
-
-			/*
-			* Basic information functions.
-			*
-			* Note: For PS Devices we cant derive information for
-			* Thus we say either "unknown" or -1 to indicate it.
-			*/
-			int batteryPercent() override
-			{
-				return -1;
-			}
-			std::string batteryString() override
-			{
-				return "unknown";
-			}
-			std::string name() override
-			{
-				return m_DeviceName;
-			}
-			std::string vendor() override
-			{
-				return m_DeviceVendor;
-			}
-
-
-
-		private:
-
-			std::string m_DeviceName;
-			const char* m_DeviceVendor = "PlayStation";
-			int m_DeviceType = -1;
-
-			int m_DeviceID = -1;
-
-			GamepadColor m_Color;
-		};
-
 
 
 		/*
@@ -809,18 +626,57 @@ namespace olc
 				m_Mouse->update();
 				m_Keyboard->update();
 
+				// Search for new gamepads.
+				_searchForGamepad();
 
 				// Check whether we have Gamepads to be update.
-				for (auto it : m_Gamepad)
+				for (int i = 0; i < m_Gamepad.size(); i++)
 				{
-					if (it)
+					if (m_Gamepad[i])
 					{
-						if (!it->refresh())
+
+						cout << i << ".) Gamepad: " << m_Gamepad[i]->name() << endl;
+
+
+						if (!m_Gamepad[i]->refresh())
 						{
 #ifdef _DEBUG
-							cout << "Could not refresh \"" << it->vendor() << "\"-\"" << it->name() << "\" " << endl;
+							cout << "Could not refresh \"" << m_Gamepad[i]->vendor() << "\"-\"" << m_Gamepad[i]->name() << "\", removing Gamepad" << endl;
 #endif
+
+							removeGamepad(m_Gamepad[i]->name().c_str());
 						}
+					}
+				}
+			}
+
+
+			void removeGamepad(const char* name) override
+			{
+				for (int i = 0; i < m_Gamepad.size(); i++)
+				{
+					if (m_Gamepad[i])
+					{
+						if (strcmp(m_Gamepad[i]->name().c_str(), name) == 0)
+						{
+							delete m_Gamepad[i];
+							m_Gamepad[i] = nullptr;
+							m_GamepadCount--;
+							break;
+						}
+					}
+				}
+			}
+
+
+			void storeGamepad(Gamepad* pad) override
+			{
+				for (int i = 0; i < m_Gamepad.size(); i++)
+				{
+					if (m_Gamepad[i] == nullptr)
+					{
+						m_Gamepad[i] = pad;
+						break;
 					}
 				}
 			}
@@ -849,6 +705,12 @@ namespace olc
 						vec->push_back(pad->name());
 					}
 				}
+			}
+
+
+			void setGamepadStickThreshhold(float v) override
+			{
+				m_GamepadThreshhold = v;
 			}
 
 			/*
@@ -945,11 +807,6 @@ namespace olc
 					}
 				}
 			}
-			/*
-			* WARNING:
-			* Continuously sendind rumble commands to PS Gamepad will
-			* hang the application, this is a Bug in the Joyshock library.
-			*/
 			void rumble(const char* id, Rumble r) override
 			{
 				for (auto it : m_Gamepad)
@@ -1010,7 +867,10 @@ namespace olc
 					{
 						if (strcmp(it->name().c_str(), id) == 0)
 						{
-							return it->leftStickX();
+							float v = it->leftStickX();
+
+							// Account for positive and negative values.
+							return (std::abs(v) >= m_GamepadThreshhold) ? v : 0.0f;
 						}
 					}
 				}
@@ -1023,7 +883,10 @@ namespace olc
 					{
 						if (strcmp(it->name().c_str(), id) == 0)
 						{
-							return it->leftStickY();
+							float v = it->leftStickY();
+
+							// Account for positive and negative values.
+							return (std::abs(v) >= m_GamepadThreshhold) ? v : 0.0f;
 						}
 					}
 				}
@@ -1036,7 +899,10 @@ namespace olc
 					{
 						if (strcmp(it->name().c_str(), id) == 0)
 						{
-							return it->rightStickX();
+							float v = it->rightStickX();
+
+							// Account for positive and negative values.
+							return (std::abs(v) >= m_GamepadThreshhold) ? v : 0.0f;
 						}
 					}
 				}
@@ -1049,7 +915,10 @@ namespace olc
 					{
 						if (strcmp(it->name().c_str(), id) == 0)
 						{
-							return it->rightStickY();
+							float v = it->rightStickY();
+
+							// Account for positive and negative values.
+							return (std::abs(v) >= m_GamepadThreshhold) ? v : 0.0f;
 						}
 					}
 				}
@@ -1243,7 +1112,7 @@ namespace olc
 			*/
 			std::array<Gamepad*, 4> m_Gamepad;
 			int m_GamepadCount = 0;
-
+			float m_GamepadThreshhold = 0.0f;
 
 			/*
 			* We map buttons for convenience like
@@ -1265,16 +1134,16 @@ namespace olc
 				if (!m_Initialized)
 				{
 					// "Round" Gamepad Buttons.
-					m_GamepadButtonMapping["button_up"] = std::make_pair(XINPUT_GAMEPAD_Y, JSMASK_N);
-					m_GamepadButtonMapping["button_down"] = std::make_pair(XINPUT_GAMEPAD_A, JSMASK_S);
-					m_GamepadButtonMapping["button_right"] = std::make_pair(XINPUT_GAMEPAD_B, JSMASK_W);
-					m_GamepadButtonMapping["button_left"] = std::make_pair(XINPUT_GAMEPAD_X, JSMASK_E);
+					m_GamepadButtonMapping["button_up"] = std::make_pair(XINPUT_GAMEPAD_Y, 0);
+					m_GamepadButtonMapping["button_down"] = std::make_pair(XINPUT_GAMEPAD_A, 0);
+					m_GamepadButtonMapping["button_right"] = std::make_pair(XINPUT_GAMEPAD_B, 0);
+					m_GamepadButtonMapping["button_left"] = std::make_pair(XINPUT_GAMEPAD_X, 0);
 
 					// "DPad" Gamepad Buttons.
-					m_GamepadButtonMapping["button_dpad_up"] = std::make_pair(XINPUT_GAMEPAD_DPAD_UP, JSMASK_UP);
-					m_GamepadButtonMapping["button_dpad_down"] = std::make_pair(XINPUT_GAMEPAD_DPAD_DOWN, JSMASK_DOWN);
-					m_GamepadButtonMapping["button_dpad_right"] = std::make_pair(XINPUT_GAMEPAD_DPAD_RIGHT, JSMASK_RIGHT);
-					m_GamepadButtonMapping["button_dpad_left"] = std::make_pair(XINPUT_GAMEPAD_DPAD_LEFT, JSMASK_LEFT);
+					m_GamepadButtonMapping["button_dpad_up"] = std::make_pair(XINPUT_GAMEPAD_DPAD_UP, 0);
+					m_GamepadButtonMapping["button_dpad_down"] = std::make_pair(XINPUT_GAMEPAD_DPAD_DOWN, 0);
+					m_GamepadButtonMapping["button_dpad_right"] = std::make_pair(XINPUT_GAMEPAD_DPAD_RIGHT, 0);
+					m_GamepadButtonMapping["button_dpad_left"] = std::make_pair(XINPUT_GAMEPAD_DPAD_LEFT, 0);
 
 					/*
 					* JSMASK_HOME and JSMASK_PS are same.
@@ -1285,18 +1154,18 @@ namespace olc
 					* If a Gamepad vendor did not provide an equivalent, we set for him -1.
 					*/
 					// Special Buttons
-					m_GamepadButtonMapping["button_back"] = std::make_pair(XINPUT_GAMEPAD_BACK, JSMASK_SHARE);
-					m_GamepadButtonMapping["button_start"] = std::make_pair(XINPUT_GAMEPAD_START, JSMASK_OPTIONS);
-					m_GamepadButtonMapping["button_touchpad"] = std::make_pair(-1, JSMASK_TOUCHPAD_CLICK);
+					m_GamepadButtonMapping["button_back"] = std::make_pair(XINPUT_GAMEPAD_BACK, 0);
+					m_GamepadButtonMapping["button_start"] = std::make_pair(XINPUT_GAMEPAD_START, 0);
+					m_GamepadButtonMapping["button_touchpad"] = std::make_pair(-1, 0);
 
 
 					// Analog Sticks as buttons.
-					m_GamepadButtonMapping["button_stick_left"] = std::make_pair(XINPUT_GAMEPAD_LEFT_THUMB, JSMASK_LCLICK);
-					m_GamepadButtonMapping["button_stick_right"] = std::make_pair(XINPUT_GAMEPAD_RIGHT_THUMB, JSMASK_RCLICK);
+					m_GamepadButtonMapping["button_stick_left"] = std::make_pair(XINPUT_GAMEPAD_LEFT_THUMB, 0);
+					m_GamepadButtonMapping["button_stick_right"] = std::make_pair(XINPUT_GAMEPAD_RIGHT_THUMB, 0);
 
 					// Shoulder Buttons.
-					m_GamepadButtonMapping["button_shoulder_left"] = std::make_pair(XINPUT_GAMEPAD_LEFT_SHOULDER, JSMASK_L);
-					m_GamepadButtonMapping["button_shoulder_right"] = std::make_pair(XINPUT_GAMEPAD_RIGHT_SHOULDER, JSMASK_R);
+					m_GamepadButtonMapping["button_shoulder_left"] = std::make_pair(XINPUT_GAMEPAD_LEFT_SHOULDER, 0);
+					m_GamepadButtonMapping["button_shoulder_right"] = std::make_pair(XINPUT_GAMEPAD_RIGHT_SHOULDER, 0);
 
 
 
@@ -1307,69 +1176,18 @@ namespace olc
 					* Define Gamepads as nullptr on startup.
 					*/
 					ZeroMemory(&m_Gamepad[0], sizeof(std::array<Gamepad*, 4>));
+
+
+					/*
+					* Define the threshhold for registration of input.
+					*/
+					m_GamepadThreshhold = 0.1f;
 				}
 			}
 
 			void _searchForGamepad()
 			{
-				/*
-				* Possible Bug:
-				* We do not check whether the ids are same across PS and XBOX devices.
-				*/
-
-				if (m_GamepadCount == m_Gamepad.size()) return;
-
-				// Check for new incoming Gamepads.
-
-
-				// Playstation.
-				if (JslConnectDevices() != 0)
-				{
-					bool device_connected = false;
-					int devices[4];
-					for (int i = 0; i < 4; i++) devices[i] = 9999; // Give them some ridiculous high ids.
-
-
-					JslGetConnectedDeviceHandles(&devices[0], 4);
-
-
-					for (int ids = 0; ids < 4 && m_GamepadCount < m_Gamepad.size(); ids++)
-					{
-
-						int new_device_id = devices[ids];
-						if (new_device_id == 9999) continue;
-
-
-						for (auto pad : m_Gamepad)
-						{
-							// Check whether we have this device already connected.
-							// And dont check for devices that are XBox Gamepads.
-							if (pad)
-							{
-								if (strcmp(pad->vendor().c_str(), "Microsoft") == 0) continue;
-
-
-								device_connected = pad->id() == new_device_id;
-
-								if (device_connected) break;
-							}
-						}
-
-
-
-						// Store newly connected device.
-						if (!device_connected)
-						{
-							PSGamepad* ps_pad = new PSGamepad(devices[new_device_id]);
-
-							m_Gamepad[m_GamepadCount] = ps_pad;
-
-							m_GamepadCount++;
-						}
-					}
-				}
-
-
+				// Skip search if no new devices can be supported.
 				if (m_GamepadCount == m_Gamepad.size()) return;
 
 
@@ -1391,9 +1209,6 @@ namespace olc
 						{
 							if (pad)
 							{
-								if (strcmp(pad->vendor().c_str(), "PlayStation") == 0) continue;
-
-
 								device_connected = pad->id() == controllerId;
 
 								if (device_connected) break;
@@ -1405,8 +1220,7 @@ namespace olc
 						{
 							XBoxGamepad* xbox_pad = new XBoxGamepad(controllerId);
 
-							m_Gamepad[m_GamepadCount] = xbox_pad;
-
+							storeGamepad(xbox_pad);
 							m_GamepadCount++;
 						}
 					}
