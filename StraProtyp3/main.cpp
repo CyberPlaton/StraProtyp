@@ -109,7 +109,7 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 	SetDrawTarget((uint8_t)m_GameLayer);
 	DrawStringDecal(olc::vf2d(1200, 50), "FPS: " + std::to_string(GetFPS()));
-	font->DrawStringDecal(olc::vf2d(1200, 50), "FPS: " + std::to_string(GetFPS()), olc::WHITE, {0.5f, 0.5f});
+	font->DrawStringPropDecal(olc::vf2d(1200, 60), "FPS: " + std::to_string(GetFPS()), olc::CYAN, { 0.5f, 0.5f });
 
 	return true;
 }
@@ -1565,4 +1565,63 @@ void UpdateForestSystem(GameworldMatrix& world)
 void UpdateReligionSystem(GameworldMatrix& world)
 {
 	ReligionSystem::get()->UpdateReligions(world);
+}
+
+
+
+void App::DrawCircleDecal(const olc::vf2d& pos, const olc::vf2d& scale, const olc::vf2d& center, const olc::Pixel& tint)
+{
+	olc::vf2d p = {pos.x - center.x, pos.y - center.y};
+	DrawDecal(p, _getDecal("circle").get(), scale, tint);
+}
+
+void App::DrawElipseDecal(const olc::vf2d& pos, const olc::vf2d& scale, const olc::vf2d& center, const olc::Pixel& tint)
+{
+	olc::vf2d p = { pos.x - center.x, pos.y - center.y };
+	DrawDecal(p, _getDecal("elipse").get(), scale, tint);
+}
+
+void App::DrawRectangleDecal(const olc::vf2d& pos, const olc::vf2d& scale, const olc::vf2d& center, const olc::Pixel& tint)
+{
+	olc::vf2d p = { pos.x - center.x, pos.y - center.y };
+	DrawDecal(p, _getDecal("rectangle").get(), scale, tint);
+}
+
+
+void App::DrawTriangleDecal(const olc::vf2d& pos, const olc::vf2d& scale, const olc::vf2d& center, const olc::Pixel& tint)
+{
+	olc::vf2d p = { pos.x - center.x, pos.y - center.y };
+	DrawDecal(p, _getDecal("triangle").get(), scale, tint);
+}
+
+
+void App::DrawCircleDecalTransformed(const olc::vf2d& pos, const olc::vf2d& scale, const olc::Pixel& tint)
+{
+	tv.DrawDecal(pos, _getDecal("circle").get(), scale, tint);
+}
+
+
+void App::DrawElipseDecalTransformed(const olc::vf2d& pos, const olc::vf2d& scale, const olc::Pixel& tint)
+{
+	tv.DrawDecal(pos, _getDecal("elipse").get(), scale, tint);
+}
+
+
+void App::DrawRectangleDecalTransformed(const olc::vf2d& pos, const olc::vf2d& scale, const olc::Pixel& tint)
+{
+	tv.DrawDecal(pos, _getDecal("rectangle").get(), scale, tint);
+}
+
+
+void App::DrawTriangleDecalTransformed(const olc::vf2d& pos, const olc::vf2d& scale, const olc::Pixel& tint)
+{
+	tv.DrawDecal(pos, _getDecal("triangle").get(), scale, tint);
+}
+
+
+void App::DrawLineDecalTransformed(const olc::vf2d& from, const olc::vf2d& to, const olc::Pixel& tint)
+{
+	olc::vf2d p1 = tv.WorldToScreen(from);
+	olc::vf2d p2 = tv.WorldToScreen(to);
+	DrawLineDecal(p1, p2, tint);
 }

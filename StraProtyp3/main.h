@@ -185,6 +185,35 @@ public:
 
 public:
 
+	/*
+	* Custom rendering functions,
+	* example usage:
+	* 
+	* 	DrawCircleDecal({ 250.1f, 250.1f }, { 1.0f, 1.0f }, { DEFAULT_DECAL_SIZE_X / 2, DEFAULT_DECAL_SIZE_Y / 2 }, olc::BLUE);
+	*	DrawElipseDecal({ 200.1f, 550.1f }, { 0.25f, 0.56f }, { DEFAULT_DECAL_SIZE_X / 2, DEFAULT_DECAL_SIZE_Y / 2 }, olc::CYAN);
+	*	DrawRectangleDecal({ 100.1f, 150.1f }, { 0.25f, 0.56f }, { DEFAULT_DECAL_SIZE_X / 2, DEFAULT_DECAL_SIZE_Y / 2 }, olc::RED);
+	*	DrawTriangleDecal({ 200.1f, 550.1f }, { 0.25f, 0.1f }, { DEFAULT_DECAL_SIZE_X / 2, DEFAULT_DECAL_SIZE_Y / 2 }, olc::GREEN);
+	*	DrawLineDecal(olc::vf2d(-10.0f, 0.0f), olc::vf2d(900.0f, 710.0f), olc::DARK_MAGENTA);
+	*
+	*	DrawCircleDecalTransformed({ 0, 0 }, { 1.0f, 1.0f }, olc::DARK_GREEN);
+	*	DrawElipseDecalTransformed({ 1, 1 }, { 1.0f, 1.0f }, olc::DARK_CYAN);
+	*	DrawRectangleDecalTransformed({ 1, 0 }, { 1.0f, 1.0f }, olc::DARK_MAGENTA);
+	*	DrawTriangleDecalTransformed({ 0, 1 }, { 1.0f, 1.0f }, olc::MAGENTA);
+	*	DrawLineDecalTransformed({ 1, 1 }, { 19, 19 }, olc::RED);
+	* 
+	*/
+	void DrawCircleDecal(const olc::vf2d& pos, const olc::vf2d& scale, const olc::vf2d& center, const olc::Pixel& tint);
+	void DrawElipseDecal(const olc::vf2d& pos, const olc::vf2d& scale, const olc::vf2d& center, const olc::Pixel& tint);
+	void DrawRectangleDecal(const olc::vf2d& pos, const olc::vf2d& scale, const olc::vf2d& center, const olc::Pixel& tint);
+	void DrawTriangleDecal(const olc::vf2d& pos, const olc::vf2d& scale, const olc::vf2d& center, const olc::Pixel& tint);
+
+	void DrawCircleDecalTransformed(const olc::vf2d& pos, const olc::vf2d& scale, const olc::Pixel& tint);
+	void DrawElipseDecalTransformed(const olc::vf2d& pos, const olc::vf2d& scale, const olc::Pixel& tint);
+	void DrawRectangleDecalTransformed(const olc::vf2d& pos, const olc::vf2d& scale, const olc::Pixel& tint);
+	void DrawTriangleDecalTransformed(const olc::vf2d& pos, const olc::vf2d& scale, const olc::Pixel& tint);
+	void DrawLineDecalTransformed(const olc::vf2d& from, const olc::vf2d& to, const olc::Pixel& tint);
+
+
 	bool OnUserCreate() override;
 	bool OnUserUpdate(float fElapsedTime) override;
 	void DrawUI(void);
