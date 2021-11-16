@@ -135,13 +135,13 @@ C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Gam
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<UnitComponent>': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<ForestComponent>': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(809): warning C4715: 'olc::hid::OLCHIDManager::buttonDown': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(848): warning C4715: 'olc::hid::OLCHIDManager::leftTrigger': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(861): warning C4715: 'olc::hid::OLCHIDManager::rightTrigger': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(909): warning C4715: 'olc::hid::OLCHIDManager::rightStickX': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(893): warning C4715: 'olc::hid::OLCHIDManager::leftStickY': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(925): warning C4715: 'olc::hid::OLCHIDManager::rightStickY': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(848): warning C4715: 'olc::hid::OLCHIDManager::leftTrigger': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(877): warning C4715: 'olc::hid::OLCHIDManager::leftStickX': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(925): warning C4715: 'olc::hid::OLCHIDManager::rightStickY': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(938): warning C4715: 'olc::hid::OLCHIDManager::oneFingerTouchPadX': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(893): warning C4715: 'olc::hid::OLCHIDManager::leftStickY': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(909): warning C4715: 'olc::hid::OLCHIDManager::rightStickX': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(951): warning C4715: 'olc::hid::OLCHIDManager::oneFingerTouchPadY': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(964): warning C4715: 'olc::hid::OLCHIDManager::twoFingerTouchPadX': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(977): warning C4715: 'olc::hid::OLCHIDManager::twoFingerTouchPadY': not all control paths return a value

@@ -1502,6 +1502,8 @@ void AppStateWorldMap::_drawUI()
 
 	if (render_city_religions)
 	{
+		std::vector< Pointer<GameObject2> > cities;
+
 		for (int i = 0; i < app->gameWorldMatrix.size(); i++)
 		{
 			for (int j = 0; j < app->gameWorldMatrix[i].size(); j++)
@@ -1530,10 +1532,58 @@ void AppStateWorldMap::_drawUI()
 					olc::vf2d p = { cityTransform->GetXPos() - (strength / div) / 2.0f, cityTransform->GetYPos() - (strength / div) / 2.0f };
 
 					app->tv.DrawDecal(p, app->_getDecal("circle").get(), { strength / div, strength / div }, color);
+
+					// Store for later drawing of distances.
+					cities.push_back(c);
 				}
 			}
 		}
+
+
+
+		// Go through all cities on maptile,
+		// and render their distance from each other.
+		for (int i = 0; i < cities.size(); i++)
+		{
+			auto city = cities[i]->getComponent<CityComponent>("City");
+			auto cityTransform = cities[i]->getComponent<TransformComponent>("Transform");
+
+
+			for (int j = 0; j < cities.size(); j++)
+			{
+				// Dont draw a line to self.
+				if (i == j) continue;
+
+				auto otherCityTransform = cities[j]->getComponent<TransformComponent>("Transform");
+
+				olc::vf2d from = { cityTransform->GetXPos(), cityTransform->GetYPos() };
+				olc::vf2d to = { otherCityTransform->GetXPos(), otherCityTransform->GetYPos() };
+
+
+				// Draw the distance above the line.
+				float d = std::abs(from.x - to.x) + std::abs(from.y - to.y); // Manhatten
+
+				// Get color indicating whether in range.
+				olc::Pixel color = (d > 30.0) ? olc::DARK_RED : olc::GREEN;
+
+				// Draw the line.
+				app->DrawLineDecalTransformed(from, to, color);
+
+				// Compute middle point of the line.
+				olc::vf2d m = {std::abs(to.x - from.x) / 2.0f, std::abs(to.y - from.y) / 2.0f};
+
+				// Get the screen space coordinates for the middle point.
+				olc::vf2d p = app->tv.WorldToScreen(m);
+
+				// Draw the Distance at given cooordinates.
+				// TODO: Not drawing correctly.
+				app->font->DrawStringDecal(m, std::to_string(d), olc::BLACK, {0.4f, 0.4f});
+			}
+		}
+
+
 	}
+
 }
 
 
@@ -1625,3 +1675,4 @@ void App::DrawLineDecalTransformed(const olc::vf2d& from, const olc::vf2d& to, c
 	olc::vf2d p2 = tv.WorldToScreen(to);
 	DrawLineDecal(p1, p2, tint);
 }
+
