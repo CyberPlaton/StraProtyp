@@ -31,4 +31,9 @@ private:
 
 	Pointer<GameObject2> m_ControlledNation;
 	std::vector< Pointer< GameObject2 > > m_Units;
+
+
+	
+	std::map< TechArea, int > m_ResearchPoints; // How many points were already invested in a tech area
+	std::map< TechArea, TechID > m_CurrentResearch; // What tech is being researched in each tech area
 };

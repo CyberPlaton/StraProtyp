@@ -175,6 +175,9 @@
 
 	<Decals path="Data/Assets/UI/">
 		<Decal>circle.png</Decal>
+		<Decal>elipse.png</Decal>
+		<Decal>rectangle.png</Decal>
+		<Decal>triangle.png</Decal>
 	</Decals>
 	
 </DecalDefinition>

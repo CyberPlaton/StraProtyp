@@ -1235,7 +1235,7 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 
 		olc::vf2d p = { transform->GetXPos() + render->GetWidth() / 2.0f - 0.3f, transform->GetYPos() + render->GetHeight() / 2.0f };
 		olc::vf2d screenPoint = app->tv.WorldToScreen(p);
-		app->font->DrawStringDecal(screenPoint, text, olc::RED, { 0.45f, 0.45f });
+		app->font->DrawStringDecal(screenPoint, text, olc::RED, { 0.4f, 0.4f });
 	}
 
 

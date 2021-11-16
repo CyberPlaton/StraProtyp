@@ -66,18 +66,18 @@ C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\mai
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(108): message : see declaration of 'AppStateWorldMap'
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(123,31): warning C4099: 'AppStateCityView': type name first seen using 'struct' now seen using 'class'
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(109): message : see declaration of 'AppStateCityView'
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(210,86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(210,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(214,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(214,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(218,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(218,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(222,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(222,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(226,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(226,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(607,35): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(607,43): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(196,86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(196,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(200,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(200,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(204,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(204,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(208,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(208,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(212,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(212,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(593,35): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(593,43): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
           with
           [
@@ -134,13 +134,13 @@ C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Gam
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<RenderableComponent>': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<UnitComponent>': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<ForestComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(809): warning C4715: 'olc::hid::OLCHIDManager::buttonDown': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(848): warning C4715: 'olc::hid::OLCHIDManager::leftTrigger': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(861): warning C4715: 'olc::hid::OLCHIDManager::rightTrigger': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(809): warning C4715: 'olc::hid::OLCHIDManager::buttonDown': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(877): warning C4715: 'olc::hid::OLCHIDManager::leftStickX': not all control paths return a value
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(893): warning C4715: 'olc::hid::OLCHIDManager::leftStickY': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(909): warning C4715: 'olc::hid::OLCHIDManager::rightStickX': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(893): warning C4715: 'olc::hid::OLCHIDManager::leftStickY': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(925): warning C4715: 'olc::hid::OLCHIDManager::rightStickY': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(877): warning C4715: 'olc::hid::OLCHIDManager::leftStickX': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(938): warning C4715: 'olc::hid::OLCHIDManager::oneFingerTouchPadX': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(951): warning C4715: 'olc::hid::OLCHIDManager::oneFingerTouchPadY': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(964): warning C4715: 'olc::hid::OLCHIDManager::twoFingerTouchPadX': not all control paths return a value
