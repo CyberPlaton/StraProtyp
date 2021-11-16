@@ -1570,14 +1570,32 @@ void AppStateWorldMap::_drawUI()
 				app->DrawLineDecalTransformed(from, to, color);
 
 				// Compute middle point of the line.
-				olc::vf2d m = {std::abs(to.x - from.x) / 2.0f, std::abs(to.y - from.y) / 2.0f};
+				//olc::vf2d m = {std::abs(to.x - from.x) / 2.0f, std::abs(to.y - from.y) / 2.0f};
+				olc::vf2d m;
+				if (from.x == to.x)
+				{
+					m.x = from.x;
+				}
+				else
+				{
+					m.x = int((from.x + to.x) / 2 + 0.45f);
+				}
+				if (from.y == to.y)
+				{
+					m.y = from.y;
+				}
+				else
+				{
+					m.y = int((from.y + to.y) / 2 + 0.45f);
+				}
+
 
 				// Get the screen space coordinates for the middle point.
 				olc::vf2d p = app->tv.WorldToScreen(m);
 
 				// Draw the Distance at given cooordinates.
-				// TODO: Not drawing correctly.
-				app->font->DrawStringDecal(m, std::to_string(d), olc::BLACK, {0.4f, 0.4f});
+				std::string n = std::to_string(d).substr(0, 5);
+				app->font->DrawStringDecal(p, n, olc::BLACK, {0.35f, 0.35f});
 			}
 		}
 
