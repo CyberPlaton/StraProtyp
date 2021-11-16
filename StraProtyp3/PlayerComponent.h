@@ -27,13 +27,16 @@ public:
 	void AddUnit(Pointer< GameObject2 > u) { m_Units.push_back(u); }
 	void SetNation(Pointer<GameObject2> n) { m_ControlledNation = n; }
 
+
+	std::vector < TechID >& GetTechnologies() { return m_ResearchedTechnologies; }
+
 private:
 
 	Pointer<GameObject2> m_ControlledNation;
 	std::vector< Pointer< GameObject2 > > m_Units;
 
 
-	
+	std::vector < TechID > m_ResearchedTechnologies; // The Technologies this player has researched
 	std::map< TechArea, int > m_ResearchPoints; // How many points were already invested in a tech area
 	std::map< TechArea, TechID > m_CurrentResearch; // What tech is being researched in each tech area
 };

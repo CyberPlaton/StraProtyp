@@ -32,51 +32,6 @@
 * ImGui includes for Technology Tree.
 */
 #include "imnodes.h"
-struct ImNodesLink
-{
-	ImNodesLink(int id, int start, int end) : id(id), start(start), end(end) {};
-	~ImNodesLink()
-	{
-		id = 0;
-		start = 0;
-		end = 0;
-	}
-
-	int id, start, end;
-};
-
-
-struct ImNodesNode
-{
-	ImNodesNode(const std::string& name, int id,
-		const std::string& area, const std::string& category) :name(name), id(id),
-	area(area), subCategory(category) {};
-
-	~ImNodesNode()
-	{
-		name.clear();
-		area.clear();
-		subCategory.clear();
-		id = 0;
-		while (dependencies.size() > 0)
-		{
-			dependencies.erase(dependencies.begin());
-		}
-
-		while (techDependencies.size() > 0)
-		{
-			techDependencies.erase(techDependencies.begin());
-		}
-	}
-
-	std::string name;
-	std::string area;
-	std::string subCategory;
-	int id;
-	std::map< std::string, int > dependencies; // Which are not technologies.
-	std::map< std::string, int > techDependencies; // Which are for display only.
-};
-
 
 
 
@@ -156,18 +111,6 @@ public:
 			decalIDMap.erase(decalIDMap.begin());
 		}
 
-		while (techTreeNodes.size() > 0)
-		{
-			techTreeNodes[0].~ImNodesNode();
-			techTreeNodes.erase(techTreeNodes.begin());
-		}
-
-		while (links.size() > 0)
-		{
-			links[0].~ImNodesLink();
-			links.erase(links.begin());
-		}
-
 		for (int i = 0; i < gameWorldMatrix.size(); i++)
 		{
 			for (int j = 0; j < gameWorldMatrix[i].size(); j++)
@@ -245,15 +188,9 @@ private:
 
 	std::string lastSelectedGameobjectTag = "none";
 
-	// A vector of all Technologies in game.
-	// Currently for debug/display usage.
-	//std::vector< TechInstance* > techTree;
-	std::vector< ImNodesNode > techTreeNodes;
-	std::vector< ImNodesLink > links;
-
 
 	// Players in game.
-	//std::vector< PlayerInstance* > players;
+	Pointer< GameObject2 > m_Player;
 
 
 	// The city the player associated with this App is currenlty viewing.

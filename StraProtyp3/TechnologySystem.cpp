@@ -96,3 +96,53 @@ void TechnologySystem::del()
 		delete g_TechnologySystem;
 	}
 }
+
+
+void TechnologySystem::VisualizeTechnologyTree(Pointer< GameObject2 > player)
+{
+	ImGui::Begin("Technology Tree");
+
+
+	if (!m_TechTreeInitialized)
+	{
+		for (int i = 0; i < m_Technologies.size(); i++)
+		{
+			auto tech = m_Technologies[i]->getComponent<TechnologyComponent>("Technology");
+
+			std::string tech_name = tech->GetTechID();
+			std::string tech_area = tech->GetTechArea();
+			std::string tech_category = tech->GetTechSubcategory();
+
+			m_TechNodes.push_back(new Node(tech_name, m_TechNodeID++, tech_area, tech_category));
+		}
+
+		m_TechTreeInitialized = true;
+	}
+
+
+	auto researched_techs = player->getComponent<PlayerComponent>("Player")->GetTechnologies();
+
+
+	ImNodes::BeginNodeEditor();
+
+
+	for (int i = 0; i < m_TechNodes.size(); i++)
+	{
+
+		ImNodes::BeginNode(m_TechNodes[i]->id);
+
+		ImNodes::BeginNodeTitleBar();
+		ImGui::TextUnformatted(m_TechNodes[i]->name.c_str());
+		ImNodes::EndNodeTitleBar();
+
+		ImNodes::EndNode();
+	}
+
+
+	ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_BottomRight);
+	ImNodes::EndNodeEditor();
+
+
+
+	ImGui::End();
+}

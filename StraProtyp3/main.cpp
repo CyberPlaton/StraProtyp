@@ -429,6 +429,9 @@ bool App::OnUserCreate()
 	ptr = GameobjectStorage::get()->Instantiate("River", 19, 15);
 
 
+	ptr = GameobjectStorage::get()->Instantiate("DefaultPlayer", 0, 0);
+	m_Player = ptr;
+
 	NavMesh::get()->Bake();
 
 	return true;
@@ -1349,6 +1352,7 @@ void AppStateWorldMap::update(float)
 	}
 	*/
 
+	/*
 	if (show_nav_mesh)
 	{
 		// Draw Nodes
@@ -1378,6 +1382,9 @@ void AppStateWorldMap::update(float)
 			tv.DrawLine(olc::vf2d(a + 0.5f, b + 0.5f), olc::vf2d(x + 0.5f, y + 0.5f), olc::YELLOW);
 		}
 	}
+	*/
+
+
 
 	/*
 	if (show_nav_path)
@@ -1417,46 +1424,6 @@ void AppStateWorldMap::update(float)
 	// Draw ImGui.
 	_drawUI();
 
-
-	/*
-	// Have we selected some entity on the Screen.
-	static bool isSelected = false;
-	if (app->stateMachine.getCurrentState().compare("worldMap") == 0 && app->GetMouse(0).bPressed)
-	{
-		isSelected = false;
-
-		olc::vf2d p = tv.ScreenToWorld(app->GetMousePos());
-
-		for (auto& go : GameObjectStorage::get()->getStorage())
-		{
-			if (go->hasComponent("Transform") && go->hasComponent("Renderable"))
-			{
-				TransformCmp* goTr = nullptr;
-				RendererableCmp* goRen = nullptr;
-
-				if (selected_gameobject)
-				{
-					if (selected_gameobject->getTag().compare(go->getTag()) == 0) continue;
-				}
-
-
-				goTr = go->getComponent<TransformCmp>("Transform");
-				goRen = go->getComponent<RendererableCmp>("Renderable");
-
-				if (p.x >= goTr->xpos && p.x <= goTr->xpos + goRen->width &&
-					p.y >= goTr->ypos && p.y <= goTr->ypos + goRen->height)
-				{
-					// Collision.
-					selected_gameobject = go;
-					isSelected = true;
-					break;
-				}
-			}
-		}
-	}
-	*/
-
-	
 
 	if (selected_gameobject)
 	{
@@ -1499,6 +1466,9 @@ void AppStateWorldMap::update(float)
 
 void AppStateWorldMap::_drawUI()
 {
+
+	TechnologySystem::get()->VisualizeTechnologyTree(app->m_Player);
+
 
 	if (render_city_religions)
 	{
