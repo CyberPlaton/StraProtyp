@@ -49,7 +49,21 @@ public:
 
 	bool Initialize(std::string filepath);
 
+
+	// For given player visualize the technology tree with all available technologies
+	// and those already researched by him.
 	void VisualizeTechnologyTree(Pointer< GameObject2 > player);
+	
+
+	// Let given player choose next technology to be researched.
+	void ChooseNextTechnology(Pointer< GameObject2 > player);
+
+
+	// Add a tech as researched by given player or 
+	// remove an already researched tech from the players ResearchedTechnologies vector.
+	// 
+	// Leave "status" as true to to add newly researched tech, to remove one, set "status = false".
+	void SetTechnologyResearched(Pointer< GameObject2 > player, TechID id, bool status = true);
 
 private:
 	static TechnologySystem* g_TechnologySystem;
@@ -64,4 +78,10 @@ private:
 
 private:
 	TechnologySystem(){}
+
+
+
+private:
+
+	bool _hasResearchedTech(TechID id, std::vector< TechID >& techs);
 };

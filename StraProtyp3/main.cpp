@@ -160,6 +160,10 @@ bool App::OnUserCreate()
 	ImNodes::CreateContext();
 	ImNodes::SetNodeGridSpacePos(1, ImVec2(50.0f, 50.0f));
 	ImNodes::LoadCurrentEditorStateFromIniFile("tech_tree_graph.ini");
+	ImNodes::StyleColorsClassic();
+
+	if (pge_imgui.ImGui_ImplPGE_Init() == olc::rcode::FAIL) return false;
+	ImGui::StyleColorsClassic();
 
 
 	// Load Assets and Definitions etc.
@@ -259,6 +263,24 @@ bool App::OnUserCreate()
 	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 25, 16);
 	ptr->setName("Mournhold");
 	ReligionSystem::get()->CreateReligion(ptr, "Forest Pact");
+	ptr.reset();
+
+
+	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 12, 19);
+	ptr->setName("Endoral");
+	ReligionSystem::get()->CreateReligion(ptr, "Callahan Legion");
+	ptr.reset();
+
+
+	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 28, 2);
+	ptr->setName("Kallahan");
+	ReligionSystem::get()->CreateReligion(ptr, "Callahan Legion");
+	ptr.reset();
+
+
+	ptr = GameobjectStorage::get()->Instantiate("City_Plain", 4, 7);
+	ptr->setName("Orgirmmar Outpost");
+	ReligionSystem::get()->CreateReligion(ptr, "Horde");
 	ptr.reset();
 
 
@@ -1534,7 +1556,7 @@ void AppStateWorldMap::_drawUI()
 				float d = std::abs(from.x - to.x) + std::abs(from.y - to.y); // Manhatten
 
 				// Get color indicating whether in range.
-				olc::Pixel color = (d > 30.0) ? olc::DARK_RED : olc::GREEN;
+				olc::Pixel color = (d > DEFAULT_RELIGION_SPREAD_DISTANCE) ? olc::DARK_RED : olc::GREEN;
 
 				// Draw the line.
 				app->DrawLineDecalTransformed(from, to, color);

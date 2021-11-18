@@ -1,0 +1,24 @@
+<Gameobject>
+	<Tag>Maptile</Tag>
+	<Name>Tundra_Maptile</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_green</Color>
+			<Decal>tundra</Decal>
+			<Layer>maptile</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+
+		<Component name="Maptile" type="Tundra"></Component>
+
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

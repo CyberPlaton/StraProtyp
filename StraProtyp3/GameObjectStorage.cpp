@@ -19,37 +19,6 @@ bool GameobjectStorage::DestroyGameobject(Pointer<GameObject2> entity)
 		cout << "\tGameobject \"" << entity->getName() << "\" has not \"Pointers\" in use" << white << endl;
 	}
 
-
-
-
-	/*
-	// Remove entry from storage
-	for (int index = 0; index < gameObjectStorage.size(); index++)
-	{
-		if (entity->getTag().compare(gameObjectStorage[index]->getTag()) == 0)
-		{
-			cout << "Storage Size: " << gameObjectStorage.size() << endl;
-			cout << "Erase Entity at: " << index << endl;
-
-			// Erase to be destroyed Gameobject from Storage.
-			gameObjectStorage.erase(gameObjectStorage.begin() + index);
-			break;
-		}
-		else if (gameObjectStorage[index] == nullptr)
-		{
-			cout << color(colors::RED);
-			cout << "\t\tErasing Invalid Gameobject from Storage!" << white << endl;
-
-			// While searching erase any invalid Gameobjects on our path.
-			gameObjectStorage.erase(gameObjectStorage.begin() + index);
-
-			index = index - 1;
-
-			continue;
-		}
-	}
-	*/
-
 	entity.reset(); // Destroy Gameobject Pointer self
 	return true;
 }
@@ -57,22 +26,7 @@ bool GameobjectStorage::DestroyGameobject(Pointer<GameObject2> entity)
 
 bool GameobjectStorage::DestroyGameobject(std::string tag)
 {
-	using namespace std;
-
-	/*
-	for (auto& entity : gameObjectStorage)
-	{
-		if (entity->getTag().compare(tag) == 0)
-		{
-			// Delete Gameobject.
-			return DestroyGameobject(entity);
-		}
-	}
-	*/
-
 	return DestroyGameobject(gameObjectStorage[_getHashFromGameobjectTag(tag)]);
-
-	return false;
 }
 
 
@@ -120,8 +74,11 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 		ptr = std::make_shared<GameObject2>(tag, name, gameObjectNumber);
 
+
+#ifdef _DEBUG
 		cout << color(colors::GREEN);
 		cout << "Instantiate Gameobject \"" << name << "\"{" << tag << "}" << white << endl;
+#endif
 
 
 		// Get the defined components.
@@ -339,8 +296,10 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 			}
 			else
 			{
+#ifdef _DEBUG
 				std::cout << color(colors::RED);
 				std::cout << "\tUnknown Component Type! Ignoring..." << white << endl;
+#endif
 
 				// An unknown component will not be included and just ignored...
 			}
@@ -351,8 +310,10 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 			if (panik)
 			{
+#ifdef _DEBUG
 				std::cout << color(colors::RED);
 				std::cout << "Could not construct Gameobject \"" << name << "\"" << white << endl;
+#endif
 
 				ptr.reset();
 				return nullptr;
@@ -365,8 +326,10 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 		if (!ptr)
 		{
+#ifdef _DEBUG
 			cout << color(colors::RED);
 			cout << "Could not Instantiate Prefab \""<< prefabName << "\" {"<< prefabStorage[prefabName]  << "}" << white << endl;
+#endif
 		}
 		else
 		{
@@ -377,7 +340,6 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 			}
 
 			gameObjectStorage[gameObjectNumber] = ptr;
-			//gameObjectStorage.push_back(ptr);
 
 		}
 
@@ -393,17 +355,6 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 Pointer<GameObject2> GameobjectStorage::GetReference(std::string gameobjectTag)
 {
-	// Return a weak reference to a shared pointer.
-	// Thus not increasing the reference count.
-	// The correct index of the Gameobject should be found first.
-	//for (auto& entity : gameObjectStorage)
-	//{
-	//	if (entity->getTag().compare(gameobjectTag) == 0)
-	//	{
-	//		return entity;
-	//	}
-	//}
-
 	// Our Tag has the form "GO_#_Spearman", where # is the hash of the Gameobject.
 	// Thus we easily can retrieve the index in the Storage:
 	return gameObjectStorage[_getHashFromGameobjectTag(gameobjectTag)];
@@ -448,21 +399,6 @@ void GameobjectStorage::del()
 
 	if (IGameobjectStorage::g_IGameobjectStorage)
 	{
-		/*
-		while (IGameobjectStorage::g_IGameobjectStorage->GetStorage().size() > 0)
-		{
-			if (IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0].use_count() > 1)
-			{
-				cout << color(colors::RED);
-				cout << "[GameobjectStorage::del] Gameobject \"" << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0]->getName() << "\" has more than one Uses! Current count: " << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0].use_count() << white << endl;
-			}
-
-
-			IGameobjectStorage::g_IGameobjectStorage->DestroyGameobject(IGameobjectStorage::g_IGameobjectStorage->GetStorage()[0]);
-		}
-		*/
-
-
 		// Reset all Gameobjects.
 		for (int i = 0; i < IGameobjectStorage::g_IGameobjectStorage->GetStorage().size(); i++)
 		{
@@ -471,8 +407,10 @@ void GameobjectStorage::del()
 
 			if (IGameobjectStorage::g_IGameobjectStorage->GetStorage()[i].use_count() > 1)
 			{
+#ifdef _DEBUG
 				cout << color(colors::RED);
 				cout << "[GameobjectStorage::del] Gameobject \"" << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[i]->getName() << "\" has more than one Uses! Current count: " << IGameobjectStorage::g_IGameobjectStorage->GetStorage()[i].use_count() << white << endl;
+#endif
 			}
 
 
@@ -558,6 +496,17 @@ bool GameobjectStorage::_addRenderableComponent(Pointer<RenderableComponent> cmp
 
 bool GameobjectStorage::_addPlayerComponent(Pointer<PlayerComponent> cmp, Pointer<GameObject2> entity, tinyxml2::XMLElement* data)
 {
+	using namespace tinyxml2;
+
+	XMLElement* techs = data->FirstChildElement("ResearchedTechnology");
+	XMLElement* entry = techs->FirstChildElement("Entry");
+	while (entry)
+	{
+		cmp->m_ResearchedTechnologies.push_back(entry->Attribute("name"));
+
+		entry = entry->NextSiblingElement("Entry");
+	}
+
 	return true;
 }
 

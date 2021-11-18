@@ -2,6 +2,14 @@
 	<Tag>Player</Tag>
 	<Name>Default_Player</Name>
 	<Components>
-		<Component name="Player"></Component>
+		<Component name="Player">
+			<ResearchedTechnology>
+				<Entry name="Elder Circle"></Entry>
+				<Entry name="Honor"></Entry>
+				<Entry name="Hunting"></Entry>
+				<Entry name="Mysticism"></Entry>
+				<Entry name="Wood Working"></Entry>
+			</ResearchedTechnology>
+		</Component>
 	</Components>
 </Gameobject>

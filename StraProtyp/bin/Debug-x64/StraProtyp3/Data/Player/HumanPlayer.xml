@@ -1,0 +1,64 @@
+<Player>
+	<!--Players Race-->
+	<Race>Human</Race>
+
+	<!--Defines bonuses for this player-->
+	<RaceBonuses></RaceBonuses>
+	
+	
+	<!--Defines the available technologies for this player and which are already researched-->
+	<Technologies>
+		<Tech researched="true">Honor</Tech>
+		<Tech researched="false">Adamantium Smelting</Tech>
+		<Tech researched="false">Malachite Smelting</Tech>
+		<Tech researched="false">Advanced Armor Forging</Tech>
+		<Tech researched="false">Advanced Clothing</Tech>
+		<Tech researched="false">Alchemy</Tech>
+		<Tech researched="false">Alcohol Making</Tech>
+		<Tech researched="false">Animal Husbandry</Tech>
+		<Tech researched="false">Animal Taiming</Tech>
+		<Tech researched="false">Armor Forging</Tech>
+		<Tech researched="false">Bowmaking</Tech>
+		<Tech researched="false">Brick Burning</Tech>
+		<Tech researched="false">Bronze Working</Tech>
+		<Tech researched="false">Clay Working</Tech>
+		<Tech researched="false">Crop Rotation</Tech>
+		<Tech researched="false">Expert Bowmaking</Tech>
+		<Tech researched="false">Horse Riding</Tech>
+		<Tech researched="true">Hunting</Tech>
+		<Tech researched="false">Iron Working</Tech>
+		<Tech researched="false">Irrigation</Tech>
+		<Tech researched="false">Leather Working</Tech>
+		<Tech researched="false">Magical Properties Of Stones</Tech>
+		<Tech researched="false">Magical Staffs</Tech>
+		<Tech researched="false">Malachite Smelting</Tech>
+		<Tech researched="false">Mana Stone Bounding</Tech>
+		<Tech researched="false">Masonry</Tech>
+		<Tech researched="true">Mysticism</Tech>
+		<Tech researched="false">Plant Cultivation</Tech>
+		<Tech researched="false">Plant Knowledge</Tech>
+		<Tech researched="false">Pottery Making</Tech>
+		<Tech researched="false">Skuma Distillation</Tech>
+		<Tech researched="false">Steel Making</Tech>
+		<Tech researched="false">Stone Working</Tech>
+		<Tech researched="false">Tactics</Tech>
+		<Tech researched="false">Tool Making</Tech>
+		<Tech researched="false">Warfare Theory</Tech>
+		<Tech researched="false">Warrior Code</Tech>
+		<Tech researched="false">Weapon Forging</Tech>
+		<Tech researched="false">Wood Working</Tech>
+		
+		<Tech researched="false">Barber</Tech>
+		<Tech researched="false">Economy Theory</Tech>
+		<Tech researched="false">Economy Theory II</Tech>
+		<Tech researched="false">Economy Theory III</Tech>
+		<Tech researched="false">Elder Circle</Tech>
+		<Tech researched="false">Philosophy</Tech>
+		<Tech researched="false">Political Theory</Tech>
+		<Tech researched="false">Political Theory II</Tech>
+		<Tech researched="false">Scissors</Tech>
+		<Tech researched="false">Trade</Tech>
+		<Tech researched="false">Writing</Tech>
+
+	</Technologies>
+</Player>

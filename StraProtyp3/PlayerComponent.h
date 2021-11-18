@@ -6,7 +6,8 @@
 #include "Common.h" // Include Common Definitions and Datastructs.
 
 
-#include "UnitComponent.h"
+#include "UnitComponent.h" // Include for access to all units belonging to this player
+#include "CityComponent.h" // Include for access to all cities/forts belonging to this player
 
 
 class GameobjectStorage;
@@ -25,18 +26,32 @@ public:
 	bool Initialize(std::string filepath);
 
 	void AddUnit(Pointer< GameObject2 > u) { m_Units.push_back(u); }
+	
 	void SetNation(Pointer<GameObject2> n) { m_ControlledNation = n; }
 
 
+	void AddResearchedTechnology(TechID id) { m_ResearchedTechnologies.push_back(id); }
+	void RemoveResearchedTechnology(TechID id);
+	void AddResearchPoints(TechArea area, int amount);
 	std::vector < TechID >& GetTechnologies() { return m_ResearchedTechnologies; }
 
 private:
-
+	
+	// The Nation entity controlled by this Player.
 	Pointer<GameObject2> m_ControlledNation;
+
+	// All Units of this player.
 	std::vector< Pointer< GameObject2 > > m_Units;
 
+	// All cities and forts of this player.
+	std::vector< Pointer< GameObject2 > > m_Cities;
 
-	std::vector < TechID > m_ResearchedTechnologies; // The Technologies this player has researched
+	// The Technologies this player has researched
+	std::vector < TechID > m_ResearchedTechnologies;
+
+	
+	//For each TechArea the player can choose one Tech to be researched,
+	//so it is possible to have 4 simultanious techs researching, thus the maps.
 	std::map< TechArea, int > m_ResearchPoints; // How many points were already invested in a tech area
 	std::map< TechArea, TechID > m_CurrentResearch; // What tech is being researched in each tech area
 };

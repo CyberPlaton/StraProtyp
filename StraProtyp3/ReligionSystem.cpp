@@ -38,7 +38,7 @@ void ReligionSystem::UpdateReligions(GameworldMatrix& world)
 
 
 				// Update religious pressure on all neighboring cities for current city.
-				std::vector< Pointer< GameObject2> > v = _getMaptilesWithinRange(i, j, world, 30.0f);
+				std::vector< Pointer< GameObject2> > v = _getMaptilesWithinRange(i, j, world, DEFAULT_RELIGION_SPREAD_DISTANCE);
 			
 
 				for (auto e : v)

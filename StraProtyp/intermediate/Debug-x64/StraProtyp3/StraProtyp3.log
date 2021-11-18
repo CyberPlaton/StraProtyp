@@ -1,8 +1,8 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(498,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  TechnologySystem.cpp
+  BuildingComponent.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\TechnologySystem.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\BuildingComponent.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
@@ -29,7 +29,6 @@ C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Com
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\TechnologySystem.cpp(116,87): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
           with
           [
@@ -80,6 +79,1616 @@ C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Com
           [
               _This2=int &
           ]
+  CityComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\CityComponent.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  ForestSystem.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(366,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(601,73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(601,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(606,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(606,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(611,68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(611,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(616,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(616,69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(621,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(621,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  GameObjectStorage.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(444,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(444,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(461,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(461,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(474,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(474,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(596,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(596,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(620,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(620,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(648,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObjectStorage.cpp(648,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  MaptileComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\MaptileComponent.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  NationComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NationComponent.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  NationSystem.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NationSystem.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  NavMesh.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavMesh.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavMesh.cpp(33,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavMesh.cpp(34,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavMesh.cpp(36,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavMesh.cpp(37,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavMesh.cpp(43,25): warning C4305: '=': truncation from 'int' to '_Ty'
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' being compiled
+          with
+          [
+              _This=float,
+              _Ty=int,
+              _Other=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' being compiled
+          with
+          [
+              _This=float,
+              _Ty=int,
+              _Other=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(878): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float>::tuple<std::_Exact_args_t,int,int,int,int,int,0>(_Tag,_This2 &&,int &&,int &&,int &&,int &&)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(878): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float>::tuple<std::_Exact_args_t,int,int,int,int,int,0>(_Tag,_This2 &&,int &&,int &&,int &&,int &&)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(265): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float>::tuple<std::_Unpack_tuple_t,_Ty,0,1,2,3,4,0>(_Tag,_Tpl &&,std::integer_sequence<size_t,0,1,2,3,4>)' being compiled
+          with
+          [
+              _Ty=std::tuple<int,int,int,int,int>,
+              _Tag=std::_Unpack_tuple_t,
+              _Tpl=std::tuple<int,int,int,int,int>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(265): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float>::tuple<std::_Unpack_tuple_t,_Ty,0,1,2,3,4,0>(_Tag,_Tpl &&,std::integer_sequence<size_t,0,1,2,3,4>)' being compiled
+          with
+          [
+              _Ty=std::tuple<int,int,int,int,int>,
+              _Tag=std::_Unpack_tuple_t,
+              _Tpl=std::tuple<int,int,int,int,int>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(392): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float>::tuple<std::_Unpack_tuple_t,std::tuple<int,int,int,int,int>,0>(_Tag,_Tpl &&)' being compiled
+          with
+          [
+              _Tag=std::_Unpack_tuple_t,
+              _Tpl=std::tuple<int,int,int,int,int>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(392): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float>::tuple<std::_Unpack_tuple_t,std::tuple<int,int,int,int,int>,0>(_Tag,_Tpl &&)' being compiled
+          with
+          [
+              _Tag=std::_Unpack_tuple_t,
+              _Tpl=std::tuple<int,int,int,int,int>
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavMesh.cpp(64): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float>::tuple<int,int,int,int,int,0>(std::tuple<int,int,int,int,int> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavMesh.cpp(64): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float>::tuple<int,int,int,int,int,0>(std::tuple<int,int,int,int,int> &&) noexcept' being compiled
+  NavigatorComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavigatorComponent.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavigatorComponent.cpp(271,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' being compiled
+          with
+          [
+              _This=float,
+              _Ty=int,
+              _Other=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' being compiled
+          with
+          [
+              _This=float,
+              _Ty=int,
+              _Other=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,_Ty,_Ty,0>(_Tag,_This2 &&,_Ty &&)' being compiled
+          with
+          [
+              _Ty=int,
+              _Tag=std::_Exact_args_t,
+              _This2=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,_Ty,_Ty,0>(_Tag,_This2 &&,_Ty &&)' being compiled
+          with
+          [
+              _Ty=int,
+              _Tag=std::_Exact_args_t,
+              _This2=int
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavigatorComponent.cpp(321): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int,int,0>(_This2 &&,int &&) noexcept' being compiled
+          with
+          [
+              _This2=int
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavigatorComponent.cpp(321): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int,int,0>(_This2 &&,int &&) noexcept' being compiled
+          with
+          [
+              _This2=int
+          ]
+  PlayerComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\PlayerComponent.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  PlayerSystem.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\PlayerSystem.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  ReligionSystem.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ReligionSystem.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ReligionSystem.cpp(55,103): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ReligionSystem.cpp(55,72): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ReligionSystem.cpp(76,26): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  RoadComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\RoadComponent.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  TechnologyComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\TechnologyComponent.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  TechnologySystem.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\TechnologySystem.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\TechnologySystem.cpp(123,87): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  UnitComponent.cpp
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\UnitComponent.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  UnitCreationSystem.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\UnitCreationSystem.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(43,1): warning C4005: '_WIN32_WINNT_WIN10': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp : message : see previous definition of '_WIN32_WINNT_WIN10'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\common\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(11,1): warning C4005: 'WINVER': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(239): message : see previous definition of 'WINVER'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(12,1): warning C4005: '_WIN32_WINNT': macro redefinition
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPixelGameEngine.h(469): message : see previous definition of '_WIN32_WINNT'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(341,30): warning C4244: 'return': conversion from 'const T' to 'float', possible loss of data
+          with
+          [
+              T=int32_t
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(345,30): warning C4244: 'return': conversion from 'const T' to 'float', possible loss of data
+          with
+          [
+              T=int32_t
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(573,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(574,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Timer.h(30,25): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Timer.h(45,25): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Timer.h(60,16): warning C4244: 'return': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(101,61): warning C4129: '{': unrecognized character escape sequence
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(99,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(106,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(107,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(108,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(109,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(111,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(115,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(118,1): warning C4305: 'return': truncation from 'int' to 'float'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(127,13): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(135,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(136,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(137,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(138,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(157,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(166,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(167,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(168,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(169,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(78,31): warning C4099: 'AppStateWorldMap': type name first seen using 'struct' now seen using 'class'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(64): message : see declaration of 'AppStateWorldMap'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(79,31): warning C4099: 'AppStateCityView': type name first seen using 'struct' now seen using 'class'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.h(65): message : see declaration of 'AppStateCityView'
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(200,86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(200,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(204,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(204,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(208,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(208,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(212,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(212,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(216,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(216,85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(618,35): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(618,43): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1573,15): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\main.cpp(1581,15): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(644,76): warning C4244: '=': conversion from '_Ty' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(146): message : see reference to function template instantiation 'std::tuple<float,float,float,float,float> &std::tuple<float,float,float,float,float>::operator =<int,int,int,int,float,0>(std::tuple<int,int,int,int,float> &&) noexcept' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(170,47): warning C4244: 'initializing': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(258): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<int&>(_Other)' being compiled
+          with
+          [
+              _This=float,
+              _Other=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\include\tuple(340): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<std::_Exact_args_t,int&,int&,0>(_Tag,_This2,int &)' being compiled
+          with
+          [
+              _Tag=std::_Exact_args_t,
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\Common.h(173): message : see reference to function template instantiation 'std::tuple<float,float>::tuple<int&,int&,0>(_This2,int &) noexcept' being compiled
+          with
+          [
+              _This2=int &
+          ]
+  Generating Code...
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<CityComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<MaptileComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<TransformComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<RenderableComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<UnitComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<ForestComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(848): warning C4715: 'olc::hid::OLCHIDManager::leftTrigger': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(809): warning C4715: 'olc::hid::OLCHIDManager::buttonDown': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(861): warning C4715: 'olc::hid::OLCHIDManager::rightTrigger': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(877): warning C4715: 'olc::hid::OLCHIDManager::leftStickX': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(893): warning C4715: 'olc::hid::OLCHIDManager::leftStickY': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(925): warning C4715: 'olc::hid::OLCHIDManager::rightStickY': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(909): warning C4715: 'olc::hid::OLCHIDManager::rightStickX': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(938): warning C4715: 'olc::hid::OLCHIDManager::oneFingerTouchPadX': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(951): warning C4715: 'olc::hid::OLCHIDManager::oneFingerTouchPadY': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(964): warning C4715: 'olc::hid::OLCHIDManager::twoFingerTouchPadX': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(977): warning C4715: 'olc::hid::OLCHIDManager::twoFingerTouchPadY': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(991): warning C4715: 'olc::hid::OLCHIDManager::gravityX': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(1004): warning C4715: 'olc::hid::OLCHIDManager::gravityY': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(1017): warning C4715: 'olc::hid::OLCHIDManager::gravityZ': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(1044): warning C4715: 'olc::hid::OLCHIDManager::color': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(1058): warning C4715: 'olc::hid::OLCHIDManager::batteryPercent': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(1071): warning C4715: 'olc::hid::OLCHIDManager::batteryString': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(1084): warning C4715: 'olc::hid::OLCHIDManager::name': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\olcPGEX_HIDManager.h(1097): warning C4715: 'olc::hid::OLCHIDManager::vendor': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<NationComponent>': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<TechnologyComponent>': not all control paths return a value
 C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<PlayerComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<CityComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<MaptileComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<TransformComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavigatorComponent.cpp(120): warning C4715: 'NavigatorComponent::Update': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\NavigatorComponent.cpp(277): warning C4172: returning address of local variable or temporary: path
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<TransformComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<TransformComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<CollisionBoxComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<NationComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<MaptileComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<UnitComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<TransformComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(147): warning C4715: 'GameObject2::getComponent': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\ForestSystem.cpp(923): warning C4715: 'ForestSystem::ReloadDefinition': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<MaptileComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<ForestComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<RenderableComponent>': not all control paths return a value
+C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp3\GameObject2.h(135): warning C4715: 'GameObject2::getComponent<CityComponent>': not all control paths return a value
+     Creating library C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\\StraProtyp\bin\Debug-x64\StraProtyp3\StraProtyp3.lib and object C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\\StraProtyp\bin\Debug-x64\StraProtyp3\StraProtyp3.exp
+glfw3.lib(context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(context.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(init.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(init.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(input.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(input.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(monitor.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(monitor.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(vulkan.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(vulkan.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(window.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(window.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_init.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_init.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_joystick.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_joystick.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_monitor.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_monitor.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_time.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_time.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_thread.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_thread.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_window.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_window.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(wgl_context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(wgl_context.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(egl_context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(egl_context.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
+glfw3.lib(osmesa_context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(osmesa_context.obj)' or at 'C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\glfw.pdb'; linking object as if no debug info
   StraProtyp3.vcxproj -> C:\Users\Bogdan Strohonov\Desktop\StrategyPrototype3\StraProtyp3\StraProtyp\bin\Debug-x64\StraProtyp3\StraProtyp3.exe

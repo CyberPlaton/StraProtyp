@@ -14,6 +14,7 @@
 /*
 * OLC
 */
+#define OLC_GFX_OPENGL33
 #define OLC_PGE_APPLICATION
 #include "olcPixelGameEngine.h"
 #define OLC_PGEX_TRANSFORMEDVIEW

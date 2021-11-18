@@ -14,9 +14,10 @@ class UnitComponent : public Component2
 {
 	friend class GameobjectStorage;
 public:
-	UnitComponent(ComponentID name)
+	UnitComponent(ComponentID name, Pointer<GameObject2> player)
 	{
 		initialize("Unit", name);
+		m_Player.swap(player);
 	}
 	~UnitComponent();
 
@@ -71,6 +72,10 @@ public:
 	void SetRace(RaceID r) { m_Race = r; }
 
 private:
+
+	// The player to which this Unit belongs.
+	Pointer<GameObject2> m_Player;
+
 
 	int m_Health = 0, m_Mana = 0, m_Fatigue = 0, // General Stats.
 		m_Attack = 0, m_Defense = 0, m_Armor = 0, // Fighting Related Stats.

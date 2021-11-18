@@ -1,0 +1,28 @@
+<Gameobject>
+	<Tag>Forest_Savannah_Normal</Tag>
+	<Name>Forest_Savannah_Normal</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_green</Color>
+			<Decal>forest_savannah_normal</Decal>
+			<Layer>forest</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+
+		<Component name ="Forest">
+			<Type>Normal</Type>
+			<Biome>Savannah</Biome>
+			<MaxLifetime>50</MaxLifetime>
+		</Component>
+
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

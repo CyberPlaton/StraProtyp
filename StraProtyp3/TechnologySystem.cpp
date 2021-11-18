@@ -98,6 +98,20 @@ void TechnologySystem::del()
 }
 
 
+void TechnologySystem::SetTechnologyResearched(Pointer< GameObject2 > player, TechID id, bool status)
+{
+	auto p = player->getComponent<PlayerComponent>("Player");
+	if (status)
+	{
+		p->AddResearchedTechnology(id);
+	}
+	else
+	{
+		p->RemoveResearchedTechnology(id);
+	}
+}
+
+
 void TechnologySystem::VisualizeTechnologyTree(Pointer< GameObject2 > player)
 {
 	ImGui::Begin("Technology Tree");
@@ -128,14 +142,41 @@ void TechnologySystem::VisualizeTechnologyTree(Pointer< GameObject2 > player)
 
 	for (int i = 0; i < m_TechNodes.size(); i++)
 	{
+		bool researched = false;
+
+		researched = _hasResearchedTech(m_TechNodes[i]->name, researched_techs);
+
+
+		if (researched)
+		{
+			// Change the Color of the Node if player has researched it.
+			ImNodes::PushColorStyle(ImNodesCol_TitleBar, IM_COL32(0, 100, 0, 255));
+			ImNodes::PushColorStyle(ImNodesCol_TitleBarSelected, IM_COL32(255, 215, 0, 255));
+			ImNodes::PushColorStyle(ImNodesCol_TitleBarHovered, IM_COL32(0, 200, 0, 255));
+		}
+
 
 		ImNodes::BeginNode(m_TechNodes[i]->id);
+
+		// After adjusting the Node position to a final spot,
+		// add call to function "ImNodes::SetNodeDraggable( m_TechNodes[i]->id, false );"
+		// so that they become static and unmovable.
+
 
 		ImNodes::BeginNodeTitleBar();
 		ImGui::TextUnformatted(m_TechNodes[i]->name.c_str());
 		ImNodes::EndNodeTitleBar();
 
+
 		ImNodes::EndNode();
+
+
+		if (researched)
+		{
+			ImNodes::PopColorStyle();
+			ImNodes::PopColorStyle();
+			ImNodes::PopColorStyle();
+		}
 	}
 
 
@@ -143,6 +184,22 @@ void TechnologySystem::VisualizeTechnologyTree(Pointer< GameObject2 > player)
 	ImNodes::EndNodeEditor();
 
 
-
 	ImGui::End();
+}
+
+
+
+
+void TechnologySystem::ChooseNextTechnology(Pointer< GameObject2 > player)
+{
+
+}
+
+
+
+
+bool TechnologySystem::_hasResearchedTech(TechID id, std::vector< TechID >& techs)
+{
+	auto it = std::find(techs.begin(), techs.end(), id);
+	return it != techs.end();
 }
