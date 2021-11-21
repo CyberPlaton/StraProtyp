@@ -41,6 +41,11 @@ static bool religionContinuousUpdate = false;
 
 
 /*
+* Technology Helpers.
+*/
+bool is_technology_being_chosen = false;
+
+/*
 * Forest Helpers.
 */
 static bool forestUpdateStarted = false;
@@ -158,6 +163,7 @@ bool App::OnUserCreate()
 
 	// Init ImNodes.
 	ImNodes::CreateContext();
+	ImNodes::EditorContextCreate();
 	ImNodes::SetNodeGridSpacePos(1, ImVec2(50.0f, 50.0f));
 	ImNodes::LoadCurrentEditorStateFromIniFile("tech_tree_graph.ini");
 	ImNodes::StyleColorsClassic();
@@ -1488,8 +1494,184 @@ void AppStateWorldMap::update(float)
 
 void AppStateWorldMap::_drawUI()
 {
+	using namespace std;
 
-	TechnologySystem::get()->VisualizeTechnologyTree(app->m_Player);
+	// Dont get to comfortable with this menu bar.
+	// It looks awful in the game and should be treated as Debug test only.
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("Menu"))
+		{
+			
+
+			ImGui::EndMenu();
+		}
+
+
+		if (ImGui::BeginMenu("Game"))
+		{
+
+			if (ImGui::MenuItem("Technology Tree"))
+			{
+				show_tech_tree = (show_tech_tree == true) ? false : true;
+			}
+
+			if (ImGui::MenuItem("Choose Technology"))
+			{
+				auto p = app->m_Player->getComponent< PlayerComponent >("Player");
+
+				// Has player no research in an Area?
+				if (!p->IsTechInAreaInResearch("civics"))
+				{
+					TechnologySystem::get()->ChooseNextTechnology(app->m_Player, "civics");
+				}
+				if (!p->IsTechInAreaInResearch("technical"))
+				{
+					TechnologySystem::get()->ChooseNextTechnology(app->m_Player, "technical");
+				}
+				if (!p->IsTechInAreaInResearch("military"))
+				{
+					TechnologySystem::get()->ChooseNextTechnology(app->m_Player, "military");
+				}
+				if (!p->IsTechInAreaInResearch("magick"))
+				{
+					TechnologySystem::get()->ChooseNextTechnology(app->m_Player, "magick");
+				}
+
+			}
+
+
+
+			ImGui::EndMenu();
+		}
+
+
+		if (ImGui::BeginMenu("Options"))
+		{
+
+
+			ImGui::EndMenu();
+		}
+
+
+		if (ImGui::BeginMenu("Debug"))
+		{
+
+
+			ImGui::EndMenu();
+		}
+	}
+	ImGui::EndMainMenuBar();
+
+
+	/*
+	* This function should be abstracted and put in an own GUI layer.
+	* Where we can adjust the GUI based on OS or quickly adjust the layout etc.
+	*/
+	if (app->m_Player->getComponent< PlayerComponent >("Player")->CanChooseTechnologyForResearch())
+	{
+
+		std::vector< TechID > civics;
+		std::vector< TechID > technical;
+		std::vector< TechID > magick;
+		std::vector< TechID > military;
+
+		civics = app->m_Player->getComponent< PlayerComponent >("Player")->GetResearchableTechnology()["civics"];
+		technical = app->m_Player->getComponent< PlayerComponent >("Player")->GetResearchableTechnology()["technical"];
+		magick = app->m_Player->getComponent< PlayerComponent >("Player")->GetResearchableTechnology()["magick"];
+		military = app->m_Player->getComponent< PlayerComponent >("Player")->GetResearchableTechnology()["military"];
+
+
+		ImGui::Begin("Technology Pick", &is_technology_being_chosen);
+
+		// For each chooseable technology
+		if (civics.size() > 0)
+		{
+			for (auto& tech : civics)
+			{
+				//ImGui::Text("%s", tech.c_str());
+				if (ImGui::Button(tech.c_str())) // Create a button with the technology name...
+				{
+					// If player chooses a tech, set it as current research...
+					app->m_Player->getComponent< PlayerComponent >("Player")->SetCurrentResearch("civics", tech); 
+
+					// For debug, print out current research...
+					for (auto& t : app->m_Player->getComponent< PlayerComponent >("Player")->GetCurrentResearch())
+					{
+						cout << "Area: " << t.first << " Research: " << t.second << endl;
+					}
+				}
+
+			}
+			ImGui::Spacing();
+			ImGui::Spacing();
+		}
+		if (technical.size() > 0)
+		{
+			for (auto& tech : technical)
+			{
+				//ImGui::Text("%s", tech.c_str());
+				if (ImGui::Button(tech.c_str()))
+				{
+					app->m_Player->getComponent< PlayerComponent >("Player")->SetCurrentResearch("technical", tech);
+
+					for (auto& t : app->m_Player->getComponent< PlayerComponent >("Player")->GetCurrentResearch())
+					{
+						cout << "Area: " << t.first << " Research: " << t.second << endl;
+					}
+				}
+			}
+			ImGui::Spacing();
+			ImGui::Spacing();
+		}
+		if (magick.size() > 0)
+		{
+			for (auto& tech : magick)
+			{
+				//ImGui::Text("%s", tech.c_str());
+				if (ImGui::Button(tech.c_str()))
+				{
+					app->m_Player->getComponent< PlayerComponent >("Player")->SetCurrentResearch("magick", tech);
+
+					for (auto& t : app->m_Player->getComponent< PlayerComponent >("Player")->GetCurrentResearch())
+					{
+						cout << "Area: " << t.first << " Research: " << t.second << endl;
+					}
+				}
+			}
+			ImGui::Spacing();
+			ImGui::Spacing();
+		}
+		if (military.size() > 0)
+		{
+			for (auto& tech : military)
+			{
+				//ImGui::Text("%s", tech.c_str());
+				if (ImGui::Button(tech.c_str())) 
+				{
+					app->m_Player->getComponent< PlayerComponent >("Player")->SetCurrentResearch("military", tech);
+
+					for (auto& t : app->m_Player->getComponent< PlayerComponent >("Player")->GetCurrentResearch())
+					{
+						cout << "Area: " << t.first << " Research: " << t.second << endl;
+					}
+				}
+			}
+			ImGui::Spacing();
+			ImGui::Spacing();
+		}
+
+		ImGui::End();
+	}
+
+
+
+
+	if (show_tech_tree)
+	{
+		// We show the tech tree only for the Player belonging to this client.
+		TechnologySystem::get()->VisualizeTechnologyTree(app->m_Player);
+	}
 
 
 	if (render_city_religions)

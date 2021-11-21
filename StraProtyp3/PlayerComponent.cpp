@@ -21,3 +21,25 @@ void PlayerComponent::RemoveResearchedTechnology(TechID id)
 		m_ResearchedTechnologies.erase(it);
 	}
 }
+
+
+bool PlayerComponent::IsTechInAreaInResearch(TechArea area)
+{
+	return !(m_CurrentResearch[area].compare("none") == 0);
+}
+
+
+void PlayerComponent::SetResearchableTechnology(TechArea area, std::vector< TechID >& techs)
+{
+	m_ResearchableTechnology[area].clear();
+	m_ResearchableTechnology[area] = std::move(techs);
+}
+
+
+bool PlayerComponent::CanChooseTechnologyForResearch()
+{
+	return (m_ResearchableTechnology["civics"].size() > 0 ||
+			m_ResearchableTechnology["technical"].size() > 0 ||
+			m_ResearchableTechnology["magick"].size() > 0 ||
+			m_ResearchableTechnology["military"].size() > 0);
+}

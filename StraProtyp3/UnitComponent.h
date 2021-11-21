@@ -14,13 +14,14 @@ class UnitComponent : public Component2
 {
 	friend class GameobjectStorage;
 public:
-	UnitComponent(ComponentID name, Pointer<GameObject2> player)
+	UnitComponent(ComponentID name)
 	{
 		initialize("Unit", name);
-		m_Player.swap(player);
 	}
 	~UnitComponent();
 
+
+	void SetPlayer(Pointer<GameObject2> player){m_Player.swap(player);}
 	void SetName(std::string name);
 	void SetProfession(UnitProfession p);
 	void SetIsInCity(bool val);

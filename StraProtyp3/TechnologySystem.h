@@ -2,6 +2,9 @@
 
 #include "GameObjectStorage.h" // Include all Components and GameObject2 Definitions.
 
+#include "Random.h" // For randomly choosing 3 technologies for player.
+
+#include "ColorConsole.h" // For printing to console which technologies can or cannot be researched, their requirements etc.
 
 /*
 * ImGui includes for Technology Tree,
@@ -56,7 +59,7 @@ public:
 	
 
 	// Let given player choose next technology to be researched.
-	void ChooseNextTechnology(Pointer< GameObject2 > player);
+	void ChooseNextTechnology(Pointer< GameObject2 > player, TechArea area);
 
 
 	// Add a tech as researched by given player or 
@@ -84,4 +87,14 @@ private:
 private:
 
 	bool _hasResearchedTech(TechID id, std::vector< TechID >& techs);
+
+	
+	// Check whether a technology is available for player to be researched,
+	// currently we only check technological requirements.
+	bool _checkWhetherAvailableForPlayer(Pointer< GameObject2> player, Pointer< GameObject2 > tech);
+
+
+	float _getAccumulatedPathProbabilityWeightForTech(Pointer< GameObject2> player, Pointer< GameObject2 > tech);
+
+
 };

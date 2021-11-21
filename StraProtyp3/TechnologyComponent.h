@@ -78,6 +78,9 @@ public:
 	void SetResearchPoints(int v){m_ResearchPoints = v;}
 	void AddRequirement(Pointer<Requirement> r) { m_Requirements.push_back(r); }
 
+
+	std::vector< Pointer< Requirement > >& GetRequirements() { return m_Requirements; }
+
 private:
 
 	TechID m_TechName;
