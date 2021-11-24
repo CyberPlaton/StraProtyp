@@ -24,6 +24,11 @@
 		<Decal>forest_snow_normal.png</Decal>
 		<Decal>forest_snow_deep.png</Decal>
 		<Decal>forest_snow_dying.png</Decal>
+		
+		<Decal>forest_swamp_scarce.png</Decal>
+		<Decal>forest_swamp_normal.png</Decal>
+		<Decal>forest_swamp_deep.png</Decal>
+		<Decal>forest_swamp_dying.png</Decal>
 
 		<Decal>jungle.png</Decal>
 		<Decal>sand.png</Decal>
@@ -34,7 +39,9 @@
 		<Decal>ice.png</Decal>
 		<Decal>water_deep.png</Decal>
 		<Decal>water_shallow.png</Decal>
+		<Decal>swamp.png</Decal>
 
+		
 		<Decal>river_down_left.png</Decal>
 		<Decal>river_down_right.png</Decal>
 		<Decal>river_right_left.png</Decal>

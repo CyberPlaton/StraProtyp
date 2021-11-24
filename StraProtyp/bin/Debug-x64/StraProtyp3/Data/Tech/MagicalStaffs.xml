@@ -22,7 +22,7 @@
 
 			</Definition>
 			<Requirements>
-				<Req area="player_tech_check" type="true">Mana Stone Bounding</Req>
+				<Req area="player_tech_check" type="true">Mana Stone Binding</Req>
 				<Req area="player_tech_check" type="true">Wood Working</Req>
 			</Requirements>
 

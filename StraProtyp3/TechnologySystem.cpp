@@ -114,11 +114,14 @@ void TechnologySystem::SetTechnologyResearched(Pointer< GameObject2 > player, Te
 
 void TechnologySystem::VisualizeTechnologyTree(Pointer< GameObject2 > player)
 {
+	using namespace std;
+
 	ImGui::Begin("Technology Tree");
 
 
 	if (!m_TechTreeInitialized)
 	{
+		// Create Technology Nodes.
 		for (int i = 0; i < m_Technologies.size(); i++)
 		{
 			auto tech = m_Technologies[i]->getComponent<TechnologyComponent>("Technology");
@@ -128,6 +131,72 @@ void TechnologySystem::VisualizeTechnologyTree(Pointer< GameObject2 > player)
 			std::string tech_category = tech->GetTechSubcategory();
 
 			m_TechNodes.push_back(new Node(tech_name, m_TechNodeID++, tech_area, tech_category));
+		}
+
+
+		// Create Dependency Links.
+		for (int i = 0; i < m_Technologies.size(); i++)
+		{
+			auto tech = m_Technologies[i]->getComponent<TechnologyComponent>("Technology");
+
+			auto requirements = tech->GetRequirements();
+
+			// Go through all requirements.
+			for (int j = 0; j < requirements.size(); j++)
+			{
+				auto req = requirements[j];
+
+
+				// We create Links only for Technology requirements.
+				if (req->m_CheckArea.compare("player_tech_check") == 0)
+				{
+
+					int startid, endid;
+					std::string required_tech = req->m_Value->as<std::string>();
+
+					std::string from, to;
+
+
+					// Get the node id from which the link starts.
+					for (int k = 0; k < m_TechNodes.size(); k++)
+					{
+						if (m_TechNodes[k]->name.compare(tech->GetTechID()) == 0)
+						{
+							startid = m_TechNodes[k]->id << 8;
+							break;
+						}
+					}
+					
+
+					// Get the node to which the Link goes.
+					for (int k = 0; k < m_TechNodes.size(); k++)
+					{
+						if (m_TechNodes[k]->name.compare(required_tech) == 0)
+						{
+							endid = m_TechNodes[k]->id << 24;
+							to = m_TechNodes[k]->name;
+							break;
+						}
+					}
+
+
+					from = tech->GetTechID();
+
+					cout << color(colors::CYAN);
+					cout << "Link: ";
+
+					cout << color(colors::YELLOW);
+					cout << "\"" << from << "\"{"<< startid << "}";
+
+					cout << color(colors::CYAN);
+					cout << " -> ";
+
+					cout << color(colors::MAGENTA);
+					cout << "\"" << to << "\"{"<< endid << "}" << white << endl;
+
+					m_TechLinks.push_back(new Link(++m_TechLinkID, startid, endid));
+				}
+			}
 		}
 
 		m_TechTreeInitialized = true;
@@ -168,6 +237,13 @@ void TechnologySystem::VisualizeTechnologyTree(Pointer< GameObject2 > player)
 		ImNodes::EndNodeTitleBar();
 
 
+
+		ImNodes::BeginInputAttribute(m_TechNodes[i]->id << 8);
+		ImNodes::EndInputAttribute();
+
+		ImNodes::BeginOutputAttribute(m_TechNodes[i]->id << 24);
+		ImNodes::EndOutputAttribute();
+
 		ImNodes::EndNode();
 
 
@@ -179,8 +255,21 @@ void TechnologySystem::VisualizeTechnologyTree(Pointer< GameObject2 > player)
 		}
 	}
 
-
 	ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_BottomRight);
+
+
+	// Draw Links.
+	ImNodes::PushColorStyle(ImNodesCol_LinkSelected, IM_COL32(255, 255, 255, 255));
+	ImNodes::PushColorStyle(ImNodesCol_LinkHovered, IM_COL32(255, 255, 255, 255));
+	for (int i = 0; i < m_TechLinks.size(); i++)
+	{
+		ImNodes::Link(m_TechLinks[i]->id, m_TechLinks[i]->start, m_TechLinks[i]->end);
+	}
+	ImNodes::PopColorStyle();
+	ImNodes::PopColorStyle();
+
+
+
 	ImNodes::EndNodeEditor();
 
 

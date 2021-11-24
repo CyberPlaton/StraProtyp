@@ -164,11 +164,16 @@ void CityComponent::SetType(std::string type, std::string cityType, bool forest,
 		cType += "_jungle";
 
 	}
+	else if (type.compare("Swamp") == 0)
+	{
+		cType += "_swamp";
+
+	}
 	else
 	{
 		cout << color(colors::RED);
 		cout << "Undefined Maptile \"" << type << "\", defining as default Temperate..." << white << endl;
-		cType += "Temperate";
+		cType += "_temperate";
 	}
 
 	m_CityType = cType;

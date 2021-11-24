@@ -24,7 +24,7 @@ static int imnodes_tech_link_id = 1;
 static int imnodes_tech_dependency_id = 1;
 static int imnodes_tech_dependency_display_id = 100000;
 static bool imnodes_tech_tree_initialized = false;
-static bool render_2d_grid = false;
+static bool render_2d_grid = true;
 static bool render_city_religions = false;
 static bool show_city_religion_update_button = false;
 
@@ -217,6 +217,10 @@ bool App::OnUserCreate()
 			{
 				gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Savannah_Maptile", i, j);
 			}
+			else if (j <= 18)
+			{
+				gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Swamp_Maptile", i, j);
+			}
 			else
 			{
 				gameWorldMatrix[i][j] = GameobjectStorage::get()->Instantiate("Jungle_Maptile", i, j);
@@ -345,29 +349,36 @@ bool App::OnUserCreate()
 
 
 
-	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 3, 18);
+	ptr = GameobjectStorage::get()->Instantiate("Swamp_Deep", 3, 18);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 	ptr.reset();
 
 
-	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 1, 18);
+	ptr = GameobjectStorage::get()->Instantiate("Swamp_Deep", 1, 18);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 	ptr.reset();
 
+
+	ptr = GameobjectStorage::get()->Instantiate("Swamp_Deep", 16, 18);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
+
+	ptr = GameobjectStorage::get()->Instantiate("Swamp_Deep", 17, 18);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
+
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 4, 20);
+	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
+	ptr.reset();
 
 	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 2, 19);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 	ptr.reset();
 
-
-	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 4, 17);
+	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 5, 21);
 	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
 	ptr.reset();
 
-
-	ptr = GameobjectStorage::get()->Instantiate("Jungle_Deep", 5, 16);
-	ptr->getComponent<ForestComponent>("Forest")->SetIsForestPermanent(true);
-	ptr.reset();
 
 
 	ptr = GameobjectStorage::get()->Instantiate("Mountain_Snow", 4, 0);
@@ -1310,33 +1321,30 @@ void AppStateWorldMap::update(float)
 	// Do the standard update.
 	olc::TileTransformedView tv = app->getRenderer();
 
+	// Draw General Layered
+	_renderGameworld();
+
 
 	if (render_2d_grid)
 	{
-
 		// Application rendering.
 		olc::vi2d topleft = tv.GetTopLeftTile().max({ 0, 0 });
 		olc::vi2d bottomright = tv.GetBottomRightTile().min({ DEFAULT_MAPSIZE_X, DEFAULT_MAPSIZE_Y });
 		olc::vi2d tile;
 
-
 		// Draw Grid.
+		olc::Pixel color = { 0, 0, 0, 50 };
 		for (tile.y = topleft.y; tile.y < bottomright.y; tile.y++)
 		{
 			for (tile.x = topleft.x; tile.x < bottomright.x; tile.x++)
 			{
-				tv.DrawLine(tile, tile + olc::vf2d(0.0f, 1.0f), olc::VERY_DARK_GREY);
-				tv.DrawLine(tile, tile + olc::vf2d(1.0f, 0.0f), olc::VERY_DARK_GREY);
+				app->DrawLineDecalTransformed(tile, tile + olc::vf2d(0.0f, 1.0f), color);
+				app->DrawLineDecalTransformed(tile, tile + olc::vf2d(1.0f, 0.0f), color);
 			}
 		}
 
 
 	}
-
-
-	// Draw General Layered
-	_renderGameworld();
-
 
 
 
@@ -1669,6 +1677,23 @@ void AppStateWorldMap::_drawUI()
 
 	if (show_tech_tree)
 	{
+
+		// SMALL TEST
+		// Create a Small Window which could display the new researched technology.
+		// Like this we could create a small system for displaying Windows like this, which are
+		// very modifiable...
+		/*
+		ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |
+			ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBackground;
+	
+		ImGui::SetNextWindowSize(ImVec2(280, 280), ImGuiCond_Appearing);
+		ImGui::SetNextWindowPos(ImVec2(app->ScreenWidth() / 2 - 140, app->ScreenHeight() / 2 - 140), ImGuiCond_Appearing);
+		ImGui::Begin("Test", &show_tech_tree, flags);
+		ImGui::ImageButton((ImTextureID)app->_getDecal("rectangle").get()->id, { 256, 256 }, ImVec2(0,0), ImVec2(1,1), 0);
+		ImGui::End();
+		*/
+
+
 		// We show the tech tree only for the Player belonging to this client.
 		TechnologySystem::get()->VisualizeTechnologyTree(app->m_Player);
 	}

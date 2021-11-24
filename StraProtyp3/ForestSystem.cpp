@@ -621,7 +621,11 @@ void ForestSystem::_createNewForestInMaptile(int x, int y, GameworldMatrix& worl
 		entity = GameobjectStorage::get()->Instantiate("Jungle_Scarce", x, y);
 		_setForestMaxLifetime(entity->getComponent<ForestComponent>("Forest"), "Scarce", "Jungle");
 	}
-
+	else if (maptile->GetMaptileType().compare("Swamp") == 0)
+	{
+		entity = GameobjectStorage::get()->Instantiate("Swamp_Scarce", x, y);
+		_setForestMaxLifetime(entity->getComponent<ForestComponent>("Forest"), "Scarce", "Swamp");
+	}
 }
 
 
@@ -683,6 +687,10 @@ void ForestSystem::_changeForestType(Pointer<GameObject2> entity, ForestType t)
 	else if (biome.compare("Snow") == 0)
 	{
 		decal += "snow_";
+	}
+	else if (biome.compare("Swamp") == 0)
+	{
+		decal += "swamp_";
 	}
 
 
@@ -793,17 +801,37 @@ bool ForestSystem::Initialize(std::string filepath)
 	XMLElement* snow = root->FirstChildElement("Snow");
 	XMLElement* savannah = root->FirstChildElement("Savannah");
 	XMLElement* tundra = root->FirstChildElement("Tundra");
+	XMLElement* swamp = root->FirstChildElement("Swamp");
+
+
+	// SWAMP
+	auto ptr = std::make_shared<ForestTypeDefinition>();
+	ptr->m_Biome = "Swamp";
+	ptr->m_BaseProbability = swamp->FirstChildElement("MaptileBaseProbability")->FloatText();
+	ptr->m_NeighborIncrease = swamp->FirstChildElement("NeighborProbabilityIncrease")->FloatText();
+	ptr->m_RiverIncrease = swamp->FirstChildElement("RiverProbabilityIncrease")->FloatText();
+
+	XMLElement* lifetime = swamp->FirstChildElement("MaxLifetime");
+	XMLElement* def = lifetime->FirstChildElement("Def");
+	while (def)
+	{
+		ptr->m_MaxLifetime.emplace(def->Attribute("type"), def->IntText());
+
+		def = def->NextSiblingElement("Def");
+	}
+
+	m_ForestTypeDefinitions.push_back(ptr);
 
 
 	// JUNGLE
-	auto ptr = std::make_shared<ForestTypeDefinition>();
+	ptr = std::make_shared<ForestTypeDefinition>();
 	ptr->m_Biome = "Jungle";
 	ptr->m_BaseProbability = jungle->FirstChildElement("MaptileBaseProbability")->FloatText();
 	ptr->m_NeighborIncrease = jungle->FirstChildElement("NeighborProbabilityIncrease")->FloatText();
 	ptr->m_RiverIncrease = jungle->FirstChildElement("RiverProbabilityIncrease")->FloatText();
 
-	XMLElement* lifetime = jungle->FirstChildElement("MaxLifetime");
-	XMLElement* def = lifetime->FirstChildElement("Def");
+	lifetime = jungle->FirstChildElement("MaxLifetime");
+	def = lifetime->FirstChildElement("Def");
 	while (def)
 	{
 		ptr->m_MaxLifetime.emplace(def->Attribute("type"), def->IntText());

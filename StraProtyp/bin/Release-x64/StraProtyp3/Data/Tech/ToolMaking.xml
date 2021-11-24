@@ -22,6 +22,7 @@
 
 			</Definition>
 			<Requirements>
+				<Req area="player_tech_check" type="true">Bronze Working</Req>
 			</Requirements>
 
 			<!--Effects are basic description text-->

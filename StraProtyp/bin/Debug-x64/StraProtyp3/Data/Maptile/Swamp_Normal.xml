@@ -1,0 +1,28 @@
+<Gameobject>
+	<Tag>Forest_Swamp_Normal</Tag>
+	<Name>Forest_Swamp_Normal</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_green</Color>
+			<Decal>forest_swamp_normal</Decal>
+			<Layer>forest</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+
+		<Component name ="Forest">
+			<Type>Normal</Type>
+			<Biome>Swamp</Biome>
+			<MaxLifetime>50</MaxLifetime>
+		</Component>
+		
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

@@ -21,7 +21,7 @@
 
 			</Definition>
 			<Requirements>
-				<Req area="player_tech_check" type="true">Political Theory</Req>
+				<Req area="player_tech_check" type="true">Political Theory I</Req>
 			</Requirements>
 
 			<!--Effects are basic description text-->

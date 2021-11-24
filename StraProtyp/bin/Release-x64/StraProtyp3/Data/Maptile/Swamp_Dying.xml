@@ -1,0 +1,27 @@
+<Gameobject>
+	<Tag>Forest_Swamp_Dying</Tag>
+	<Name>Forest_Swamp_Dying</Name>
+	<Components>
+		<Component name="Renderable">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+			<Color>dark_green</Color>
+			<Decal>forest_swamp_dying</Decal>
+			<Layer>forest</Layer>
+		</Component>
+
+		<Component name="Transform"></Component>
+
+		<Component name ="Animator"></Component>
+
+		<Component name ="Forest">
+			<Type>Dying</Type>
+			<Biome>Swamp</Biome>
+			<MaxLifetime>25</MaxLifetime>
+		</Component>		
+		<Component name="CollisionBox">
+			<Width>1.0</Width>
+			<Height>1.0</Height>
+		</Component>
+	</Components>
+</Gameobject>

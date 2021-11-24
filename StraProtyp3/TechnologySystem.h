@@ -78,6 +78,7 @@ private:
 	std::vector< Link* > m_TechLinks;
 	bool m_TechTreeInitialized = false;
 	size_t m_TechNodeID = 0;
+	size_t m_TechLinkID = 0;
 
 private:
 	TechnologySystem(){}

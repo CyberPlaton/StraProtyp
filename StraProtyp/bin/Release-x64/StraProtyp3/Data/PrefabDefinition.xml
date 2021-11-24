@@ -57,7 +57,12 @@
 	<Prefab name="Snow_Normal" path="Data/Maptile/Snow_Normal.xml"></Prefab>
 	<Prefab name="Snow_Deep" path="Data/Maptile/Snow_Deep.xml"></Prefab>
 	<Prefab name="Snow_Dying" path="Data/Maptile/Snow_Dying.xml"></Prefab>
+	<Prefab name="Swamp_Scarce" path="Data/Maptile/Swamp_Scarce.xml"></Prefab>
+	<Prefab name="Swamp_Normal" path="Data/Maptile/Swamp_Normal.xml"></Prefab>
+	<Prefab name="Swamp_Deep" path="Data/Maptile/Swamp_Deep.xml"></Prefab>
+	<Prefab name="Swamp_Dying" path="Data/Maptile/Swamp_Dying.xml"></Prefab>
 
+	<Prefab name="Swamp_Maptile" path="Data/Maptile/Swamp_Maptile.xml"></Prefab>
 	<Prefab name="Jungle_Maptile" path="Data/Maptile/Jungle_Maptile.xml"></Prefab>
 	<Prefab name="Temperate_Maptile" path="Data/Maptile/Temperate_Maptile.xml"></Prefab>
 	<Prefab name="Savannah_Maptile" path="Data/Maptile/Savannah_Maptile.xml"></Prefab>
