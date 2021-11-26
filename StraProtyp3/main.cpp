@@ -24,7 +24,7 @@ static int imnodes_tech_link_id = 1;
 static int imnodes_tech_dependency_id = 1;
 static int imnodes_tech_dependency_display_id = 100000;
 static bool imnodes_tech_tree_initialized = false;
-static bool render_2d_grid = true;
+static bool render_2d_grid = false; // Should not be used in release, as it consumes much CPU time.
 static bool render_city_religions = false;
 static bool show_city_religion_update_button = false;
 
@@ -104,7 +104,7 @@ bool App::OnUserUpdate(float fElapsedTime)
 
 
 	// Update all Maptile Components.
-	for (auto& m : GetAllComponentsOfType<MaptileComponent>("Maptile"))
+	for (auto& m : GetAllComponentsOfType<MaptileComponent>(EComponentType::CT_Maptile))
 	{
 		m->update();
 	}
@@ -229,7 +229,7 @@ bool App::OnUserCreate()
 	}
 
 
-	auto vec = GetAllComponentsOfType<MaptileComponent>("Maptile");
+	auto vec = GetAllComponentsOfType<MaptileComponent>(EComponentType::CT_Maptile);
 	for (auto& m : vec)
 	{
 		while (m->GetGameobjects().size() > 0)
@@ -637,7 +637,7 @@ void App::_handleInput()
 			{
 				for (auto e : maptile->GetGameobjects())
 				{
-					if (e->hasComponent("Forest"))
+					if (e->hasComponent(EComponentType::CT_Forest))
 					{
 						selected_gameobject = e;
 						break;
@@ -648,7 +648,7 @@ void App::_handleInput()
 			{
 				for (auto e : maptile->GetGameobjects())
 				{
-					if (e->hasComponent("City"))
+					if (e->hasComponent(EComponentType::CT_City))
 					{
 						selected_gameobject = e;
 						break;
@@ -779,6 +779,34 @@ void App::_handleInput()
 		// Change to city view on RMB click over city.
 		if (GetMouse(1).bPressed && stateMachine.getCurrentState().compare("worldMap") == 0)
 		{
+			for (std::vector< Pointer< GameObject2 > >::iterator it = GameobjectStorage::get()->GetStorage().begin();
+				it != GameobjectStorage::get()->GetStorage().end(); it++)
+			{
+				auto go = *it;
+
+				if (go)
+				{
+					if (go->hasComponent(EComponentType::CT_City))
+					{
+						auto transform = go->getComponent<TransformComponent>("Transform");
+						auto box = go->getComponent<CollisionBoxComponent>("CollisionBox");
+
+						if (mousex > transform->GetXPos() && mousex < transform->GetXPos() + box->GetWidth() &&
+							mousey > transform->GetYPos() && mousey < transform->GetYPos() + box->GetHeight())
+						{
+							currentViewedCity = go;
+							stateMachine.setState("cityView");
+							break;
+						}
+						else
+						{
+							currentViewedCity = nullptr;
+						}
+					}
+				}
+			}
+
+			/*
 			for (int i = 0; i < GameobjectStorage::get()->GetStorage().size(); i++)
 			{
 				auto go = GameobjectStorage::get()->GetStorage()[i];
@@ -805,6 +833,7 @@ void App::_handleInput()
 				}
 
 			}
+			*/
 		}
 		
 	}
@@ -1169,36 +1198,35 @@ void AppStateWorldMap::_renderGameworld()
 void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 {
 	// Rendering Order:
-	// 1 - maptile itself.
-	// 2 - hill, mountain
-	// 3 - river
-	// 4 - forest
-	// 5 - ressource
-	// 6 - improvement
-	// 7 - road
-	// 8 - city or fort
-	// 9 - unit
+	// 0 - maptile itself.
+	// 1 - hill, mountain
+	// 2 - river
+	// 3 - forest
+	// 4 - ressource
+	// 5 - improvement
+	// 6 - road
+	// 7 - city or fort
+	// 8 - unit
 
 	using namespace std;
 
-
-	std::map< int, Pointer<GameObject2> > drawOrder;
-	for (int i = 1; i < 10; i++) drawOrder.emplace(i, nullptr);
+	std::vector< Pointer<GameObject2> > drawOrder;
+	drawOrder.resize(10);
 
 	Pointer<MaptileComponent> maptile = tile->getComponent<MaptileComponent>("Maptile");
 
 	// Render Maptile itself as first.
-	drawOrder[1] = tile;
+	drawOrder[0] = tile;
 
 
 	for (auto go : maptile->GetGameobjects())
 	{
 		// Store gameobject in correct slot for ordered rendering.
-		if (go->hasComponent("Renderable"))
+		if (go->hasComponent(EComponentType::CT_Renderable))
 		{
 
 			// Do not render units in city as outside.
-			if (go->hasComponent("Unit") && go->getComponent<UnitComponent>("Unit")->IsInCity() == true) continue;
+			if (go->hasComponent(EComponentType::CT_Unit) && go->getComponent<UnitComponent>("Unit")->IsInCity() == true) continue;
 
 
 			Pointer<RenderableComponent> render = go->getComponent<RenderableComponent>("Renderable");
@@ -1207,42 +1235,42 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 			{
 				if (render->GetRenderingLayer().compare("forest") == 0) // And Mountain, Hill.
 				{
-					drawOrder[4] = go;
+					drawOrder[3] = go;
 				}
 				else if (render->GetRenderingLayer().compare("mountain") == 0)
 				{
-					drawOrder[2] = go;
+					drawOrder[1] = go;
 				}
 				else if (render->GetRenderingLayer().compare("river") == 0)
 				{
-					drawOrder[3] = go;
+					drawOrder[2] = go;
 				}
 				else if (render->GetRenderingLayer().compare("ressource") == 0)
 				{
-					drawOrder[5] = go;
+					drawOrder[4] = go;
 				}
 				else if (render->GetRenderingLayer().compare("improvement") == 0)
 				{
-					drawOrder[6] = go;
+					drawOrder[5] = go;
 				}
 				else if (render->GetRenderingLayer().compare("road") == 0)
 				{
-					drawOrder[7] = go;
+					drawOrder[6] = go;
 				}
 				else if (render->GetRenderingLayer().compare("city") == 0)
 				{
-					drawOrder[8] = go;
+					drawOrder[7] = go;
 				}
 				else if (render->GetRenderingLayer().compare("unit") == 0)
 				{
-					drawOrder[9] = go;
+					drawOrder[8] = go;
 				}
 			}
 		}
 	}
 
 
-	for (int i = 1; i < 9; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		// Render the Gameobjects in correct order.
 		Pointer<GameObject2> go = drawOrder[i];
@@ -1260,11 +1288,11 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 
 	// Render some text about a Forest.
 	// Will crash if we select a Mountain or Hill...
-	if (drawOrder[4] && drawOrder[4]->hasComponent("Forest"))
+	if (drawOrder[3] && drawOrder[3]->hasComponent(EComponentType::CT_Forest))
 	{
-		auto forest = drawOrder[4]->getComponent<ForestComponent>("Forest");
-		auto transform = drawOrder[4]->getComponent<TransformComponent>("Transform");
-		auto render = drawOrder[4]->getComponent<RenderableComponent>("Renderable");
+		auto forest = drawOrder[3]->getComponent<ForestComponent>("Forest");
+		auto transform = drawOrder[3]->getComponent<TransformComponent>("Transform");
+		auto render = drawOrder[3]->getComponent<RenderableComponent>("Renderable");
 
 		std::string type, biome;
 		int life, maxLife;
@@ -1284,11 +1312,11 @@ void AppStateWorldMap::_renderMaptile(Pointer<GameObject2> tile)
 
 
 	// Render Religion related text above city.
-	if (drawOrder[8] && drawOrder[8]->hasComponent("City"))
+	if (drawOrder[7] && drawOrder[7]->hasComponent(EComponentType::CT_City))
 	{
-		auto c = drawOrder[8]->getComponent<CityComponent>("City");
-		auto transform = drawOrder[8]->getComponent<TransformComponent>("Transform");
-		auto render = drawOrder[8]->getComponent<RenderableComponent>("Renderable");
+		auto c = drawOrder[7]->getComponent<CityComponent>("City");
+		auto transform = drawOrder[7]->getComponent<TransformComponent>("Transform");
+		auto render = drawOrder[7]->getComponent<RenderableComponent>("Renderable");
 
 		std::string text = c->GetName();
 
@@ -1477,7 +1505,7 @@ void AppStateWorldMap::update(float)
 
 
 
-		if (selected_gameobject->hasComponent("City"))
+		if (selected_gameobject->hasComponent(EComponentType::CT_City))
 		{
 
 			auto c = selected_gameobject->getComponent<CityComponent>("City");
@@ -1723,7 +1751,7 @@ void AppStateWorldMap::_drawUI()
 					Pointer<GameObject2> c;
 					for (auto ptr : m->GetGameobjects())
 					{
-						if (ptr->hasComponent("City")) c = ptr; break;
+						if (ptr->hasComponent(EComponentType::CT_City)) c = ptr; break;
 					}
 
 					auto city = c->getComponent<CityComponent>("City");

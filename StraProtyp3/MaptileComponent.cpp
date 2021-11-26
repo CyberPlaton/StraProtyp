@@ -88,12 +88,12 @@ void MaptileComponent::RemoveAllGameobjects()
 }
 
 
-bool MaptileComponent::_hasGameobjectWithComponent(std::string componentTag)
+bool MaptileComponent::_hasGameobjectWithComponent(EComponentType type)
 {
 	for (int i = 0; i< m_Gameobjects.size(); i++)
 	{
 		auto ptr = m_Gameobjects[i];
-		if (ptr->hasComponent(componentTag))
+		if (ptr->hasComponent(type))
 		{
 			return true;
 		}
@@ -105,36 +105,36 @@ bool MaptileComponent::_hasGameobjectWithComponent(std::string componentTag)
 
 bool MaptileComponent::HasRoad()
 {
-	return _hasGameobjectWithComponent("Road");
+	return _hasGameobjectWithComponent(EComponentType::CT_Road);
 }
 
 
 bool MaptileComponent::HasImprovement()
 {
-	return _hasGameobjectWithComponent("Improvement");
+	return _hasGameobjectWithComponent(EComponentType::CT_Improvement);
 }
 
 
 bool MaptileComponent::HasForest()
 {
-	return _hasGameobjectWithComponent("Forest");
+	return _hasGameobjectWithComponent(EComponentType::CT_Forest);
 }
 
 
 bool MaptileComponent::HasCity()
 {
-	return _hasGameobjectWithComponent("City");
+	return _hasGameobjectWithComponent(EComponentType::CT_City);
 }
 
 
 bool MaptileComponent::HasFort()
 {
-	return _hasGameobjectWithComponent("City");
+	return _hasGameobjectWithComponent(EComponentType::CT_City);
 }
 
 
 bool MaptileComponent::HasUnit()
 {
-	return _hasGameobjectWithComponent("Unit");
+	return _hasGameobjectWithComponent(EComponentType::CT_Unit);
 }
 

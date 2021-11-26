@@ -101,7 +101,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 				std::cout << "\tAdding Transform" << white << endl;
 
 				auto transform = std::make_shared<TransformComponent>(name + "_Transform");
-				ptr->addComponent(transform);
+				ptr->addComponent(transform, EComponentType::CT_Transform);
 				_addTransformComponent(transform, ptr, cmp, xpos, ypos);
 				transform.reset();
 
@@ -113,7 +113,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto forest = std::make_shared<ForestComponent>(name + "Forest");
-				ptr->addComponent(forest);
+				ptr->addComponent(forest, EComponentType::CT_Forest);
 				_addForestComponent(forest, ptr, cmp, xpos, ypos);
 				forest.reset();
 
@@ -125,7 +125,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto city = std::make_shared<CityComponent>(name + "City", ptr);
-				ptr->addComponent(city);
+				ptr->addComponent(city, EComponentType::CT_City);
 				_addCityComponent(city, ptr, cmp, xpos, ypos);
 				city.reset();
 
@@ -137,7 +137,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto unit = std::make_shared<UnitComponent>(name + "Unit");
-				ptr->addComponent(unit);
+				ptr->addComponent(unit, EComponentType::CT_Unit);
 				_addUnitComponent(unit, ptr, cmp, xpos, ypos);
 				unit.reset();
 
@@ -149,7 +149,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto mountain = std::make_shared<MountainComponent>(name + "Mountain");
-				ptr->addComponent(mountain);
+				ptr->addComponent(mountain, EComponentType::CT_Mountain);
 				_addMountainComponent(mountain, ptr, cmp, xpos, ypos);
 				mountain.reset();
 			}
@@ -160,7 +160,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto river = std::make_shared<RiverComponent>(name + "River");
-				ptr->addComponent(river);
+				ptr->addComponent(river, EComponentType::CT_River);
 				_addRiverComponent(river, ptr, cmp, xpos, ypos);
 				river.reset();
 			}
@@ -171,7 +171,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto road = std::make_shared<RoadComponent>(name + "Road");
-				ptr->addComponent(road);
+				ptr->addComponent(road, EComponentType::CT_Road);
 				_addRoadComponent(road, ptr, cmp, xpos, ypos);
 				road.reset();
 			}
@@ -182,7 +182,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto ressource = std::make_shared<RessourceComponent>(name + "Ressource");
-				ptr->addComponent(ressource);
+				ptr->addComponent(ressource, EComponentType::CT_Ressource);
 				_addRessourceComponent(ressource, ptr, cmp);
 				ressource.reset();
 			}
@@ -193,7 +193,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto player = std::make_shared<PlayerComponent>(name + "Player");
-				ptr->addComponent(player);
+				ptr->addComponent(player, EComponentType::CT_Player);
 				_addPlayerComponent(player, ptr, cmp);
 				player.reset();
 			}
@@ -204,7 +204,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto maptile = std::make_shared<MaptileComponent>(name + "Maptile");
-				ptr->addComponent(maptile);
+				ptr->addComponent(maptile, EComponentType::CT_Maptile);
 				_addMaptileComponent(maptile, ptr, cmp);
 				maptile.reset();
 			}
@@ -215,7 +215,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto hill = std::make_shared<HillComponent>(name + "Hill");
-				ptr->addComponent(hill);
+				ptr->addComponent(hill, EComponentType::CT_Hill);
 				_addHillComponent(hill, ptr, cmp);
 				hill.reset();
 			}
@@ -226,7 +226,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto building = std::make_shared<BuildingComponent>(name + "Building");
-				ptr->addComponent(building);
+				ptr->addComponent(building, EComponentType::CT_Building);
 				_addBuildingComponent(building, ptr, cmp);
 				building.reset();
 			}
@@ -237,7 +237,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto anim = std::make_shared<AnimatorComponent>(name + "Animator");
-				ptr->addComponent(anim);
+				ptr->addComponent(anim, EComponentType::CT_Animator);
 				_addAnimatorComponent(anim, ptr, cmp);
 				anim.reset();
 			}
@@ -248,7 +248,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto collider = std::make_shared<CollisionBoxComponent>(name + "CollisionBox");
-				ptr->addComponent(collider);
+				ptr->addComponent(collider, EComponentType::CT_CollisionBox);
 				_addCollisionBoxComponent(collider, ptr, cmp);
 				collider.reset();
 			}
@@ -259,7 +259,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto navi = std::make_shared<NavigatorComponent>(name + "Navigator");
-				ptr->addComponent(navi);
+				ptr->addComponent(navi, EComponentType::CT_Navigator);
 				_addNavigatorComponent(navi, ptr, cmp);
 				navi.reset();
 			}
@@ -270,7 +270,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 
 
 				auto render = std::make_shared<RenderableComponent>(name + "Renderable");
-				ptr->addComponent(render);
+				ptr->addComponent(render, EComponentType::CT_Renderable);
 				_addRenderableComponent(render, ptr, cmp);
 				render.reset();
 			}
@@ -280,7 +280,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 				std::cout << "\tAdding Technology" << white << endl;
 
 				auto tech = std::make_shared<TechnologyComponent>(name + "Technology");
-				ptr->addComponent(tech);
+				ptr->addComponent(tech, EComponentType::CT_Technology);
 				_addTechnologyComponent(tech, ptr, cmp);
 				tech.reset();
 			}
@@ -290,7 +290,7 @@ Pointer<GameObject2> GameobjectStorage::Instantiate(std::string prefabName, floa
 				std::cout << "\tAdding Nation" << white << endl;
 
 				auto nation = std::make_shared<NationComponent>(name + "Nation");
-				ptr->addComponent(nation);
+				ptr->addComponent(nation, EComponentType::CT_Nation);
 				_addNationComponent(nation, ptr, cmp);
 				nation.reset();
 			}

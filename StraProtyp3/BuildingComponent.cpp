@@ -117,7 +117,7 @@ bool BuildingComponent::SetBuildingSlot(Pointer<GameObject2> building, int slotN
 {
 	if (building)
 	{
-		if (building->hasComponent("City") == 0)
+		if (building->hasComponent(EComponentType::CT_City) == 0)
 		{
 			auto city = building->getComponent<CityComponent>("City");
 		

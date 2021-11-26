@@ -38,7 +38,7 @@ bool UnitComponent::IsInCity()
 
 bool UnitComponent::SetStats(Pointer<GameObject2> nation)
 {
-	if (!nation->hasComponent("Nation")) return false;
+	if (!nation->hasComponent(EComponentType::CT_Nation)) return false;
 
 	auto n = nation->getComponent<NationComponent>("Nation");
 

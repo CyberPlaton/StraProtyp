@@ -163,7 +163,7 @@ private:
 	{
 		for (auto& go : GameobjectStorage::get()->GetStorage())
 		{
-			if (go->hasComponent("Maptile"))
+			if (go->hasComponent(EComponentType::CT_Maptile))
 			{
 				Pointer<TransformComponent> cmp = go->getComponent<TransformComponent>("Transform");
 				if (cmp->xpos == x && cmp->ypos == y)
@@ -181,7 +181,7 @@ private:
 
 
 template < typename T >
-std::vector< Pointer< T > > GetAllComponentsOfType(std::string t)
+std::vector< Pointer< T > > GetAllComponentsOfType(EComponentType t)
 {
 	std::vector< Pointer< T > > vec;
 
@@ -193,7 +193,7 @@ std::vector< Pointer< T > > GetAllComponentsOfType(std::string t)
 
 		if (e->hasComponent(t))
 		{
-			vec.push_back(e->getComponent<T>(t));
+			vec.push_back(e->getComponent<T>(EComponentTypeString(t)));
 		}
 	}
 

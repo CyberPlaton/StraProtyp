@@ -185,6 +185,7 @@
 		<Decal>elipse.png</Decal>
 		<Decal>rectangle.png</Decal>
 		<Decal>triangle.png</Decal>
+		<Decal>border_04.png</Decal>
 	</Decals>
 	
 </DecalDefinition>

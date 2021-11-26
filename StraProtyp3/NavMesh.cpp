@@ -23,7 +23,7 @@ bool NavMesh::Bake()
 
 		// Start baking the Graph too.
 		//
-		if (go->hasComponent("CollisionBox"))
+		if (go->hasComponent(EComponentType::CT_CollisionBox))
 		{
 			int x, y, w, h;
 

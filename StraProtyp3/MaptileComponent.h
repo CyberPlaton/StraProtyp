@@ -81,5 +81,5 @@ private:
 
 private:
 
-	bool _hasGameobjectWithComponent(std::string componentTag);
+	bool _hasGameobjectWithComponent(EComponentType type);
 };

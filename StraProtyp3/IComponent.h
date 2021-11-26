@@ -26,6 +26,31 @@ using ComponentID = std::string;
 using ComponentType = std::string;
 
 
+enum EComponentType
+{
+	CT_Transform,
+	CT_Animator,
+	CT_Building,
+	CT_City,
+	CT_CollisionBox,
+	CT_Forest,
+	CT_Hill,
+	CT_Improvement,
+	CT_Maptile,
+	CT_Mountain,
+	CT_Nation,
+	CT_Navigator,
+	CT_Player,
+	CT_Renderable,
+	CT_Ressource,
+	CT_River,
+	CT_Road,
+	CT_Technology,
+	CT_Unit,
+	CT_Enum_Max
+};
+
+std::string EComponentTypeString(EComponentType type);
 
 class IComponent
 {

@@ -15,7 +15,7 @@ void ForestSystem::Update(GameworldMatrix& world)
 			for (auto entity : world[i][j]->getComponent<MaptileComponent>("Maptile")->GetGameobjects())
 			{
 				// Pick out the Forests.
-				if (entity->hasComponent("Forest"))
+				if (entity->hasComponent(EComponentType::CT_Forest))
 				{
 					doesForestExist = true;
 
@@ -67,7 +67,7 @@ Pointer<GameObject2> ForestSystem::_getForestInMaptile(int x, int y, GameworldMa
 
 	for (auto entity : world[x][y]->getComponent<MaptileComponent>("Maptile")->GetGameobjects())
 	{
-		if (entity->hasComponent("Forest"))
+		if (entity->hasComponent(EComponentType::CT_Forest))
 		{
 			return entity;
 		}

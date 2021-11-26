@@ -26,7 +26,14 @@ class GameObject2 : public IGameObject
 public:
 	GameObject2(GOTag tag, GOName name, size_t hash) : m_Name(name), m_Tag(tag), m_Hash(hash)
 	{
+
+		m_HasComponents.resize((int)EComponentType::CT_Enum_Max);
+		for (int i = 0; i < m_HasComponents.size(); i++)
+		{
+			m_HasComponents[i] = false;
+		}	
 	};
+
 	GameObject2(const GameObject2& other, size_t hash)
 	{
 		m_Tag = other.m_Tag;
@@ -89,7 +96,7 @@ public:
 	}
 
 
-	void addComponent(Pointer<IComponent> component) override final
+	void addComponent(Pointer<IComponent> component, EComponentType type) override final
 	{
 		using namespace std;
 
@@ -104,7 +111,9 @@ public:
 			}
 		}
 
+
 		components.push_back(component);
+		m_HasComponents[(int)type] = true;
 	}
 
 	void removeComponent(Pointer<IComponent> component) override final
@@ -152,14 +161,18 @@ public:
 	}
 
 
-	bool hasComponent(std::string tag) override final
+	bool hasComponent(EComponentType type) override final
 	{
+		return m_HasComponents[(int)type] == true;
+
+		/*
 		for (auto& c : components)
 		{
 			if (c->getComponentType().compare(tag) == 0) return true;
 		}
 
 		return false;
+		*/
 	}
 
 
@@ -168,4 +181,5 @@ private:
 	std::string m_Tag;
 	size_t m_Hash;
 	ComponentStorageVec<IComponent> components;
+	std::vector< bool > m_HasComponents;
 };

@@ -173,7 +173,7 @@ Pointer<GameObject2> ReligionSystem::_getCityInMaptile(Pointer<GameObject2> mapt
 
 	for (auto e : m->GetGameobjects())
 	{
-		if (e->hasComponent("City"))
+		if (e->hasComponent(EComponentType::CT_City))
 		{
 			return e;
 		}

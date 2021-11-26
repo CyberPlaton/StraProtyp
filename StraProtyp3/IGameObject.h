@@ -34,10 +34,10 @@ public:
 	virtual void setHashvalue(size_t) = 0;
 	virtual size_t getHashvalue() = 0;
 
-	virtual void addComponent(Pointer<IComponent>) = 0;
+	virtual void addComponent(Pointer<IComponent>, EComponentType) = 0;
 	virtual void removeComponent(Pointer<IComponent>) = 0;
 	virtual Pointer<IComponent> getComponent(std::string) = 0;
 	virtual ComponentStorageVec<IComponent>& getComponents() = 0;
 
-	virtual bool hasComponent(std::string) = 0;
+	virtual bool hasComponent(EComponentType) = 0;
 };
