@@ -772,37 +772,38 @@ void App::_handleInput()
 	}
 	
 
-	/*
+	
 	if (stateMachine.getCurrentState().compare("worldMap") == 0)
 	{
 
-		// TODO Rework
-		// Check for RMB Press on a city...
-		
+		// Change to city view on RMB click over city.
 		if (GetMouse(1).bPressed && stateMachine.getCurrentState().compare("worldMap") == 0)
 		{
-			for (auto& go : GameObjectStorage::get()->getStorage())
+			for (int i = 0; i < GameobjectStorage::get()->GetStorage().size(); i++)
 			{
-				TransformCmp* transform = go->getComponent<TransformCmp>("Transform");
-				CollisionBoxCmp* box = go->getComponent<CollisionBoxCmp>("CollisionBox");
-
-
-				if (mousex > transform->xpos && mousex < transform->xpos + box->width &&
-					mousey > transform->ypos && mousey < transform->ypos + box->height)
+				auto go = GameobjectStorage::get()->GetStorage()[i];
+				
+				if (go)
 				{
-
-					// Is the Gameobject a city.
 					if (go->hasComponent("City"))
 					{
-						currentViewedCity = go;
-						stateMachine.setState("cityView");
-						break;
-					}
-					else
-					{
-						currentViewedCity = nullptr;
+						auto transform = go->getComponent<TransformComponent>("Transform");
+						auto box = go->getComponent<CollisionBoxComponent>("CollisionBox");
+
+						if (mousex > transform->GetXPos() && mousex < transform->GetXPos() + box->GetWidth() &&
+							mousey > transform->GetYPos() && mousey < transform->GetYPos() + box->GetHeight())
+						{
+							currentViewedCity = go;
+							stateMachine.setState("cityView");
+							break;
+						}
+						else
+						{
+							currentViewedCity = nullptr;
+						}
 					}
 				}
+
 			}
 		}
 		
@@ -816,7 +817,7 @@ void App::_handleInput()
 			currentViewedCity = nullptr;
 		}
 	}
-	*/
+	
 }
 
 

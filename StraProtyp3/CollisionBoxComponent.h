@@ -29,6 +29,10 @@ public:
 		m_Agent.reset();
 	}
 
+	float GetWidth() { return width; }
+	float GetHeight() { return height; }
+
+
 	bool Resolve(Pointer<GameObject2> other)
 	{
 		auto otr = other->getComponent<TransformComponent>("Transform");
