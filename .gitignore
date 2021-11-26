@@ -1,5 +1,7 @@
 # Prerequisites
 *.d
+*.ilk
+*.pdb
 
 # Assets
 *.png
