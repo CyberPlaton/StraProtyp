@@ -1498,7 +1498,7 @@ void AppStateWorldMap::update(float)
 		}
 
 	}
-	
+
 }
 
 void AppStateWorldMap::_drawUI()
@@ -1675,7 +1675,6 @@ void AppStateWorldMap::_drawUI()
 
 
 
-
 	if (show_tech_tree)
 	{
 
@@ -1683,17 +1682,27 @@ void AppStateWorldMap::_drawUI()
 		// Create a Small Window which could display the new researched technology.
 		// Like this we could create a small system for displaying Windows like this, which are
 		// very modifiable...
-		/*
 		ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |
 			ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBackground;
 	
 		ImGui::SetNextWindowSize(ImVec2(280, 280), ImGuiCond_Appearing);
-		ImGui::SetNextWindowPos(ImVec2(app->ScreenWidth() / 2 - 140, app->ScreenHeight() / 2 - 140), ImGuiCond_Appearing);
+		ImGui::SetNextWindowPos(ImVec2(500, 256), ImGuiCond_Appearing);
 		ImGui::Begin("Test", &show_tech_tree, flags);
-		ImGui::ImageButton((ImTextureID)app->_getDecal("rectangle").get()->id, { 256, 256 }, ImVec2(0,0), ImVec2(1,1), 0);
+		if (ImGui::ImageButtonBogdan((ImTextureID)app->_getDecal("border_04").get()->id, { 256, 256 }, ImVec2(0, 0), ImVec2(1, 1), 0, ImVec4(0, 0, 0, 0), ImVec4(0, 0, 0, 0), ImVec4(1, 0, 0, 1)))
+		{
+			cout << "Image Button Click" << endl;
+		}
 		ImGui::End();
-		*/
 
+
+		ImGui::SetNextWindowSize(ImVec2(280, 280), ImGuiCond_Appearing);
+		ImGui::SetNextWindowPos(ImVec2(100, 256), ImGuiCond_Appearing);
+		ImGui::Begin("Test2", &show_tech_tree, flags);
+		if (ImGui::ImageButton((ImTextureID)app->_getDecal("border_04").get()->id, { 256, 256 }, ImVec2(0, 0), ImVec2(1, 1), 0, ImVec4(0, 0, 0, 0), ImVec4(1, 0, 0, 1)))
+		{
+			cout << "Image Button Click" << endl;
+		}
+		ImGui::End();
 
 		// We show the tech tree only for the Player belonging to this client.
 		TechnologySystem::get()->VisualizeTechnologyTree(app->m_Player);
